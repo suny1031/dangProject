@@ -1,0 +1,83 @@
+@charset "UTF-8";
+
+#storeWrap {
+	display: flex;
+	flex-direction: column;
+}
+
+#wrap {
+	height: 150vh;
+	width: 80vw;
+	background-color: #ffffff;
+	align-self: center;
+}
+
+#photo {
+	height: 35vh;
+	width: 80vw;
+	background-color: rgb(114, 114, 107);
+	align-self: center;
+}
+
+#storeInfrm {
+	height: 160vh;
+	width: 70vw;
+	position: absolute;
+	top: 30%;
+	background-color: #ffffff;
+	align-self: center;
+}
+
+#InfrmList {
+	margin-top: 5%;
+	text-align: center;
+}
+
+#name {
+	font-size: 4vw;
+	font-weight: bold;
+}
+
+#review {
+	margin-top: 3%;
+	font-size: 1vw;
+	color: blue;
+}
+
+#kakaoIcon {
+	font-size: 2vw;
+	margin: 2% 0 0 0;
+}
+
+#kakao {
+	border-bottom: 1px solid #cfc7c7;
+	font-size: 1.5vw;
+}
+
+#rsv_btn {
+	padding: 1% 35% 1% 35%;
+	border-radius: 7px;
+	border: solid 1.5px #8b4513;
+	background-color: white;
+	margin: 2% 0 0 0;
+	outline: none;
+}
+
+#notice {
+	font-size: 1.5vw;
+	font-weight: bold;
+	color : #8b4513;
+	border-bottom: 1px solid #cfc7c7;
+}
+
+.list {
+	font-size: 1vw;
+	padding: 2% 2% 2% 2%;
+	border-bottom: 1px solid #cfc7c7;
+}
+
+.board {
+	background-color: #d3d3d3;
+	display: flex;
+	flex-direction: column;
+}

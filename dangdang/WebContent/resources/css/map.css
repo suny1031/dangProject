@@ -1,0 +1,59 @@
+@charset "UTF-8";
+
+#mapWrap {
+  display: flex;
+  height: 100%;
+  width: 100vw;
+}
+/*검색창*/
+#search {
+  height: 100%;
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+}
+/*검색어 입력 공간*/
+#searchBox {
+  margin-top: 5%;
+  display: flex;
+  justify-content: center;
+}
+/*검색어 인풋태그*/
+#searchInput {
+  width: 100%;
+  margin-right: 2%;
+  margin-left: 2%;
+  border: solid 2px #8b4513;
+}
+/*검색어  아이콘*/
+.fa-search {
+  color: #8b4513;
+  margin-right: 2%;
+  align-self: center;
+}
+#line {
+  margin-top: 5%;
+  border-bottom: solid 1px #cfc7c7;
+}
+#map {
+  height: 100%;
+  width: 80%;
+}
+
+/*헤더*/
+#header {
+  height: 15vh;
+}
+
+/*작업할 공간*/
+.board {
+  height: 70vh;
+  margin-top: 15vh;
+}
+
+/*푸터*/
+
+#footer {
+  height: 15vh;
+  padding: 0%;
+}
