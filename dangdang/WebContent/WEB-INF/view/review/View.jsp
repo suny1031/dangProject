@@ -6,14 +6,15 @@
 <meta charset="UTF-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
-	<link rel="stylesheet" href="/resources/css/main.css" />
-	<link rel="stylesheet" href="/resources/css/map.css" />
-	<link rel="preconnect" href="https://fonts.gstatic.com">
-	<!-- <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&display=swap" rel="stylesheet"> -->
-	<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
-	<noscript>
-		<link rel="stylesheet" href="assets/css/noscript.css" />
-	</noscript>
+<link rel="stylesheet" href="/resources/css/main.css" />
+<link rel="stylesheet" href="/resources/css/view.css" />
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<!-- <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&display=swap" rel="stylesheet"> -->
+<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap"
+	rel="stylesheet">
+<noscript>
+	<link rel="stylesheet" href="/resources/css/noscript.css" />
+</noscript>
 </head>
 <body class="is-preload">
 
@@ -48,45 +49,49 @@
 
 
 
-	<!-- Main -->
+		<!-- Main -->
 
 		<div class="board">
-			<div id="mapWrap">
-				<!--검색어를 검색 할 곳-->
-				<div id="search">
-					<div id="searchBox">
-						<input type="search" id="searchInput">
-						<i class="fas fa-search"></i>
+			<div class="reviewWrap">
+
+				<div class="dataWrap fristWrap">
+					<div class="user data">장군짱</div>
+					<div class="tite data">유치원 좋아여</div>
+					<div class="date data">2021/01/31</div>
+					<div class="contentWrap">
+						<textarea class="content">강지지아짊ㄴ아린아리나이라닝라ㅣㅁㄴㅇ린앎ㄴ아림ㄴㅇ린아린아리ㅏㅁㄴ이람ㄴ이라민아린망림나일나ㅣㄹㄴ림나임나ㅣㄴㅇ라ㅣ</textarea>
+						<div class="photo"></div>
 					</div>
-					<div id="line"></div>
-					<div id = "searchResults"></div>
+
 				</div>
 
-				<!-- 지도를 표시할 div 입니다 -->
-				<div id="map"></div>
-				<script type="text/javascript"
-					src="//dapi.kakao.com/v2/maps/sdk.js?appkey=df05d9d53d8d4a2d40f65a23b163b044"></script>
-				<script>
-					var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-						mapOption = {
-							center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-							level: 3 // 지도의 확대 레벨
-						};
-
-					// 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
-					var map = new kakao.maps.Map(mapContainer, mapOption); 
-				</script>
 			</div>
+
 		</div>
-		
-		
-		
+
 		<!-- Footer -->
-		<footer id="footer">
-		
-		</footer>
+		<footer id="footer"> </footer>
 
 	</div>
+
+	<!--ViewScripts-->
+	<script type="text/javascript">
+		function submitData(url) {
+			location.href = url;
+		}
+
+		function downloadFile(ofname, rfname, savePath) {
+			let params = {
+				'ofname' : ofname,
+				'rfname' : rfname,
+				'savePath' : savePath
+			};
+
+			location.href = '${context}' + "/board/download.do?"
+					+ urlEncodeForm(params);
+		}
+	</script>
+
 
 	<!-- Scripts -->
 	<script src="/resources/js/jquery.min.js"></script>
@@ -96,6 +101,5 @@
 	<script src="/resources/js/breakpoints.min.js"></script>
 	<script src="/resources/js/util.js"></script>
 	<script src="/resources/js/main.js"></script>
-
 </body>
 </html>

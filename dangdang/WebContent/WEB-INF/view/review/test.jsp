@@ -53,9 +53,8 @@
 
 		<div class="board">
 			<div class="content">
-				<h2 class="tit">*게시판</h2>
 				<div class="desc_board">
-					<h4 class="tit_board">제목 :</h4>
+					<h4 class="tit_board">제목 :${data.board.title}</h4>
 					<div class="info">
 						<span>게시글 번호 : ${data.board.bdIdx}</span> <span>등록일 :
 							${data.board.regDate}</span> <span>작성자 : ${data.board.userId}</span>

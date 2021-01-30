@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.dang.common.code.ErrorCode;
 import com.dang.common.exception.ToAlertException;
 
-@WebServlet("/map.do/*")
+@WebServlet("/map/*")
 public class MapController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -32,15 +32,10 @@ public class MapController extends HttpServlet {
 		case "map.do":
 			map(request, response);
 			break;
-			
-		case "infrm":
+
+		case "infrm.do":
 			infrm(request, response);
-			
-		case "reviewwrite":
-			reviewwrite(request, response);
-			
-		case "reviewview":
-			reviewview(request, response);
+			break;
 		default:
 			throw new ToAlertException(ErrorCode.CD_404);
 
@@ -56,13 +51,8 @@ public class MapController extends HttpServlet {
 	private void map(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getRequestDispatcher("/WEB-INF/view/map/Map.jsp").forward(request, response);
 	}
+
 	private void infrm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/WEB-INF/view/map/infrm.jsp").forward(request, response);
-	}
-	private void reviewwrite(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/WEB-INF/view/map/reviewWrite.jsp").forward(request, response);
-	}
-	private void reviewview(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/WEB-INF/view/map/reviewView.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/view/map/Infrm.jsp").forward(request, response);
 	}
 }

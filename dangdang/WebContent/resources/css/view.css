@@ -1,0 +1,71 @@
+@charset "UTF-8";
+
+.reviewWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.fristWrap {
+  margin-top: 5%;
+}
+.dataWrap {
+  width: 70%;
+  height: 50vh;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.data {
+  width: 20%;
+  height: 15%;
+  text-align: center;
+  align-items: center;
+}
+
+.date {
+  font-size: 1vw;
+}
+.content {
+  background-color: #dfc6c0;
+  border-radius: 30px;
+  width: 40%;
+  height: 80%;
+
+  padding: 1%;
+}
+.photo {
+  background-color: dodgerblue;
+  width: 50%;
+  height: 80%;
+  margin-left: 5%;
+
+  background-image: url("images/arrow.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.contentWrap {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+/*헤더*/
+#header {
+  height: 15vh;
+}
+
+/*작업할 공간*/
+.board {
+  min-height: 70vh;
+  margin-top: 15vh;
+}
+
+/*푸터*/
+
+#footer {
+  height: 15vh;
+  padding: 0%;
+}

@@ -1,0 +1,86 @@
+@charset "UTF-8";
+.reviewWrap {
+  width: 50%;
+  height: 70vh;
+  margin-left: 25%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+  background-color: #f1f1f1;
+  border-radius: 30px;
+}
+
+.formWrap {
+  width: 100%;
+  height: 65vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+#content {
+  width: 50%;
+  height: 30vh;
+  margin-left: 25%;
+  color: #333;
+  border: none;
+  padding: 0 5px;
+  outline: none;
+  border-bottom: 2px solid #adadad;
+}
+
+#titleInput {
+  color: #333;
+  width: 50%;
+  border: none;
+  padding: 0 5px;
+  outline: none;
+
+  border-bottom: 2px solid #adadad;
+
+  margin-left: 25%;
+}
+
+#file {
+  color: #333;
+  width: 50%;
+  border: none;
+  padding: 0 5px;
+  outline: none;
+
+  border-bottom: 2px solid #adadad;
+
+  margin-left: 25%;
+}
+#btnWrap {
+  width: 20%;
+  display: flex;
+  justify-content: space-between;
+  margin-left: 35%;
+}
+
+#submit_btn {
+  width: 10vw;
+  background-color: #8b4513;
+  color: white;
+  text-align: center;
+}
+
+/*헤더*/
+#header {
+  height: 15vh;
+}
+
+/*작업할 공간*/
+.board {
+  min-height: 70vh;
+  margin-top: 15vh;
+}
+
+/*푸터*/
+
+#footer {
+  height: 15vh;
+  padding: 0%;
+}
