@@ -52,21 +52,54 @@
 		<!-- Main -->
 
 		<div class="board">
+		
+		 <div id = "kinderWrap"><p id= "kinder">바우라움 유치원</p></div>
+		 
 			<div class="reviewWrap">
-
 				<div class="dataWrap fristWrap">
-					<div class="user data">장군짱</div>
-					<div class="tite data">유치원 좋아여</div>
-					<div class="date data">2021/01/31</div>
-					<div class="contentWrap">
-						<textarea class="content">강지지아짊ㄴ아린아리나이라닝라ㅣㅁㄴㅇ린앎ㄴ아림ㄴㅇ린아린아리ㅏㅁㄴ이람ㄴ이라민아린망림나일나ㅣㄹㄴ림나임나ㅣㄴㅇ라ㅣ</textarea>
-						<div class="photo"></div>
+					<div class="wrap">
+						<div class="user data">장군짱</div>
+						<div class="title data">유치원 좋아여</div>
+						<div class="date data">2021/01/31</div>
+						<div class="contentWrap">
+							<textarea
+								class="content" readonly="readonly">강지지아짊ㄴ아린아리나이라닝라ㅣㅁㄴㅇ린앎ㄴ아림ㄴㅇ린아린아리ㅏㅁㄴ이람ㄴ이라민아린망림나일나ㅣㄹㄴ림나임나ㅣㄴㅇ라ㅣ</textarea>
+						</div>
 					</div>
-
+					<div class="photo"></div>
 				</div>
-
-			</div>
-
+				
+				<div class="dataWrap fristWrap">
+					<div class="wrap">
+						<div class="user data">장군짱</div>
+						<div class="title data">유치원 좋아여</div>
+						<div class="date data">2021/01/31</div>
+						<div class="contentWrap">
+							<textarea
+								class="content" readonly="readonly">강지지아짊ㄴ아린아리나이라닝라ㅣㅁㄴㅇ린앎ㄴ아림ㄴㅇ린아린아리ㅏㅁㄴ이람ㄴ이라민아린망림나일나ㅣㄹㄴ림나임나ㅣㄴㅇ라ㅣ</textarea>
+						</div>
+					</div>
+					<div class="photo"></div>
+				</div>
+				
+				
+				<div class="dataWrap fristWrap">
+					<div class="wrap">
+						<div class="user data">장군짱</div>
+						<div class="title data">유치원 좋아여</div>
+						<div class="date data">2021/01/31</div>
+						<div class="contentWrap">
+							<textarea
+								class="content" readonly="readonly">강지지아짊ㄴ아린아리나이라닝라ㅣㅁㄴㅇ린앎ㄴ아림ㄴㅇ린아린아리ㅏㅁㄴ이람ㄴ이라민아린망림나일나ㅣㄹㄴ림나임나ㅣㄴㅇ라ㅣ</textarea>
+						</div>
+					</div>
+					<div class="photo"></div>
+				</div>
+				
+				
+				
+				
+			</div>			
 		</div>
 
 		<!-- Footer -->

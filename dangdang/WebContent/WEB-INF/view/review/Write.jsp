@@ -62,8 +62,8 @@
 						<input id="file" type="file" name="files" multiple />
 						<textarea id="content" class="board-content" name="content"> </textarea>
 						<div id="btnWrap">
-							<div id="submit_btn">목록</div>
-							<div id="submit_btn">등록</div>
+							<button id="reviewList" class = "btn">목록</button>
+							<button id="submit" class = "btn">등록</button>
 						</div>
 					</div>
 				</form>

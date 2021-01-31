@@ -48,22 +48,22 @@
   border: none;
   padding: 0 5px;
   outline: none;
-
   border-bottom: 2px solid #adadad;
 
   margin-left: 25%;
 }
 #btnWrap {
-  width: 20%;
+  width: 25%;
   display: flex;
   justify-content: space-between;
-  margin-left: 35%;
+  margin-left: 37.1%;
 }
 
-#submit_btn {
+.btn {
   width: 10vw;
   background-color: #8b4513;
   color: white;
+  border:  #8b4513;
   text-align: center;
 }
 

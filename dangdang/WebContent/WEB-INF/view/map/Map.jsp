@@ -59,7 +59,37 @@
 						<i class="fas fa-search"></i>
 					</div>
 					<div id="line"></div>
-					<div id = "searchResults"></div>
+					
+					<div id = "infrmWrap">
+					
+					<div class = "infrmBox">
+						<div class = "infrm">
+							<p>fsadfsd</p>
+							<p>asdfsd</p>
+							<p>asfdasdfasd</p>
+						</div>
+						<div class = "photo"></div>
+					</div>
+					
+					<div class = "infrmBox">
+						<div class = "infrm">
+							<p>fsadfsd</p>
+							<p>asdfsd</p>
+							<p>asfdasdfasd</p>
+						</div>
+						<div class = "photo"></div>
+					</div>
+					
+					<div class = "infrmBox">
+						<div class = "infrm">
+							<p>fsadfsd</p>
+							<p>asdfsd</p>
+							<p>asfdasdfasd</p>
+						</div>
+						<div class = "photo"></div>
+					</div>
+					
+					</div>
 				</div>
 
 				<!-- 지도를 표시할 div 입니다 -->

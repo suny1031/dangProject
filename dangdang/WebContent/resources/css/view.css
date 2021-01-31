@@ -1,55 +1,98 @@
 @charset "UTF-8";
+/* div {
+  border: solid 1px;
+} */
+
+
+#kinderWrap {
+  font-size: 2vw;
+  font-weight: bold;
+  color: #8b4513;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+#kinder {
+  margin-top: 9%;
+  margin-bottom: 0;
+}
 
 .reviewWrap {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-.fristWrap {
-  margin-top: 5%;
-}
-.dataWrap {
-  width: 70%;
-  height: 50vh;
-
-  display: flex;
-  flex-direction: column;
-}
-
-.data {
-  width: 20%;
-  height: 15%;
-  text-align: center;
-  align-items: center;
-}
-
-.date {
-  font-size: 1vw;
-}
-.content {
-  background-color: #dfc6c0;
-  border-radius: 30px;
-  width: 40%;
-  height: 80%;
-
-  padding: 1%;
-}
-.photo {
-  background-color: dodgerblue;
-  width: 50%;
-  height: 80%;
-  margin-left: 5%;
-
-  background-image: url("images/arrow.jpg");
-  background-size: cover;
-  background-position: center;
-}
-
-.contentWrap {
   width: 100%;
   height: 100%;
   display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  
+  margin-bottom: 3%;
+}
+
+.dataWrap {
+  width: 50%;
+  height: 60vh;
+  display: flex;
+  justify-content: center;
+
+  background-color: #f1f1f1;
+  border-bottom: 2px solid #adadad;
+
+  margin-top: 2%;
+}
+
+.wrap {
+  width: 50%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.data {
+  width: 50%;
+  height: 9%;
+
+  text-align: center;
+  align-items: center;
+
+  font-size: 1vw;
+  margin-left: 3%
+}
+
+.contentWrap {
+  width: 80%;
+  height: 50%;
+}
+
+.content {
+  background-color: #ffffff;
+  color: #000000;
+  font-size: 1vw;
+  border: solid 1px white;
+  border-radius: 30px;
+  width: 100%;
+  height: 100%;
+
+  padding: 3% 3% 3% 6%;
+
+  align-self: center;
+
+  margin-left: 10%;
+  
+  resize: none;
+}
+
+.photo {
+  background-color: dodgerblue;
+  width: 50%;
+  height: 70%;
+
+  margin: 11% 5% 0 0;
+
+  background-image: url("/resources/images/dang.jpg");
+  background-size: cover;
+  background-position: center;
 }
 
 /*헤더*/
