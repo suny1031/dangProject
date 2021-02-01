@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/view/include/header.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -56,7 +57,7 @@
 				<div id="wrap"></div>
 				<div id="storeInfrm">
 					<div id="InfrmList">
-						<div id="name">바우리움 유치원</div>
+						<div id="name">${kindergarten.getKgName()}</div>
 						<div id="review">방문자리뷰</div>
 						<div id="kakaoIcon">
 							<i class="fas fa-map-signs"></i> <i class="fas fa-road"></i>
@@ -67,10 +68,10 @@
 						<div id="reservation">
 							<button id="rsv_btn">예약</button>
 						</div>
-						<div id="notice" class="list">알림</div>
-						<div id="tell" class="list">10120301203103210</div>
-						<div id="address" class="list">경기도성남ㅇㄴ밍ㄹ민ㅇ린린이</div>
-						<div id="operateTime" class="list">매일 ㅇㅁㄴㄹㄴㅁㅇㄹㄴㄹ</div>
+						<div id="notice" class="list">${kindergarten.getKgNotice()}</div>
+						<div id="tell" class="list">${kindergarten.getKgTell()}</div>
+						<div id="address" class="list">${kindergarten.getKgAddress()}</div>
+						<div id="operateTime" class="list">${kindergarten.getKgOperateTime()}</div>
 						<div id="services" class="list">#ㄻㄴㅇㄹ#ㅇㄹㄴㅇ#ㄹㄴㅇ</div>
 
 					</div>

@@ -11,15 +11,14 @@
 	<title>댕댕최고</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="resources/css/main.css" />
+		<link rel="stylesheet" href="/resources/css/main.css" />
 		<!-- <link rel="preconnect" href="https://fonts.gstatic.com"> -->
 		<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
 		<link rel="preconnect" href="https://fonts.gstatic.com">
 		<link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&display=swap" rel="stylesheet">
-	<noscript>
-		<link rel="stylesheet" href="resources/css/noscript.css" />
-	</noscript>
+	<noscript><link rel="stylesheet" href="resources/css/noscript.css" /></noscript>
 </head>
+
 <body class="landing is-preload">
 
 	<!-- Page Wrapper -->
@@ -38,7 +37,7 @@
 							<ul>
 								<li><a href="/main.do">Home</a></li> <!-- 음 -->
 								<li><a href="/mypage.do">마이페이지</a></li> <!-- 박미영 -->
-								<li><a href="/map.do">유치원찾기</a></li> <!-- 박선영 -->
+								<li><a href="/map/map.do">유치원찾기</a></li> <!-- 박선영 -->
 								<li><a href="#">캘린더</a></li> <!-- 박혜원 -->
 							</ul>
 						</div></li>
@@ -58,19 +57,24 @@
 			<a href="#one" class="more scrolly">Login</a>
 		</section>
 
+
 		<!-- One -->
-		<section id="one" class="wrapper style1 special">
+		<section id="one" class="main">
 			<div class="inner">
 				<header class="major">
-					<!-- <h2>
-						skdkadkasdkaKㅁㄴㅇㄻㄴㅇㄹㄴㅇㄹㄴㅇ aliquet vel lobortis ata nisl<br />
-						eget augue amet aliquet nisl cep donec
-					</h2>
-					<p>
-						Aliquam ut ex ut augue consectetur interdum. Donec amet imperdiet
-						eleifend<br /> fringilla tincidunt. Nullam dui leo Aenean mi
-						ligula, rhoncus ullamcorper.
-					</p> -->
+					<div class="main_login_box">
+						<div class="main_login">
+							<a href="/user/login.do">견주 로그인</a>
+						</div>
+						<div class="main_login">
+							<a href="/school/login.do">업주 로그인</a>
+						</div>
+					</div>
+					
+				
+						
+					
+					
 				</header>
 
 			</div>
@@ -79,22 +83,11 @@
 
 		<!-- Footer -->
 		<footer id="footer">
-			<!-- <ul class="icons">
-				<li><a href="#" class="icon brands fa-twitter"><span
-						class="label">Twitter</span></a></li>
-				<li><a href="#" class="icon brands fa-facebook-f"><span
-						class="label">Facebook</span></a></li>
-				<li><a href="#" class="icon brands fa-instagram"><span
-						class="label">Instagram</span></a></li>
-				<li><a href="#" class="icon brands fa-dribbble"><span
-						class="label">Dribbble</span></a></li>
-				<li><a href="#" class="icon solid fa-envelope"><span
-						class="label">Email</span></a></li>
-			</ul> -->
-			<!-- <ul class="copyright">
-				<li>&copy; Untitled</li>
-				<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-			</ul> -->
+			
+			
+			
+			
+			
 		</footer>
 
 	</div>
@@ -107,6 +100,21 @@
 	<script src="resources/js/breakpoints.min.js"></script>
 	<script src="resources/js/util.js"></script>
 	<script src="resources/js/main.js"></script>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 </body>
 </html>

@@ -19,7 +19,7 @@ public class EncodingFilter implements Filter {
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
-		System.out.println("filter 실행");
+		
 		// 같은 url-patten으로 여러개의 filter를 지정할 수 있다
 		// 해당 filter들은 filter-chain형태로 관리되며, web.xml에 등록한 순서대로 실행된다
 		request.setCharacterEncoding("utf-8");

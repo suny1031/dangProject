@@ -4,6 +4,16 @@
   <welcome-file-list>
     <welcome-file>main.jsp</welcome-file>
   </welcome-file-list>
+
+
+<filter>
+  	<filter-name>encoding</filter-name>
+  	<filter-class>com.dang.common.filter.EncodingFilter</filter-class>
+</filter>
+<filter-mapping>
+ 	<filter-name>encoding</filter-name>
+  	<url-pattern>*.do</url-pattern>
+</filter-mapping>
   
   
   
