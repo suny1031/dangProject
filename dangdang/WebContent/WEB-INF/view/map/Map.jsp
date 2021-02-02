@@ -250,13 +250,17 @@
 		let url = "/map/infrm.do";
 		let headerObj = new Headers();
 		headerObj.append('content-type','application/x-www-form-urlencoded');
-		//post 방식
  		fetch(url,{
 						method : "post",
 						headers:headerObj,
 						body : "kgName="+kgName})
-	   }; 
-	   
+	   .then(response=>response.text())
+	   .then(text=>{
+		  document.querySelector('html').innerHTML = text;
+	   })
+		   
+	   }   
+		 
 /* 	   let url = "/map/infrm.do?kgName="+kgName;
 	   fetch(url,{
 	   				method : "get",
