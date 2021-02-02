@@ -31,6 +31,8 @@ public class SchoolController extends HttpServlet {
 		
 		switch(uriArr[uriArr.length-1]){
 		case "login.do" : login(request, response);
+		break;
+		case "schoolprofile.do" : viewSchoolProfile(request, response);
 		
 		}
 	}
@@ -47,6 +49,14 @@ public class SchoolController extends HttpServlet {
 			request.getRequestDispatcher("/WEB-INF/view/member/school/schoollogin.jsp").forward(request, response);;
 		
 		}
+	
+	
+	
+	protected void viewSchoolProfile(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		request.getRequestDispatcher("/WEB-INF/view/member/school/schoolprofile.jsp").forward(request, response);;
+	
+	}
 	
 	
 	

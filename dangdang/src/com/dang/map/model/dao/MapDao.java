@@ -64,7 +64,7 @@ public class MapDao {
 		// 페이징 처리를 위한 sql / 인라인뷰, rownum 사용
 		String query = "select * from (select rownum rn, KG_ADDRESS, KG_CLASS_NAME, KG_IDX, KG_LAG,KG_LAT,KG_NAME,KG_NOTICE,KG_OPERATE_TIME,KG_TELL from"
 				+ "(select * from KINDERGARDEN order by KG_IDX asc)) where rn between ? and ?";
-
+		System.out.println(startRow+":"+endRow);
 		List<Kindergarten> list = null;
 
 		PreparedStatement pstm = null;

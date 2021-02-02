@@ -68,7 +68,7 @@
 						<div id="reservation">
 							<button id="rsv_btn">예약</button>
 						</div>
-						<div id="notice" class="list">${kindergarten.getKgNotice()}</div>
+						<div id="notice" class="list"><span class = "noticeSpan">알림 </span>${kindergarten.getKgNotice()}</div>
 						<div id="tell" class="list">${kindergarten.getKgTell()}</div>
 						<div id="address" class="list">${kindergarten.getKgAddress()}</div>
 						<div id="operateTime" class="list">${kindergarten.getKgOperateTime()}</div>

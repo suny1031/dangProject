@@ -732,7 +732,6 @@ body.is-preload #banner:after {
 .board { /* 기본틀 */
 	background-color: white;
 	color: black;
-<<<<<<< HEAD
 	min-height: 1000px;
 	margin-top: 80px;
 }
@@ -777,9 +776,9 @@ body.is-preload #banner:after {
 
 .main_login {
 
-	width : 150px;
-	height : 150px;
-	max-width: 150px;
+	width: 15vh;
+    height: 15vh;
+    min-width: 100px;
 	background-color : #8B4513;
 	border: solid;
 	border-color: black;
@@ -792,10 +791,13 @@ body.is-preload #banner:after {
 }
 
 .main_login a{
-	margin : auto;
 	color : white;
-	font-size: 1.5vw;
-	margin-top: 80px;
+	font-size: 1.3vw;
+	display: flex;
+	jutify-content: center;
+	margin: auto;
+	font-family: 'Gamja Flower', cursive;
+	
 
 }
 
@@ -917,14 +919,15 @@ body.is-mobile.landing #footer {
 
 
 
-/* member css _miyoung*/
+/* css _miyoung*/
 
 .user_board {
 	background-color: white;
 	color: black;
-	min-height: 700px;
+	height: 100vh;
 	display: flex;
 	justify-content:center;
+	margin-top: 80px;
 }
 
 .user_login_form {
@@ -935,13 +938,13 @@ body.is-mobile.landing #footer {
 	display: flex;
 	flex-direction: column;
 	justify-content:center;
-
+ 
 	
 }
 
 .user_login_form > * {
 	margin-top: 3px;
-	font-size: 1.2vw;
+	font-size: 1vw;
 	
 	}
 
@@ -967,16 +970,60 @@ body.is-mobile.landing #footer {
 	color: white;
 	border: 1.2px solid black;
 	cursor: pointer;
+	font-family: 'Gamja Flower', cursive;
+	font-size: 1.2vw;
 }
 
 .user_mypage{
 	margin: auto;
-	width: 500px;
-	height: 500px;
+	width: 80vw;
+    height: 70vh;
 	background-color: darkseagreen;
+	display: flex;
+	justify-content: space-around;
+	font-size: 1.3vw;
 	
 
 }
+
+.user_mypage a{
+	margin-left: 1vw;
+}
+
+#mypage_profile{
+	width: 30%;
+	height: 100%;
+	background-color: grey;
+}
+#mypage_board{
+	width: 70%;
+	height: 100%;
+	
+}
+
+
+#mypage_board>div{
+	width: 100%;
+	height: 50%;
+	background-color: pink;
+
+	
+}
+
+.mypage_detail{
+	display: flex;
+	
+
+}
+.detail_board{
+	display: flex;
+	width: 50vw;
+    border: solid 0.5px;
+  
+	
+}
+
+
 
 
 #form_join{
@@ -985,7 +1032,8 @@ body.is-mobile.landing #footer {
 	background-color: white;
 	display: flex;
 	flex-direction: column;
-	font-size: 1.3vw;
+	font-size: 1.2vw;
+	
 }
 
 #idCheck{
@@ -999,26 +1047,31 @@ body.is-mobile.landing #footer {
 }
 
 #join_table button{
-	height: 27px;
+	height: 3.5vh;
     background-color: #8B4513;
     color: white;
     border: solid 1px grey;
     border-radius: 11px;
     ont-size: 1vw;
-    font-size: 1.2vw;
+    font-size: 1vw;
+    font-family: 'Gamja Flower', cursive;
 }
+
+
 
 #join_table input{
 	border: solid 1px;
+	margin-bottom: 10px;
 	
 }
 
 .school_board {
 	background-color: white;
 	color: black;
-	min-height: 700px;
+	height: 100vh;
 	display: flex;
 	justify-content:center;
+	margin-top: 80px;
 }
 
 
@@ -1035,7 +1088,7 @@ body.is-mobile.landing #footer {
 
 .school_login_form > * {
 	margin-top: 3px;
-	font-size: 1.2vw;
+	font-size: 1vw;
 	
 	}
 
@@ -1046,10 +1099,20 @@ body.is-mobile.landing #footer {
 
 .school_mypage{
 	margin: auto;
-	width: 500px;
-	min-height: 500px;
+	width: 80vw;
+    height: 80vh;
 	background-color: darkseagreen;
+	display: flex;
+	justify-content: space-around;
+	font-size: 1.3vw;
+	
+
 }
+
+.school_mypage a{
+	margin-left: 1vw;
+}
+
 
 #find_info{
  color: black;	

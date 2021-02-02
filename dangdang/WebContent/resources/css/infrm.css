@@ -64,10 +64,16 @@
 }
 
 #notice {
-	font-size: 1.5vw;
+	font-size: 1vw;
 	font-weight: bold;
 	color : #8b4513;
 	border-bottom: 1px solid #cfc7c7;
+}
+
+.noticeSpan{
+	font-size: 1.5vw;
+	font-weight: bold;
+	color : red;
 }
 
 .list {

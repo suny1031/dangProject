@@ -191,8 +191,8 @@
             var positions = [
             <c:forEach var="map" items="${mapList}" varStatus="status">
             <c:choose>
-            <c:when test = "${status.count == 5}">
-                {   content: '<div>${map.kgName}</div><a href = /map/infrm.do?${map.kgName}>상세정보</a>',
+            <c:when test = "${status.count == 6}">
+                {   content: '<div id = "kgName" onclick="kgName()" >${map.kgName}</div>',
                     latlng: new kakao.maps.LatLng(${map.kgLat}, ${map.kgLag}),
                 }
             </c:when>

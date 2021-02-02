@@ -32,6 +32,8 @@ public class UserController extends HttpServlet {
 		break;
 		case "join.do" : join(request, response);
 		break;
+		case "myproifile.do" : viewProfile(request, response);
+		break;
 		
 		
 		
@@ -56,6 +58,14 @@ public class UserController extends HttpServlet {
 	protected void join(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		request.getRequestDispatcher("/WEB-INF/view/member/user/join.jsp").forward(request, response);
+		
+		
+	}
+	
+	
+	protected void viewProfile(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		request.getRequestDispatcher("/WEB-INF/view/member/user/userprofile.jsp").forward(request, response);
 		
 		
 	}

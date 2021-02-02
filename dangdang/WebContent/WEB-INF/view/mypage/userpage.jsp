@@ -45,13 +45,30 @@
 		<!-- Main -->
 		<section class="user_board">
 			<div class="user_mypage">
-				<h1>user 마이페이지에 오신 것을 환영합니다.</h1>
-					<ul>
-						<li>알림장</li>
-						<li>앨범</li>
-					</ul>
-
+				<div id="mypage_profile">
+					<a href="user/myprofile.do">profile</a>
+				</div>
+				
+				<div id ="mypage_board">
+					<div class="mypage_detail">
+						<div class="detail_board">
+							<a>앨범</a>
+						</div>
+						<div class="detail_board">
+							<a>식단</a>
+						</div>
+					</div>
+					<div class="mypage_detail">
+						<div class="detail_board">
+							<a>공지사항</a>
+						</div>
+						<div class="detail_board">
+							<a>알림장</a>
+						</div>
+					</div>
+				</div>
 			</div>
+			
 		</section>
 
 

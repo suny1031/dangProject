@@ -36,7 +36,7 @@
 						<div id="menu">
 							<ul>
 								<li><a href="/main.do">Home</a></li> <!-- 음 -->
-								<li><a href="/mypage.do">마이페이지</a></li> <!-- 박미영 -->
+								<li><a href="/main.do">마이페이지</a></li> <!-- 박미영 -->
 								<li><a href="/map/map.do">유치원찾기</a></li> <!-- 박선영 -->
 								<li><a href="#">캘린더</a></li> <!-- 박혜원 -->
 							</ul>

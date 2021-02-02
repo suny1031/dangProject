@@ -8,7 +8,6 @@
 <link rel="stylesheet" href="../../../../resources/css/main.css" />
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&display=swap" rel="stylesheet">
 </head>
 <body class="is-preload">
 
@@ -45,14 +44,9 @@
 
 		<!-- Main -->
 		<section class="user_board">
-			<div class="user_login_form">
-				<input type="text" name="id" id="id" placeholder="아이디를 입력하세요." required="required">
-				<input type="password" name="pw" id="pw" placeholder="비밀번호를 입력하세요." required="required">
-				<button onclick="login()" id="login_btn">로그인</button>
-				<span id = "user_moreselect">
-					<a href ="/user/join.do" id="join_btn"> 회원가입하기</a>
-					<a href ="#" id="find_info">아이디/비밀번호 찾기</a>
-				</span>
+			<div class="user_profile">
+				 profile
+				
 			</div>
 		</section>
 
