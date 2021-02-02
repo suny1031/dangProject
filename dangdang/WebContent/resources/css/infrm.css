@@ -49,11 +49,9 @@
 	margin: 2% 0 0 0;
 }
 
-#kakao {
-	border-bottom: 1px solid #cfc7c7;
-	font-size: 1.5vw;
+i{
+	color:black; 
 }
-
 #rsv_btn {
 	padding: 1% 35% 1% 35%;
 	border-radius: 7px;
@@ -80,10 +78,12 @@
 	padding: 2% 2% 2% 2%;
 	border-bottom: 1px solid #cfc7c7;
 }
+
 #services{
 	font-size: 1.3vw;
 	color: #4169E1;
 }
+
 .board {
 	background-color: #d3d3d3;
 	display: flex;
