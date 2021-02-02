@@ -35,7 +35,7 @@
 							<ul>
 								<li><a href="/main.do">Home</a></li>
 								<li><a href="/mypage.do">마이페이지</a></li>
-								<li><a href="/map.do">유치원 찾기</a></li>
+								<li><a href="/map/map.do">유치원 찾기</a></li>
 								<li><a href="#">캘린더</a></li>
 							</ul>
 						</div></li>
@@ -62,18 +62,14 @@
 						<div id="kakaoIcon">
 							<i class="fas fa-map-signs"></i> <i class="fas fa-road"></i>
 						</div>
-						<div id="kakao" class="list">
-							<a>길찾기</a><a>로드뷰</a>
-						</div>
 						<div id="reservation">
 							<button id="rsv_btn">예약</button>
 						</div>
 						<div id="notice" class="list"><span class = "noticeSpan">알림 </span>${kindergarten.getKgNotice()}</div>
 						<div id="tell" class="list">${kindergarten.getKgTell()}</div>
 						<div id="address" class="list">${kindergarten.getKgAddress()}</div>
-						<div id="operateTime" class="list">${kindergarten.getKgOperateTime()}</div>
+						<div id="operateTime" class="list">${kindergarten.getKgOperateTime()}</div>			
 						<div id="services" class="list">#ㄻㄴㅇㄹ#ㅇㄹㄴㅇ#ㄹㄴㅇ</div>
-
 					</div>
 				</div>
 			</div>

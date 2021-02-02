@@ -43,6 +43,9 @@ public class MapController extends HttpServlet {
 		case "infrmimpl.do":
 			infrmimpl(request, response);
 			break;
+		case "search.do":
+			search(request, response);
+			break;
 		default:
 			throw new ToAlertException(ErrorCode.CD_404);
 
@@ -57,9 +60,9 @@ public class MapController extends HttpServlet {
 
 	private void map(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		List<Kindergarten> map = mapService.selectKindergarten();
+		List<Kindergarten> mapList = mapService.selectKindergarten();
 
-		request.setAttribute("mapList", map);
+		request.setAttribute("mapList", mapList);
 
 		request.getRequestDispatcher("/WEB-INF/view/map/Map.jsp").forward(request, response);
 	}
@@ -69,14 +72,11 @@ public class MapController extends HttpServlet {
 		String kgName = request.getParameter("kgName");
 		System.out.println("비동기 통신으로 넘어온 값 " + kgName);
 
-		Kindergarten kindergarten = mapService.selectMapkgName(kgName);
+		Kindergarten kindergarten = mapService.selectkgName(kgName);
 
 		System.out.println(kindergarten);
-
 		request.setAttribute("kindergarten", kindergarten);
-
-//		request.setAttribute("url","/map/infrm.do");
-//		request.getRequestDispatcher("/WEB-INF/view/common/result.jsp").forward(request, response);
+		request.removeAttribute("kindergarten");
 
 		request.getRequestDispatcher("/WEB-INF/view/map/Infrm.jsp").forward(request, response);
 
@@ -87,13 +87,29 @@ public class MapController extends HttpServlet {
 		String kgName = request.getParameter("kgName");
 		System.out.println("비동기 통신으로 넘어온 값 " + kgName);
 
-		Kindergarten kindergarten = mapService.selectMapkgName(kgName);
+		Kindergarten kindergarten = mapService.selectkgName(kgName);
 
 		System.out.println(kindergarten);
 
+		request.removeAttribute("kindergarten");
 		request.setAttribute("kindergarten", kindergarten);
 
 		request.getRequestDispatcher("/WEB-INF/view/map/Infrm.jsp").forward(request, response);
+	}
+	
+	private void search(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+//		String keyword = request.getParameter("keyword");
+//		System.out.println("비동기 통신으로 넘어온 값 " + keyword);
+//		
+//		List<Kindergarten> keywordList = mapService.(keyword);
+//
+//		for (int i = 0; i < keywordList.size(); i++) {
+//			System.out.println(keywordList.get(i));
+//		}
+//		
+//		request.setAttribute("keywordList", keywordList);
+//		request.getRequestDispatcher("/WEB-INF/view/map/Map.jsp").forward(request, response);
 	}
 
 }

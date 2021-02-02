@@ -5,6 +5,11 @@
 	height: 100%;
 	width: 100vw;
 }
+
+#searchForm{
+	display: flex;
+	justify-content: center;
+}
 /*검색창*/
 #search {
 	height: 100%;
@@ -20,11 +25,19 @@
 }
 /*검색어 인풋태그*/
 #searchInput {
-	width: 100%;
 	margin-right: 2%;
 	margin-left: 2%;
 	border: solid 2px #8b4513;
 }
+
+#search_btn{
+	border: 0;
+    background: none;
+    outline: none;
+}
+
+
+
 /*검색어  아이콘*/
 .fa-search {
 	color: #8b4513;

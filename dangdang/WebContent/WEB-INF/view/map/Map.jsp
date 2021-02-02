@@ -52,7 +52,9 @@
 		</header>
 
 <!-- Main -->
-<%
+<%	
+	String keyword = request.getParameter("keyword"); // 검색어 value
+
 	int pageSize = 3; // 한 페이지에 출력할 레코드 수
 
 	// 페이지 링크를 클릭한 번호 / 현재 페이지
@@ -68,97 +70,166 @@
 	int endRow = currentPage * pageSize;
 
 	int count = 0;
+	int fCount = 0;
+	
 	MapService mapService = new MapService();
-	count = mapService.selectCount(); // 데이터베이스에 저장된 총 갯수
-
-	List<Kindergarten> kindergartenList = null;
-	if (count > 0) {
+	count = mapService.selectkgNameCount(); // 데이터베이스에 저장된 총 갯수
+	
+	fCount = mapService.selectSearchCount(keyword); // DB에 저장된 검색어와 일치하는 총 갯수
+	
+	
+	List<Kindergarten> list = null;
+	List<Kindergarten> flist = null;
+	
+	if (count > 0 && keyword == null) {
 		// getList()메서드 호출 / 해당 레코드 반환
-		kindergartenList = mapService.selectKindergartenPage(startRow, endRow);
+		list = mapService.selectKindergartenPage(startRow, endRow);
+	}
+	
+	if(fCount > 0){
+		flist = mapService.selectSearchKindergarten(keyword,startRow, endRow);
 	}
 %>
 		<div class="board">
-	
 			<div id="mapWrap">
 				<!--검색어를 검색 할 곳-->
 				<div id="search">
 					<div id="searchBox">
-						<input type="search" id="searchInput"> <i
-							class="fas fa-search"></i>
+						<form id = "searchForm" method="get" action="map.do" >
+							<input type="text" name="keyword" id="searchInput">
+							<button id = "search_btn"><i class="fas fa-search"></i></button>
+						</form>
 					</div>
 					<div id="line"></div>
 
-					<div id="infrmWrap">
 
+					<div id="infrmWrap">
+			<%	
+				if (count > 0 && fCount == 0 && keyword == null) { // 데이터베이스에 데이터가 있으면
+					int number = count - (currentPage - 1) * pageSize; // 글 번호 순번 
+					for (int i = 0; i < list.size(); i++) {
+						Kindergarten kindergarten = list.get(i);
+			%>
+			
+							<div class="infrmBox">
+								<div class="infrm">
+									<p><a href = "/map/infrm.do?kgName=<%=kindergarten.getKgName()%>"><%=kindergarten.getKgName()%></a></p>
+									<p><%=kindergarten.getKgAddress()%></p>
+									<p><%=kindergarten.getKgOperateTime()%></p>
+								</div>
+							</div> 
+			<%
+					}
+				} else if(count == 0) { // 데이터가 없으면
+			%>
+				<script>
+					alert("검색하신 유치원이 존재하지 않습니다")
+				</script>
+			<%
+				} else if(count > 0 && fCount != 0){ // 검색한 데이터가 있으면
+					int number = fCount - (currentPage - 1) * pageSize; // 글 번호 순번
+					for(int i = 0; i<flist.size(); i++){
+						Kindergarten kindergarten = flist.get(i);
+			%>
+						<div class="infrmBox">
+							<div class="infrm">
+								<p><a href = "/map/infrm.do?kgName=<%=kindergarten.getKgName()%>"><%=kindergarten.getKgName()%></a></p>
+								<p><%=kindergarten.getKgAddress()%></p>
+								<p><%=kindergarten.getKgOperateTime()%></p>
+							</div>
+						</div> 
+			<%			
+					}
+				} else { // 검색된 데이터가 없으면
+			%>
+				<script>
+					alert("검색하신 유치원이 존재하지 않습니다")
+				</script>
+			<%		
+				}
+			%>
+
+		<div class = "pageCount">
+					<%	// 페이징  처리(모든 레코드)
+						if(count > 0 && fCount == 0 && keyword == null){
+							// 총 페이지의 수
+							int pageCount = count / pageSize + (count%pageSize == 0 ? 0 : 1);
+							// 한 페이지에 보여줄 페이지 블럭(링크) 수
+							int pageBlock = 10;
+							// 한 페이지에 보여줄 시작 및 끝 번호(예 : 1, 2, 3 ~ 10 / 11, 12, 13 ~ 20)
+							int startPage = ((currentPage-1)/pageBlock)*pageBlock+1;
+							int endPage = startPage + pageBlock - 1;
 							
-									<%
-										if (count > 0) { // 데이터베이스에 데이터가 있으면
-											int number = count - (currentPage - 1) * pageSize; // 글 번호 순번 
-											for (int i = 0; i < kindergartenList.size(); i++) {
-												Kindergarten kindergarten = kindergartenList.get(i); // 반환된 list에 담긴 참조값 할당
-									%>
-									
-									<div class="infrmBox">
-									<div class="infrm">
-										<p><%=kindergarten.getKgName()%></p>
-										<p><%=kindergarten.getKgAddress()%></p>
-										<p><%=kindergarten.getKgOperateTime()%></p>
-									</div>
-								</div> 
-									<%
-											}
-										} else { // 데이터가 없으면
-									%>
-									<div>
-										<p>게시글이 없습니다.</p>
-									</div>
-										<%
-											}
-										%>
-									
-									<div class = "pageCount">
-											<%	// 페이징  처리
-												if(count > 0){
-													// 총 페이지의 수
-													int pageCount = count / pageSize + (count%pageSize == 0 ? 0 : 1);
-													// 한 페이지에 보여줄 페이지 블럭(링크) 수
-													int pageBlock = 10;
-													// 한 페이지에 보여줄 시작 및 끝 번호(예 : 1, 2, 3 ~ 10 / 11, 12, 13 ~ 20)
-													int startPage = ((currentPage-1)/pageBlock)*pageBlock+1;
-													int endPage = startPage + pageBlock - 1;
-													
-													// 마지막 페이지가 총 페이지 수 보다 크면 endPage를 pageCount로 할당
-													if(endPage > pageCount){
-														endPage = pageCount;
-													}
-													
-													if(startPage > pageBlock){ // 페이지 블록수보다 startPage가 클경우 이전 링크 생성
-											%>
-														<a href="/map/map.do?pageNum=<%=startPage - 10%>">[이전]</a>	
-											<%			
-													}
-													
-													for(int i=startPage; i <= endPage; i++){ // 페이지 블록 번호
-														if(i == currentPage){ // 현재 페이지에는 링크를 설정하지 않음
-											%>
-															[<%=i %>]
-											<%									
-														}else{ // 현재 페이지가 아닌 경우 링크 설정
-											%>
-															<a href="/map/map.do?pageNum=<%=i%>">[<%=i %>]</a>
-											<%	
-														}
-													} // for end
-													
-													if(endPage < pageCount){ // 현재 블록의 마지막 페이지보다 페이지 전체 블록수가 클경우 다음 링크 생성
-											%>
-														<a href="/map/map.do?pageNum=<%=startPage + 10 %>">[다음]</a>
-											<%			
-													}
-												}
-											%>
-										</div>
-					</div>
+							// 마지막 페이지가 총 페이지 수 보다 크면 endPage를 pageCount로 할당
+							if(endPage > pageCount){
+								endPage = pageCount;
+							}
+							
+							if(startPage > pageBlock){ // 페이지 블록수보다 startPage가 클경우 이전 링크 생성
+					%>
+								<a href="/map/map.do?pageNum=<%=startPage - 3%>">[이전]</a>	
+					<%			
+							}
+							
+							for(int i=startPage; i <= endPage; i++){ // 페이지 블록 번호
+								if(i == currentPage){ // 현재 페이지에는 링크를 설정하지 않음
+					%>
+									[<%=i %>]
+					<%									
+								}else{ // 현재 페이지가 아닌 경우 링크 설정
+					%>
+									<a href="/map/map.do?pageNum=<%=i%>">[<%=i %>]</a>
+					<%	
+								}
+							} // for end
+							
+							if(endPage < pageCount){ // 현재 블록의 마지막 페이지보다 페이지 전체 블록수가 클경우 다음 링크 생성
+					%>
+								<a href="/map/map.do?pageNum=<%=startPage + 3 %>">[다음]</a>
+					<%			
+							}
+						}else if(fCount > 0){ // 페이징 처리(검색 데이터)
+							// 검색된 레코드의 총 페이지의 수
+							int pageCount = fCount / pageSize + (fCount%pageSize == 0 ? 0 : 1);
+							// 한 페이지에 보여줄 페이지 블럭(링크) 수
+							int pageBlock = 10;
+							// 한 페이지에 보여줄 시작 및 끝 번호(예 : 1, 2, 3 ~ 10 / 11, 12, 13 ~ 20)
+							int startPage = ((currentPage-1)/pageBlock)*pageBlock+1;
+							int endPage = startPage + pageBlock - 1;
+							
+							// 마지막 페이지가 총 페이지 수 보다 크면 endPage를 pageCount로 할당
+							if(endPage > pageCount){
+								endPage = pageCount;
+							}
+							
+							if(startPage > pageBlock){
+					%>
+								 <a href="/map/map.do?pageNum=<%=startPage - 3%>&find=<%=keyword%>">[이전]</a>	 
+					<%			
+							}
+							
+							for(int i = startPage; i <= endPage; i++){
+								if(i == currentPage){ // 현재 페이지는 링크를 설정하지 않음
+					%>
+								[<%=i%>]
+					<%				
+								}else{ // 현재 페이지가 아닌 경우 링크
+					%>
+								<a href="/map/map.do?pageNum=<%=i%>&find=<%=keyword%>">[<%=i %>]</a>
+					<%				
+								}
+							}
+							
+							if(endPage < pageCount){
+					%>
+								<a href="/map/map.do?pageNum=<%=startPage + 3 %>&find=<%=keyword%>">[다음]</a>
+					<%			
+							}
+						}
+					%>
+				</div>
+			</div>
+
 				</div>
 
 				<!-- 지도를 표시할 div 입니다 -->
@@ -192,12 +263,12 @@
             <c:forEach var="map" items="${mapList}" varStatus="status">
             <c:choose>
             <c:when test = "${status.count == 6}">
-                {   content: '<div id = "kgName" onclick="kgName()" >${map.kgName}</div>',
+                {   content: '<div id = "kgName" onclick="kgName()">${map.kgName}</div>',
                     latlng: new kakao.maps.LatLng(${map.kgLat}, ${map.kgLag}),
                 }
             </c:when>
                 <c:otherwise>
-                {   content: '<div id = "kgName" onclick="kgName()" >${map.kgName}</div>',
+                {   content: '<div id = "kgName" onclick="kgName()">${map.kgName}</div>',
                     latlng: new kakao.maps.LatLng(${map.kgLat}, ${map.kgLag}),
                 },
             	</c:otherwise>
@@ -245,8 +316,9 @@
 	 		   });
     </script>
 	<script>
-	   let kgName = ()=>{
+	/*    let kgName = ()=>{
 		var kgName = document.querySelector('#kgName').innerText;
+		console.dir(kgName);
 		let url = "/map/infrm.do";
 		let headerObj = new Headers();
 		headerObj.append('content-type','application/x-www-form-urlencoded');
@@ -259,13 +331,15 @@
 		  document.querySelector('html').innerHTML = text;
 	   })
 		   
-	   }   
-		 
-/* 	   let url = "/map/infrm.do?kgName="+kgName;
-	   fetch(url,{
-	   				method : "get",
-	   				headers:headerObj}); */
+	   }  */
+	   let kgName = ()=>{
+			var kgName = document.querySelector('#kgName').innerText;
+				location.href = "/map/infrm.do?kgName="+kgName
+		   } 
+	   
+	   
 	</script>
+
 
 		<!-- Footer -->
 		<footer id="footer"> </footer>

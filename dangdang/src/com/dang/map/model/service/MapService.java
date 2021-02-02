@@ -40,12 +40,13 @@ public class MapService {
 		return kindergartenList;
 
 	}
-	public int selectCount() {
+	
+	public int selectkgNameCount() {
 		Connection conn = jdt.getConnection();
 
 		int count;
 		try {
-			 count = mapDao.selectCount(conn);
+			 count = mapDao.selectkgNameCount(conn);
 		}finally {			
 			jdt.close(conn);
 		}
@@ -53,15 +54,39 @@ public class MapService {
 
 	}
 	
-	public Kindergarten selectMapkgName(String kgName) {
+	public Kindergarten selectkgName(String kgName) {
 		Connection conn = jdt.getConnection();
 		Kindergarten res;
 		try {
-			res = mapDao.selectMapkgName(conn, kgName);		
+			res = mapDao.selectkgName(conn, kgName);		
 		} finally {
 			jdt.close(conn);
 		}
 		return res;
+
+	}
+	
+	public List<Kindergarten> selectSearchKindergarten(String keyword, int startRow, int endRow) {
+		Connection conn = jdt.getConnection();
+		List<Kindergarten> keywordList;
+		try {
+			keywordList = mapDao.selectSearchKindergarten(conn, startRow, endRow, keyword);	
+		} finally {
+			jdt.close(conn);
+		}
+		return keywordList;
+
+	}
+	
+	public int selectSearchCount(String keyword) {
+		Connection conn = jdt.getConnection();
+		int count;
+		try {
+			 count = mapDao.selectSearchCount(conn, keyword);
+		}finally {			
+			jdt.close(conn);
+		}
+		return count;
 
 	}
 
