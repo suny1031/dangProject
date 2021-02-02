@@ -66,10 +66,32 @@
 							<button id="rsv_btn">예약</button>
 						</div>
 						<div id="notice" class="list"><span class = "noticeSpan">알림 </span>${kindergarten.getKgNotice()}</div>
-						<div id="tell" class="list">${kindergarten.getKgTell()}</div>
 						<div id="address" class="list">${kindergarten.getKgAddress()}</div>
 						<div id="operateTime" class="list">${kindergarten.getKgOperateTime()}</div>			
-						<div id="services" class="list">#ㄻㄴㅇㄹ#ㅇㄹㄴㅇ#ㄹㄴㅇ</div>
+						<div id="tell" class="list">${kindergarten.getKgTell()}</div>
+						<div id="services" class="list">
+			            <c:if test = "${service.getIsKg() == 0}">
+						#유치원
+						</c:if>
+						<c:if test = "${service.getIsPickup() == 0}">
+						#픽업
+						</c:if>
+						<c:if test = "${service.getIsCafe() == 0}">
+						#카페
+						</c:if>
+						<c:if test = "${service.getIsHotel() == 0}">
+						#호텔
+						</c:if>
+						<c:if test = "${service.getIsMedic() == 0}">
+						#병원
+						</c:if>
+						<c:if test = "${service.getIsSpa() == 0}">
+						#스파
+						</c:if>
+						<c:if test = "${service.getIsAcademy() == 0}">
+						#스파
+						</c:if> 
+						</div>
 					</div>
 				</div>
 			</div>

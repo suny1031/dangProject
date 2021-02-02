@@ -80,7 +80,10 @@
 	padding: 2% 2% 2% 2%;
 	border-bottom: 1px solid #cfc7c7;
 }
-
+#services{
+	font-size: 1.3vw;
+	color: #4169E1;
+}
 .board {
 	background-color: #d3d3d3;
 	display: flex;

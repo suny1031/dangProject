@@ -73,7 +73,7 @@
 	int fCount = 0;
 	
 	MapService mapService = new MapService();
-	count = mapService.selectkgNameCount(); // 데이터베이스에 저장된 총 갯수
+	count = mapService.selectCountPage(); // 데이터베이스에 저장된 총 갯수
 	
 	fCount = mapService.selectSearchCount(keyword); // DB에 저장된 검색어와 일치하는 총 갯수
 	
@@ -332,6 +332,7 @@
 	   })
 		   
 	   }  */
+	   
 	   let kgName = ()=>{
 			var kgName = document.querySelector('#kgName').innerText;
 				location.href = "/map/infrm.do?kgName="+kgName

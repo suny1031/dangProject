@@ -8,10 +8,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.print.attribute.standard.Severity;
+
 import com.dang.common.code.ErrorCode;
 import com.dang.common.exception.DataAccessException;
 import com.dang.common.jdbc.JDBCTemplate;
 import com.dang.map.model.vo.Kindergarten;
+import com.dang.map.model.vo.Service;
 
 public class MapDao {
 
@@ -20,10 +23,6 @@ public class MapDao {
 
 	JDBCTemplate jdt = JDBCTemplate.getInstance(); // 템플릿 생성
 
-	
-	
-	
-	
 	public ArrayList<Kindergarten> selectKindergarten(Connection conn) {
 
 		ArrayList<Kindergarten> kindergartenList = new ArrayList<>();
@@ -69,6 +68,7 @@ public class MapDao {
 		String query = "select * from (select rownum rn, KG_ADDRESS, KG_CLASS_NAME, KG_IDX, KG_LAG,KG_LAT,KG_NAME,KG_NOTICE,KG_OPERATE_TIME,KG_TELL from"
 				+ "(select * from KINDERGARDEN order by KG_IDX asc)) where rn between ? and ?";
 		System.out.println(startRow + ":" + endRow);
+
 		List<Kindergarten> list = null;
 
 		PreparedStatement pstm = null;
@@ -97,7 +97,6 @@ public class MapDao {
 					kindergarten.setKgOperateTime(rset.getString("KG_TELL"));
 					kindergarten.setKgLat(rset.getString("kg_lat"));
 					kindergarten.setKgLag(rset.getString("kg_lag"));
-
 					list.add(kindergarten); // list에 0번 인덱스부터 board 객체의 참조값을 저장
 				} while (rset.next());
 			}
@@ -109,7 +108,8 @@ public class MapDao {
 		return list; // list 반환
 	}
 
-	public int selectkgNameCount(Connection conn) {
+	public int selectCountPage(Connection conn) {
+
 		int count = 0;
 
 		PreparedStatement pstm = null;
@@ -175,9 +175,9 @@ public class MapDao {
 
 	public List<Kindergarten> selectSearchKindergarten(Connection conn, int startRow, int endRow, String keyword) {
 
+		List<Kindergarten> list = null;
 		PreparedStatement pstm = null;
 		ResultSet rset = null;
-		List<Kindergarten> list = null;
 
 		try {
 			String query = "select * from (select rownum rn, KG_ADDRESS, KG_CLASS_NAME, KG_IDX, KG_LAG,KG_LAT,KG_NAME,KG_NOTICE,KG_OPERATE_TIME,KG_TELL from (select * from KINDERGARDEN where KG_NAME like ? order by KG_IDX asc)) where rn between ? and ?";
@@ -217,9 +217,9 @@ public class MapDao {
 
 	public int selectSearchCount(Connection conn, String keyword) {
 
+		int count = 0;
 		PreparedStatement pstm = null;
 		ResultSet rset = null;
-		int count = 0;
 
 		try {
 			String query = "select count(*) from KINDERGARDEN where KG_NAME like ? ";
@@ -240,6 +240,44 @@ public class MapDao {
 		}
 
 		return count;
+
+	}
+
+	public Service selectService(Connection conn, String kgName) {
+
+		Service service = null;
+		PreparedStatement pstm = null;
+		ResultSet rset = null;
+
+		try {
+			System.out.println("이름" + kgName);
+			String query = "select * from services where KG_NAME = ? ";
+			System.out.println(query);
+			pstm = conn.prepareStatement(query);
+
+			pstm.setString(1, kgName);
+
+			rset = pstm.executeQuery();
+
+			if (rset.next()) {
+				service = new Service();
+				service.setKgName(rset.getString("KG_NAME"));
+				service.setSvIdx(rset.getInt("SV_IDX"));
+				service.setIsKg(rset.getInt("IS_KG"));
+				service.setIsCafe(rset.getInt("IS_CAFE"));
+				service.setIsHotel(rset.getInt("IS_HOTEL"));
+				service.setIsMedic(rset.getInt("IS_MEDIC"));
+				service.setIsPickup(rset.getInt("IS_PICKUP"));
+				service.setIsSpa(rset.getInt("IS_SPA"));
+				service.setIsAcademy(rset.getInt("IS_ACADEMY"));
+			}
+		} catch (SQLException e) {
+			throw new DataAccessException(ErrorCode.SM01, e);
+		} finally {
+			jdt.close(rset, pstm);
+		}
+
+		return service;
 
 	}
 
