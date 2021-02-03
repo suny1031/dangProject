@@ -73,7 +73,7 @@
 	int fCount = 0;
 	
 	MapService mapService = new MapService();
-	count = mapService.selectkgNameCount(); // 데이터베이스에 저장된 총 갯수
+	count = mapService.selectCountPage(); // 데이터베이스에 저장된 총 갯수
 	
 	fCount = mapService.selectSearchCount(keyword); // DB에 저장된 검색어와 일치하는 총 갯수
 	
@@ -316,22 +316,8 @@
 	 		   });
     </script>
 	<script>
-	/*    let kgName = ()=>{
-		var kgName = document.querySelector('#kgName').innerText;
-		console.dir(kgName);
-		let url = "/map/infrm.do";
-		let headerObj = new Headers();
-		headerObj.append('content-type','application/x-www-form-urlencoded');
- 		fetch(url,{
-						method : "post",
-						headers:headerObj,
-						body : "kgName="+kgName})
-	   .then(response=>response.text())
-	   .then(text=>{
-		  document.querySelector('html').innerHTML = text;
-	   })
-		   
-	   }  */
+
+	   
 	   let kgName = ()=>{
 			var kgName = document.querySelector('#kgName').innerText;
 				location.href = "/map/infrm.do?kgName="+kgName

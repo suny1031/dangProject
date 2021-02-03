@@ -57,10 +57,11 @@
   display: flex;
   justify-content: space-between;
   margin-left: 37.1%;
+  font-size: 1vw;
 }
 
 .btn {
-  width: 10vw;
+  width: 5vw;
   background-color: #8b4513;
   color: white;
   border:  #8b4513;
