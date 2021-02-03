@@ -72,7 +72,12 @@
 										class="content" readonly="readonly">${review.content}</textarea>
 								</div>
 							</div>
-							<div class="photo"></div>
+							<c:if test="${!empty fileList}">
+							<c:forEach var="file" items = "${fileList}">
+							<div class="photo"><img id ="img" src="/${file.savePath}${file.renameFileName}">
+							</div>
+							</c:forEach> 
+							</c:if>
 						</div>			
 					</div>	
 				</c:forEach> 

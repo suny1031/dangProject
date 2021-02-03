@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.dang.common.code.ErrorCode;
 import com.dang.common.exception.DataAccessException;
@@ -57,13 +58,53 @@ public class ReviewDao {
 		return reviewList;
 
 	}
+	
+	public ArrayList<FileVo> selectFile(Connection conn, String kgName) {
+
+		ArrayList<FileVo> fileList = new ArrayList<>();
+
+		PreparedStatement pstm = null;
+
+		ResultSet rset = null;
+
+		try {
+
+			String query = "select * from d_file f join review r on(type_idx = rv_idx) where kg_name = ? ORDER by r.rv_idx desc";
+
+			pstm = conn.prepareStatement(query);
+			pstm.setString(1, kgName);
+			rset = pstm.executeQuery();
+			
+			while (rset.next()) {
+				FileVo file = new FileVo();
+				file.setFidx(rset.getInt(1));
+				file.setTypeIdx(rset.getString(2));
+				file.setOriginFileName(rset.getString(3));
+				file.setRenameFileName(rset.getString(4));
+				file.setSavePath(rset.getString(5));
+				file.setRegDate(rset.getDate(6));
+				file.setIsDel(rset.getInt(7));
+				fileList.add(file);
+			}
+
+		} catch (SQLException e) {
+			throw new DataAccessException(ErrorCode.API01, e);
+		} finally {
+			jdt.close(rset, pstm);
+		}
+
+		return fileList;
+
+	}
+	
+	
+	
 
 	public int insertReview(Connection conn, Review review) {
 		int res = 0;
 		String sql = "insert into REVIEW (RV_IDX,KG_NAME,USER_NAME,TITLE,CONTENT) Values('r' || sc_rv_idx.nextval, ?, ?,?,?)";
 
 		PreparedStatement pstm = null;
-		System.out.println(review);
 
 		try {
 			pstm = conn.prepareStatement(sql);
@@ -120,5 +161,5 @@ public class ReviewDao {
 
 		return res;
 	}
-
+	
 }

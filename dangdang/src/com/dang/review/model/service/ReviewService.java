@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -42,6 +43,20 @@ public class ReviewService {
 
 	}
 
+	
+	public ArrayList<FileVo> selectFile(String kgName) {
+		Connection conn = jbt.getConnection();
+		ArrayList<FileVo> fileList;
+		try {
+			fileList = reviewDao.selectFile(conn, kgName);
+		} finally {
+			jbt.close(conn);
+		}
+		return fileList;
+
+	}
+	
+	
 	public void insertReview(String nickName, String kgName ,HttpServletRequest request) {
 
 		Connection conn = jbt.getConnection();

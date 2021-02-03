@@ -34,7 +34,6 @@ public class AuthFilter implements Filter {
 		// 로그인이 안된 사용자 == session에 user라는 속성값이 없는 사용자
 		String[] uriArr = httpRequest.getRequestURI().split("/");
 		// 사용자가 접근한 url 경로 확인
-		System.out.println("경로"+uriArr);
 		if (uriArr.length > 0) {
 			// 빈배열이 넘어와서 0보다 클때 그리고 session에 값이 없을때
 			// 1depth

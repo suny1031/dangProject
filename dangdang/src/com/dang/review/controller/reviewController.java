@@ -3,6 +3,7 @@ package com.dang.review.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import com.dang.common.code.ErrorCode;
 import com.dang.common.exception.ToAlertException;
+import com.dang.common.util.file.FileVo;
 import com.dang.map.model.service.MapService;
 import com.dang.map.model.vo.Kindergarten;
 import com.dang.member.user.model.vo.UserMember;
@@ -74,12 +76,23 @@ public class reviewController extends HttpServlet {
 
 		ArrayList<Review> reviewList = reviewService.selectReview(kgName);
 		Kindergarten kindergarten = mapService.selectkgName(kgName);
-
+		ArrayList<FileVo> fileList = reviewService.selectFile(kgName);
+		
+		
+		
+		
 		System.out.println("후기 리스트 " + reviewList);
 		System.out.println("유치원 리스트" + kindergarten);
+		System.out.println("파일 리스트" + fileList);
 
+		
+		
+		
+		
 		request.setAttribute("reviewList", reviewList);
 		request.setAttribute("kindergarten", kindergarten);
+		request.setAttribute("fileList", fileList);
+
 
 		request.getRequestDispatcher("/WEB-INF/view/review/View.jsp").forward(request, response);
 	}
