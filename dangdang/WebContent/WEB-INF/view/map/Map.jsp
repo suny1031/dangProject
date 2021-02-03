@@ -316,22 +316,7 @@
 	 		   });
     </script>
 	<script>
-	/*    let kgName = ()=>{
-		var kgName = document.querySelector('#kgName').innerText;
-		console.dir(kgName);
-		let url = "/map/infrm.do";
-		let headerObj = new Headers();
-		headerObj.append('content-type','application/x-www-form-urlencoded');
- 		fetch(url,{
-						method : "post",
-						headers:headerObj,
-						body : "kgName="+kgName})
-	   .then(response=>response.text())
-	   .then(text=>{
-		  document.querySelector('html').innerHTML = text;
-	   })
-		   
-	   }  */
+
 	   
 	   let kgName = ()=>{
 			var kgName = document.querySelector('#kgName').innerText;

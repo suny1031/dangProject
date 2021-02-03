@@ -23,6 +23,8 @@ public class MapDao {
 
 	JDBCTemplate jdt = JDBCTemplate.getInstance(); // 템플릿 생성
 
+	
+	
 	public ArrayList<Kindergarten> selectKindergarten(Connection conn) {
 
 		ArrayList<Kindergarten> kindergartenList = new ArrayList<>();
@@ -54,7 +56,7 @@ public class MapDao {
 			}
 
 		} catch (SQLException e) {
-			throw new DataAccessException(ErrorCode.SM01, e);
+			throw new DataAccessException(ErrorCode.API01, e);
 		} finally {
 			jdt.close(rset, pstm);
 		}
@@ -101,7 +103,7 @@ public class MapDao {
 				} while (rset.next());
 			}
 		} catch (SQLException e) {
-			throw new DataAccessException(ErrorCode.SM01, e);
+			throw new DataAccessException(ErrorCode.API01, e);
 		} finally {
 			jdt.close(rset, pstm);
 		}
@@ -124,7 +126,7 @@ public class MapDao {
 				count = rset.getInt(1);
 			}
 		} catch (Exception e) {
-			throw new DataAccessException(ErrorCode.SM01, e);
+			throw new DataAccessException(ErrorCode.API01, e);
 		} finally {
 			jdt.close(rset, pstm);
 		}
@@ -164,7 +166,7 @@ public class MapDao {
 			}
 
 		} catch (SQLException e) {
-			throw new DataAccessException(ErrorCode.SM01, e);
+			throw new DataAccessException(ErrorCode.API01, e);
 		} finally {
 			jdt.close(rset, pstm);
 		}
@@ -181,6 +183,7 @@ public class MapDao {
 
 		try {
 			String query = "select * from (select rownum rn, KG_ADDRESS, KG_CLASS_NAME, KG_IDX, KG_LAG,KG_LAT,KG_NAME,KG_NOTICE,KG_OPERATE_TIME,KG_TELL from (select * from KINDERGARDEN where KG_NAME like ? order by KG_IDX asc)) where rn between ? and ?";
+			
 			pstm = conn.prepareStatement(query);
 			String setKeyword = "%" + keyword + "%";
 			pstm.setString(1, setKeyword);
@@ -206,7 +209,7 @@ public class MapDao {
 				} while (rset.next());
 			}
 		} catch (SQLException e) {
-			throw new DataAccessException(ErrorCode.SM01, e);
+			throw new DataAccessException(ErrorCode.API01, e);
 		} finally {
 			jdt.close(rset, pstm);
 		}
@@ -234,7 +237,7 @@ public class MapDao {
 				count = rset.getInt(1);
 			}
 		} catch (SQLException e) {
-			throw new DataAccessException(ErrorCode.SM01, e);
+			throw new DataAccessException(ErrorCode.API01, e);
 		} finally {
 			jdt.close(rset, pstm);
 		}
@@ -250,9 +253,9 @@ public class MapDao {
 		ResultSet rset = null;
 
 		try {
-			System.out.println("이름" + kgName);
+
 			String query = "select * from services where KG_NAME = ? ";
-			System.out.println(query);
+
 			pstm = conn.prepareStatement(query);
 
 			pstm.setString(1, kgName);
@@ -272,7 +275,7 @@ public class MapDao {
 				service.setIsAcademy(rset.getInt("IS_ACADEMY"));
 			}
 		} catch (SQLException e) {
-			throw new DataAccessException(ErrorCode.SM01, e);
+			throw new DataAccessException(ErrorCode.API01, e);
 		} finally {
 			jdt.close(rset, pstm);
 		}

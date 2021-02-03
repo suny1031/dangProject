@@ -1,11 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/view/include/header.jsp" %>
 <!DOCTYPE HTML>
-<!--
-	Spectral by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
+
 <html>
 <head>
 	<title>댕댕최고</title>
@@ -16,7 +13,7 @@
 		<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
 		<link rel="preconnect" href="https://fonts.gstatic.com">
 		<link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&display=swap" rel="stylesheet">
-	<noscript><link rel="stylesheet" href="resources/css/noscript.css" /></noscript>
+		<noscript><link rel="stylesheet" href="../../../../resources/css/noscript.css" /></noscript>
 </head>
 
 <body class="landing is-preload">
@@ -35,10 +32,15 @@
 					<li class="special"><a href="#menu" class="menuToggle"><span>MENU</span></a>
 						<div id="menu">
 							<ul>
-								<li><a href="/main.do">Home</a></li> <!-- 음 -->
-								<li><a href="/main.do">마이페이지</a></li> <!-- 박미영 -->
-								<li><a href="/map/map.do">유치원찾기</a></li> <!-- 박선영 -->
-								<li><a href="#">캘린더</a></li> <!-- 박혜원 -->
+								<li><a href="/main.do">Home</a></li>
+								<c:choose>
+									<c:when test ="${sessionScope.schoolMember != null}"><li><a href="/school/schoolpage.do">마이페이지</a></li></c:when>
+									<c:when test ="${sessionScope.userMember != null}"><li><a href="/user/userpage.do">마이페이지</a></li></c:when>
+									<c:otherwise><li><a href= "#" onclick="mypageError(); return false">마이페이지</a></li></c:otherwise>
+								</c:choose>
+								<li><a href="/map/map.do">유치원찾기</a></li>
+								<li><a href="#">캘린더</a></li>
+								
 							</ul>
 						</div></li>
 				</ul>
@@ -46,39 +48,69 @@
 		</header>
 
 		<!-- Banner -->
-		<section id="banner">
-			<div class="inner">
-				<h2 class="mainfont">댕댕아 놀면 뭐하니?</h2>
-				<p>
-					내 반려견이 유치원에서<br /> 재밌게 놀고 있는지 궁금하시다면 ?<br /> Please join with us!
-				</p>
-
-			</div>
-			<a href="#one" class="more scrolly">Login</a>
-		</section>
-
-
-		<!-- One -->
-		<section id="one" class="main">
-			<div class="inner">
-				<header class="major">
-					<div class="main_login_box">
-						<div class="main_login">
-							<a href="/user/login.do">견주 로그인</a>
+		
+			
+			
+			
+			
+			<c:choose>
+				<c:when test ="${sessionScope.schoolMember.kgName != null}"><!-- session에 school값 있을 때 -->
+					<section id="banner">
+						<div class="inner">
+							<h2 class="mainfont">댕댕아 놀면 뭐하니?</h2>
+							<p > ${sessionScope.schoolMember.kgName}님 안녕하세요 !</p>
 						</div>
-						<div class="main_login">
-							<a href="/school/login.do">업주 로그인</a>
-						</div>
-					</div>
-					
+					</section>	
+				</c:when>
+				<c:when test ="${sessionScope.userMember.userId != null}"><!-- session에 user값 있을 때 -->
+					<section id="banner">
+						<div class="inner">
+							<h2 class="mainfont">댕댕아 놀면 뭐하니?</h2>
+							<p> ${sessionScope.userMember.nickname}님의 반려동물이 오늘 어떤 하루를 보냈을지 확인해보세요 ! </p>
+						</div>	
+					</section>
+				</c:when>	
 				
-						
+				<c:otherwise><!-- session에 아무것도 없을 때 -->
+					<section id="banner">
+					<div class="inner">
+						<h2 class="mainfont">댕댕아 놀면 뭐하니?</h2>
+							<p>
+								내 반려견이 유치원에서<br/> 재밌게 놀고 있는지 궁금하시다면 ?<br/> Please join with us!
+							</p>
+					</div>
+					<a href="#one" class="more scrolly">Login</a>
+					</section>
 					
-					
-				</header>
+					<!-- One -->
+					<section id="one" class="main">
+						<div class="inner">
+							<header class="major">
+								<div class="main_login_box">
+									<div class="main_login">
+										<a href="/user/login.do">견주 로그인</a>
+									</div>
+									<div class="main_login">
+										<a href="/school/login.do">업주 로그인</a>
+									</div>
+								</div>	
+							</header>
+						</div>
+					</section>
 
-			</div>
-		</section>
+					
+					
+					
+				</c:otherwise>
+			</c:choose>
+	
+	
+	
+		
+		
+		
+		
+		
 
 
 		<!-- Footer -->
@@ -93,14 +125,14 @@
 	</div>
 
 	<!-- Scripts -->
-	<script src="resources/js/jquery.min.js"></script>
-	<script src="resources/js/jquery.scrollex.min.js"></script>
-	<script src="resources/js/jquery.scrolly.min.js"></script>
-	<script src="resources/js/browser.min.js"></script>
-	<script src="resources/js/breakpoints.min.js"></script>
-	<script src="resources/js/util.js"></script>
-	<script src="resources/js/main.js"></script>
-	
+	<script src="../../../../resources/js/jquery.min.js"></script>
+	<script src="../../../../resources/js/jquery.scrollex.min.js"></script>
+	<script src="../../../../resources/js/jquery.scrolly.min.js"></script>
+	<script src="../../../../resources/js/browser.min.js"></script>
+	<script src="../../../../resources/js/breakpoints.min.js"></script>
+	<script src="../../../../resources/js/util.js"></script>
+	<script src="../../../../resources/js/main.js"></script>
+	<script src="../../../../resources/js/login.js"></script>
 	
 	
 	

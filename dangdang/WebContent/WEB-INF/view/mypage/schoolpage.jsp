@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/view/include/header.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,9 +28,14 @@
 						<div id="menu">
 							<ul>
 								<li><a href="/main.do">Home</a></li>
-								<li><a href="/mypage/schoolpage.do">마이페이지</a></li>
+								<c:choose>
+									<c:when test ="${sessionScope.schoolMember != null}"><li><a href="/school/schoolpage.do">마이페이지</a></li></c:when>
+									<c:when test ="${sessionScope.userMember != null}"><li><a href="/user/userpage.do">마이페이지</a></li></c:when>
+									<c:otherwise><li><a href= "#" onclick="mypageError(); return false">마이페이지</a></li></c:otherwise>
+								</c:choose>
 								<li><a href="/map.do">유치원 찾기</a></li>
 								<li><a href="#">캘린더</a></li>
+								
 							</ul>
 						</div></li>
 				</ul>
@@ -47,7 +53,15 @@
 		<section class="school_board">
 			<div class="school_mypage">
 				<div id="mypage_profile">
-					<a href="/school/schoolprofile.do">profile</a>
+						<div>
+							<a href="/school/schoolprofile.do">마이프로필 설정</a>
+						</div>
+						<div>
+							<div id ="profile_photo"></div>
+							<div>
+								<h2>${sessionScope.schoolMember.kgName}</h2>
+							</div>
+						</div>					
 				</div>
 				
 				<div id ="mypage_board">
@@ -81,8 +95,7 @@
 
 			</ul>
 			<ul class="copyright">
-				<li>&copy; Untitled</li>
-				<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+				
 			</ul>
 		</footer>
 
@@ -96,6 +109,7 @@
 	<script src="../../../../resources/js/breakpoints.min.js"></script>
 	<script src="../../../../resources/js/util.js"></script>
 	<script src="../../../../resources/js/main.js"></script>
+	<script src="../../../../resources/js/login.js"></script>
 
 </body>
 </html>

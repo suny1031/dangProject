@@ -22,5 +22,8 @@
   
   
   
-  
+   <error-page>
+ 	<exception-type> com.dang.common.exception.CustomException</exception-type>
+  	<location>/exception</location>
+  </error-page> 
 </web-app>

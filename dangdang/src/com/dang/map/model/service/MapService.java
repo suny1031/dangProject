@@ -25,7 +25,6 @@ public class MapService {
 		} finally {
 			jdt.close(conn);
 		}
-
 		return kindergartenList;
 
 	}

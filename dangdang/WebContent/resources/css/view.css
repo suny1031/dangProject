@@ -2,113 +2,127 @@
 /* div {
   border: solid 1px;
 } */
-
-
 #kinderWrap {
-  font-size: 2vw;
-  font-weight: bold;
-  color: #8b4513;
-  width: 100%;
-  height: 100%;
-  text-align: center;
+	font-size: 2vw;
+	font-weight: bold;
+	color: #8b4513;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+}
+
+#noReviewBox{
+	width: 50%;
+    height: 20vw;
+	text-align :center;
+    margin: auto;
+  	
+    background-image: url("/resources/images/absence.jpg");
+    background-size: cover;
+    background-position:center;
 }
 #kinder {
-  margin-top: 9%;
-  margin-bottom: 0;
+	position: relative;
+    top: 15px;
+	margin-bottom: 0;
 }
 
 .reviewWrap {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-
-  align-items: center;
-  
-  margin-bottom: 3%;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-bottom: 3%;
 }
 
 .dataWrap {
-  width: 50%;
-  height: 60vh;
-  display: flex;
-  justify-content: center;
+	width: 50%;
+	height: 50vh;
+	display: flex;
+	justify-content: center;
+	background-color: #f1f1f1;
+	border-bottom: 2px solid #adadad;
+	margin-top: 2%;
+	
+	transform: scale(1);
+	-webkit-transform: scale(1);
+	-moz-transform: scale(1);
+	-ms-transform: scale(1);
+	-o-transform: scale(1);
+	transition: all 0.3s ease-in-out; /* 부드러운 모션을 위해 추가*/
+}
 
-  background-color: #f1f1f1;
-  border-bottom: 2px solid #adadad;
-
-  margin-top: 2%;
+.dataWrap:hover {
+	transform: scale(1.1);
+	-webkit-transform: scale(1.1);
+	-moz-transform: scale(1.1);
+	-ms-transform: scale(1.1);
+	-o-transform: scale(1.1);
 }
 
 .wrap {
-  width: 50%;
-  height: 100%;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+	width: 50%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 }
 
 .data {
-  width: 50%;
-  height: 9%;
-
-  text-align: center;
-  align-items: center;
-
-  font-size: 1vw;
-  margin-left: 3%
+	width: 50%;
+	height: 9%;
+	text-align: center;
+	align-items: center;
+	font-size: 1vw;
+	margin-left: 3%
 }
 
 .contentWrap {
-  width: 80%;
-  height: 50%;
+	width: 80%;
+	height: 50%;
 }
 
 .content {
-  background-color: #ffffff;
-  color: #000000;
-  font-size: 1vw;
-  border: solid 1px white;
-  border-radius: 30px;
-  width: 100%;
-  height: 100%;
-
-  padding: 3% 3% 3% 6%;
-
-  align-self: center;
-
-  margin-left: 10%;
-  
-  resize: none;
+	background-color: #ffffff;
+	color: #000000;
+	font-size: 1vw;
+	border: solid 1px white;
+	border-radius: 30px;
+	width: 100%;
+	height: 100%;
+	padding: 5% 5% 5% 8%;
+	align-self: center;
+	margin-left: 10%;
+	resize: none;
 }
 
 .photo {
-  background-color: dodgerblue;
-  width: 50%;
-  height: 70%;
-
-  margin: 11% 5% 0 0;
-
-  background-image: url("/resources/images/dang.jpg");
-  background-size: cover;
-  background-position: center;
+	background-color: dodgerblue;
+	width: 50%;
+	height: 70%;
+	margin: 11% 5% 0 0;
+	background-image: url("/resources/images/dang.jpg");
+	background-size: cover;
+	background-position: center;
 }
 
 /*헤더*/
 #header {
-  height: 15vh;
+	height: 15vh;
 }
 
 /*작업할 공간*/
 .board {
-  min-height: 70vh;
-  margin-top: 15vh;
+    min-height: 70vh;
+    margin-top: 15vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 /*푸터*/
-
 #footer {
-  height: 15vh;
-  padding: 0%;
+	height: 15vh;
+	padding: 0%;
 }

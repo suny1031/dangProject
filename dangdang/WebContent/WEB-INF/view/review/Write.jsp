@@ -54,15 +54,13 @@
 		
 			<div class="reviewWrap">
 				<form action="${context}/review/upload.do" method="post" enctype="multipart/form-data">
-
 					<div class="formWrap">
-
 						<input id="titleInput" type="text" name="title" required="required" placeholder="제목을 입력해주세요." />
 						<!--multiple : 여러개 파일 선택을 허용하는 속성-->
 						<input id="file" type="file" name="files" multiple />
 						<textarea id="content" class="board-content" name="content"> </textarea>
 						<div id="btnWrap">
-							<button id="reviewList" class = "btn">목록</button>
+							<div id="reviewList" class = "btn">목록</div>
 							<button id="submit" class = "btn">등록</button>
 						</div>
 					</div>

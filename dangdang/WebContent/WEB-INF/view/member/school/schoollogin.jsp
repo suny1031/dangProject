@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/view/include/header.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,9 +30,14 @@
 						<div id="menu">
 							<ul>
 								<li><a href="/main.do">Home</a></li>
-								<li><a href="/main.do">마이페이지</a></li>
+								<c:choose>
+									<c:when test ="${sessionScope.schoolMember != null}"><li><a href="/school/schoolpage.do">마이페이지</a></li></c:when>
+									<c:when test ="${sessionScope.userMember != null}"><li><a href="/user/userpage.do">마이페이지</a></li></c:when>
+									<c:otherwise><li><a href= "#" onclick="mypageError(); return false">마이페이지</a></li></c:otherwise>
+								</c:choose>
 								<li><a href="/map.do">유치원 찾기</a></li>
 								<li><a href="#">캘린더</a></li>
+								
 							</ul>
 						</div></li>
 				</ul>
@@ -48,8 +54,8 @@
 		<!-- Main -->
 		<section class="school_board">
 			<div class= "school_login_form">
-				<input type="text" name="id" id="id" placeholder="아이디를 입력하세요." required="required">
-				<input type="password" name="pw" id="pw" placeholder="비밀번호를 입력하세요." required="required">
+				<input type="text" name="id" id="id" placeholder="아이디를 입력하세요." required>
+				<input type="password" name="pw" id="pw" placeholder="비밀번호를 입력하세요." required>
 				<button onclick="login()" id="login_btn">로그인</button>
 				<a href ="#" id="find_info">아이디/비밀번호 찾기</a>
 			</div>
@@ -88,16 +94,11 @@
 	<script src="../../../../resources/js/breakpoints.min.js"></script>
 	<script src="../../../../resources/js/util.js"></script>
 	<script src="../../../../resources/js/main.js"></script>
+	<script src="../../../../resources/js/login.js"></script>
+	<script type="text/javascript"> const urlToLogoin = '/school/loginimpl.do';</script>
+	<script type="text/javascript"> const urlToMyPage = '/school/schoolpage.do';</script>
 	
 	
-	<script type="text/javascript">
 	
-
-	let login = () => {
-		return location.href="/mypage/schoolpage.do";
-	}
-	
-	</script>
-
 </body>
 </html>

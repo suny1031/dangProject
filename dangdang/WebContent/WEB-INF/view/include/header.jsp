@@ -6,7 +6,7 @@
 <!--모든 페이지에서 공통적으로 사용할 헤더 정보를 담은 헤더태그-->
 <head>
 <meta charset="UTF-8">
-<title>박선영</title>
+<title>댕댕아 놀면 뭐하니?</title>
 <!--
 contextPath를 context변수에 저장
 ex) 이 프로젝트에서는 contextPath 가 jsp임으로 jsp가 context변수에 담긴다

@@ -65,20 +65,17 @@ public class MapController extends HttpServlet {
 	private void infrm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		String kgName = request.getParameter("kgName");
-		System.out.println("비동기 통신으로 넘어온 값 " + kgName);
 
 		Kindergarten kindergarten = mapService.selectkgName(kgName);
 		Service service = mapService.selectService(kgName);
-		System.out.println(kindergarten);
-		System.out.println(service);
 
 		request.removeAttribute("kindergarten");
 		request.setAttribute("kindergarten", kindergarten);
-								
 		request.setAttribute("service", service);
+
 		request.getRequestDispatcher("/WEB-INF/view/map/Infrm.jsp").forward(request, response);
 	}
-	
+
 
 
 }

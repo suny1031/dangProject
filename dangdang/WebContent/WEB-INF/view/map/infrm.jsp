@@ -58,13 +58,9 @@
 				<div id="storeInfrm">
 					<div id="InfrmList">
 						<div id="name">${kindergarten.getKgName()}</div>
-						<div id="review">방문자리뷰</div>
-						<div id="kakaoIcon">
-							
-							<a onClick="window.open(this.href, '', 'width=800, height=500')" target="_blank"
-							href = " https://map.kakao.com/link/to/${kindergarten.getKgName()},${kindergarten.getKgLat()},${kindergarten.getKgLag()}/from/현재위치,37.402056,127.108212">
-							<i class="fas fa-map-signs"></i></a>
-							
+						<div id="review"><a href = "/review/view.do?kgName=${kindergarten.getKgName()}">방문자리뷰</a></div>
+						<div id="kakaoIcon">     
+							<a id = "a"><i class="fas fa-map-signs"></i></a>				
 							<a onClick="window.open(this.href, '', 'width=700, height=700')" target="_blank"
 							 href = "https://map.kakao.com/link/roadview/${kindergarten.getKgLat()},${kindergarten.getKgLag()}">
 							 <i class="fas fa-road"></i></a>
@@ -106,6 +102,23 @@
 		<!-- Footer -->
 		<footer id="footer"> </footer>
 	</div>
+	<script>
+
+   document.querySelector("#a").addEventListener('click', () => {
+         
+         let coords = {};
+         navigator.geolocation.getCurrentPosition((position) => {
+         let lat = position.coords.latitude;
+         let lng = position.coords.longitude;
+      
+		 window.open(" https://map.kakao.com/link/to/${kindergarten.getKgName()},${kindergarten.getKgLat()},${kindergarten.getKgLag()}/from/현재위치,"+lat+","+lng+"",'','width=800, height=500');
+         })
+   
+     
+
+     });
+	</script>
+	
 	<!-- Scripts -->
 	<script src="/resources/js/jquery.min.js"></script>
 	<script src="/resources/js/jquery.scrollex.min.js"></script>

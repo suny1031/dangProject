@@ -126,6 +126,14 @@ body, input, select, textarea {
 		font-size: 11pt;
 		letter-spacing: 0.0375em;
 	}
+	
+	.school_mypage{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	margin: auto;
+	
+	}
 }
 
 
@@ -196,6 +204,8 @@ h6 {
 	font-size: 0.7em;
 	line-height: 1.5em;
 }
+
+
 
 sub {
 	font-size: 0.8em;
@@ -291,6 +301,8 @@ ul.actions.special {
 ul.actions.special li:first-child {
 	padding-left: 0;
 }
+
+
 
 @media screen and (max-width: 480px) {
 	ul.actions:not(.fixed) {
@@ -729,12 +741,6 @@ body.is-preload #banner:after {
 }
 
 /* Main */
-.board { /* 기본틀 */
-	background-color: white;
-	color: black;
-	min-height: 1000px;
-	margin-top: 80px;
-}
 
 
 .main {
@@ -896,9 +902,12 @@ body.is-mobile.landing #banner {
 	background-color: #FFF8DC;
 }
 
+
 body.is-mobile.landing #footer {
 	background-color: rgb(135, 131, 130);
 }
+
+
 
 .mainfont {
 	font-family: 'Jua', sans-serif;
@@ -978,26 +987,42 @@ body.is-mobile.landing #footer {
 	margin: auto;
 	width: 80vw;
     height: 70vh;
-	background-color: darkseagreen;
+	background-color: white;
 	display: flex;
 	justify-content: space-around;
 	font-size: 1.3vw;
+	border: solid 1px;
 	
 
 }
 
 .user_mypage a{
 	margin-left: 1vw;
+	margin-right: 1vw;
+	margin-bottom:1px;
+	color: black;
 }
 
 #mypage_profile{
-	width: 30%;
-	height: 100%;
-	background-color: grey;
+    width: 30%;
+    height: 50%;
+    margin-top: 10%;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    flex-direction: column;
 }
 #mypage_board{
 	width: 70%;
 	height: 100%;
+	
+}
+
+#mypage_profile > div{
+	display: flex;
+	justify-content: center;
+	margin: auto;
+	flex-direction: column;
 	
 }
 
@@ -1015,11 +1040,13 @@ body.is-mobile.landing #footer {
 	
 
 }
+
+
 .detail_board{
 	display: flex;
 	width: 50vw;
     border: solid 0.5px;
-  
+  	
 	
 }
 
@@ -1101,21 +1128,37 @@ body.is-mobile.landing #footer {
 	margin: auto;
 	width: 80vw;
     height: 80vh;
-	background-color: darkseagreen;
 	display: flex;
 	justify-content: space-around;
 	font-size: 1.3vw;
+	border: solid 1px grey;
 	
 
 }
 
 .school_mypage a{
 	margin-left: 1vw;
+	margin-right: 1vw;
+	color: black;
+	margin-bottom:1px;
 }
 
 
 #find_info{
  color: black;	
+}
+
+
+#profile_photo{
+    background-color: darkseagreen;
+    background-size: cover;
+    background-position: center;
+    background-image: url(/resources/css/images/dang.png);
+    height: 150px;
+    width: 150px;
+    border: solid 1px grey;
+    border-radius: 53%;
+    margin-bottom: 20px;
 }
 
 

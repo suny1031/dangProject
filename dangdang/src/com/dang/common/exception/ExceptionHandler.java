@@ -22,7 +22,7 @@ public class ExceptionHandler extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 			String email = request.getParameter("email");
-			System.out.println("ExceptionHandler : "+email);
+			System.out.println("ExceptionHandler : "+ email);
 			//request가 타고 여기 까지 넘어옴
 			
 			//request처리 도중 발생한 예외들은 request에 
