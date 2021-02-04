@@ -78,7 +78,7 @@
 							 <i class="fas fa-road"></i></a>
 						</div>
 						<div id="reservation">
-							<button id="rsv_btn">예약</button>
+							<button id="rsv_btn"><a href = "/reservation/reservation.do?kgName=${kindergarten.getKgName()}">예약</a></button>
 						</div>
 						<div id="notice" class="list"><span class = "noticeSpan">알림 </span>${kindergarten.getKgNotice()}</div>
 						<div id="address" class="list">${kindergarten.getKgAddress()}</div>

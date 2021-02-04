@@ -244,12 +244,7 @@
 				<script type="text/javascript"
 					src="//dapi.kakao.com/v2/maps/sdk.js?appkey=df05d9d53d8d4a2d40f65a23b163b044"></script>   
 			</div>
-		</div>
-		
-		
-		
-		
-	
+		</div>		
 		
 		<script>
         let coords = {};

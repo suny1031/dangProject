@@ -1,9 +1,7 @@
-package com.dang.map.controller;
+package com.dang.reservation.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,34 +13,27 @@ import com.dang.common.code.ErrorCode;
 import com.dang.common.exception.ToAlertException;
 import com.dang.map.model.service.MapService;
 import com.dang.map.model.vo.Kindergarten;
-import com.dang.map.model.vo.Service;
 
-@WebServlet("/map/*")
-public class MapController extends HttpServlet {
+@WebServlet("/reservation/*")
+public class ReservationController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private MapService mapService = new MapService();
 
-	public MapController() {
+	public ReservationController() {
 		super();
 	}
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		String uri = request.getRequestURI();
 		String[] uriArr = uri.split("/");
 		System.out.println(Arrays.toString(uriArr));
-
 		switch (uriArr[uriArr.length - 1]) {
-		case "map.do":
-			map(request, response);
-			break;
-		case "infrm.do":
-			infrm(request, response);
+		case "reservation.do":
+			reservation(request, response);
 			break;
 		default:
 			throw new ToAlertException(ErrorCode.CD_404);
-
 		}
 
 	}
@@ -52,29 +43,15 @@ public class MapController extends HttpServlet {
 		doGet(request, response);
 	}
 
-	private void map(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		List<Kindergarten> mapList = mapService.selectKindergarten();
-
-		request.setAttribute("mapList", mapList);
-
-		request.getRequestDispatcher("/WEB-INF/view/map/Map.jsp").forward(request, response);
-	}
-
-	private void infrm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+	private void reservation(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String kgName = request.getParameter("kgName");
-
+		System.out.println(kgName);
+		
 		Kindergarten kindergarten = mapService.selectkgName(kgName);
-		Service service = mapService.selectService(kgName);
-
-		request.removeAttribute("kindergarten");
 		request.setAttribute("kindergarten", kindergarten);
-		request.setAttribute("service", service);
+		System.out.println(kindergarten);
+		
+		request.getRequestDispatcher("/WEB-INF/view/reservation/reservation.jsp").forward(request, response);
 
-		request.getRequestDispatcher("/WEB-INF/view/map/Infrm.jsp").forward(request, response);
 	}
-
-
-
 }

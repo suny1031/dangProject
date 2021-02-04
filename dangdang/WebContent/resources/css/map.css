@@ -101,6 +101,9 @@
 	width: 80%;
 }
 
+#kgName{
+	margin-left: 10px;
+}
 /*헤더*/
 #header {
 	height: 15vh;
