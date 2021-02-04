@@ -30,10 +30,13 @@
 								<c:choose>
 									<c:when test ="${sessionScope.schoolMember != null}"><li><a href="/school/schoolpage.do">마이페이지</a></li></c:when>
 									<c:when test ="${sessionScope.userMember != null}"><li><a href="/user/userpage.do">마이페이지</a></li></c:when>
-									<c:otherwise><li><a href= "#" onclick="mypageError(); return false">마이페이지</a></li></c:otherwise>
 								</c:choose>
-								<li><a href="/map.do">유치원 찾기</a></li>
+								<li><a href="map/map.do">유치원 찾기</a></li>
 								<li><a href="#">캘린더</a></li>
+								<c:choose>
+									<c:when test ="${sessionScope.schoolMember != null}"><li><a href="/school/logout.do">로그아웃</a></li></c:when>
+									<c:when test ="${sessionScope.userMember != null}"><li><a href="/user/logout.do">로그아웃</a></li></c:when>
+								</c:choose>
 								
 							</ul>
 						</div></li>
@@ -50,9 +53,53 @@
 
 		<!-- Main -->
 		<section class="user_board">
-			<div class="user_profile">
-			<h2>이름</h2>
-				
+			<div id="user_profile">
+				<div class ="profile_info">
+					<div id="separate_form">
+						<div id="personal_info">
+							<form action="${context}/user/info.do" method="post" id="modify_form">
+								<fieldset class="info_form">
+									<legend>기본정보</legend>
+										<ul id="modify_info">
+											<li>아이디
+												<br><input type="text" value="${sessionScope.userMember.userId}" id="id" name="id" readonly>
+											</li>
+											<li>비밀번호
+												<br><input type ="text" id="pw "name="pw">
+											</li>
+											<li>비밀번호 확인
+												<br><input type ="text">
+											</li>
+											<li>이름
+												<br><input type ="text" value="${sessionScope.userMember.userName}" id="username" name="username">
+											</li>
+											<li>닉네임
+												<br><input type ="text" value="${sessionScope.userMember.nickname}" id="nickname" name="nickname">
+											</li>
+											<li>생년월일
+												<br><input type ="date" value="${sessionScope.userMember.birth}" id="birth" name="birth">
+											</li>
+											<li>휴대폰번호
+												<br><input type ="text" value="${sessionScope.userMember.phoneNumber}" id="phoneNumber" name="phoneNumber">
+											</li>
+											<li id="modify_btn"><button type="submit">프로필수정</button></li>
+											
+										</ul>
+								</fieldset>
+							</form>
+						</div>
+						<div id="kg_form">
+						<fieldset class="info_form">
+							<legend>유치원정보</legend>
+							<h2 id="kg_info">${sessionScope.userMember.kgName}<br>[${sessionScope.userMember.className}] </h2>
+						</fieldset>
+						</div>
+					</div>
+						
+					<div id="widthdraw_part">
+						<button onclick="withdraw()">회원탈퇴하기</button>
+					</div>
+				</div>
 			</div>
 		</section>
 

@@ -2,7 +2,6 @@ package com.dang.common.code;
 
 public enum ConfigCode {
 	
-	
 	DOMAIN("http://localhost:8484"),
 	EMAIL("suny10312@naver.com"),
 	UPLOAD_PATH("C:\\semi\\dangWorkspace\\resources\\upload\\");

@@ -26,7 +26,7 @@
 				 location.href=urlToMyPage;	 
 			}
 		}).catch(error =>{
-			alert('로그인 중에 오류가 발생하였습니다.');
+			error.alertMessage();
 			
 		});
 		

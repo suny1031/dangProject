@@ -39,10 +39,11 @@ public class SchoolDao {
 				schoolMember.setKgId(rset.getString("kg_id"));
 				schoolMember.setKgPw(rset.getString("kg_pw"));
 				schoolMember.setKgClassName(rset.getString("kg_class_name"));
-				schoolMember.setKgAdress(rset.getString("kg_address"));
+				schoolMember.setKgAddress(rset.getString("kg_address"));
 				schoolMember.setKgTell(rset.getString("kg_tell"));
 				schoolMember.setKgOperateTime(rset.getString("kg_operate_time"));
 				schoolMember.setKgNotice(rset.getString("kg_notice"));
+				schoolMember.setKgGrade(rset.getString("kg_grade"));
 			
 				
 
@@ -51,7 +52,7 @@ public class SchoolDao {
 			
 			
 		}catch(SQLException e) {
-			throw new DataAccessException(ErrorCode.SM01, e);
+			throw new DataAccessException(ErrorCode.LM01, e);
 		}finally {
 			jdt.close(rset, pstm);
 		}

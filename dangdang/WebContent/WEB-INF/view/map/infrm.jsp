@@ -13,6 +13,7 @@
 <!-- <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&display=swap" rel="stylesheet"> -->
 <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap"
 	rel="stylesheet">
+	
 <noscript>
 	<link rel="stylesheet" href="/resources/css/noscript.css" />
 </noscript>
@@ -34,9 +35,16 @@
 						<div id="menu">
 							<ul>
 								<li><a href="/main.do">Home</a></li>
-								<li><a href="/mypage.do">마이페이지</a></li>
+								<c:choose>
+									<c:when test ="${sessionScope.schoolMember != null}"><li><a href="/school/schoolpage.do">마이페이지</a></li></c:when>
+									<c:when test ="${sessionScope.userMember != null}"><li><a href="/user/userpage.do">마이페이지</a></li></c:when>
+								</c:choose>
 								<li><a href="/map/map.do">유치원 찾기</a></li>
 								<li><a href="#">캘린더</a></li>
+								<c:choose>
+									<c:when test ="${sessionScope.schoolMember != null}"><li><a href="/school/logout.do">로그아웃</a></li></c:when>
+									<c:when test ="${sessionScope.userMember != null}"><li><a href="/user/logout.do">로그아웃</a></li></c:when>
+								</c:choose>
 							</ul>
 						</div></li>
 				</ul>
@@ -53,10 +61,14 @@
 
 		<div class="board">
 			<div id="storeWrap">
-				<div id="photo"></div>
+			
+				<div id="photo"><img id ="img" src="/file"></div>
+				
 				<div id="wrap"></div>
+				
 				<div id="storeInfrm">
-					<div id="InfrmList">
+				
+					<div id="InfrmList"> 
 						<div id="name">${kindergarten.getKgName()}</div>
 						<div id="review"><a href = "/review/view.do?kgName=${kindergarten.getKgName()}">방문자리뷰</a></div>
 						<div id="kakaoIcon">     
@@ -96,7 +108,20 @@
 						</c:if> 
 						</div>
 					</div>
+					
+					
+					<div id ="photoWrap">
+				<%--<c:forEach var="" items="">
+						<div class = "photo">
+						
+						
+						
+						</div>
+					</c:forEach>--%>
+					</div>					
+					
 				</div>
+				
 			</div>
 		</div>
 		<!-- Footer -->

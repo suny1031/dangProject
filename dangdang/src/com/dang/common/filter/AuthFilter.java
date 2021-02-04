@@ -33,19 +33,20 @@ public class AuthFilter implements Filter {
 		// 로그인이 안된 사용자일 경우 회원 정보 페이지에 접근할 수 없게 막기
 		// 로그인이 안된 사용자 == session에 user라는 속성값이 없는 사용자
 		String[] uriArr = httpRequest.getRequestURI().split("/");
+		
 		// 사용자가 접근한 url 경로 확인
 		if (uriArr.length > 0) {
 			// 빈배열이 넘어와서 0보다 클때 그리고 session에 값이 없을때
 			// 1depth
 			switch (uriArr[1]) {
-			case "member":
+			case "user":
 				// 2depth
 				switch (uriArr[2]) {
-				case "mypage.do":
-					if (session.getAttribute("user") == null) {
+				/*case "userpage.do":
+					if (session.getAttribute("userMember") == null) {
 						throw new ToAlertException(ErrorCode.AUTH01);
-					}
-					break;
+					} 
+					break; *///굳이 안해도 될 것 같아서 보류
 				case "joinimpl.do":
 					if (session.getAttribute("persistUser") == null) {
 						throw new ToAlertException(ErrorCode.AUTH02);
@@ -54,6 +55,22 @@ public class AuthFilter implements Filter {
 				}
 
 				break;
+				
+			case "school":
+				// 2depth
+				switch (uriArr[2]) {
+				/*case "schoolPage.do":
+					if (session.getAttribute("schoolMember") == null) {
+						throw new ToAlertException(ErrorCode.AUTH01);
+					}
+					break;*/ //굳이 안해도 될 것 같아서 보류
+				}
+
+				break;
+				
+				
+				
+				
 			case "board":
 				switch (uriArr[2]) {
 				case "write.do":

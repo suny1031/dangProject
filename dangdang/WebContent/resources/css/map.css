@@ -1,4 +1,10 @@
 @charset "UTF-8";
+	/*a태그의 보라색 제거*/
+    a { text-decoration: none; color: black; }
+    a:visited { text-decoration: none; }
+    a:hover { text-decoration: none; }
+    a:focus { text-decoration: none; }
+    a:hover, a:active { text-decoration: none; }
 
 #mapWrap {
 	display: flex;
@@ -36,8 +42,6 @@
     outline: none;
 }
 
-
-
 /*검색어  아이콘*/
 .fa-search {
 	color: #8b4513;
@@ -69,6 +73,10 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+}
+
+.kgNameA{
+	color: #4169E1;
 }
 
 .infrm p {

@@ -126,15 +126,50 @@ body, input, select, textarea {
 		font-size: 11pt;
 		letter-spacing: 0.0375em;
 	}
-	
-	.school_mypage{
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	margin: auto;
+}
+
+@media screen and (max-width: 736px) {
+	.member_mypage {
+		flex-direction: column;
 	
 	}
+	
+	.member_mypage > div{
+		margin:auto;
+	}
+	
+	#profile_photo {
+		display: none;
+	
+	}
+ 
+	#mypage_board{
+
+   	 	margin-bottom : 20px;
+	}
+	
+	
+	
+	.profile_name_board {
+		font-size: 6vw;
+	    border: solid 1px;
+	    width: 25vw;
+	    height: 5vh;
+	    border-radius: 20%;
+	    background-color: darkseagreen;
+			
+	}
+	
+	#dangmark{
+		width: 70px;
+		height:70px;
+	
+	}
+	
 }
+
+
+
 
 
 
@@ -907,10 +942,16 @@ body.is-mobile.landing #footer {
 	background-color: rgb(135, 131, 130);
 }
 
+body.is-mobile.landing .user_profile{
+	display: flex;
+	flex-direction: column;
+}
+
 
 
 .mainfont {
 	font-family: 'Jua', sans-serif;
+	margin-bottom: 30px;
 }
 
 #headermain{
@@ -925,6 +966,14 @@ body.is-mobile.landing #footer {
 	background-position: center;
 	background-image: url("/resources/css/images/dang.png");
 }
+
+@media screen and (max-width: 736px) {
+	#dangmark{
+		width: 70px;
+		height: 70px;
+	}
+}
+
 
 
 
@@ -983,7 +1032,7 @@ body.is-mobile.landing #footer {
 	font-size: 1.2vw;
 }
 
-.user_mypage{
+.member_mypage{
 	margin: auto;
 	width: 80vw;
     height: 70vh;
@@ -992,11 +1041,11 @@ body.is-mobile.landing #footer {
 	justify-content: space-around;
 	font-size: 1.3vw;
 	border: solid 1px;
-	
 
 }
 
-.user_mypage a{
+
+.member_mypage a{
 	margin-left: 1vw;
 	margin-right: 1vw;
 	margin-bottom:1px;
@@ -1004,14 +1053,16 @@ body.is-mobile.landing #footer {
 }
 
 #mypage_profile{
-    width: 30%;
+    width: 60%;
     height: 50%;
-    margin-top: 10%;
+    margin-top: 6%;
     display: flex;
     text-align: center;
     justify-content: center;
     flex-direction: column;
 }
+
+
 #mypage_board{
 	width: 70%;
 	height: 100%;
@@ -1049,6 +1100,7 @@ body.is-mobile.landing #footer {
   	
 	
 }
+
 
 
 
@@ -1124,30 +1176,14 @@ body.is-mobile.landing #footer {
 	height: 30px;
 }
 
-.school_mypage{
-	margin: auto;
-	width: 80vw;
-    height: 80vh;
-	display: flex;
-	justify-content: space-around;
-	font-size: 1.3vw;
-	border: solid 1px grey;
-	
 
-}
-
-.school_mypage a{
-	margin-left: 1vw;
-	margin-right: 1vw;
-	color: black;
-	margin-bottom:1px;
-}
 
 
 #find_info{
  color: black;	
 }
 
+/* profile*/
 
 #profile_photo{
     background-color: darkseagreen;
@@ -1161,11 +1197,235 @@ body.is-mobile.landing #footer {
     margin-bottom: 20px;
 }
 
+.profile_name {
+	font-size: 2vw;
+    font-family: 'Gamja Flower', cursive;
+    font-weight: bold;
+	
+}
+
+#user_profile{
+	display: flex;
+}
+
+
+.profile_info {
+	border: solid 1px;
+	width: 80vw;
+	min-height: 90vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	margin: auto;
+	
+}
+
+@media screen and (max-width: 736px) {
+	.profile_info {
+		display: flex;
+		width:95vw;
+
+	}
+}
+
+.info_form{
+	width: 35vw;
+    height: 80vh;
+    border: solid 1px;
+    border-radius: 3%;
+    display: flex;
+    justify-content: center;
+}
+
+
+#modify_form{
+	display: flex;
+    justify-content: center;
+}
+
+#kg_form{
+	display: flex;
+    justify-content: center;
+   	width: 50%;
+   	margin:auto;
+}
+
+#personal_info {
+	width: 50%;
+	margin:auto;
+
+}
+
+@media screen and (max-width: 736px) {
+	#personal_info {
+		width: 60%;
+
+	}
+}
+
+#kg_info{
+	margin: auto;
+	text-align: center;
+}
+
+#modify_info{
+	display: flex;
+	flex-direction: column;
+    justify-content: center;
+    height: 95%;
+}
+
+#modify_info >li{
+	margin-top: 4px;
+}
+ 
+
+#separate_form{
+	display: flex;
+}
+
+#widthdraw_part{
+	display: flex;
+	justify-content: flex-end;
+    margin: 0 4% 0 0;
+    
+}
+
+.profile_info button{
+	height: 3.5vh;
+    background-color: #8B4513;
+    color: white;
+    border: solid 1px grey;
+    border-radius: 11px;
+    ont-size: 1vw;
+    font-size: 1vw;
+	margin-top: 10px;
+    font-family: 'Gamja Flower', cursive;
+
+}
+
+.profile_name_board{
+	display: flex;
+	justify-content: center;
+}
+
+#modify_btn{
+	display:flex;
+	justify-content: flex-end;
+}
 
 
 
+.school_info_form{
+	width: 85vw;
+    height: 90vh;
+    border: solid 1px;
+    border-radius: 3%;
+    display: flex;
+    justify-content: center;
+    
+    
+}
+
+#school_profile{
+	margin:auto;
+	justify-content: center;
+	
+}
 
 
+#school_modify_btn{
+	height: 3.5vh;
+    background-color: #8B4513;
+    color: white;
+    border: solid 1px grey;
+    border-radius: 11px;
+    ont-size: 1vw;
+    font-size: 1vw;
+	margin-top: 10px;
+    font-family: 'Gamja Flower', cursive;
+    justify-content: center;
+}
+
+#school_modify_form {
+	font-size: 1.3vw;
+}
+
+#school_modify_form input {
+	border: 1px solid;
+	
+}
+
+#modify_part{
+	display: flex;
+	justify-content: center;
+}
+
+
+#school_info{
+	border: 1px solid red;
+	width: 40%;
+	height: 95%;
+	margin:auto;
+	display: flex;
+	justify-content: center;
+	border-radius: 2%
+	
+}
+
+
+
+#separate_part{
+	width: 40%;
+	margin: auto;
+	display:flex;
+	flex-direction: column;
+	justify-content: space-around;
+	
+}
+
+#school_service{
+	border: 1px solid blue;
+	border-radius: 2%;
+	height: 40vh;
+
+
+	
+
+	
+}
+
+#school_photo{
+	border: 1px solid green;
+	border-radius: 2%;
+	height: 45vh;
+}
+
+#school_modify_info{
+	display: flex;
+	flex-direction: column;
+    justify-content: center;
+    height: 95%;
+}
+
+
+
+#school_modify_info >li{
+	margin-top: 4px;
+	width: 80%;
+}
+
+#school_modify_info *{
+	width: 25vw;
+    margin-bottom: 10px;
+}
+
+#school_service input[type="checkbox"]{
+	width: 1vw;
+    height: 1.5vh;
+    
+}
+ 
 
 
 

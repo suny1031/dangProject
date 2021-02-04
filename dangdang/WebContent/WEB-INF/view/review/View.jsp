@@ -34,9 +34,16 @@
 						<div id="menu">
 							<ul>
 								<li><a href="/main.do">Home</a></li>
-								<li><a href="/mypage.do">마이페이지</a></li>
+								<c:choose>
+									<c:when test ="${sessionScope.schoolMember != null}"><li><a href="/school/schoolpage.do">마이페이지</a></li></c:when>
+									<c:when test ="${sessionScope.userMember != null}"><li><a href="/user/userpage.do">마이페이지</a></li></c:when>
+								</c:choose>
 								<li><a href="/map.do">유치원 찾기</a></li>
 								<li><a href="#">캘린더</a></li>
+								<c:choose>
+									<c:when test ="${sessionScope.schoolMember != null}"><li><a href="/school/logout.do">로그아웃</a></li></c:when>
+									<c:when test ="${sessionScope.userMember != null}"><li><a href="/user/logout.do">로그아웃</a></li></c:when>
+								</c:choose>
 							</ul>
 						</div></li>
 				</ul>
@@ -54,13 +61,13 @@
 
 		<div class="board">
 		
-		 <div id = "kinderWrap"><p id= "kinder">${kindergarten.kgName}</p></div><a href = "/review/write.do?kgName=${kindergarten.kgName}">후기 등록</a>
+		 <div id = "kinderWrap"><p id= "kinder">${kindergarten.kgName}</p></div><a id ="reviewWrite" href = "/review/write.do?kgName=${kindergarten.kgName}">후기 등록</a>
 		<c:choose>
 			<c:when test="${empty reviewList}">
-				<div id = "noReviewBox">등록된 후기가 없습니다 <a href = "/review/write.do?kgName=${kindergarten.kgName}">후기 등록</a></div>
+				<div id = "noReviewBox"></div>
 			</c:when>
 		<c:otherwise>
-		<c:forEach var="review" items = "${reviewList}">
+		<c:forEach var="review" items = "${reviewList}" varStatus="status">
 					<div class="reviewWrap">
 						<div class="dataWrap fristWrap">
 							<div class="wrap">
@@ -73,10 +80,8 @@
 								</div>
 							</div>
 							<c:if test="${!empty fileList}">
-							<c:forEach var="file" items = "${fileList}">
-							<div class="photo"><img id ="img" src="/${file.savePath}${file.renameFileName}">
+							<div class="photo"><img id ="img" src="/file${fileList[status.index].savePath}${fileList[status.index].renameFileName}">
 							</div>
-							</c:forEach> 
 							</c:if>
 						</div>			
 					</div>	
@@ -93,23 +98,6 @@
 
 	</div>
 
-	<!--ViewScripts-->
-	<script type="text/javascript">
-		function submitData(url) {
-			location.href = url;
-		}
-
-		function downloadFile(ofname, rfname, savePath) {
-			let params = {
-				'ofname' : ofname,
-				'rfname' : rfname,
-				'savePath' : savePath
-			};
-
-			location.href = '${context}' + "/board/download.do?"
-					+ urlEncodeForm(params);
-		}
-	</script>
 
 
 	<!-- Scripts -->

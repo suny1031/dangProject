@@ -30,10 +30,13 @@
 								<c:choose>
 									<c:when test ="${sessionScope.schoolMember != null}"><li><a href="/school/schoolpage.do">마이페이지</a></li></c:when>
 									<c:when test ="${sessionScope.userMember != null}"><li><a href="/user/userpage.do">마이페이지</a></li></c:when>
-									<c:otherwise><li><a href= "#" onclick="mypageError(); return false">마이페이지</a></li></c:otherwise>
 								</c:choose>
-								<li><a href="/map.do">유치원 찾기</a></li>
+								<li><a href="map/map.do">유치원 찾기</a></li>
 								<li><a href="#">캘린더</a></li>
+								<c:choose>
+									<c:when test ="${sessionScope.schoolMember != null}"><li><a href="/school/logout.do">로그아웃</a></li></c:when>
+									<c:when test ="${sessionScope.userMember != null}"><li><a href="/user/logout.do">로그아웃</a></li></c:when>
+								</c:choose>
 							</ul>
 						</div></li>
 				</ul>
@@ -49,8 +52,51 @@
 
 		<!-- Main -->
 		<section class="user_board">
-			<div class="user_login_form">
-				school profile 입니다.
+			<div id="school_profile">
+				<form action="${context}/school/info.do" method="post" id="school_modify_form">
+					<fieldset class="school_info_form">
+						<div id="school_info">
+							<ul id="school_modify_info">
+								<li>업체명
+									<br><input type="text" value="${sessionScope.schoolMember.kgName}" id="id" name="id" readonly>
+								</li>
+								<li>주소
+									<br><textarea rows = "3" cols = "20" style = "resize: none">${sessionScope.schoolMember.kgAddress}</textarea>
+								<li>학급명
+									<br><input type ="text" value="${sessionScope.schoolMember.kgClassName}" id="nickname" name="nickname">
+								</li>
+								<li>전화번호
+									<br><input type ="text" value="${sessionScope.schoolMember.kgTell}" id="phoneNumber" name="phoneNumber">
+								</li>
+								<li>운영시간
+									<br><input type ="text" value="${sessionScope.schoolMember.kgOperateTime}" id="phoneNumber" name="phoneNumber">
+								</li>
+								<li>안내사항
+									<br><textarea rows = "3" cols = "20" style = "resize: none">${sessionScope.schoolMember.kgNotice}</textarea>
+								</li>
+							</ul>
+						</div>
+						<div id="separate_part">
+							<div id="school_service">
+								<p>제공서비스</p>
+								<input type = "checkbox" id = "isKg" name ="service"  value = "isKg"><label for ="isKg">유치원</label><br>
+								<input type = "checkbox" id = "isCafe"  name ="service" value = "isCafe"><label for = "isCafe"> 카페</label>	<br>
+								<input type = "checkbox" id = "isHotel"  name ="service" value = "isHotel"><label for = "isHotel"> 호텔</label>	<br>
+								<input type = "checkbox" id = "isPickup"  name ="service" value = "isPickup"><label for ="isPickup"> 픽업서비스</label><br>
+								<input type = "checkbox" id = "isMedic"  name ="service" value = "isMedic"><label for = "isMedic"> 메니컬센터</label>	<br>
+								<input type = "checkbox" id = "isAcademy"  name ="service" value = "isAcademy"><label for = "isAcademy"> 아카데미</label><br>
+								<input type = "checkbox" id = "isSpa"  name ="service" value = "isSpa"><label for = "isSpa"> 스파</label>
+							</div>
+							<div id="school_photo">
+								<p>유치원사진</p>
+								<input type ="file" id="kg_photo">
+							</div>
+						</div>
+					</fieldset>
+				</form>
+				<div id="modify_part">
+					<button type="submit" id="school_modify_btn">프로필수정</button>
+				</div>
 			</div>
 		</section>
 
@@ -87,14 +133,7 @@
 	<script src="../../../../resources/js/breakpoints.min.js"></script>
 	<script src="../../../../resources/js/util.js"></script>
 	<script src="../../../../resources/js/main.js"></script>
-		<script src="../../../../resources/js/login.js"></script>
-	<script type="text/javascript">
+	<script src="../../../../resources/js/login.js"></script>
 	
-	let login = () => {
-		return location.href="/mypage/userpage.do";
-	}
-	
-	</script>
-
 </body>
 </html>

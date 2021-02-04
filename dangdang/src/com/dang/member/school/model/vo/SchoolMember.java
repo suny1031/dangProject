@@ -13,6 +13,7 @@ public class SchoolMember {
 	private String kgNotice;
 	private String kgLat;
 	private String kgLag;
+	private String kgGrade;
 	
 	
 	
@@ -47,10 +48,10 @@ public class SchoolMember {
 	public void setKgClassName(String kgClassName) {
 		this.kgClassName = kgClassName;
 	}
-	public String getKgAdress() {
+	public String getKgAddress() {
 		return kgAddress;
 	}
-	public void setKgAdress(String kgAddress) {
+	public void setKgAddress(String kgAddress) {
 		this.kgAddress = kgAddress;
 	}
 	public String getKgTell() {
@@ -83,12 +84,29 @@ public class SchoolMember {
 	public void setKgLag(String kgLag) {
 		this.kgLag = kgLag;
 	}
+	public String getKgGrade() {
+		return kgGrade;
+	}
+	public void setKgGrade(String kgGrade) {
+		this.kgGrade = kgGrade;
+	}
+	
+	
+	
 	@Override
 	public String toString() {
 		return "SchoolMember [kgName=" + kgName + ", kgIdx=" + kgIdx + ", kgId=" + kgId + ", kgPw=" + kgPw
-				+ ", kgClassName=" + kgClassName + ", kgAddress=" + kgAddress + ", kgTell=" + kgTell + ", kgOperateTime="
-				+ kgOperateTime + ", kgNotice=" + kgNotice + ", kgLat=" + kgLat + ", kgLag=" + kgLag + "]";
+				+ ", kgClassName=" + kgClassName + ", kgAddress=" + kgAddress + ", kgTell=" + kgTell
+				+ ", kgOperateTime=" + kgOperateTime + ", kgNotice=" + kgNotice + ", kgLat=" + kgLat + ", kgLag="
+				+ kgLag + ", kgGrade=" + kgGrade + "]";
 	}
+	
+	
+	
+	
+	
+	
+
 
 
 	

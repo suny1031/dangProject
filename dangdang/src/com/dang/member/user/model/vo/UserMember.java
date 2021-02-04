@@ -14,6 +14,7 @@ public class UserMember {
 	private String nickname;
 	private String className;
 	private int isleave;
+	private String grade;
 	public String getUserId() {
 		return userId;
 	}
@@ -74,6 +75,13 @@ public class UserMember {
 	public void setIsleave(int isleave) {
 		this.isleave = isleave;
 	}
+	public String getGrade() {
+		return grade;
+	}
+	public void setGrade(String grade) {
+		this.grade = grade;
+	}
+	
 	
 	
 	
@@ -81,10 +89,11 @@ public class UserMember {
 	public String toString() {
 		return "UserMember [userId=" + userId + ", kgName=" + kgName + ", password=" + password + ", userName="
 				+ userName + ", email=" + email + ", birth=" + birth + ", phoneNumber=" + phoneNumber + ", nickname="
-				+ nickname + ", className=" + className + ", isleave=" + isleave + "]";
+				+ nickname + ", className=" + className + ", isleave=" + isleave + ", grade=" + grade + "]";
 	}
 	
 	
+
 	
 
 

@@ -77,9 +77,7 @@ public class reviewController extends HttpServlet {
 		ArrayList<Review> reviewList = reviewService.selectReview(kgName);
 		Kindergarten kindergarten = mapService.selectkgName(kgName);
 		ArrayList<FileVo> fileList = reviewService.selectFile(kgName);
-		
-		
-		
+
 		
 		System.out.println("후기 리스트 " + reviewList);
 		System.out.println("유치원 리스트" + kindergarten);
@@ -108,7 +106,7 @@ public class reviewController extends HttpServlet {
 		reviewService.insertReview(userMember.getNickname(), kgName, request);
 		
 		request.setAttribute("alertMsg", "후기 등록이 완료되었습니다");
-		request.setAttribute("url", "/map/map.do");
+		request.setAttribute("url", "/review/view.do?kgName="+kgName);
 		
 		request.getRequestDispatcher("/WEB-INF/view/common/result.jsp").forward(request, response);
 		

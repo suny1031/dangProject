@@ -53,11 +53,10 @@
   margin-left: 25%;
 }
 #btnWrap {
-  width: 25%;
-  display: flex;
-  justify-content: space-between;
-  margin-left: 37.1%;
-  font-size: 1vw;
+    width: 100%;
+    justify-content: space-between;
+    margin-left: 43%;
+    font-size: 1vw;
 }
 
 .btn {

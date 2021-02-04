@@ -97,7 +97,8 @@ public class UserController extends HttpServlet {
 	
 	protected void logout(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.getRequestDispatcher("/WEB-INF/view/member/user/userlogin.jsp").forward(request, response);
+		request.getSession().removeAttribute("userMember"); //session에 저장된 정보 삭제 후 메인으로 이동
+		request.getRequestDispatcher("/WEB-INF/view/main/main.jsp").forward(request, response);
 		
 		
 	}
@@ -112,7 +113,7 @@ public class UserController extends HttpServlet {
 
 	protected void viewUserPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.getRequestDispatcher("/WEB-INF/view/mypage/userpage.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/view/mypage/mypage.jsp").forward(request, response);
 		
 		
 	}
