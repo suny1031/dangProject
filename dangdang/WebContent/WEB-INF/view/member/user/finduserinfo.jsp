@@ -53,65 +53,47 @@
 
 		<!-- Main -->
 		<section class="user_board">
-			<form action="${context}/user/joinimpl.do" method="post" id="form_join">
-				<fieldset id="join_field">
-					<table id ="join_table">
-						<tr><td>아이디<span class="valid_info" id ="idCheck"></span></td></tr>
-						<tr>
-							<td><input type="text" name="id" id="id" size=22% placeholder ="아이디를 입력하세요" required>
-								<button type="button" onclick="idCheck()">check</button>
-							</td>
-						</tr>
-						
-						<tr><td>비밀번호<span  class="valid_info" id = "pw_confirm"></span></td></tr>
-						<tr>
-							<td><input type="text" name="pw" id="pw" size=28% placeholder ="비밀번호를 입력하세요" required>
-							
-							</td>
-						<tr>
-						<tr><td>비밀번호 확인<span class="valid_info" id ="doubleCheckPw"></span></td></tr>
-						<tr>
-							<td><input type="password" name="checkpw" id="checkpw" size=28% placeholder ="비밀번호를 확인하세요" required></td>
-						<tr>
-						<tr><td>이름</td></tr>
-						<tr>
-							<td><input type="text" name="username" size=28% required></td>
-						<tr>
-						<tr><td>유치원명</td></tr>
-						<tr>
-							<td><input type="text" name="kinder" size=28% placeholder ="등록 유치원 있는 경우만 입력"></td>
-							<!--  <button type="button" onclick="kgCheck()">search</button></td>-->
-						<tr>
-						<tr><td>학급명</td></tr>
-						<tr>
-							<td><input type="text" name="classname" size=28% placeholder ="등록 유치원 있는 경우만 입력"></td>
-							<!-- <button type="button" onclick="classCheck()">search</button>-->
-						<tr>
-						<tr><td>이메일</td></tr>
-						<tr>
-							<td><input type="email" name="email" size=28% placeholder ="사용중인 이메일을 입력하세요" required></td>
-						<tr>
-						<tr><td>전화번호</td></tr>
-						<tr>
-							<td><input type="tel" name="tell" size=28% required></td>
-						<tr> 
-						<tr><td>닉네임</td></tr>
-						<tr>
-							<td><input type="text" name="nickname" size=28% required></td>
-						<tr>
-						<tr> 
-						<tr><td>생년월일</td></tr>
-						<tr>
-							<td><input type="date" name="birth" ></td>
-						<tr>
-						
-						<tr>
-							<td id="join_btn_part"><button type="submit">회원가입</button> <button type="reset">취	소</button></td>
-						</tr>
-						
-					</table>
-				</fieldset>
-			</form>
+			<div class="find_info">
+				<span id="find_user_title">견주 아이디/비밀번호 찾기</span>
+				<div id="find_id">
+					<form action="${context}/user/finduserid.do" method="post" id="form_find_id">
+						<fieldset id="find_id_field">
+							<table id ="find_id_table">
+								<tr><td>이름</td></tr>
+								<tr>
+									<td><input type="text" name="username" size=28% required></td>
+								<tr>
+								<tr><td>휴대폰번호</td></tr>
+								<tr>
+									<td><input type="tel" name="tell" size=28% required></td>
+								<tr> 
+								<tr>
+									<td id="find_id_btn"><button type="submit">아이디 찾기</button></td>
+								</tr>
+							</table>
+						</fieldset>
+					</form>
+				</div>
+				<div id="find_pw">
+					<form action="${context}/user/finduserpw.do" method="post" id="form_find_pw">
+						<fieldset id="find_pw_field">
+							<table id ="find_pw_table">
+								<tr><td>아이디</td></tr>
+								<tr>
+									<td><input type="text" name="username" size=28% required></td>
+								<tr>
+								<tr><td>이메일</td></tr>
+								<tr>
+									<td><input type="email" name="email" size=28% required></td>
+								<tr> 
+								<tr>
+									<td id="find_id_btn"><button type="submit">비밀번호 찾기</button></td>
+								</tr>
+							</table>
+						</fieldset>
+					</form>
+				</div>
+			</div>
 		</section>
 
 

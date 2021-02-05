@@ -32,6 +32,55 @@ public class UserService {
 	
 	
 	
+		
+		public UserMember selectUserById(String userId) {
+		Connection conn = jdt.getConnection();
+		//반환할 유저 객체 생성
+		UserMember res = null;
+		
+		try {
+			
+			res = userDao.selectUserById(conn, userId);
+			
+		} finally {
+			jdt.close(conn);
+		}
+		
+		return res;
+	}
+		
+		
+		
+		
+		
+		public UserMember selectUserByName(String userName, String phoneNumber) {
+			Connection conn = jdt.getConnection();
+			//반환할 유저 객체 생성
+			UserMember res = null;
+			
+			try {
+				
+				res = userDao.selectUserByName(conn, userName, phoneNumber);
+			} finally {
+				jdt.close(conn);
+			}
+			return res;
+		}
+	
+		
+		
+		public int insertuserMember(UserMember userMember) {
+			Connection conn = jdt.getConnection();
+			int res = 0;
+			
+			try{
+				res = userDao.insertuserMember(conn, userMember);
+			}finally {
+				jdt.close(conn);
+			}
+			return res;
+		}
+	
 	
 	
 	

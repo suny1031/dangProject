@@ -37,15 +37,21 @@ public class SchoolController extends HttpServlet {
 		
 		switch(uriArr[uriArr.length-1]){
 		case "login.do" : login(request, response);
-		break;
+			break;
 		case "loginimpl.do" : loginImpl(request, response);
-		break;
+			break;
 		case "logout.do" : logout(request, response);
-		break;
+			break;
 		case "schoolpage.do" : viewSchoolPage(request, response);
-		break;
+			break;
 		case "schoolprofile.do" : viewSchoolProfile(request, response);
-		break;
+			break;
+		case "findschoolinfo.do" : findSchoolInfo(request, response);
+			break;
+		case "findschoolid.do" : findSchoolIdImpl(request, response);
+			break;
+		case "findschoolpw.do" : findSchoolPwImpl(request, response);
+			break;
 		}
 	}
 
@@ -120,6 +126,25 @@ public class SchoolController extends HttpServlet {
 	}
 	
 	
+	
+	protected void findSchoolInfo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		request.getRequestDispatcher("/WEB-INF/view/member/school/findschoolinfo.jsp").forward(request, response);;
+	
+	}
+	
+	
+	protected void findSchoolIdImpl(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		
+	
+	}
+	
+	protected void findSchoolPwImpl(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		
+	
+	}
 	
 	
 	

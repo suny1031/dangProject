@@ -45,7 +45,6 @@ public class MapDao {
 				Kindergarten kindergarten = new Kindergarten();
 				kindergarten.setKgName(rset.getString("kg_name"));
 				kindergarten.setKgAddress(rset.getString("KG_ADDRESS"));
-				kindergarten.setKgClassName(rset.getString("KG_CLASS_NAME"));
 				kindergarten.setKgNotice(rset.getString("KG_NOTICE"));
 				kindergarten.setKgOperateTime(rset.getString("KG_OPERATE_TIME"));
 				kindergarten.setKgOperateTime(rset.getString("KG_TELL"));
@@ -67,7 +66,7 @@ public class MapDao {
 
 	public List<Kindergarten> selectKindergartenPage(Connection conn, int startRow, int endRow) {
 		// 페이징 처리를 위한 sql / 인라인뷰, rownum 사용
-		String query = "select * from (select rownum rn, KG_ADDRESS, KG_CLASS_NAME, KG_IDX, KG_LAG,KG_LAT,KG_NAME,KG_NOTICE,KG_OPERATE_TIME,KG_TELL from"
+		String query = "select * from (select rownum rn, KG_ADDRESS,  KG_IDX, KG_LAG,KG_LAT,KG_NAME,KG_NOTICE,KG_OPERATE_TIME,KG_TELL from"
 				+ "(select * from KINDERGARDEN order by KG_IDX asc)) where rn between ? and ?";
 		System.out.println(startRow + ":" + endRow);
 
@@ -93,7 +92,6 @@ public class MapDao {
 					Kindergarten kindergarten = new Kindergarten();
 					kindergarten.setKgName(rset.getString("kg_name"));
 					kindergarten.setKgAddress(rset.getString("KG_ADDRESS"));
-					kindergarten.setKgClassName(rset.getString("KG_CLASS_NAME"));
 					kindergarten.setKgNotice(rset.getString("KG_NOTICE"));
 					kindergarten.setKgOperateTime(rset.getString("KG_OPERATE_TIME"));
 					kindergarten.setKgOperateTime(rset.getString("KG_TELL"));
@@ -157,7 +155,6 @@ public class MapDao {
 				kindergarten = new Kindergarten();
 				kindergarten.setKgName(rset.getString("kg_name"));
 				kindergarten.setKgAddress(rset.getString("KG_ADDRESS"));
-				kindergarten.setKgClassName(rset.getString("KG_CLASS_NAME"));
 				kindergarten.setKgNotice(rset.getString("KG_NOTICE"));
 				kindergarten.setKgOperateTime(rset.getString("KG_OPERATE_TIME"));
 				kindergarten.setKgTell(rset.getString("KG_TELL"));
@@ -182,7 +179,7 @@ public class MapDao {
 		ResultSet rset = null;
 
 		try {
-			String query = "select * from (select rownum rn, KG_ADDRESS, KG_CLASS_NAME, KG_IDX, KG_LAG,KG_LAT,KG_NAME,KG_NOTICE,KG_OPERATE_TIME,KG_TELL from (select * from KINDERGARDEN where KG_NAME like ? order by KG_IDX asc)) where rn between ? and ?";
+			String query = "select * from (select rownum rn, KG_ADDRESS, KG_IDX, KG_LAG,KG_LAT,KG_NAME,KG_NOTICE,KG_OPERATE_TIME,KG_TELL from (select * from KINDERGARDEN where KG_NAME like ? order by KG_IDX asc)) where rn between ? and ?";
 			
 			pstm = conn.prepareStatement(query);
 			String setKeyword = "%" + keyword + "%";
@@ -199,7 +196,6 @@ public class MapDao {
 					Kindergarten kindergarten = new Kindergarten();
 					kindergarten.setKgName(rset.getString("kg_name"));
 					kindergarten.setKgAddress(rset.getString("KG_ADDRESS"));
-					kindergarten.setKgClassName(rset.getString("KG_CLASS_NAME"));
 					kindergarten.setKgNotice(rset.getString("KG_NOTICE"));
 					kindergarten.setKgOperateTime(rset.getString("KG_OPERATE_TIME"));
 					kindergarten.setKgOperateTime(rset.getString("KG_TELL"));

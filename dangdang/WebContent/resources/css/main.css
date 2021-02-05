@@ -68,12 +68,7 @@ input::-moz-focus-inner {
 	padding: 0;
 }
 
-input, select, textarea {
-	-moz-appearance: none;
-	-webkit-appearance: none;
-	-ms-appearance: none;
-	appearance: none;
-}
+
 
 /* Basic */
 @-ms-viewport {
@@ -106,7 +101,7 @@ body, input, select, textarea {
 	font-size: 15pt;
 	font-weight: 400;
 	letter-spacing: 0.075em;
-	line-height: 1.65em;
+	
 }
 
 @media screen and (max-width: 1680px) {
@@ -195,7 +190,7 @@ h1, h2, h3, h4, h5, h6 {
 	font-weight: 800;
 	letter-spacing: 0.225em;
 	line-height: 1em;
-	margin: 0 0 1em 0;
+	margin: 0 0 0.4em 0;
 	text-transform: uppercase;
 }
 
@@ -838,6 +833,7 @@ body.is-preload #banner:after {
 	jutify-content: center;
 	margin: auto;
 	font-family: 'Gamja Flower', cursive;
+	text-align: center;
 	
 
 }
@@ -988,6 +984,16 @@ body.is-mobile.landing .user_profile{
 	margin-top: 80px;
 }
 
+
+.myprofile_board {
+	background-color: white;
+	color: black;
+	height: 130vh;
+	display: flex;
+	justify-content:center;
+	margin-top: 80px;
+}
+
 .user_login_form {
 	margin: auto;
 	width: 300px;
@@ -1114,10 +1120,17 @@ body.is-mobile.landing .user_profile{
 	font-size: 1.2vw;
 	
 }
-
-#idCheck{
-	margin-left: 10px;
+#form_join *{
+	font-size: 1vw;
 }
+
+#join_table input{
+    border: solid 1px;
+    margin: 10px 0;
+   
+}
+
+
 
 #join_btn_part{
 	display:flex;
@@ -1138,11 +1151,7 @@ body.is-mobile.landing .user_profile{
 
 
 
-#join_table input{
-	border: solid 1px;
-	margin-bottom: 10px;
-	
-}
+
 
 .school_board {
 	background-color: white;
@@ -1201,6 +1210,7 @@ body.is-mobile.landing .user_profile{
 	font-size: 2vw;
     font-family: 'Gamja Flower', cursive;
     font-weight: bold;
+    margin-top: 10px;
 	
 }
 
@@ -1211,8 +1221,8 @@ body.is-mobile.landing .user_profile{
 
 .profile_info {
 	border: solid 1px;
-	width: 80vw;
-	min-height: 90vh;
+	width: 70vw;
+    min-height: 95vh;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -1223,14 +1233,14 @@ body.is-mobile.landing .user_profile{
 @media screen and (max-width: 736px) {
 	.profile_info {
 		display: flex;
-		width:95vw;
+		width:80vw;
 
 	}
 }
 
 .info_form{
 	width: 35vw;
-    height: 80vh;
+    height: 70vh;
     border: solid 1px;
     border-radius: 3%;
     display: flex;
@@ -1246,7 +1256,7 @@ body.is-mobile.landing .user_profile{
 #kg_form{
 	display: flex;
     justify-content: center;
-   	width: 50%;
+   	width: 35%;
    	margin:auto;
 }
 
@@ -1275,13 +1285,16 @@ body.is-mobile.landing .user_profile{
     height: 95%;
 }
 
-#modify_info >li{
-	margin-top: 4px;
+#modify_info *{
+	margin-top: 1vh;
+    font-size: 1.2vw;
+    width: 20vw;
 }
  
 
 #separate_form{
 	display: flex;
+	
 }
 
 #widthdraw_part{
@@ -1289,6 +1302,13 @@ body.is-mobile.landing .user_profile{
 	justify-content: flex-end;
     margin: 0 4% 0 0;
     
+}
+
+@media screen and (max-width: 736px) {
+	#widthdraw_part {
+		margin: auto;
+
+	}
 }
 
 .profile_info button{
@@ -1300,6 +1320,7 @@ body.is-mobile.landing .user_profile{
     ont-size: 1vw;
     font-size: 1vw;
 	margin-top: 10px;
+	margin-right: 10px;
     font-family: 'Gamja Flower', cursive;
 
 }
@@ -1317,8 +1338,8 @@ body.is-mobile.landing .user_profile{
 
 
 .school_info_form{
-	width: 85vw;
-    height: 90vh;
+	width: 70vw;
+	height: 120vh;
     border: solid 1px;
     border-radius: 3%;
     display: flex;
@@ -1330,28 +1351,38 @@ body.is-mobile.landing .user_profile{
 #school_profile{
 	margin:auto;
 	justify-content: center;
-	
+
 }
 
-
+#school_profile * {
+    font-size: 1.2vw
+  
+}
 #school_modify_btn{
+	width: 100%;
 	height: 3.5vh;
+	justify-content: center;
+	margin-top: 10px;
     background-color: #8B4513;
     color: white;
     border: solid 1px grey;
     border-radius: 11px;
-    ont-size: 1vw;
     font-size: 1vw;
-	margin-top: 10px;
     font-family: 'Gamja Flower', cursive;
-    justify-content: center;
+   
 }
 
 #school_modify_form {
 	font-size: 1.3vw;
+	margin: auto;
 }
 
-#school_modify_form input {
+#school_info_part input {
+	border: 1px solid;
+	
+}
+
+#service_part input {
 	border: 1px solid;
 	
 }
@@ -1362,11 +1393,11 @@ body.is-mobile.landing .user_profile{
 }
 
 
-#school_info{
-	border: 1px solid red;
-	width: 40%;
-	height: 95%;
-	margin:auto;
+#school_info_part{
+	border: 1px solid black;
+    width: 30vw;
+    min-height: 110vh;
+	margin: auto 20px auto 20px;
 	display: flex;
 	justify-content: center;
 	border-radius: 2%
@@ -1376,48 +1407,76 @@ body.is-mobile.landing .user_profile{
 
 
 #separate_part{
-	width: 40%;
-	margin: auto;
+	width: 50%;
+	min-height: 85%;
+	margin: auto 20px auto 20px;
 	display:flex;
 	flex-direction: column;
-	justify-content: space-around;
 	
 }
 
 #school_service{
-	border: 1px solid blue;
+	border: 1px solid black;
 	border-radius: 2%;
-	height: 40vh;
+	display: flex;
+    flex-direction: column;
+    justify-content: center;
+	min-height: 35vh;
+	margin-bottom :30px;
 
 
-	
-
-	
+}
+#sort_school_service{
+	display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin: auto;
 }
 
-#school_photo{
-	border: 1px solid green;
-	border-radius: 2%;
-	height: 45vh;
+#sort_school_service > label{
+	margin-bottom: 5px;
 }
+
+
+#school_photo_form{
+	
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: 100%;
+	border: 1px solid black;
+	border-radius: 2%;
+	height: 70vh;
+
+}
+
+#school_photo_form div{
+	margin: auto;
+}
+
+#school_photo_form button{
+	margin: auto;
+}
+
 
 #school_modify_info{
 	display: flex;
 	flex-direction: column;
     justify-content: center;
     height: 95%;
+    width: 100%;
 }
 
 
 
 #school_modify_info >li{
-	margin-top: 4px;
+	margin-top: 10px;
 	width: 80%;
 }
 
 #school_modify_info *{
-	width: 25vw;
-    margin-bottom: 10px;
+	width: 20vw;
+
 }
 
 #school_service input[type="checkbox"]{
@@ -1425,7 +1484,144 @@ body.is-mobile.landing .user_profile{
     height: 1.5vh;
     
 }
- 
+
+#school_service >li {
+    margin-top: 4px;
+    width: 80%;
+}
+
+#school_info_detail{
+	height: 90%;
+	margin: auto;
+}
+
+#service_part {
+	display:flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+#service_part *{
+	margin-left: 10px;
+    margin-bottom: 0.5vh;
+}
+
+
+
+#kg_photo{
+	width: 30vw;
+}
+
+#photo_border{
+	width: 90%;
+    height: 45vh;
+	background-color: darkseagreen;
+	margin-top: 20px;
+	
+}
+
+#school_photo_form button{
+	border: solid 4px;
+}
+
+
+
+#personal_photo *{
+	display: flex;
+	flex-direction: column;
+	margin: auto;
+}
+
+#file_upload_btn{
+	width: 30vw;
+	height: 4.5vh;
+    margin-top: 0px;
+	justify-content: center;
+    background-color: #8B4513;
+    color: white;
+    border: solid 1px grey;
+    border-radius: 11px;
+    font-size: 1vw;
+    font-family: 'Gamja Flower', cursive;
+    
+}
+
+.valid_info {
+	display: block;
+	color: red;
+	fon-size: 0.5;
+	margin-top: 5px;
+}
+
+#join_table placeholder{
+	font-size: 0.5vw;
+}
+
+/* find part */
+
+.find_info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 35vw;
+    min-height: 60vh;
+    margin: auto;
+    border: solid 1px;
+    border-radius: 3%;
+   
+}
+
+
+.find_info div {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    width: 25vw;
+    height: 20vh;
+    border: solid 1px grey;
+
+}
+
+.find_info input{
+	margin-bottom: 5px;
+    margin-top: 10px;
+}
+
+.find_info button{
+	height: 3vh;
+	background-color: #8B4513;
+	color: white;
+	border: 1.2px solid black;
+	cursor: pointer;
+	font-family: 'Gamja Flower', cursive;
+	font-size: 1vh;
+	border-radius: 5%;
+	
+}
+
+#form_find_id {
+    
+    margin: auto;
+}
+
+#form_find_pw {
+    
+    margin: auto;
+}
+
+#find_id_btn {
+   
+    text-align: center;
+}
+
+
+#find_user_title{
+	text-align: center;
+	margin-top: 20px;
+	font-family: 'Jua', sans-serif;
+	color: #8B4513;
+	font-size: 2.3vw;
+}
 
 
 

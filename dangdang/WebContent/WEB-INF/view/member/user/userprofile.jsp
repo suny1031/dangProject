@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="../../../../resources/css/main.css" />
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&display=swap" rel="stylesheet">
 </head>
 <body class="is-preload">
 
@@ -31,7 +32,7 @@
 									<c:when test ="${sessionScope.schoolMember != null}"><li><a href="/school/schoolpage.do">마이페이지</a></li></c:when>
 									<c:when test ="${sessionScope.userMember != null}"><li><a href="/user/userpage.do">마이페이지</a></li></c:when>
 								</c:choose>
-								<li><a href="map/map.do">유치원 찾기</a></li>
+								<li><a href="/map/map.do">유치원 찾기</a></li>
 								<li><a href="#">캘린더</a></li>
 								<c:choose>
 									<c:when test ="${sessionScope.schoolMember != null}"><li><a href="/school/logout.do">로그아웃</a></li></c:when>
@@ -52,7 +53,7 @@
 
 
 		<!-- Main -->
-		<section class="user_board">
+		<section class="myprofile_board">
 			<div id="user_profile">
 				<div class ="profile_info">
 					<div id="separate_form">
@@ -68,7 +69,7 @@
 												<br><input type ="text" id="pw "name="pw">
 											</li>
 											<li>비밀번호 확인
-												<br><input type ="text">
+												<br><input type ="password">
 											</li>
 											<li>이름
 												<br><input type ="text" value="${sessionScope.userMember.userName}" id="username" name="username">

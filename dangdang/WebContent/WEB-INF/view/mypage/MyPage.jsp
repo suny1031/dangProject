@@ -32,7 +32,7 @@
 									<c:when test ="${sessionScope.schoolMember != null}"><li><a href="/school/schoolpage.do">마이페이지</a></li></c:when>
 									<c:when test ="${sessionScope.userMember != null}"><li><a href="/user/userpage.do">마이페이지</a></li></c:when>
 								</c:choose>
-								<li><a href="map/map.do">유치원 찾기</a></li>
+								<li><a href="/map/map.do">유치원 찾기</a></li>
 								<li><a href="#">캘린더</a></li>
 								<c:choose>
 									<c:when test ="${sessionScope.schoolMember != null}"><li><a href="/school/logout.do">로그아웃</a></li></c:when>
@@ -62,10 +62,10 @@
 							<c:when test ="${sessionScope.userMember != null}"><a href="/user/userprofile.do">프로필설정</a></c:when>
 						</c:choose>
 					</div>
-					<div>
+					<div id= "personal_photo">
 						<c:choose>
-							<c:when test ="${sessionScope.schoolMember != null}"><a id ="profile_photo" href="/school/schoolprofile.do"></a></c:when>
-							<c:when test ="${sessionScope.userMember != null}"><a id ="profile_photo" href="/user/userprofile.do"></a></c:when>
+							<c:when test ="${sessionScope.schoolMember != null}"><a id ="profile_photo" href="/school/schoolprofile.do"></a><br></c:when>
+							<c:when test ="${sessionScope.userMember != null}"><a id ="profile_photo" href="/user/userprofile.do"></a><br></c:when>
 						</c:choose>
 						<div class="profile_name_board">
 							<c:choose>
@@ -128,6 +128,8 @@
 	<script src="../../../../resources/js/util.js"></script>
 	<script src="../../../../resources/js/main.js"></script>
 	<script src="../../../../resources/js/login.js"></script>
+	
+	
 
 </body>
 </html>
