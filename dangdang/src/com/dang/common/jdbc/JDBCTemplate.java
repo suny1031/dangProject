@@ -52,13 +52,13 @@ public class JDBCTemplate {
 		    ods.setURL(url);    
 		    ods.setConnectionProperties(info);
 			conn = ods.getConnection();
-			// Transaction 개발자가 관리하기 위해 AutoCommit 생성
+	         //Transaction 관리를 개발자가 하기 위해 AutoCommit 설정 끄기
 			conn.setAutoCommit(false);
-			
 		} catch (SQLException e) {
 			
 			e.printStackTrace();
 		}
+		
 		return conn;
 		
 

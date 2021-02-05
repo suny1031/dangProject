@@ -1,0 +1,30 @@
+@charset "UTF-8";
+
+#wrap{
+	width: 100%;
+	height: 100%;
+
+}
+
+#table{
+	border: 1px solid; 
+	width: 90%;
+	height: 90%;
+}
+
+/*헤더*/
+#header {
+	height: 15vh;
+}
+
+/*작업할 공간*/
+.board {
+	height: 70vh;
+	margin-top: 15vh;
+}
+
+/*푸터*/
+#footer {
+	height: 15vh;
+	padding: 0%;
+}

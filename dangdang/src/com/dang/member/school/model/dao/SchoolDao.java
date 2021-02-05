@@ -38,7 +38,6 @@ public class SchoolDao {
 				schoolMember.setKgName(rset.getString("kg_name"));
 				schoolMember.setKgId(rset.getString("kg_id"));
 				schoolMember.setKgPw(rset.getString("kg_pw"));
-				schoolMember.setKgClassName(rset.getString("kg_class_name"));
 				schoolMember.setKgAddress(rset.getString("kg_address"));
 				schoolMember.setKgTell(rset.getString("kg_tell"));
 				schoolMember.setKgOperateTime(rset.getString("kg_operate_time"));

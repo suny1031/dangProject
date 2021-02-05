@@ -2,12 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/view/include/header.jsp"%>
 
-
-<!--페이징-->
-<%@page import="java.util.List"%>
-<%@page import="com.dang.map.model.service.MapService"%>
-<%@page import="com.dang.map.model.vo.Kindergarten"%>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -58,45 +52,6 @@
 			</nav>
 		</header>
 
-<!-- Main -->
-<%	
-	String keyword = request.getParameter("keyword"); // 검색어 value
-
-	int pageSize = 3; // 한 페이지에 출력할 레코드 수
-
-	// 페이지 링크를 클릭한 번호 / 현재 페이지
-	String pageNum = request.getParameter("pageNum");
-	if (pageNum == null){ // 클릭한게 없으면 1번 페이지
-		pageNum = "1";
-	}
-	// 연산을 하기 위한 pageNum 형변환 / 현재 페이지
-	int currentPage = Integer.parseInt(pageNum);
-
-	// 해당 페이지에서 시작할 레코드 / 마지막 레코드
-	int startRow = (currentPage - 1) * pageSize + 1;
-	int endRow = currentPage * pageSize;
-
-	int count = 0;
-	int fCount = 0;
-	
-	MapService mapService = new MapService();
-	count = mapService.selectCountPage(); // 데이터베이스에 저장된 총 갯수
-	
-	fCount = mapService.selectSearchCount(keyword); // DB에 저장된 검색어와 일치하는 총 갯수
-	
-	
-	List<Kindergarten> list = null;
-	List<Kindergarten> flist = null;
-	
-	if (count > 0 && keyword == null) {
-		// getList()메서드 호출 / 해당 레코드 반환
-		list = mapService.selectKindergartenPage(startRow, endRow);
-	}
-	
-	if(fCount > 0){
-		flist = mapService.selectSearchKindergarten(keyword,startRow, endRow);
-	}
-%>
 		<div class="board">
 		<div id = "wrap">
 				<div id="mapWrap">
@@ -109,10 +64,11 @@
 				</div>
 				<div id = "formWrap">
 						<form action="/reservation/reservationimpl.do" id = "form" method="post">
-						<label>보호자명 : <input type="text" required="required" name ="protectorName"></label>
-						<label>연락처 : <input type="text" required="required" name = "phoneNumber"></label>
+						<label>보호자명 : <input type="text" required="required" name ="protectorName" autocomplete="off"></label>
+						<label>연락처 : <input type="tel" required="required" name = "phoneNumber" maxlength="11" placeholder="010-000-0000"></label>
 						<label>반려 견종 : <input type="text" required="required" name = "dogBreed"></label>
 						<label>반려견 나이 : <input type="text" required="required" name="dogAge"></label>
+						<label>예약 날짜 : <input type="date" required="required" name="date"></label>
 						<input type="hidden" name = "kgName" value="${kindergarten.getKgName()}">
 						<label>요청사항 : <textarea id = "requestedTerm" required="required" maxlength="20" name = "requestedTerm"></textarea></label>
 						<c:if test="${service.getIsPickup() == 0}">

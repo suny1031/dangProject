@@ -1,6 +1,9 @@
 package com.dang.reservation.controller;
 
 import java.io.IOException;
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 
 import javax.servlet.ServletException;
@@ -15,6 +18,7 @@ import com.dang.common.exception.ToAlertException;
 import com.dang.map.model.service.MapService;
 import com.dang.map.model.vo.Kindergarten;
 import com.dang.map.model.vo.Service;
+import com.dang.member.school.model.vo.SchoolMember;
 import com.dang.member.user.model.vo.UserMember;
 import com.dang.reservation.model.service.ReservationService;
 import com.dang.reservation.model.vo.Reservation;
@@ -33,13 +37,16 @@ public class ReservationController extends HttpServlet {
 
 		String uri = request.getRequestURI();
 		String[] uriArr = uri.split("/");
-		System.out.println(Arrays.toString(uriArr));
+		//System.out.println(Arrays.toString(uriArr));
 		switch (uriArr[uriArr.length - 1]) {
 		case "reservation.do":
 			reservation(request, response);
 			break;
 		case "reservationimpl.do":
 			reservationimpl(request, response);
+			break;
+		case "mngngRsrvt.do":
+			mngngRsrvt(request, response);
 			break;
 		default:
 			throw new ToAlertException(ErrorCode.CD_404);
@@ -63,9 +70,6 @@ public class ReservationController extends HttpServlet {
 		request.setAttribute("kindergarten", kindergarten);
 		request.setAttribute("service", service);
 
-		System.out.println(kindergarten);
-		System.out.println(service);
-
 		request.getRequestDispatcher("/WEB-INF/view/reservation/reservation.jsp").forward(request, response);
 
 	}
@@ -83,8 +87,12 @@ public class ReservationController extends HttpServlet {
 		String dogAge = request.getParameter("dogAge");
 		String requestedTerm = request.getParameter("requestedTerm");
 		String pickup = request.getParameter("pickup");
+		String date = request.getParameter("date");
+		
+		java.sql.Date regDate = java.sql.Date.valueOf(date);
 
 		Reservation reservation = new Reservation();
+		
 		reservation.setUserId(userId);
 		reservation.setKindergarten(kindergarten);
 		reservation.setProtectorName(protectorName);
@@ -92,13 +100,59 @@ public class ReservationController extends HttpServlet {
 		reservation.setDogAge(dogAge);
 		reservation.setDogBreed(dogBreed);
 		reservation.setRequirements(requestedTerm);
+		reservation.setRegDate(regDate);
+		
 		if (pickup != null) {
 			reservation.setPickup(pickup);
 		}
 		
+		//사용자에게 보여줄 view page 지정
+		request.setAttribute("alertMsg","예약 신청이 완료 되었습니다");
+		request.setAttribute("url", "/main.do");
+		
+		request.getRequestDispatcher("/WEB-INF/view/common/result.jsp").forward(request, response);
+		
+		
 		reservationService.insertReservation(reservation);
 				
-		
+		System.out.println(reservation);
 		
 	}
+	
+	private void mngngRsrvt(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		
+		HttpSession session = request.getSession();
+		SchoolMember schoolMember = (SchoolMember) session.getAttribute("schoolMember");
+		
+		System.out.println(schoolMember);
+		
+		String kgName = request.getParameter("kgName");
+		System.out.println(kgName);
+
+		Kindergarten kindergarten = mapService.selectkgName(kgName);
+		Service service = mapService.selectService(kgName);
+
+		request.setAttribute("kindergarten", kindergarten);
+		request.setAttribute("service", service);
+
+		request.getRequestDispatcher("/WEB-INF/view/reservation/mngngRsrvt.jsp").forward(request, response);
+
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
