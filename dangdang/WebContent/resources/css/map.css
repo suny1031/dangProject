@@ -80,6 +80,7 @@
 }
 
 .infrm p {
+	height: 20%;
 	margin: 0;
 	font-size: 0.8vw;
 	text-align: center;
@@ -104,6 +105,7 @@
 
 #kgName{
 	margin-left: 10px;
+	margin-top: 4%;
 }
 /*헤더*/
 #header {

@@ -64,8 +64,6 @@ public class JDBCTemplate {
 
 		
 	}
-
-
 	// commit 수행
 	public void commit(Connection conn) {
 		try {

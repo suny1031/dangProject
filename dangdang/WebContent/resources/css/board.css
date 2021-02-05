@@ -1,0 +1,259 @@
+/* boardList  */
+.board {
+  margin: 7% 20% 7% 20%;
+}
+
+.content {
+  width: 100%;
+}
+
+#tit {
+  text-align: left;
+  font-size: 2vw;
+}
+
+.list_board {
+  width: 100%;
+}
+
+.list_board th {
+  font-size: 1.5vw;
+  background-color: grey;
+  color: white;
+}
+
+.list_board td {
+  font-size: 1.2vw;
+  border-bottom: 1px solid lightgrey;
+}
+
+.paging {
+  height: 10%;
+  font-size: 1.5vw;
+}
+
+/* boardView */
+#tit {
+  display: flex;
+  justify-content: center;
+}
+
+#tit_board {
+  width: 100%;
+  height: 8%;
+  text-align: left;
+  font-size: 1.5vw;
+  padding: 1% 0 1% 0;
+}
+
+#tit_board input[type="text"] {
+  font-size: 14pt;
+}
+
+.info {
+  width: 100%;
+  height: 6%;
+  float: left;
+  text-align: left;
+  border-bottom: 1px solid;
+  z-index: 1;
+}
+
+.info span {
+  margin-right: 3%;
+}
+
+.text {
+  /* 에디터 태그 좌측정렬을 위한 속성  */
+  text-align: left;
+  min-height: 50vh;
+}
+
+.btn_section {
+  margin-top: 1%;
+  margin-left: 1%;
+  width: 7%;
+  float: right;
+  background-color: red;
+}
+
+.btn_section span {
+  font-size: 1.5vw;
+}
+
+.btn_delete {
+  background-color: blue;
+}
+
+.btn_modify {
+  background-color: green;
+}
+
+.wrap_board {
+  overflow: hidden;
+  width: 70%;
+  left: 30%;
+}
+
+.btn_down-file {
+  margin-left: 1%;
+  z-index: 999;
+}
+
+#select_class {
+  display: flex;
+  justify-content: center;
+  float: right;
+  text-align: center;
+  margin: 0px 15px 10px 0px;
+  height: 40px;
+  width: 100px;
+}
+/* #select_class > option {
+	
+} */
+.WMC_box {
+  float: right;
+  margin-right: 15px;
+}
+
+.WMC_box > button {
+  font-size: 15pt;
+}
+
+#board-content {
+  background-color: #fff8dc;
+  border-color: #8b4513;
+  width: 100%;
+  margin-bottom: 0;
+  text-align: left;
+  font-size: 14pt;
+}
+
+.title-box {
+  width: 761px;
+  background-color: #fff8dc;
+  border-color: #8b4513;
+  margin-bottom: 10px;
+}
+
+.add-box {
+  width: 700px;
+  margin-bottom: 10px;
+  background-color: #fff8dc;
+  border-color: #8b4513;
+}
+
+.noticefont {
+  font-family: "Nanum Gothic Coding", monospace;
+}
+
+.mainfont {
+  font-family: "Jua", sans-serif;
+}
+
+#list_box {
+  float: right;
+  margin-right: 15px;
+  height: 30px;
+  font-size: 15pt;
+}
+
+.before-next {
+  float: left;
+}
+
+/* ListBoard */
+.boardList-wrap {
+  width: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.boardList-head,
+.boardList-body .item {
+  font-size: 0;
+  padding: 10px 0;
+}
+
+.boardList-head {
+  border-top: 2px solid #8b4513;
+  border-bottom: 1px solid #ccc;
+}
+
+.boardList-body .item {
+  border-bottom: 1px solid #ccc;
+}
+
+.boardList-head > div,
+.boardList-body .item > div {
+  display: inline-block;
+  text-align: center;
+  font-size: 14pt;
+}
+
+.boardList-head > div {
+  font-weight: 600;
+}
+
+.boardList div.bd_no_idx {
+  width: 15;
+}
+
+.boardList div.title {
+  width: 60%;
+}
+
+.boardList-body div.title {
+  text-align: left;
+}
+
+.boardList-body div.title a:hover {
+  text-decoration: underline;
+}
+
+.boardList div.kg_name {
+  width: 10%;
+}
+
+.boardList div.reg_date {
+  width: 15%;
+}
+
+/* ListBoard paging*/
+.paging {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.paging a {
+  display: inline-block;
+}
+
+.paging a.bt {
+  width: 30px;
+  height: 30px;
+  background: #8b4513;
+  border-radius: 100px;
+  text-indent: -3000px;
+}
+
+.paging a.bt:hover {
+  background-color: #faebd7;
+}
+
+.paging a.num.on {
+  color: #8b4513;
+}
+
+.writing_box {
+	float: right;
+	text-align: center;
+	background: #8b4513;
+	border-radius: 150px;
+	color: white;
+	font-size: 12pt;
+}

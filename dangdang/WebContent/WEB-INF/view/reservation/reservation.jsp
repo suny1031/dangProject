@@ -108,13 +108,16 @@
 						src="//dapi.kakao.com/v2/maps/sdk.js?appkey=df05d9d53d8d4a2d40f65a23b163b044"></script>   
 				</div>
 				<div id = "formWrap">
-						<form action="" id = "form">
-						<label>보호자명 : <input></label>
-						<label>연락처 : <input></label>
-						<label>희망서비스 : <input></label>
-						<label>반려 견종 : <input></label>
-						<label>반려견 나이 : <input></label>
-						<label>픽업서비스 : <input type="radio" value="0" name="pickUp"><input type="radio" value="1" name="pickUp"></label>
+						<form action="/reservation/reservationimpl.do" id = "form" method="post">
+						<label>보호자명 : <input type="text" required="required" name ="protectorName"></label>
+						<label>연락처 : <input type="text" required="required" name = "phoneNumber"></label>
+						<label>반려 견종 : <input type="text" required="required" name = "dogBreed"></label>
+						<label>반려견 나이 : <input type="text" required="required" name="dogAge"></label>
+						<input type="hidden" name = "kgName" value="${kindergarten.getKgName()}">
+						<label>요청사항 : <textarea id = "requestedTerm" required="required" maxlength="20" name = "requestedTerm"></textarea></label>
+						<c:if test="${service.getIsPickup() == 0}">
+						<label id = "pickWrap">픽업서비스 : <div id = "pickBox">신청 <input type="radio" value="0" name="pickup"> 신청 안함<input type="radio" value="1" name="pickUp"></div></label>
+						</c:if>
 						<button id = "formBtn">신청하기</button>
 						</form>
 					</div>

@@ -63,6 +63,17 @@ input{
 	outline: none;
 	text-align: center;
 }
+#requestedTerm{
+	border: solid 1px #C0C0C0;
+	resize: none;
+}
+#pickWrap{
+	justify-content: normal;
+}
+
+#pickBox{
+	margin-left: 10%;
+}
 #formBtn{
     width: 35%;
     height: 10%;

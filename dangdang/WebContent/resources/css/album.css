@@ -1,0 +1,19 @@
+@charset "UTF-8";
+
+.add_picture{
+	float: right;
+}
+
+.album_view{
+	display: flex;
+	justify-content: space-between;
+	margin: 30px 0 0 5%;
+	border: solid 1px;
+	width: 90%;
+	height: 600px;	
+}
+.album_view > div {
+	border: solid 1px;
+	float: left;
+	margin: 5% 5% 5% 5%;
+}
