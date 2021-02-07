@@ -52,12 +52,12 @@ public class ReservationService {
 
 	}
 
-	public int selectCountPage() {
+	public int selectCountPage(String kgName) {
 		Connection conn = jdt.getConnection();
 
 		int count;
 		try {
-			count = reservationDao.selectCountPage(conn);
+			count = reservationDao.selectCountPage(conn,kgName);
 		} finally {
 			jdt.close(conn);
 		}

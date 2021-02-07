@@ -99,7 +99,7 @@ public class ReservationDao {
 		return list; // list 반환
 	}
 
-	public int selectCountPage(Connection conn) {
+	public int selectCountPage(Connection conn,String kgName) {
 
 		int count = 0;
 
@@ -107,9 +107,10 @@ public class ReservationDao {
 
 		ResultSet rset = null;
 
-		String query = "select count(*) from RESERVATION";
+		String query = "select count(*) from RESERVATION where KINDERGARTEN = ?";
 		try {
 			pstm = conn.prepareStatement(query);
+			pstm.setString(1, kgName);
 			rset = pstm.executeQuery();
 			if (rset.next()) {
 				count = rset.getInt(1);

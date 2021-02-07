@@ -1,10 +1,6 @@
 package com.dang.reservation.controller;
 
 import java.io.IOException;
-import java.sql.Date;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Arrays;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -121,21 +117,17 @@ public class ReservationController extends HttpServlet {
 	
 	private void mngngRsrvt(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		HttpSession session = request.getSession();
 		SchoolMember schoolMember = (SchoolMember) session.getAttribute("schoolMember");
-		
-		System.out.println(schoolMember);
-		
-		String kgName = request.getParameter("kgName");
-		System.out.println(kgName);
 
-		Kindergarten kindergarten = mapService.selectkgName(kgName);
-		Service service = mapService.selectService(kgName);
-
+		Kindergarten kindergarten = mapService.selectkgName(schoolMember.getKgName());
+		Service service = mapService.selectService(schoolMember.getKgName());
+		
 		request.setAttribute("kindergarten", kindergarten);
 		request.setAttribute("service", service);
-
+	
+		
 		request.getRequestDispatcher("/WEB-INF/view/reservation/mngngRsrvt.jsp").forward(request, response);
 
 	}
