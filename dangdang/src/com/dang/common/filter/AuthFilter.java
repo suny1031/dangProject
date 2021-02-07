@@ -111,6 +111,11 @@ public class AuthFilter implements Filter {
 							throw new ToAlertException(ErrorCode.AUTH05);
 						}
 						break;
+					case "mngngRsrvt.do":
+						if (session.getAttribute("schoolMember") == null) {
+							throw new ToAlertException(ErrorCode.AUTH06);
+						}
+						break;
 					}
 					break;
 			}

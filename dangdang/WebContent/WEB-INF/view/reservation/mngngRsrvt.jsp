@@ -91,10 +91,12 @@
 	
 	count = reservationService.selectCountPage(kgName.getKgName()); // 데이터베이스에 저장된 총 갯수
 
+
  	List<Reservation> list = null;
 	if (count > 0) {
 		// getList()메서드 호출 / 해당 레코드 반환
 		list = reservationService.selectReservationPage(startRow, endRow, kgName.getKgName());
+
 	}  
 %>
 
@@ -102,10 +104,10 @@
 		<div id = "wrap">
 		<center>
 		<div id = "title">상담 예약 현황</div>
-		<div id = "count">예약 신청 수 : <%=count %></div>
+		<div id = "count">TOTAL : <%=count%></div>
 		<table id = "table" align="center">
 			<tr  align="center" style="background-color: #f3f3f3;">
-				<td class = "infrm" width="5%">번호</td>
+				<td class = "infrm" width="5%">예약번호</td>
 				<td class = "infrm" width="5%">ID</td>
 				<td class = "infrm" width="5%">이름</td>
 				<td class = "infrm" width="10%">휴대폰번호</td>
@@ -119,12 +121,12 @@
 			</tr>
 			<%
 				if (count > 0 ) { // 데이터베이스에 데이터가 있으면
-					int number = count - (currentPage - 1) * pageSize; // 글 번호 순번 
 					for (int i = 0; i < list.size(); i++) {
 						Reservation reservation = list.get(i); // 반환된 list에 담긴 참조값 할당
 			%>
 			<tr  align="center">
-				<td><%=number--%></td>
+			<%-- 	<td><%=%></td> --%>
+				<td><%=reservation.getRsIdx()%></td>
 				<td><%=reservation.getUserId()%></td>
 				<td><%=reservation.getProtectorName()%></td>
 				<td><%=reservation.getPhoneNumber()%></td>

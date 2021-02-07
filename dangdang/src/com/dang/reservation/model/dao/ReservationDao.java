@@ -55,7 +55,7 @@ public class ReservationDao {
 	
 	public List<Reservation> selectReservationPage(Connection conn, int startRow, int endRow, String kgName) {
 		// 페이징 처리를 위한 sql / 인라인뷰, rownum 사용
-		String query = "select * from (select rownum rn, USER_ID,  PROTECTOR_NAME, PHONE_NUMBER,DOG_BREED,DOG_AGE,PICKUP,IS_APPROVED,KINDERGARTEN, REG_DATE, REQUIREMENTS from (select * from RESERVATION where KINDERGARTEN = ? order by RS_IDX asc)) where rn between ? and ?";
+		String query = "select * from (select rownum rn, USER_ID, RS_IDX ,PROTECTOR_NAME, PHONE_NUMBER,DOG_BREED,DOG_AGE,PICKUP,IS_APPROVED,KINDERGARTEN, REG_DATE, REQUIREMENTS from (select * from RESERVATION where KINDERGARTEN = ? order by RS_IDX asc)) where rn between ? and ?";
 
 		List<Reservation> list = null;
 
@@ -66,7 +66,6 @@ public class ReservationDao {
 		try {
 
 			pstm = conn.prepareStatement(query);
-			
 			pstm.setString(1, kgName);
 			pstm.setInt(2, startRow);
 			pstm.setInt(3, endRow);
@@ -78,6 +77,7 @@ public class ReservationDao {
 				do {
 					// 반복할 때마다 ExboardDTO 객체를 생성 및 데이터 저장
 					Reservation reservation = new Reservation();
+					reservation.setRsIdx(rset.getInt("RS_IDX"));
 					reservation.setUserId(rset.getString("USER_ID"));
 					reservation.setProtectorName(rset.getString("PROTECTOR_NAME"));
 					reservation.setPhoneNumber(rset.getString("PHONE_NUMBER"));
@@ -92,7 +92,7 @@ public class ReservationDao {
 				} while (rset.next());
 			}
 		} catch (SQLException e) {
-			throw new DataAccessException(ErrorCode.API01, e);
+			throw new DataAccessException(ErrorCode.RE02, e);
 		} finally {
 			jdt.close(rset, pstm);
 		}
@@ -116,7 +116,7 @@ public class ReservationDao {
 				count = rset.getInt(1);
 			}
 		} catch (Exception e) {
-			throw new DataAccessException(ErrorCode.API01, e);
+			throw new DataAccessException(ErrorCode.RE02, e);
 		} finally {
 			jdt.close(rset, pstm);
 		}

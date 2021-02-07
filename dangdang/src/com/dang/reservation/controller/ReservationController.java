@@ -24,6 +24,7 @@ public class ReservationController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private MapService mapService = new MapService();
 	private ReservationService reservationService = new ReservationService();
+
 	public ReservationController() {
 		super();
 	}
@@ -33,7 +34,7 @@ public class ReservationController extends HttpServlet {
 
 		String uri = request.getRequestURI();
 		String[] uriArr = uri.split("/");
-		//System.out.println(Arrays.toString(uriArr));
+		// System.out.println(Arrays.toString(uriArr));
 		switch (uriArr[uriArr.length - 1]) {
 		case "reservation.do":
 			reservation(request, response);
@@ -43,6 +44,9 @@ public class ReservationController extends HttpServlet {
 			break;
 		case "mngngRsrvt.do":
 			mngngRsrvt(request, response);
+			break;
+		case "calendar.do":
+			calendar(request, response);
 			break;
 		default:
 			throw new ToAlertException(ErrorCode.CD_404);
@@ -58,7 +62,6 @@ public class ReservationController extends HttpServlet {
 	private void reservation(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String kgName = request.getParameter("kgName");
-		System.out.println(kgName);
 
 		Kindergarten kindergarten = mapService.selectkgName(kgName);
 		Service service = mapService.selectService(kgName);
@@ -84,11 +87,11 @@ public class ReservationController extends HttpServlet {
 		String requestedTerm = request.getParameter("requestedTerm");
 		String pickup = request.getParameter("pickup");
 		String date = request.getParameter("date");
-		
+
 		java.sql.Date regDate = java.sql.Date.valueOf(date);
 
 		Reservation reservation = new Reservation();
-		
+
 		reservation.setUserId(userId);
 		reservation.setKindergarten(kindergarten);
 		reservation.setProtectorName(protectorName);
@@ -97,24 +100,21 @@ public class ReservationController extends HttpServlet {
 		reservation.setDogBreed(dogBreed);
 		reservation.setRequirements(requestedTerm);
 		reservation.setRegDate(regDate);
-		
+
 		if (pickup != null) {
 			reservation.setPickup(pickup);
 		}
-		
-		//사용자에게 보여줄 view page 지정
-		request.setAttribute("alertMsg","예약 신청이 완료 되었습니다");
+
+		// 사용자에게 보여줄 view page 지정
+		request.setAttribute("alertMsg", "예약 신청이 완료 되었습니다");
 		request.setAttribute("url", "/main.do");
-		
+
 		request.getRequestDispatcher("/WEB-INF/view/common/result.jsp").forward(request, response);
-		
-		
+
 		reservationService.insertReservation(reservation);
-				
-		System.out.println(reservation);
-		
+
 	}
-	
+
 	private void mngngRsrvt(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -123,28 +123,17 @@ public class ReservationController extends HttpServlet {
 
 		Kindergarten kindergarten = mapService.selectkgName(schoolMember.getKgName());
 		Service service = mapService.selectService(schoolMember.getKgName());
-		
+
 		request.setAttribute("kindergarten", kindergarten);
 		request.setAttribute("service", service);
-	
-		
+
 		request.getRequestDispatcher("/WEB-INF/view/reservation/mngngRsrvt.jsp").forward(request, response);
 
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	private void calendar(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		request.getRequestDispatcher("/WEB-INF/view/reservation/calendar.jsp").forward(request, response);
+
+	}
 }
