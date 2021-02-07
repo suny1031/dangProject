@@ -7,6 +7,9 @@
 <%@page import="java.util.List"%>
 <%@page import="com.dang.reservation.model.service.ReservationService"%>
 <%@page import="com.dang.reservation.model.vo.Reservation"%>
+<%@page import="com.dang.member.school.model.vo.SchoolMember"%>
+<%@page import="javax.servlet.http.HttpSession"%>
+
 
 <!DOCTYPE html>
 <html>
@@ -62,9 +65,13 @@
 		
 <!--  -->
 
-<%
+ <%
 
-	int pageSize = 10; // 한 페이지에 출력할 레코드 수
+	HttpSession KgNameSession = request.getSession();
+	SchoolMember kgName = (SchoolMember) KgNameSession.getAttribute("schoolMember");
+	System.out.println("kgName"+kgName);
+	
+	int pageSize = 5; // 한 페이지에 출력할 레코드 수
 
 	// 페이지 링크를 클릭한 번호 / 현재 페이지
 	String pageNum = request.getParameter("pageNum");
@@ -78,58 +85,70 @@
 	int startRow = (currentPage - 1) * pageSize + 1;
 	int endRow = currentPage * pageSize;
 
-	int count = 0;
+ 	int count = 0;
+	
 	ReservationService reservationService = new ReservationService();
 	
-	count = reservationService.selectCountPage(); // 데이터베이스에 저장된 총 갯수
+	count = reservationService.selectCountPage(kgName.getKgName()); // 데이터베이스에 저장된 총 갯수
 
-	List<Reservation> list = null;
+ 	List<Reservation> list = null;
 	if (count > 0) {
 		// getList()메서드 호출 / 해당 레코드 반환
-		list = reservationService.selectReservationPage(startRow, endRow, "모찌네 호캉스");
-	}
+		list = reservationService.selectReservationPage(startRow, endRow, kgName.getKgName());
+	}  
 %>
-		
 
 	<div class="board">
 		<div id = "wrap">
 		<center>
-		<h3>게시판 목록</h3>
-		(총 레코드 수 : <%=count %>)
-		<table id = "table" width="900">
-			<tr>
-				<td width="10%">번호</td>
-				<td width="15%">이름</td>
-				<td width="30%">제목</td>
-				<td width="20%">작성일</td>
-				<td width="10%">조회수</td>
-				<td width="15%">ip</td>
+		<div id = "title">상담 예약 현황</div>
+		<div id = "count">예약 신청 수 : <%=count %></div>
+		<table id = "table" align="center">
+			<tr  align="center" style="background-color: #f3f3f3;">
+				<td class = "infrm" width="5%">번호</td>
+				<td class = "infrm" width="5%">ID</td>
+				<td class = "infrm" width="5%">이름</td>
+				<td class = "infrm" width="10%">휴대폰번호</td>
+				<td class = "infrm" width="10%">강아지 종</td>
+				<td class = "infrm" width="10%">강아지 나이</td>
+					<c:if test = "${service.getIsPickup() == 0}">
+						<td class = "infrm" width="10%">픽업 여부</td>
+					</c:if>
+				<td class = "infrm" width="10%">신청일</td>
+				<td class = "infrm" width="20%">요구사항</td>
 			</tr>
 			<%
-				if (count > 0) { // 데이터베이스에 데이터가 있으면
+				if (count > 0 ) { // 데이터베이스에 데이터가 있으면
 					int number = count - (currentPage - 1) * pageSize; // 글 번호 순번 
 					for (int i = 0; i < list.size(); i++) {
 						Reservation reservation = list.get(i); // 반환된 list에 담긴 참조값 할당
 			%>
-			<tr>
+			<tr  align="center">
 				<td><%=number--%></td>
 				<td><%=reservation.getUserId()%></td>
-				<td><%=reservation.getUserId()%></td>
-				<td><%=reservation.getUserId()%></td>
+				<td><%=reservation.getProtectorName()%></td>
+				<td><%=reservation.getPhoneNumber()%></td>
+				<td><%=reservation.getDogBreed()%></td>
+				<td><%=reservation.getDogAge()%></td>
+					<c:if test = "${service.getIsPickup() == 0}">
+						<td><%=reservation.getPickup()%></td>
+					</c:if>
+				<td><%=reservation.getRegDate()%></td>
+				<td><%=reservation.getRequirements()%></td>
 			</tr>
 			<%
 					}
 				} else { // 데이터가 없으면
 			%>
-			<tr>
-				<td colspan="6" align="center">게시글이 없습니다.</td>
-			</tr>
+				<script>
+					alert("등록된 예약이 없습니다")
+				</script>
 				<%
 					}
 				%>
 				
-			<tr>
-				<td colspan="6" align="center">
+			<tr style="background-color: #f3f3f3;">
+				<td align="center" colspan="9" style="font-size: 0.7vw">
 					<%	// 페이징  처리
 						if(count > 0){
 							// 총 페이지의 수
