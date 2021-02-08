@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/view/include/header.jsp"%>
 
-
 <!--페이징-->
 <%@page import="java.util.List"%>
 <%@page import="com.dang.reservation.model.service.ReservationService"%>
@@ -26,6 +25,7 @@
 <noscript>
 	<link rel="stylesheet" href="assets/css/noscript.css" />
 </noscript>
+
 </head>
 
 <body class="is-preload">
@@ -69,7 +69,6 @@
 
 	HttpSession KgNameSession = request.getSession();
 	SchoolMember kgName = (SchoolMember) KgNameSession.getAttribute("schoolMember");
-	System.out.println("kgName"+kgName);
 	
 	int pageSize = 5; // 한 페이지에 출력할 레코드 수
 
@@ -107,36 +106,47 @@
 		<div id = "count">TOTAL : <%=count%></div>
 		<table id = "table" align="center">
 			<tr  align="center" style="background-color: #f3f3f3;">
-				<td class = "infrm" width="5%">예약번호</td>
-				<td class = "infrm" width="5%">ID</td>
-				<td class = "infrm" width="5%">이름</td>
+				<td class = "infrm" width="7%">예약번호</td>
+				<td class = "infrm" width="7%">ID</td>
+				<td class = "infrm" width="7%">이름</td>
 				<td class = "infrm" width="10%">휴대폰번호</td>
 				<td class = "infrm" width="10%">강아지 종</td>
 				<td class = "infrm" width="10%">강아지 나이</td>
 					<c:if test = "${service.getIsPickup() == 0}">
 						<td class = "infrm" width="10%">픽업 여부</td>
 					</c:if>
-				<td class = "infrm" width="10%">신청일</td>
+				<td class = "infrm" width="10%">신청일</td>				
 				<td class = "infrm" width="20%">요구사항</td>
+				<td class = "infrm" width="10%">승인여부</td>
+				
 			</tr>
 			<%
 				if (count > 0 ) { // 데이터베이스에 데이터가 있으면
 					for (int i = 0; i < list.size(); i++) {
-						Reservation reservation = list.get(i); // 반환된 list에 담긴 참조값 할당
+						Reservation reservation = list.get(i);
+						// 반환된 list에 담긴 참조값 할당
 			%>
 			<tr  align="center">
-			<%-- 	<td><%=%></td> --%>
-				<td><%=reservation.getRsIdx()%></td>
-				<td><%=reservation.getUserId()%></td>
+				<td class = "rsIdx"><%=reservation.getRsIdx()%></td>
+				<td class = "userId"><%=reservation.getUserId()%></td>
 				<td><%=reservation.getProtectorName()%></td>
 				<td><%=reservation.getPhoneNumber()%></td>
 				<td><%=reservation.getDogBreed()%></td>
 				<td><%=reservation.getDogAge()%></td>
-					<c:if test = "${service.getIsPickup() == 0}">
-						<td><%=reservation.getPickup()%></td>
-					</c:if>
-				<td><%=reservation.getRegDate()%></td>
-				<td><%=reservation.getRequirements()%></td>
+				<%if(reservation.getPickup() != null) {%>
+		 				<%if (reservation.getPickup().equals("0")){ %>
+						<td>희망</td>
+						<%}else {%>
+						<td>비희망</td>
+						<%} %> 
+				<%} %> 
+					<td class = "date"><%=reservation.getRegDate()%></td>
+					<td><%=reservation.getRequirements()%></td>
+					<%if (reservation.getIsApproved().equals("1")){ %>
+					<td><button class= "approvedBtn">승인</button></td>
+					<%}else {%>
+					<td><div class= "approvedBtn">승인완료</div></td>
+				<%} %>
 			</tr>
 			<%
 					}
@@ -150,7 +160,7 @@
 				%>
 				
 			<tr style="background-color: #f3f3f3;">
-				<td align="center" colspan="9" style="font-size: 0.7vw">
+				<td align="center" colspan="10" style="font-size: 0.7vw">
 					<%	// 페이징  처리
 						if(count > 0){
 							// 총 페이지의 수
@@ -205,7 +215,46 @@
 		<footer id="footer"> </footer>
 
 	</div>
+	<script type="text/javascript">
+    
+	let btn = document.querySelectorAll(".approvedBtn"); 
+	let userIdArr = document.querySelectorAll(".userId"); 
+	let dateArr = document.querySelectorAll(".date"); 
+	let rsIdxArr = document.querySelectorAll(".rsIdx"); 
 
+	for(let i = 0; i < btn.length; i++ ){
+ 			btn[i].addEventListener('click',(e)=> {
+			let userId = userIdArr.item(i).innerText
+			let date = dateArr.item(i).innerText
+			let rsIdx = rsIdxArr.item(i).innerText
+
+			
+		      let headerObj = new Headers();
+		      headerObj.append('content-type',"application/x-www-form-urlencoded");
+
+	          fetch("/reservation/approved.do",{	
+	              method : "post",
+	              headers : headerObj,
+	              body : "userId="+userId+"&rsIdx="+rsIdx+"&date="+date+"&kgName=${kgName}"
+	              
+	           }).then(response => {
+	               if(response.ok){
+	                  return response.text();
+	               }
+	               throw new AsyncPageError(response.text());
+	            })
+	            .then((msg) => {
+	               if(msg == 'success'){
+						alert('예약 승인 메일을 보냈습니다.')
+	               }
+	            }).catch(error=>{
+					alert('메일 보내기에 실패하였습니다.')
+	            })
+
+		})
+	} 
+
+	</script>
 	<!-- Scripts -->
 	<script src="/resources/js/jquery.min.js"></script>
 	<script src="/resources/js/jquery.scrollex.min.js"></script>

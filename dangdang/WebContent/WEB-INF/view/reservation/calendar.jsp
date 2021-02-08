@@ -1,85 +1,147 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/view/include/header.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href='/resources/css/calendar/main.css' rel='stylesheet' />
+<script src='/resources/css/calendar/main.js'></script>
+<script src='/resources/css/calendar/locales-all.js'></script>
+
+<link rel="stylesheet" href="/resources/css/main.css" />
+
+<script>
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var initialLocaleCode = 'en';
+    var localeSelectorEl = document.getElementById('locale-selector');
+    var calendarEl = document.getElementById('calendar');
+
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      headerToolbar: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
+      },
+      initialDate: '2020-09-12',
+      locale: initialLocaleCode,
+      buttonIcons: false, // show the prev/next text
+      weekNumbers: true,
+      navLinks: true, // can click day/week names to navigate views
+      editable: true,
+      dayMaxEvents: true, // allow "more" link when too many events
+      events: [
+        {
+          title: '박선영',
+          start: '2020-09-01'
+        },
+        {
+          title: 'Long Event',
+          start: '2020-09-07',
+        },
+        {
+          title: 'Repeating Event',
+          start: '2020-09-09'
+        }
+      ]
+    });
+
+    calendar.render();
+
+    // build the locale selector's options
+    calendar.getAvailableLocaleCodes().forEach(function(localeCode) {
+      var optionEl = document.createElement('option');
+      optionEl.value = localeCode;
+      optionEl.selected = localeCode == initialLocaleCode;
+      optionEl.innerText = localeCode;
+      localeSelectorEl.appendChild(optionEl);
+    });
+
+    // when the selected option changes, dynamically change the calendar option
+    localeSelectorEl.addEventListener('change', function() {
+      if (this.value) {
+        calendar.setOption('locale', this.value);
+      }
+    });
+
+  });
+
+</script>
+<style>
+
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+    font-size: 14px;
+  }
+
+  #top {
+    background: #eee;
+    border-bottom: 1px solid #ddd;
+    padding: 0 10px;
+    line-height: 40px;
+    font-size: 12px;
+    margin-top: 5.5%;
+  }
+
+  #calendar {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 0 10px;
+  }
+
+</style>
 </head>
 <body>
-<%@ page import="java.util.*" %>
-<%
-    Calendar cal = Calendar.getInstance();
-    int year = request.getParameter("y") == null ? cal.get(Calendar.YEAR) : Integer.parseInt(request.getParameter("y"));
-    int month = request.getParameter("m") == null ? cal.get(Calendar.MONTH) : (Integer.parseInt(request.getParameter("m")) - 1);
 
-    // 시작요일 확인
-    // - Calendar MONTH는 0-11까지임
-    cal.set(year, month, 1);
-    int bgnWeek = cal.get(Calendar.DAY_OF_WEEK);
+		<header id="header">
+			<h1>
+				<div id="dangmark"></div>
+				<a href="/main.do" id="headermain" class="mainfont">댕댕아 놀면 뭐하니?</a>
+			</h1>
+			<nav id="nav">
+				<ul>
+					<li class="special"><a href="#menu" class="menuToggle"><span>Menu</span></a>
+						<div id="menu">
+							<ul>
+								<li><a href="/main.do">Home</a></li>
+								<c:choose>
+									<c:when test ="${sessionScope.schoolMember != null}"><li><a href="/school/schoolpage.do">마이페이지</a></li></c:when>
+									<c:when test ="${sessionScope.userMember != null}"><li><a href="/user/userpage.do">마이페이지</a></li></c:when>
+								</c:choose>
+								<li><a href="/map/map.do">유치원 찾기</a></li>
+								<li><a href="#">캘린더</a></li>
+								<c:choose>
+									<c:when test ="${sessionScope.schoolMember != null}"><li><a href="/school/logout.do">로그아웃</a></li></c:when>
+									<c:when test ="${sessionScope.userMember != null}"><li><a href="/user/logout.do">로그아웃</a></li></c:when>
+								</c:choose>
+							</ul>
+						</div></li>
+				</ul>
+			</nav>
+		</header>
+		
+		
+  <div id='top'>
 
-    // 다음/이전월 계산
-    // - MONTH 계산시 표기월로 계산하기 때문에 +1을 한 상태에서 계산함
-    int prevYear = year;
-    int prevMonth = (month + 1) - 1;
-    int nextYear = year;
-    int nextMonth = (month  + 1) + 1;
+    Locales:
+    <select id='locale-selector'></select>
 
-    // 1월인 경우 이전년 12월로 지정
-    if (prevMonth < 1) {
-        prevYear--;
-        prevMonth = 12;
-    }
-
-    // 12월인 경우 다음년 1월로 지정
-    if (nextMonth > 12) {
-        nextYear++;
-        nextMonth = 1;
-    }
-%>
-<table border="0" cellpadding="0" cellspacing="0">
-<tr>
-    <td align="center"><a href="/reservation/calendar.do?y=<%=prevYear%>&m=<%=prevMonth%>">◁</a> <%=year%>년 <%=month+1%>월 <a href="/reservation/calendar.do?y=<%=nextYear%>&m=<%=nextMonth%>">▷</a></td>
-</tr>
-<tr>
-    <td>
-
-        <table border="1">
-        <tr>
-            <td>일</td>
-            <td>월</td>
-            <td>화</td>
-            <td>수</td>
-            <td>목</td>
-            <td>금</td>
-            <td>토</td>
-        </tr>
-        <tr>
-<%
-    // 시작요일까지 이동
-    for (int i=1; i<bgnWeek; i++) out.println("<td>&nbsp;</td>");
-
-    // 첫날~마지막날까지 처리
-    // - 날짜를 하루씩 이동하여 월이 바뀔때까지 그린다
-    while (cal.get(Calendar.MONTH) == month) {
-        out.println("<td>" + cal.get(Calendar.DATE) + "</td>");
-
-        // 토요일인 경우 다음줄로 생성
-        if (cal.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY) out.println("</tr><tr>");
-
-        // 날짜 증가시키지
-        cal.set(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DATE)+1);
-    }
-
-    // 끝날부터 토요일까지 빈칸으로 처리
-    for (int i=cal.get(Calendar.DAY_OF_WEEK); i<=7; i++) out.println("<td>&nbsp;</td>");
-%>
-        </tr>
-        </table>
-
-    </td>
-</tr>
-</table>
+  </div>
+  <div id='calendar'></div>
+  
+  	<footer id="footer"> </footer>
+  	
+	<script src="/resources/js/jquery.min.js"></script>
+	<script src="/resources/js/jquery.scrollex.min.js"></script>
+	<script src="/resources/js/jquery.scrolly.min.js"></script>
+	<script src="/resources/js/browser.min.js"></script>
+	<script src="/resources/js/breakpoints.min.js"></script>
+	<script src="/resources/js/util.js"></script>
+	<script src="/resources/js/main.js"></script>
 
 </body>
 </html>

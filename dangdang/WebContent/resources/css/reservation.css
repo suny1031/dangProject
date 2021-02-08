@@ -57,7 +57,7 @@ label {
 }
 
 input {
-	width: 60%;
+
 	border-radius: 7px;
 	background-color: #C0C0C0;
 	border: 0;
@@ -68,6 +68,10 @@ input {
 #requestedTerm {
 	border: solid 1px #C0C0C0;
 	resize: none;
+}
+
+#date{
+	width: 62%;
 }
 
 #pickWrap {

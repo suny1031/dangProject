@@ -1,0 +1,23 @@
+@charset "UTF-8";
+
+body {
+	background-color: rgb(240, 240, 240);
+}
+
+#wrap {
+	margin: auto;
+	width: 50%;
+	height: 50vh;
+	background-color: white;
+	color: black;
+	border: 1px solid #d1d1d1;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.text {
+	font-size: 2vw;
+	margin: 2% 0 2% 0;
+}

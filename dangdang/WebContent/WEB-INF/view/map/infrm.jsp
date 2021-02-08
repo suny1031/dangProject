@@ -73,8 +73,7 @@
 						<div id="review"><a href = "/review/view.do?kgName=${kindergarten.getKgName()}">방문자리뷰</a></div>
 						<div id="kakaoIcon">     
 							<a id = "a"><i class="fas fa-map-signs"></i></a>				
-							<a onClick="window.open(this.href, '', 'width=700, height=700')" target="_blank"
-							 href = "https://map.kakao.com/link/roadview/${kindergarten.getKgLat()},${kindergarten.getKgLag()}">
+							<a onClick="window.open('https://map.kakao.com/link/roadview/${kindergarten.getKgLat()},${kindergarten.getKgLag()}', '', 'width=700, height=700')">
 							 <i class="fas fa-road"></i></a>
 						</div>
 						<div id="reservation">

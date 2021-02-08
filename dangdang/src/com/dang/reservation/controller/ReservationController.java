@@ -48,6 +48,9 @@ public class ReservationController extends HttpServlet {
 		case "calendar.do":
 			calendar(request, response);
 			break;
+		case "approved.do":
+			approved(request, response);
+			break;
 		default:
 			throw new ToAlertException(ErrorCode.CD_404);
 		}
@@ -100,7 +103,6 @@ public class ReservationController extends HttpServlet {
 		reservation.setDogBreed(dogBreed);
 		reservation.setRequirements(requestedTerm);
 		reservation.setRegDate(regDate);
-
 		if (pickup != null) {
 			reservation.setPickup(pickup);
 		}
@@ -121,19 +123,61 @@ public class ReservationController extends HttpServlet {
 		HttpSession session = request.getSession();
 		SchoolMember schoolMember = (SchoolMember) session.getAttribute("schoolMember");
 
-		Kindergarten kindergarten = mapService.selectkgName(schoolMember.getKgName());
 		Service service = mapService.selectService(schoolMember.getKgName());
-
-		request.setAttribute("kindergarten", kindergarten);
+		String kgName = schoolMember.getKgName();
 		request.setAttribute("service", service);
+		request.setAttribute("kgName", kgName);
 
 		request.getRequestDispatcher("/WEB-INF/view/reservation/mngngRsrvt.jsp").forward(request, response);
-
 	}
+
 	private void calendar(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		HttpSession session = request.getSession();
+		SchoolMember schoolMember = (SchoolMember) session.getAttribute("schoolMember");
+		System.out.println(schoolMember);
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		request.getRequestDispatcher("/WEB-INF/view/reservation/calendar.jsp").forward(request, response);
 
 	}
+
+	private void approved(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		String userId = request.getParameter("userId");
+
+		String date = request.getParameter("date");
+
+		String kgName = request.getParameter("kgName");
+
+		String rsIdx = request.getParameter("rsIdx");
+
+		System.out
+				.println("userId : " + userId + " / date : " + date + " / kgName : " + kgName + " / rsIdx : " + rsIdx);
+		UserMember userMember = reservationService.selectUserMember(userId);
+
+		System.out.println("userMember : " + userMember);
+
+		reservationService.ReservationEmail(userMember, date, kgName);
+
+		response.getWriter().print("success");
+
+		reservationService.updateReservation(rsIdx);
+
+	}
+
 }

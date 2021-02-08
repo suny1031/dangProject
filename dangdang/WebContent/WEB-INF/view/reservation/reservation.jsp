@@ -65,14 +65,14 @@
 				<div id = "formWrap">
 						<form action="/reservation/reservationimpl.do" id = "form" method="post">
 						<label>보호자명 : <input type="text" required="required" name ="protectorName" autocomplete="off"></label>
-						<label>연락처 : <input type="tel" required="required" name = "phoneNumber" maxlength="11" placeholder="010-000-0000"></label>
+						<label>연락처 : <input type="tel" required="required" name = "phoneNumber" maxlength="13" placeholder="010-000-0000"></label>
 						<label>반려 견종 : <input type="text" required="required" name = "dogBreed"></label>
 						<label>반려견 나이 : <input type="text" required="required" name="dogAge"></label>
-						<label>예약 날짜 : <input type="date" required="required" name="date"></label>
+						<label>예약 날짜 : <input type="date" required="required" name="date" id ="date"></label>
 						<input type="hidden" name = "kgName" value="${kindergarten.getKgName()}">
 						<label>요청사항 : <textarea id = "requestedTerm" required="required" maxlength="20" name = "requestedTerm"></textarea></label>
 						<c:if test="${service.getIsPickup() == 0}">
-						<label id = "pickWrap">픽업서비스 : <div id = "pickBox">신청 <input type="radio" value="0" name="pickup"> 신청 안함<input type="radio" value="1" name="pickUp"></div></label>
+						<label id = "pickWrap">픽업서비스 : <div id = "pickBox">신청 <input type="radio" value="0" name="pickup"> 신청 안함<input type="radio" value="1" name="pickup"></div></label>
 						</c:if>
 						<button id = "formBtn">신청하기</button>
 						</form>

@@ -54,12 +54,12 @@ public class MailSender {
 	    //1. 네이버 smtp 서버를 사용하기 위해 인증정보
 	      //   네이버 id, pw
 	      PasswordAuthentication pa 
-	      = new PasswordAuthentication("suny10312@naver.com","park1003*");
+	      = new PasswordAuthentication("suny10312@naver.com","park100312*");
 	      
 	      //2. 사용할 smtp 서버 정보를 작성
 	      // smtp 서버이름, 포트, tls 통신 가능여부, 사용자 인증 여부
 	      Properties prop = new Properties();
-	      prop.put("mail.smtp.host", "smtp.naver.com");  //smtp와 포트를 바꾸면 구글메일도 사용가능
+	      prop.put("mail.smtp.host", "smtp.naver.com"); 
 	      prop.put("mail.smtp.port", "587");
 	      prop.put("mail.smtp.auth", "true");
 	      prop.put("mail.smtp.starttls.enable", "true");
@@ -67,7 +67,9 @@ public class MailSender {
 	      Session session = Session.getDefaultInstance(prop, new Authenticator() {
 	         protected PasswordAuthentication getPasswordAuthentication() {
 	            return pa;
+	    
 	         }
+	         
 	      });
 	      return session;
 		

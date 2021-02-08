@@ -42,7 +42,14 @@ td {
 	text-align: center;
 	padding-top: 12px;
 }
+.approvedBtn{
+	font-size : 1vw;
+	border: 1px solid white;
+}
 
+.approvedBtn:hover{
+  cursor: pointer;
+}
 /*헤더*/
 #header {
 	height: 15vh;
