@@ -1,6 +1,7 @@
 package com.dang.reservation.model.service;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -81,7 +82,6 @@ public class ReservationService {
 
 	public void ReservationEmail(UserMember userMember, String date, String KgName) {
 
-		
 		String subject = "유치원 예약을 확인해주세요";
 		String htmlText = "<h1>고객님이 신청하신 예약이 승인이 완료되었습니다.</h1>";
 		HttpUtils http = new HttpUtils();
@@ -108,9 +108,9 @@ public class ReservationService {
 		String to = userMember.getEmail();
 
 		new MailSender().sendEmail(subject, htmlText, to);
-		
+
 	}
-	
+
 	public int updateReservation(String rsIdx) {
 		Connection conn = jdt.getConnection();
 		int res = 0;
@@ -124,6 +124,19 @@ public class ReservationService {
 			jdt.close(conn);
 		}
 		return res;
+
+	}
+
+	public ArrayList<Reservation> selectReservation(String kgName) {
+		Connection conn = jdt.getConnection();
+		ArrayList<Reservation> reservationList;
+		try {
+			reservationList = reservationDao.selectReservation(conn, kgName);
+
+		} finally {
+			jdt.close(conn);
+		}
+		return reservationList;
 
 	}
 

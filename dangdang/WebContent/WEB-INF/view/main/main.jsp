@@ -135,7 +135,7 @@
 	<script src="../../../../resources/js/breakpoints.min.js"></script>
 	<script src="../../../../resources/js/util.js"></script>
 	<script src="../../../../resources/js/main.js"></script>
-	<script src="../../../../resources/js/login.js"></script>
+	<script src="../../../../resources/js/member.js"></script>
 	
 	
 	

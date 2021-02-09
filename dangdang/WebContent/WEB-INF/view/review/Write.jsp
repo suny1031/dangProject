@@ -64,7 +64,7 @@
 			<div class="reviewWrap">
 				<form id = "writeForm" action="${context}/review/upload.do?kgName=${kgName}" method="post" enctype="multipart/form-data">
 					<div class="formWrap">
-						<input id="titleInput" type="text" name="title" required="required" placeholder="제목을 입력해주세요." maxlength="10"/>
+						<input id="titleInput" type="text" name="title" required="required" placeholder="제목을 입력해주세요." maxlength="10" autocomplete="off"/>
 						<!--multiple : 여러개 파일 선택을 허용하는 속성-->
 						<input id = "file" type='file' name='files' accept='image/jpg,image/jpeg,image/gif,image/png' onChange="chk(this)">
 						<textarea id="content" class="board-content" name="content" required="required"></textarea>

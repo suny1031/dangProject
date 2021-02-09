@@ -58,18 +58,18 @@
 				<div class ="profile_info">
 					<div id="separate_form">
 						<div id="personal_info">
-							<form action="${context}/user/info.do" method="post" id="modify_form">
+							<div id="modify_form">
 								<fieldset class="info_form">
 									<legend>기본정보</legend>
 										<ul id="modify_info">
 											<li>아이디
 												<br><input type="text" value="${sessionScope.userMember.userId}" id="id" name="id" readonly>
 											</li>
-											<li>비밀번호
-												<br><input type ="text" id="pw "name="pw">
+											<li>비밀번호<span class="valid_info" id = "pw_confirm" style="display:none"></span>
+												<br><input type ="password"  id="pw" name="pw" placeholder="비밀번호를 입력하세요" required>
 											</li>
 											<li>비밀번호 확인
-												<br><input type ="password">
+												<br><input type ="password" id="checkpw">
 											</li>
 											<li>이름
 												<br><input type ="text" value="${sessionScope.userMember.userName}" id="username" name="username">
@@ -77,28 +77,31 @@
 											<li>닉네임
 												<br><input type ="text" value="${sessionScope.userMember.nickname}" id="nickname" name="nickname">
 											</li>
+											<li>이메일
+												<br><input type ="text" value="${sessionScope.userMember.email}" id="email" name="email">
+											</li>
 											<li>생년월일
 												<br><input type ="date" value="${sessionScope.userMember.birth}" id="birth" name="birth">
 											</li>
 											<li>휴대폰번호
-												<br><input type ="text" value="${sessionScope.userMember.phoneNumber}" id="phoneNumber" name="phoneNumber">
+												<br><input type ="text" value="${sessionScope.userMember.phoneNumber}" id="phonenumber" name="phoneNumber">
 											</li>
-											<li id="modify_btn"><button type="submit">프로필수정</button></li>
-											
+											<li id="modify_btn"><button type="submit" onclick="modifyInfo()" id="modify_user_info">프로필수정</button></li>	
 										</ul>
 								</fieldset>
-							</form>
+								<div id="kg_form">
+									<fieldset class="school_info info_form">
+										<legend>유치원정보</legend>
+										<h2 id="kg_info">${sessionScope.userMember.kgName}</h2>
+									</fieldset>
+								</div>
+							</div>
 						</div>
-						<div id="kg_form">
-						<fieldset class="info_form">
-							<legend>유치원정보</legend>
-							<h2 id="kg_info">${sessionScope.userMember.kgName}<br>[${sessionScope.userMember.className}] </h2>
-						</fieldset>
-						</div>
+						
 					</div>
 						
 					<div id="widthdraw_part">
-						<button onclick="withdraw()">회원탈퇴하기</button>
+						<button id="withdraw_btn" onclick="withdraw()">회원탈퇴하기</button>
 					</div>
 				</div>
 			</div>
@@ -137,13 +140,9 @@
 	<script src="../../../../resources/js/breakpoints.min.js"></script>
 	<script src="../../../../resources/js/util.js"></script>
 	<script src="../../../../resources/js/main.js"></script>
-	<script type="text/javascript">
+	<script src="../../../../resources/js/member.js"></script>
+
 	
-	let login = () => {
-		return location.href="/mypage/userpage.do";
-	}
-	
-	</script>
 
 </body>
 </html>

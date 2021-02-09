@@ -1,6 +1,7 @@
 package com.dang.member.user.model.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,6 +11,8 @@ import com.dang.common.exception.DataAccessException;
 import com.dang.common.jdbc.JDBCTemplate;
 import com.dang.member.user.model.vo.UserMember;
 import com.sun.org.apache.xerces.internal.impl.dv.DatatypeException;
+
+import oracle.jdbc.proxy.annotation.Pre;
 
 public class UserDao {
 	
@@ -46,10 +49,11 @@ public class UserDao {
 				userMember.setNickname(rset.getString("nickname"));
 				userMember.setClassName(rset.getString("class_name"));
 				userMember.setGrade(rset.getString("grade"));
+				userMember.setIsleave(rset.getInt("isleave"));
 			
 			}
 		} catch (SQLException e) {
-			throw new DataAccessException(ErrorCode.SM01, e);
+			throw new DataAccessException(ErrorCode.LM01, e);
 		} finally {
 			jdt.close(rset, pstm);
 		}
@@ -111,7 +115,7 @@ public class UserDao {
 		PreparedStatement pstm = null;
 		ResultSet rset = null;
 		
-		String query = "select * from member where user_id = ? and phone_number = ?";
+		String query = "select * from member where user_name = ? and phone_number = ?";
 		
 		try {
 			pstm = conn.prepareStatement(query);
@@ -135,7 +139,7 @@ public class UserDao {
 			}
 			
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new DataAccessException(ErrorCode.SM01, e);
 		} finally {
 			jdt.close(rset, pstm);
 		}
@@ -169,13 +173,70 @@ public class UserDao {
 			
 		} catch (SQLException e) {
 			throw new DataAccessException(ErrorCode.IM01, e);
+	
 		} finally {
-			jdt.close(pstm);
+			jdt.commit(conn);
+			
 		}
 		return res;
 		
 	}
 	
+	
+	
+	
+	public int withdrawUser(Connection conn, String userId) {
+		
+		int res = 0;
+		PreparedStatement pstm = null;
+		
+		String query = "update member set isleave = '1' where user_id = ?";
+		
+		try {
+			pstm = conn.prepareStatement(query);
+			
+			pstm.setString(1, userId);
+			res = pstm.executeUpdate();
+			
+		} catch (SQLException e) {
+			throw new DataAccessException(ErrorCode.DM01, e);
+		
+		}finally {
+			jdt.close(pstm);
+		}
+		
+	return res;
+	
+	}
+	
+	
+	public int modifyUserInfo(Connection conn, String userId, String userPw, String userName, String userNick, String userEmail,  Date userBirth, String userPhone) {
+		int res = 0;
+		PreparedStatement pstm = null;
+		
+		String query = "update member set password =?, user_name=?, nickname=?, email=?, birth=?, phone_number=? where user_id = ?";
+		
+		try {
+			pstm = conn.prepareStatement(query);
+			
+			pstm.setString(1, userPw);
+			pstm.setString(2, userName);
+			pstm.setString(3, userNick);
+			pstm.setString(4, userEmail);
+			pstm.setDate(5, userBirth);
+			pstm.setString(6, userPhone);
+			pstm.setString(7, userId);
+			
+			res = pstm.executeUpdate();
+		} catch (SQLException e) {
+			throw new DataAccessException(ErrorCode.UM01, e);
+		}finally {
+			jdt.close(pstm);
+		}
+	
+		return res;
+		
+	}
 	
 	
 	

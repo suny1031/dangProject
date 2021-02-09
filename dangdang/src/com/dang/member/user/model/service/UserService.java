@@ -1,7 +1,9 @@
 package com.dang.member.user.model.service;
 
 import java.sql.Connection;
+import java.sql.Date;
 
+import com.dang.common.exception.DataAccessException;
 import com.dang.common.jdbc.JDBCTemplate;
 import com.dang.member.user.model.dao.UserDao;
 import com.dang.member.user.model.vo.UserMember;
@@ -59,7 +61,6 @@ public class UserService {
 			UserMember res = null;
 			
 			try {
-				
 				res = userDao.selectUserByName(conn, userName, phoneNumber);
 			} finally {
 				jdt.close(conn);
@@ -68,13 +69,32 @@ public class UserService {
 		}
 	
 		
-		
+		//insert문에는 commit 과 rollback !
 		public int insertuserMember(UserMember userMember) {
 			Connection conn = jdt.getConnection();
 			int res = 0;
 			
 			try{
 				res = userDao.insertuserMember(conn, userMember);
+				jdt.commit(conn);
+			}catch(DataAccessException e){
+				jdt.rollback(conn);
+			}finally {
+				jdt.close(conn);
+			}
+			return res;
+		}
+		
+		
+		public int withdrawUser(String userId) {
+			Connection conn = jdt.getConnection();
+			int res = 0;
+			
+			try {
+				res = userDao.withdrawUser(conn, userId);
+				jdt.commit(conn);
+			}catch(DataAccessException e) {
+				jdt.rollback(conn);
 			}finally {
 				jdt.close(conn);
 			}
@@ -82,7 +102,25 @@ public class UserService {
 		}
 	
 	
-	
+		public int modifyUserInfo(String userId, String userPw, String userName, String userNick, String userEmail, Date userBirth, String userPhone) {
+			
+			Connection conn = jdt.getConnection();
+			int res = 0;
+			
+			try {
+			
+			res = userDao.modifyUserInfo(conn, userId, userPw, userName, userNick, userEmail, userBirth, userPhone);
+			jdt.commit(conn);
+			
+			}catch(DataAccessException e){
+				jdt.rollback(conn);
+			}finally {
+				jdt.close(conn);
+			}
+			System.out.println(res);
+			return res;
+			
+		}
 	
 	
 	

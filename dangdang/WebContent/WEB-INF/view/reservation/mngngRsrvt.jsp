@@ -19,7 +19,7 @@
 <link rel="stylesheet" href="/resources/css/main.css" />
 <link rel="stylesheet" href="/resources/css/mngngRsrvt.css" />
 <link rel="preconnect" href="https://fonts.gstatic.com">
-<!-- <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&display=swap" rel="stylesheet"> -->
+<link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap"
 	rel="stylesheet">
 <noscript>
@@ -118,7 +118,6 @@
 				<td class = "infrm" width="10%">신청일</td>				
 				<td class = "infrm" width="20%">요구사항</td>
 				<td class = "infrm" width="10%">승인여부</td>
-				
 			</tr>
 			<%
 				if (count > 0 ) { // 데이터베이스에 데이터가 있으면

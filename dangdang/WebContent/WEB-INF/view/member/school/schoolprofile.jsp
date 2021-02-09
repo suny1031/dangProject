@@ -54,22 +54,25 @@
 		<!-- Main -->
 		<section class="myprofile_board">
 			<div class="school_info_form" id="school_profile">
-				<form action="${context}/school/info.do" method="post" id="school_modify_form">
+				<div id="school_modify_form">
 					<fieldset >
 						<div id="school_info_part">
 							<div id ="school_info_detail">
 								<ul id="school_modify_info">
+									<li><h3>아이디</h3>
+										<input type="text" value="${sessionScope.schoolMember.kgId}" id="kgId" name="kgId" readonly>
+									</li>
 									<li><h3>업체명</h3>
 										<input type="text" value="${sessionScope.schoolMember.kgName}" id="kgName" name="kgName" readonly>
 									</li>
 									<li><br><h3>주소</h3>
 										<textarea rows = "5" cols = "20" style = "resize: none" id="kgAddress" name="kgAddress">${sessionScope.schoolMember.kgAddress}</textarea>
 									</li>
-									<li><br><h3>학급명</h3>
-										<input type ="text" value="${sessionScope.schoolMember.kgClassName}" id="kgClassName" name="kgClassName">
-									</li>
 									<li><br><h3>전화번호</h3>
 										<input type ="text" value="${sessionScope.schoolMember.kgTell}" id="kgTell" name="kgTell">
+									</li>
+									<li><br><h3>이메일</h3>
+										<input type ="text" value="${sessionScope.schoolMember.kgEmail}" id="kgEmail" name="kgEmail">
 									</li>
 									<li><br><h3>운영시간</h3>
 										<input type ="text" value="${sessionScope.schoolMember.kgOperateTime}" id="kgOperateTime" name="kgOperateTime">
@@ -79,7 +82,7 @@
 									</li>
 									<li>
 										<div id="modify_part">
-											<button type="submit" id="school_modify_btn">기본 프로필수정</button>
+											<button type="submit" id="school_modify_btn" onclick ="schoolModifyInfo()">기본 프로필수정</button>
 										</div>
 									</li>
 								</ul>
@@ -87,26 +90,83 @@
 						</div>
 						
 					</fieldset>
-				</form>
+				</div>
 				
 				
 				<div id="separate_part">
 					<div id="school_service">
-						<form action="${context}/school/profileservice.do" method="post" id="school_service_form">
+						<div id="school_service_form">
 							<fieldset id="sort_school_service">
-								<h3>제공서비스</h3><br>
-						 		<label for ="isKg"><input type = "checkbox" id = "isKg" name ="service"  value = "isKg"> 유치원</label>
-								<label for = "isCafe"><input type = "checkbox" id = "isCafe"  name ="service" value = "isCafe"> 카페</label>
-								<label for = "isHotel"> <input type = "checkbox" id = "isHotel"  name ="service" value = "isHotel"> 호텔</label>
-								<label for ="isPickup"><input type = "checkbox" id = "isPickup"  name ="service" value = "isPickup"> 픽업서비스</label>
-								<label for = "isMedic"><input type = "checkbox" id = "isMedic"  name ="service" value = "isMedic"> 메니컬센터</label>
-								<label for = "isAcademy"><input type = "checkbox" id = "isAcademy"  name ="service" value = "isAcademy"> 아카데미</label>
-								<label for = "isSpa"><input type = "checkbox" id = "isSpa"  name ="service" value = "isSpa"> 스파</label>
-						 		<button id="school_modify_btn">제공 서비스 수정</button>
+								<input id ="kgNameForService" type ="hidden" value="${sessionScope.schoolMember.kgName}"></input><h3> [제공서비스]</h3><br>
+								<label for ="isKg">
+								<c:choose>
+									<c:when test ="${sessionScope.schoolService.isKg == 0}">
+										<input type = "checkbox" id = "isKg" name ="isKg"  value = "0" checked="checked"> 유치원
+									</c:when>
+									<c:when test ="${sessionScope.schoolService.isKg != 0}">
+										<input type = "checkbox" id = "isKg" name ="isKg"  value = "1"> 유치원
+									</c:when>
+								</c:choose>
+								</label>
+								
+								<label for ="isCafe">
+								<c:choose>
+									<c:when test ="${sessionScope.schoolService.isCafe == 0}">
+										<input type = "checkbox" id = "isCafe" name ="isCafe"  value = "0" checked="checked"> 카페</c:when>
+									<c:when test ="${sessionScope.schoolService.isCafe != 0}">
+										<input type = "checkbox" id = "isCafe" name ="isCafe"  value = "1"> 카페</c:when>
+								</c:choose>
+								</label>
+								
+								<label for ="isHotel">
+								<c:choose>
+									<c:when test ="${sessionScope.schoolService.isHotel == 0}">
+										<input type = "checkbox" id = "isHotel" name ="isHotel"  value = "0" checked="checked"> 호텔</c:when>
+									<c:when test ="${sessionScope.schoolService.isHotel != 0}">
+										<input type = "checkbox" id = "isHotel" name ="isHotel"  value = "1"> 호텔</c:when>
+								</c:choose>
+								</label>
+								
+								<label for ="isPickup">
+								<c:choose>
+									<c:when test ="${sessionScope.schoolService.isPickup == 0}">
+										<input type = "checkbox" id = "isPickup" name ="isPickup"  value = "0" checked="checked"> 픽업서비스</c:when>
+									<c:when test ="${sessionScope.schoolService.isPickup != 0}">
+										<input type = "checkbox" id = "isPickup" name ="isPickup"  value = "1"> 픽업서비스</c:when>
+								</c:choose>
+								</label>
+								
+								<label for ="isMedic">
+								<c:choose>
+									<c:when test ="${sessionScope.schoolService.isMedic == 0}">
+										<input type = "checkbox" id = "isMedic" name ="isMedic"  value = "0" checked="checked"> 메디컬센터</c:when>
+									<c:when test ="${sessionScope.schoolService.isMedic != 0}">
+										<input type = "checkbox" id = "isMedic" name ="isMedic"  value = "1"> 메디컬센터</c:when>
+								</c:choose>
+								</label>
+								
+								<label for ="isAcademy">
+								<c:choose>
+									<c:when test ="${sessionScope.schoolService.isAcademy == 0}">
+										<input type = "checkbox" id = "isAcademy" name ="isAcademy"  value = "0" checked="checked"> 아카데미</c:when>
+									<c:when test ="${sessionScope.schoolService.isAcademy != 0}">
+										<input type = "checkbox" id = "isAcademy" name ="isAcademy"  value = "1"> 아카데미</c:when>
+								</c:choose>
+								</label>
+								
+								<label for ="isSpa">
+								<c:choose>
+									<c:when test ="${sessionScope.schoolService.isSpa == 0}">
+										<input type = "checkbox" id = "isSpa" name ="isSpa"  value = "0" checked="checked"> 스파</c:when>
+									<c:when test ="${sessionScope.schoolService.isSpa != 0}">
+										<input type = "checkbox" id = "isSpa" name ="isSpa"  value = "1"> 스파</c:when>
+								</c:choose>
+								</label>
+						 		<button id="school_modify_btn" onclick="schoolModifyService()">제공 서비스 수정</button>
 							</fieldset>
-						</form>
+						</div>
 					</div>
-					<form action="${context}/school/profilephoto.do" method="post" id="school_photo_form">
+					<div action="${context}/school/profilephoto.do" method="post" id="school_photo_form">
 						<div>
 							<h3>유치원사진</h3><br>
 							<label><input type ="file" id="kg_photo"></label>
@@ -114,8 +174,8 @@
 						<div id="photo_border">
 							사진 첨부
 						</div>
-						<button id="file_upload_btn">파일 업로드</button>
-					</form>
+						<button id="file_upload_btn" onclick="schoolModifyPhoto()">파일 업로드</button>
+					</div>
 				</div>
 			</div>
 		</section>
@@ -153,7 +213,7 @@
 	<script src="../../../../resources/js/breakpoints.min.js"></script>
 	<script src="../../../../resources/js/util.js"></script>
 	<script src="../../../../resources/js/main.js"></script>
-	<script src="../../../../resources/js/login.js"></script>
+	<script src="../../../../resources/js/member.js"></script>
 	
 </body>
 </html>

@@ -56,12 +56,6 @@
 		<section class="user_board">
 			<div class="member_mypage">
 				<div id="mypage_profile">
-					<div>
-						<c:choose>
-							<c:when test ="${sessionScope.schoolMember != null}"><a href="/school/schoolprofile.do">프로필설정</a></c:when>
-							<c:when test ="${sessionScope.userMember != null}"><a href="/user/userprofile.do">프로필설정</a></c:when>
-						</c:choose>
-					</div>
 					<div id= "personal_photo">
 						<c:choose>
 							<c:when test ="${sessionScope.schoolMember != null}"><a id ="profile_photo" href="/school/schoolprofile.do"></a><br></c:when>
@@ -70,10 +64,10 @@
 						<div class="profile_name_board">
 							<c:choose>
 								<c:when test ="${sessionScope.schoolMember != null}">
-									<a href="/school/schoolprofile.do" class="profile_name">${sessionScope.schoolMember.kgName}</a>
+									<a class="profile_name">${sessionScope.schoolMember.kgName}</a><i class="fas fa-cog" onclick="location.href='/school/schoolprofile.do'"></i>
 								</c:when>
 								<c:when test ="${sessionScope.userMember != null}" >
-									<a href="/user/userprofile.do"  class="profile_name">${sessionScope.userMember.nickname}</a>
+									<a class="profile_name">${sessionScope.userMember.nickname}</a><i class="fas fa-cog" onclick="location.href='/user/userprofile.do'"></i>
 								</c:when>
 							</c:choose>
 							
@@ -84,7 +78,14 @@
 				<div id ="mypage_board">
 					<div class="mypage_detail">
 						<div class="detail_board">
-							<a>앨범</a>
+							<c:choose>
+								<c:when test ="${sessionScope.schoolMember != null}">
+									<a href="/board/listboard1.do" class="user_photo">앨범</a>
+								</c:when>
+								<c:when test ="${sessionScope.userMember != null}" >
+									<a href="/board/listboard2.do"  class="school_photo">앨범</a>
+								</c:when>
+							</c:choose>
 						</div>
 						<div class="detail_board">
 							<a>식단</a>
@@ -127,7 +128,7 @@
 	<script src="../../../../resources/js/breakpoints.min.js"></script>
 	<script src="../../../../resources/js/util.js"></script>
 	<script src="../../../../resources/js/main.js"></script>
-	<script src="../../../../resources/js/login.js"></script>
+	<script src="../../../../resources/js/member.js"></script>
 	
 	
 

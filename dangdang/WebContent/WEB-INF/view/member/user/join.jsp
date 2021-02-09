@@ -63,13 +63,13 @@
 							</td>
 						</tr>
 						
-						<tr><td>비밀번호<span  class="valid_info" id = "pw_confirm"></span></td></tr>
+						<tr><td>비밀번호<span class="valid_info" id = "pw_confirm"></span></td></tr>
 						<tr>
 							<td><input type="text" name="pw" id="pw" size=28% placeholder ="비밀번호를 입력하세요" required>
 							
 							</td>
 						<tr>
-						<tr><td>비밀번호 확인<span class="valid_info" id ="doubleCheckPw"></span></td></tr>
+						<tr><td>비밀번호 확인<span class="valid_info" id = "doubleCheckPw" ></span></td></tr>
 						<tr>
 							<td><input type="password" name="checkpw" id="checkpw" size=28% placeholder ="비밀번호를 확인하세요" required></td>
 						<tr>
@@ -81,11 +81,6 @@
 						<tr>
 							<td><input type="text" name="kinder" size=28% placeholder ="등록 유치원 있는 경우만 입력"></td>
 							<!--  <button type="button" onclick="kgCheck()">search</button></td>-->
-						<tr>
-						<tr><td>학급명</td></tr>
-						<tr>
-							<td><input type="text" name="classname" size=28% placeholder ="등록 유치원 있는 경우만 입력"></td>
-							<!-- <button type="button" onclick="classCheck()">search</button>-->
 						<tr>
 						<tr><td>이메일</td></tr>
 						<tr>
@@ -147,34 +142,36 @@
 	<script src="../../../../resources/js/breakpoints.min.js"></script>
 	<script src="../../../../resources/js/util.js"></script>
 	<script src="../../../../resources/js/main.js"></script>
+	<script src="../../../../resources/js/member.js"></script>
 	<script type="text/javascript">
+	// JS 전역변수로 뺴주어야 한다.
+	let idCheckFlg = false;
 	
-	<!--아이디 확인을 위해 필요한 js -->
+	// 있는 아이디인지 확인을 위해 필요한 js
 	let idCheck = () => {
-		let idCheckFlg = false;
+		
 		let headerObj = new Headers();
 		headerObj.append('content-type', "application/x-www-form-urlencoded");
 		
 		
-		<!-- 사용자가 입력한 아이디값을 받아서 -->
-		let userId = id.value; <!--id가 id인 데이터의 value값 -->
+		// 사용자가 입력한 아이디값을 받아서
+		let userId = id.value; //id가 id인 데이터의 value값
 		let idCheck = document.querySelector('#idCheck');
 		let url = "/user/idcheck.do"
 		
-		if(userId){ <!--true일떄 -->
+		if(userId){ // true일때
 			fetch(url,{
 				method: "post",
 				headers: headerObj,
 				body: "userId=" + userId
 				
-			}).then(response => response.text()) <!--then해주면 응답(response)이 넘어옴, 바로 return -->
-			  .then((message)=>{ <!--message가 넘어올 것-->
+			}).then(response => response.text()) // then해주면 응답(response)이 넘어옴, 바로 return
+			  .then((message)=>{ // message가 넘어올 것
 				if(message == 'available'){
 					idCheckFlg = true;
 					idCheck.innerHTML = '사용 가능한 아이디 입니다.';
 				} else {
-					
-					console.dir(message);
+					idCheckFlg = false;
 					idCheck.innerHTML = '사용 불가능한 아이디 입니다.';
 				}				
 			  }).catch(error => {
@@ -182,14 +179,13 @@
 				  error.alertMessage();
 			  })
 		} else {
-			alert('아이디를 입력하지 않았습니다.');
-			
+			alert('아이디를 입력하지 않았습니다.');	
 		}
 	}
 	
-	/*
 	
-	//아이디체크와 비밀번호 조합이 잘되었는지 확인하는 js
+	
+	// 아이디체크와 비밀번호 조합이 잘되었는지 확인하고 비밀번호가 서로 일치하는지 확인하는 js
 	   document.querySelector('#form_join').addEventListener('submit',(e) => {
 		     //  요소의 아이디로 엘리먼트 객체 호출 가능(웹표준이 아님)    
 		      if(!idCheckFlg){
@@ -206,11 +202,30 @@
 		         e.preventDefault();
 		         pw_confirm.innerHTML = '비밀번호는 숫자,영문자,특수문자 조합의 8글자 이상이어야 합니다.';
 		         pw.value = '';
+		      } else {
+		    	  
+		    	  let firstPw =  pw.value;
+				  let secondPw = checkpw.value;
+				  //비밀번호 double check 메소드
+				  if(firstPw != secondPw){
+					
+						document.querySelector("#pw_confirm").innerHTML = '비밀번호가 맞지 않습니다.';
+						checkpw.value= ""; //pw의 value값 비워주기
+						e.preventDefault(); //데이터전송 막기
+					} else {
+						document.querySelector("#pw_confirm").innerHTML = '비밀번호가 확인되었습니다.';
+					}
+			   
 		      }
+		      
+		
 		   }); 
-	*/
+
+	   
+
+
 	
 	</script>
-
+	
 </body>
 </html>

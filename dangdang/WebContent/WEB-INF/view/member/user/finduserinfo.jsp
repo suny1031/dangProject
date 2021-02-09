@@ -54,29 +54,30 @@
 		<!-- Main -->
 		<section class="user_board">
 			<div class="find_info">
-				<span id="find_user_title">견주 아이디/비밀번호 찾기</span>
+			<span id="find_user_title">견주 아이디/비밀번호 찾기</span>
 				<div id="find_id">
-					<form action="${context}/user/finduserid.do" method="post" id="form_find_id">
-						<fieldset id="find_id_field">
+					<div id="form_find_id">
+						<div id="find_id_field">
 							<table id ="find_id_table">
 								<tr><td>이름</td></tr>
 								<tr>
-									<td><input type="text" name="username" size=28% required></td>
-								<tr>
+									<td><input type="text" id="username" name="username" size=28% required></td>
+								</tr>
 								<tr><td>휴대폰번호</td></tr>
 								<tr>
-									<td><input type="tel" name="tell" size=28% required></td>
-								<tr> 
+									<td><input type="tel"id ="phone" name="phone" size=28% placeholder="123-456-7891" required></td>
+								</tr> 
 								<tr>
-									<td id="find_id_btn"><button type="submit">아이디 찾기</button></td>
+									<td id="find_id_btn"><button id="find_userid_btn" onclick ="findUserId()" type="submit">아이디 찾기</button></td>
 								</tr>
 							</table>
-						</fieldset>
-					</form>
+							<span id="find_id_result" style="display:none"></span>
+						</div>
+					</div>
 				</div>
 				<div id="find_pw">
-					<form action="${context}/user/finduserpw.do" method="post" id="form_find_pw">
-						<fieldset id="find_pw_field">
+					<div action="${context}/user/finduserpw.do" method="post" id="form_find_pw">
+						<div id="find_pw_field">
 							<table id ="find_pw_table">
 								<tr><td>아이디</td></tr>
 								<tr>
@@ -90,8 +91,8 @@
 									<td id="find_id_btn"><button type="submit">비밀번호 찾기</button></td>
 								</tr>
 							</table>
-						</fieldset>
-					</form>
+						</div>
+					</div>
 				</div>
 			</div>
 		</section>
@@ -129,70 +130,12 @@
 	<script src="../../../../resources/js/breakpoints.min.js"></script>
 	<script src="../../../../resources/js/util.js"></script>
 	<script src="../../../../resources/js/main.js"></script>
-	<script type="text/javascript">
+	<script src="../../../../resources/js/member.js"></script>
+	<script type="text/javascript"> const urlToFindId = '/user/finduserid.do';</script>
+	<script type="text/javascript"> const urlToFinPw = '/user/finduserpw.do';</script>
 	
-	<!--아이디 확인을 위해 필요한 js -->
-	let idCheck = () => {
-		let idCheckFlg = false;
-		let headerObj = new Headers();
-		headerObj.append('content-type', "application/x-www-form-urlencoded");
-		
-		
-		<!-- 사용자가 입력한 아이디값을 받아서 -->
-		let userId = id.value; <!--id가 id인 데이터의 value값 -->
-		let idCheck = document.querySelector('#idCheck');
-		let url = "/user/idcheck.do"
-		
-		if(userId){ <!--true일떄 -->
-			fetch(url,{
-				method: "post",
-				headers: headerObj,
-				body: "userId=" + userId
-				
-			}).then(response => response.text()) <!--then해주면 응답(response)이 넘어옴, 바로 return -->
-			  .then((message)=>{ <!--message가 넘어올 것-->
-				if(message == 'available'){
-					idCheckFlg = true;
-					idCheck.innerHTML = '사용 가능한 아이디 입니다.';
-				} else {
-					
-					console.dir(message);
-					idCheck.innerHTML = '사용 불가능한 아이디 입니다.';
-				}				
-			  }).catch(error => {
-				 
-				  error.alertMessage();
-			  })
-		} else {
-			alert('아이디를 입력하지 않았습니다.');
-			
-		}
-	}
 	
-	/*
 	
-	//아이디체크와 비밀번호 조합이 잘되었는지 확인하는 js
-	   document.querySelector('#form_join').addEventListener('submit',(e) => {
-		     //  요소의 아이디로 엘리먼트 객체 호출 가능(웹표준이 아님)    
-		      if(!idCheckFlg){
-		         alert("아이디 중복검사를 통과하지 못했습니다.");
-		         id.value = "";
-		         e.preventDefault();
-		      }
-		      
-		      let password = pw.value;
-		      let regExp = /^(?!.*[ㄱ-힣])(?=.*\W)(?=.*\d)(?=.*[a-zA-Z])(?=.{8,})/;
-		     
-		      if(!(regExp.test(password))){
-		         //form의 데이터 전송을 막음
-		         e.preventDefault();
-		         pw_confirm.innerHTML = '비밀번호는 숫자,영문자,특수문자 조합의 8글자 이상이어야 합니다.';
-		         pw.value = '';
-		      }
-		   }); 
-	*/
-	
-	</script>
 
 </body>
 </html>

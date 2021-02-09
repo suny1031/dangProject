@@ -10,12 +10,15 @@
 <script src='/resources/css/calendar/main.js'></script>
 <script src='/resources/css/calendar/locales-all.js'></script>
 
+
+<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap"
+	rel="stylesheet">
 <link rel="stylesheet" href="/resources/css/main.css" />
 
 <script>
 
   document.addEventListener('DOMContentLoaded', function() {
-    var initialLocaleCode = 'en';
+    var initialLocaleCode = 'ko';
     var localeSelectorEl = document.getElementById('locale-selector');
     var calendarEl = document.getElementById('calendar');
 
@@ -25,27 +28,22 @@
         center: 'title',
         right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
       },
-      initialDate: '2020-09-12',
+      initialDate: '${today}',
       locale: initialLocaleCode,
       buttonIcons: false, // show the prev/next text
       weekNumbers: true,
       navLinks: true, // can click day/week names to navigate views
       editable: true,
       dayMaxEvents: true, // allow "more" link when too many events
+      
       events: [
+       <c:forEach var="reservation" items="${reservationList}" varStatus="status">
         {
-          title: '박선영',
-          start: '2020-09-01'
+          title: '예약번호${reservation.rsIdx} ${reservation.userId}님',
+          start: '${reservation.regDate}',   
         },
-        {
-          title: 'Long Event',
-          start: '2020-09-07',
-        },
-        {
-          title: 'Repeating Event',
-          start: '2020-09-09'
-        }
-      ]
+       </c:forEach> 
+     	]
     });
 
     calendar.render();

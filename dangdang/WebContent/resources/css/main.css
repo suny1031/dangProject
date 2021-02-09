@@ -153,7 +153,6 @@ body, input, select, textarea {
 	
 	#dangmark{
 		width: 70px;
-		height:70px;
 	
 	}
 	
@@ -187,7 +186,7 @@ h1, h2, h3, h4, h5, h6 {
 	letter-spacing: 0.225em;
 	line-height: 1em;
 	margin: 0 0 0.4em 0;
-	text-transform: uppercase;
+	
 }
 
 h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
@@ -667,11 +666,11 @@ body.is-menu-visible #menu {
 	-moz-transition: -moz-transform 0.75s ease, opacity 0.75s ease;
 	-webkit-transition: -webkit-transform 0.75s ease, opacity 0.75s ease;
 	-ms-transition: -ms-transform 0.75s ease, opacity 0.75s ease;
-	transition: transform 0.75s ease, opacity 0.75s ease;
-	-moz-transition-delay: 1.8s;
-	-webkit-transition-delay:1.8s;
-	-ms-transition-delay:1.8s;
-	transition-delay: 1.8s;
+	transition: transform 0.5s ease, opacity 0.5s ease;
+	-moz-transition-delay: 1s;
+	-webkit-transition-delay:1s;
+	-ms-transition-delay:1s;
+	transition-delay: 1s;
 	-moz-transform: translateY(0);
 	-webkit-transform: translateY(0);
 	-ms-transform: translateY(0);
@@ -953,7 +952,7 @@ body.is-mobile.landing .user_profile{
 
 #dangmark{
 	width: 100px;
-	height: 100px;
+	height: 100%;
 	background-size: cover;
 	background-position: center;
 	background-image: url("/resources/css/images/dang.png");
@@ -1036,13 +1035,13 @@ body.is-mobile.landing .user_profile{
 
 .member_mypage{
 	margin: auto;
-	width: 80vw;
-    height: 70vh;
+	width: 100%;
+    height: 100%;
 	background-color: white;
 	display: flex;
 	justify-content: space-around;
 	font-size: 1.3vw;
-	border: solid 1px;
+	
 
 }
 
@@ -1051,13 +1050,14 @@ body.is-mobile.landing .user_profile{
 	margin-left: 1vw;
 	margin-right: 1vw;
 	margin-bottom:1px;
+	margin-top: 1vw;
 	color: black;
 }
 
 #mypage_profile{
     width: 60%;
     height: 50%;
-    margin-top: 6%;
+   	margin-top: 10%;
     display: flex;
     text-align: center;
     justify-content: center;
@@ -1235,8 +1235,8 @@ body.is-mobile.landing .user_profile{
 }
 
 .info_form{
-	width: 35vw;
-    height: 70vh;
+	width: 60vh;
+    height: 80vh;
     border: solid 1px;
     border-radius: 3%;
     display: flex;
@@ -1247,6 +1247,7 @@ body.is-mobile.landing .user_profile{
 #modify_form{
 	display: flex;
     justify-content: center;
+    width: 100%;
 }
 
 #kg_form{
@@ -1257,14 +1258,14 @@ body.is-mobile.landing .user_profile{
 }
 
 #personal_info {
-	width: 50%;
+	width: 80%;
 	margin:auto;
 
 }
 
 @media screen and (max-width: 736px) {
 	#personal_info {
-		width: 60%;
+		width: 90%;
 
 	}
 }
@@ -1334,7 +1335,7 @@ body.is-mobile.landing .user_profile{
 
 
 .school_info_form{
-	width: 70vw;
+	width: 75vw;
 	height: 120vh;
     border: solid 1px;
     border-radius: 3%;
@@ -1524,7 +1525,6 @@ body.is-mobile.landing .user_profile{
 
 #personal_photo *{
 	display: flex;
-	flex-direction: column;
 	margin: auto;
 }
 
@@ -1559,8 +1559,8 @@ body.is-mobile.landing .user_profile{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 35vw;
-    min-height: 60vh;
+    min-width: 60vh;
+    min-height: 70vh;
     margin: auto;
     border: solid 1px;
     border-radius: 3%;
@@ -1568,12 +1568,26 @@ body.is-mobile.landing .user_profile{
 }
 
 
-.find_info div {
+#find_id_field {
     display: flex;
     justify-content: center;
+    flex-direction: column;
+    margin-top : 10px;
     margin: auto;
-    width: 25vw;
-    height: 20vh;
+    width: 50vh;
+    height: 30vh;
+    border: solid 1px grey;
+
+}
+
+#find_pw_field {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: auto;
+    margin-top : 10px;
+    width: 50vh;
+    height: 30vh;
     border: solid 1px grey;
 
 }
@@ -1595,10 +1609,6 @@ body.is-mobile.landing .user_profile{
 	
 }
 
-#form_find_id {
-    
-    margin: auto;
-}
 
 #form_find_pw {
     
@@ -1613,11 +1623,38 @@ body.is-mobile.landing .user_profile{
 
 #find_user_title{
 	text-align: center;
-	margin-top: 20px;
+	margin-bottom: 20px;
 	font-family: 'Jua', sans-serif;
 	color: #8B4513;
-	font-size: 2.3vw;
+	font-size: 2.5vh;
+}
+
+#find_id_table, #find_pw_table {
+    
+    margin: auto;
+}
+
+#find_id_result {
+    margin: auto;
+    text-align: center;
+    font-size: 1.5vw;
+    font-family: 'Gamja Flower';
+}
+
+.fas{
+	cursor: pointer;
+	color: grey;
 }
 
 
+.school_info{
+	margin-left: 10px;
+}
 
+#withdraw_btn{
+	margin-right: 45px;
+}
+
+#sort_school_service span{
+	display: contents;
+}

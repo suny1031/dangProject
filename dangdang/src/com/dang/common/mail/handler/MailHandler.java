@@ -21,7 +21,7 @@ public class MailHandler extends HttpServlet {
 			throws ServletException, IOException {
 		String template = request.getParameter("template");
 		String url = "/WEB-INF/view/mail-temp/" + template + ".jsp";
-		//해당 jsp에서 만들어진 html코드가 응답될 수 있또록
+		//해당 jsp에서 만들어진 html코드가 응답될 수 있도록
 		request.getRequestDispatcher(url).forward(request, response);
 
 	}

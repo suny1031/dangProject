@@ -2,6 +2,9 @@
 /* div {
   border: solid 1px;
 } */
+
+
+
 #kinderWrap {
 	font-size: 2vw;
 	font-weight: bold;
@@ -28,7 +31,10 @@
 }
 
 #reviewWrite{
-   	color: #4169E1;
+   	padding: 2px;
+    background-color: #8b4513;
+    border-radius: 10px;
+    color: white;
 	font-size: 1vw;
     position: relative;
     margin-bottom: 0;

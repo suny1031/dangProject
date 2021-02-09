@@ -1,6 +1,10 @@
 package com.dang.reservation.controller;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -136,21 +140,21 @@ public class ReservationController extends HttpServlet {
 
 		HttpSession session = request.getSession();
 		SchoolMember schoolMember = (SchoolMember) session.getAttribute("schoolMember");
-		System.out.println(schoolMember);
+		System.out.println(schoolMember.getKgName());
+
+		ArrayList<Reservation> reservationList = reservationService.selectReservation(schoolMember.getKgName());
+
+		for (int i = 0; i < reservationList.size(); i++) {
+			System.out.println(reservationList.get(i));
+		}
 		
+		Date now = new Date();
+		SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
+		String today = f.format(now);
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		request.setAttribute("reservationList", reservationList);
+		request.setAttribute("today",today);
+
 		request.getRequestDispatcher("/WEB-INF/view/reservation/calendar.jsp").forward(request, response);
 
 	}

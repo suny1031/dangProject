@@ -45,32 +45,45 @@ public class AuthFilter implements Filter {
 			case "user":
 				// 2depth
 				switch (uriArr[2]) {
-				/* case "userpage.do":
+				 case "userpage.do":
 					if (session.getAttribute("userMember") == null) {
 						throw new ToAlertException(ErrorCode.AUTH01);
-					} 
-					break; 
+					}break; 
 					
 				case "joinimpl.do":
 					if (session.getAttribute("persistUser") == null) {
 						throw new ToAlertException(ErrorCode.AUTH02);
 					} else if(session.getAttribute("userMember") != null){
 						throw new ToAlertException(ErrorCode.AUTH01);
-					}
-					break; */
+					}break; 
+				
+				
 				}
 				break;
 				
 			case "school":
 				// 2depth
 				switch (uriArr[2]) {
-				case "schoolPage.do":
+				case "schoolpage.do":
 					if (session.getAttribute("schoolMember") == null) {
 						throw new ToAlertException(ErrorCode.AUTH01);
-					}
-					break; 
+						
+					}break;
+					
+				case "schoolprofile.do":
+					if (session.getAttribute("schoolMember") == null) {
+						throw new ToAlertException(ErrorCode.AUTH01);
+					}break;
+					
+				case "login.do":
+					if(session.getAttribute("schoolMember") != null) {
+						throw new ToAlertException(ErrorCode.AUTH01);
+					}break;
+					
+					
+					
+					
 				}
-
 				break;
 				
 				
@@ -114,6 +127,11 @@ public class AuthFilter implements Filter {
 					case "mngngRsrvt.do":
 						if (session.getAttribute("schoolMember") == null) {
 							throw new ToAlertException(ErrorCode.AUTH06);
+						}
+						break;
+					case "calendar.do":
+						if (session.getAttribute("schoolMember") == null) {
+							throw new ToAlertException(ErrorCode.AUTH07);
 						}
 						break;
 					}

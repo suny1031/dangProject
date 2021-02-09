@@ -2,7 +2,9 @@ package com.dang.member.school.model.service;
 
 import java.sql.Connection;
 
+import com.dang.common.exception.DataAccessException;
 import com.dang.common.jdbc.JDBCTemplate;
+import com.dang.map.model.vo.Service;
 import com.dang.member.school.model.dao.SchoolDao;
 import com.dang.member.school.model.vo.SchoolMember;
 
@@ -22,25 +24,105 @@ public class SchoolService {
 	public SchoolMember memberAuthenticate(String kgId, String kgPw) {
 		//connection 생성
 		Connection conn = jdt.getConnection();
-		SchoolMember res = null;
+		SchoolMember schoolMember = null;
 		
 		try {
 			//Dao에게 Connection 주입
 			//Dao는 주입받은 Connection객체로 Statement 객체를 만들어 쿼리를 실행하게 되고
 			//따라서 Service에서 해당 쿼리를 commit, rollback처리를 할 수 있게 된다.
 			//Dao에서 schoolMembe 객체가 반환된다.
-			 res = schoolDao.memberAuthenticate(conn, kgId, kgPw);
+			schoolMember = schoolDao.memberAuthenticate(conn, kgId, kgPw);
 			
 		}finally {
 			jdt.close(conn);
 		}
 		
 		
+		return schoolMember;
+		
+		
+	}
+
+	
+	
+	
+	
+	public Service SchoolproService(String kgName) {
+		Connection conn = jdt.getConnection();
+		Service schoolProService = null;
+		
+		
+		try {
+			schoolProService = schoolDao.SchoolproService(conn, kgName);
+		}finally {
+			jdt.close(conn);
+		}
+		
+		return schoolProService;
+	}
+	
+	
+	
+	
+	
+	
+	public SchoolMember selectSchoolByName(String schoolName, String schoolPhone) {
+		
+		Connection conn = jdt.getConnection();
+		SchoolMember res = null;
+		
+		try {
+			res = schoolDao.selectSchoolByName(conn, schoolName, schoolPhone);
+		} finally {
+			jdt.close(conn);
+		}
+		
 		return res;
 		
 		
 	}
 	
+	
+	
+	
+	
+	
+	public int modifySchoolInfo(String kgId, String kgName, String kgAddress, String kgTell, String kgOperateTime, String kgNotice, String kgEmail) {
+		
+		Connection conn = jdt.getConnection();
+		int res = 0;
+		
+		try {
+			res = schoolDao.modifySchoolInfo(conn, kgId, kgName, kgAddress, kgTell, kgOperateTime, kgNotice, kgEmail);
+			jdt.commit(conn);
+			
+		}catch(DataAccessException e){
+			jdt.rollback(conn);
+		}finally {
+			jdt.close(conn);
+		}
+		return res;
+	}
+	
+	
+	
+	public int modifySchoolService(String kgName, int isKg, int isCafe, int isHotel, int isPickup, int isMedic, int isAcademy, int isSpa) {
+		Connection conn = jdt.getConnection();
+		int res = 0;
+		
+		
+		try {
+			res = schoolDao.modifySchoolService(conn, kgName, isKg, isCafe, isHotel, isPickup, isMedic, isAcademy, isSpa);
+			jdt.commit(conn);
+		}catch(DataAccessException e){
+			jdt.rollback(conn);
+		}finally {
+			jdt.close(conn);
+		}
+		System.out.println("schoolServcie" + res);
+		return res ;
+		
+	}
 	
 	
 	
