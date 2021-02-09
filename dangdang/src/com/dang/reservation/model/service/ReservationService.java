@@ -139,5 +139,21 @@ public class ReservationService {
 		return reservationList;
 
 	}
+	
+	public int deleteReservation(String rsIdx) {
+		Connection conn = jdt.getConnection();
+		int res = 0;
+		try {
+			res = reservationDao.deleteReservation(conn, rsIdx);
+			jdt.commit(conn);
+		} catch (DataAccessException e) {
+			jdt.rollback(conn);
+			throw new ToAlertException(e.error);
+		} finally {
+			jdt.close(conn);
+		}
+		return res;
+
+	}
 
 }

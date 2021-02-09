@@ -55,6 +55,9 @@ public class ReservationController extends HttpServlet {
 		case "approved.do":
 			approved(request, response);
 			break;
+		case "delete.do":
+			delete(request, response);
+			break;
 		default:
 			throw new ToAlertException(ErrorCode.CD_404);
 		}
@@ -170,11 +173,8 @@ public class ReservationController extends HttpServlet {
 
 		String rsIdx = request.getParameter("rsIdx");
 
-		System.out
-				.println("userId : " + userId + " / date : " + date + " / kgName : " + kgName + " / rsIdx : " + rsIdx);
+		System.out.println("userId : " + userId + " / date : " + date + " / kgName : " + kgName + " / rsIdx : " + rsIdx);
 		UserMember userMember = reservationService.selectUserMember(userId);
-
-		System.out.println("userMember : " + userMember);
 
 		reservationService.ReservationEmail(userMember, date, kgName);
 
@@ -182,6 +182,19 @@ public class ReservationController extends HttpServlet {
 
 		reservationService.updateReservation(rsIdx);
 
+	}
+	
+	private void delete(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		String dleRsIdx = request.getParameter("dleRsIdx");
+		System.out.println(dleRsIdx);
+		
+		int res = reservationService.deleteReservation(dleRsIdx);
+		System.out.println(res);
+		if (res > 0) {
+			response.getWriter().print("success");
+		}
 	}
 
 }

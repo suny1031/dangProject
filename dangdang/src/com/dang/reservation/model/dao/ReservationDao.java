@@ -22,6 +22,7 @@ public class ReservationDao {
 
 	JDBCTemplate jdt = JDBCTemplate.getInstance(); // 템플릿 생성
 
+	//예약 신청 
 	public void insertReservation(Connection conn, Reservation reservation) {
 		// jdbc코딩을 진행
 
@@ -56,7 +57,7 @@ public class ReservationDao {
 
 	public List<Reservation> selectReservationPage(Connection conn, int startRow, int endRow, String kgName) {
 		// 페이징 처리를 위한 sql / 인라인뷰, rownum 사용
-		String query = "select * from (select rownum rn, USER_ID, RS_IDX ,PROTECTOR_NAME, PHONE_NUMBER,DOG_BREED,DOG_AGE,PICKUP,IS_APPROVED,KINDERGARTEN, REG_DATE, REQUIREMENTS from (select * from RESERVATION where KINDERGARTEN = ? order by RS_IDX asc)) where rn between ? and ?";
+		String query = "select * from (select rownum rn, USER_ID, RS_IDX ,PROTECTOR_NAME, PHONE_NUMBER,DOG_BREED,DOG_AGE,PICKUP,IS_APPROVED,KINDERGARTEN, REG_DATE, REQUIREMENTS, IS_DEL from (select * from RESERVATION where KINDERGARTEN = ? and IS_DEL = 0 order by RS_IDX asc)) where rn between ? and ?";
 
 		List<Reservation> list = null;
 
@@ -89,6 +90,7 @@ public class ReservationDao {
 					reservation.setKindergarten(rset.getString("KINDERGARTEN"));
 					reservation.setRegDate(rset.getDate("REG_DATE"));
 					reservation.setRequirements(rset.getString("REQUIREMENTS"));
+					reservation.setIsDel(rset.getString("IS_DEL"));
 					list.add(reservation);
 				} while (rset.next());
 			}
@@ -108,7 +110,7 @@ public class ReservationDao {
 
 		ResultSet rset = null;
 
-		String query = "select count(*) from RESERVATION where KINDERGARTEN = ?";
+		String query = "select count(*) from RESERVATION where KINDERGARTEN = ? and IS_DEL = 0";
 		try {
 			pstm = conn.prepareStatement(query);
 			pstm.setString(1, kgName);
@@ -186,6 +188,7 @@ public class ReservationDao {
 
 	}
 
+	//캘린더 예약 내용 불러오기
 	public ArrayList<Reservation> selectReservation(Connection conn, String kgName) {
 
 		ArrayList<Reservation> reservationList  = new ArrayList<>();
@@ -196,7 +199,7 @@ public class ReservationDao {
 
 		try {
 
-			String query = "select * from RESERVATION where KINDERGARTEN = ? and IS_APPROVED = 0 ";
+			String query = "select * from RESERVATION where KINDERGARTEN = ? and IS_APPROVED = 0 and IS_DEL = 0";
 
 			pstm = conn.prepareStatement(query);
 			
@@ -217,6 +220,7 @@ public class ReservationDao {
 				reservation.setKindergarten(rset.getString("KINDERGARTEN"));
 				reservation.setRegDate(rset.getDate("REG_DATE"));
 				reservation.setRequirements(rset.getString("REQUIREMENTS"));
+				reservation.setIsDel(rset.getString("IS_DEL"));
 				reservationList.add(reservation);
 			}
 
@@ -227,6 +231,32 @@ public class ReservationDao {
 		}
 
 		return reservationList;
+
+	}
+	
+	public int deleteReservation(Connection conn, String rsIdx) {
+		
+		int delete = 0;
+
+		PreparedStatement pstm = null;
+
+		try {
+
+			String query = "update RESERVATION set IS_DEL = 1 where RS_IDX = ?";
+
+			pstm = conn.prepareStatement(query);
+
+			pstm.setString(1, rsIdx);
+			
+			delete = pstm.executeUpdate();
+		} catch (SQLException e) {
+			throw new DataAccessException(ErrorCode.DM01, e);
+		} finally {
+			jdt.close(pstm);
+
+		}
+
+		return delete;
 
 	}
 

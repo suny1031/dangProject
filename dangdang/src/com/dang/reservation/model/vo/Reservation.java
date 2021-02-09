@@ -14,13 +14,15 @@ public class Reservation {
 	private String requirements;
 	private String kindergarten;
 	private Date regDate;
+	private String isDel;
 
 	public Reservation() {
 
 	}
 
 	public Reservation(int rsIdx, String userId, String protectorName, String phoneNumber, String dogBreed,
-			String dogAge, String pickup, String isApproved, String requirements, String kindergarten, Date regDate) {
+			String dogAge, String pickup, String isApproved, String requirements, String kindergarten, Date regDate,
+			String isDel) {
 		super();
 		this.rsIdx = rsIdx;
 		this.userId = userId;
@@ -33,6 +35,7 @@ public class Reservation {
 		this.requirements = requirements;
 		this.kindergarten = kindergarten;
 		this.regDate = regDate;
+		this.isDel = isDel;
 	}
 
 	public int getRsIdx() {
@@ -123,12 +126,20 @@ public class Reservation {
 		this.regDate = regDate;
 	}
 
+	public String getIsDel() {
+		return isDel;
+	}
+
+	public void setIsDel(String isDel) {
+		this.isDel = isDel;
+	}
+
 	@Override
 	public String toString() {
 		return "Reservation [rsIdx=" + rsIdx + ", userId=" + userId + ", protectorName=" + protectorName
 				+ ", phoneNumber=" + phoneNumber + ", dogBreed=" + dogBreed + ", dogAge=" + dogAge + ", pickup="
 				+ pickup + ", isApproved=" + isApproved + ", requirements=" + requirements + ", kindergarten="
-				+ kindergarten + ", regDate=" + regDate + "]";
+				+ kindergarten + ", regDate=" + regDate + ", isDel=" + isDel + "]";
 	}
 
 }
