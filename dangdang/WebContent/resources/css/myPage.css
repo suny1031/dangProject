@@ -1,0 +1,19 @@
+@charset "UTF-8";
+
+.detail_board {
+	display: flex;
+	flex-direction: column;
+}
+
+#reservationBox {
+	width: 90%;
+	height: 70%;
+	margin: auto;
+	text-align: center;
+}
+table{
+	margin: auto;
+}
+td{
+	font-size: 1vw;
+}

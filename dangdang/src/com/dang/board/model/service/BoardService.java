@@ -1,6 +1,7 @@
 package com.dang.board.model.service;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,52 +14,71 @@ public class BoardService {
 	JDBCTemplate jdt = JDBCTemplate.getInstance();
 	private BoardDao boardDao = new BoardDao();
 	
-	public void BoardService() {
+	public BoardService() {
 		
 	}
 	
-	public ArrayList<Board> addBoard() {
+	public String getDate() {
+		return boardDao.getDate();
+	}
+	
+	public int getNext() {
 		Connection conn = jdt.getConnection();
-		ArrayList<Board> boardList;
+		int res = 0;
 		try {
-			boardList = boardDao.addBoard(conn);
+			res = boardDao.getNext();
+		} finally {
+			jdt.close(conn);
+		}
+		return res;
+	}
+	
+	public int addBoard(String title, String kgName, String content) {
+		Connection conn = jdt.getConnection();
+		int res = 0;
+		try {
+			res = boardDao.addBoard(title, kgName, content);
+		}finally {
+			jdt.close(conn);
+		}
+		return res;
+	}
+	
+	public ArrayList<Board> listBoard(int pageNumber){
+		Connection conn = jdt.getConnection();
+		ArrayList<Board> boardList = new ArrayList<>();
+		try {
+			boardList = boardDao.listBoard(pageNumber);
 		} finally {
 			jdt.close(conn);
 		}
 		return boardList;
 	}
 	
-	public List<Board> listBoard(){
-		Connection conn = jdt.getConnection();
-		List<Board> boardList = new ArrayList<>();
-		try {
-			boardList = boardDao.listBoard(conn);
-		} finally {
-			jdt.close(conn);
-		}
-		return boardList;
+	public boolean nextPage(int pageNumber) {
+		return boardDao.nextPage(pageNumber);
 	}
 	
-	public List<Board> modifyBoard(){
+	public int modifyBoard(String bdIdx) throws SQLException{
 		Connection conn = jdt.getConnection();
-		List<Board> boardList;
+		int res = 0;
 		try {
-			boardList = boardDao.modifyBoard(conn);
+			res = boardDao.modifyBoard(conn, bdIdx);
+			jdt.commit(conn);
 		} finally {
 			jdt.close(conn);
 		}
-		return boardList;
+		return res;
 	}
 	
-	public List<Board> viewBoard(){
+	public Board viewBoard(int bdIdx){
 		Connection conn = jdt.getConnection();
-		List<Board> boardList;
 		try {
-			boardList = boardDao.viewBoard(conn);
+			Board board = boardDao.viewBoard(bdIdx);
 		} finally {
 			jdt.close(conn);
 		}
-		return boardList;
+		return null;
 	}
 
 }

@@ -69,7 +69,7 @@
 					<section id="banner">
 						<div class="inner">
 							<h2 class="mainfont">댕댕아 놀면 뭐하니?</h2>
-							<p> 안녕하세요. ${sessionScope.userMember.nickname}님! <br><br> ${sessionScope.userMember.nickname}님의 반려동물이 <br>오늘 어떤 하루를 보냈을지 확인해보세요 ! </p>
+							<p> 안녕하세요. ${sessionScope.userMember.nickname}님! <br><br> ${sessionScope.userMember.nickname}님의 반려동물이 <br>오늘 어떤 하루를 보냈을지 확인해보세요! </p>
 						</div>	
 					</section>
 				</c:when>	
@@ -91,10 +91,10 @@
 							<header class="major">
 								<div class="main_login_box">
 									<div class="main_login">
-										<a href="/user/login.do">견주 로그인</a>
+										<a href="/user/login.do">견주</a>
 									</div>
 									<div class="main_login">
-										<a href="/school/login.do">업주 로그인</a>
+										<a href="/school/login.do">업주</a>
 									</div>
 								</div>	
 							</header>

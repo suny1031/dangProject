@@ -15,7 +15,7 @@
   	<url-pattern>*.do</url-pattern>
 </filter-mapping>
 
-    <filter>
+    <filter><!--모든 요청에서 작용함-->
   	<filter-name>auth</filter-name>
   	<filter-class>com.dang.common.filter.AuthFilter</filter-class>
   </filter>
@@ -30,5 +30,9 @@
 	<location>/exception</location>
 </error-page>
 
+
+<session-config>
+	<session-timeout>30</session-timeout>
+</session-config>
 
 </web-app>

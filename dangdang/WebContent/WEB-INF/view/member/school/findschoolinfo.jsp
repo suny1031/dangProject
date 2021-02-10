@@ -81,7 +81,7 @@
 							<table id ="find_pw_table">
 								<tr><td>아이디</td></tr>
 								<tr>
-									<td><input type="text" name="username" size=28% required></td>
+									<td><input type="text" name="id" size=28% required></td>
 								<tr>
 								<tr><td>유치원 이메일</td></tr>
 								<tr>

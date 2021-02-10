@@ -76,12 +76,12 @@
 					</div>
 				</div>
 				<div id="find_pw">
-					<div action="${context}/user/finduserpw.do" method="post" id="form_find_pw">
-						<div id="find_pw_field">
+					<div id="form_find_pw">
+						<form action="${context}/user/finduserpw.do" method="post" id="find_pw_field">
 							<table id ="find_pw_table">
 								<tr><td>아이디</td></tr>
 								<tr>
-									<td><input type="text" name="username" size=28% required></td>
+									<td><input type="text" name=id size=28% required></td>
 								<tr>
 								<tr><td>이메일</td></tr>
 								<tr>
@@ -91,7 +91,7 @@
 									<td id="find_id_btn"><button type="submit">비밀번호 찾기</button></td>
 								</tr>
 							</table>
-						</div>
+						</form>
 					</div>
 				</div>
 			</div>

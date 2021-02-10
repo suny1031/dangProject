@@ -31,7 +31,7 @@
 }
 
 #reviewWrite{
-   	padding: 2px;
+   	padding: 1px;
     background-color: #8b4513;
     border-radius: 10px;
     color: white;
@@ -39,7 +39,7 @@
     position: relative;
     margin-bottom: 0;
     left: 57.5%;
-    top: 9px;
+    top: 10px;
 }
 .reviewWrap {
 	width: 100%;

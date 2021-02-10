@@ -31,6 +31,8 @@ public class HttpUtils {
 
 	HttpURLConnection conn = null;
 
+	
+	
 	// 헤더가 없어도 쓸수 있는 메서드
 	public String get(String url) {
 		String res = "";
@@ -51,6 +53,9 @@ public class HttpUtils {
 		return res;
 
 	}
+	
+	
+	
 
 	public String get(String url, Map<String, String> headers) {
 		String res = "";
@@ -74,6 +79,10 @@ public class HttpUtils {
 		return res;
 
 	}
+	
+	
+	
+	
 
 	public String post(String url, String body, Map<String, String> headers) {
 
@@ -91,6 +100,10 @@ public class HttpUtils {
 
 	}
 
+	
+	
+	
+	
 	// 외부에서 body를 넘길때 인코딩
 	public String urlEncodedForm(Map<String, String> params) {
 		String res = "";
@@ -114,6 +127,10 @@ public class HttpUtils {
 
 	}
 
+	
+	
+	
+	
 	// 컨넥션 객체를 만들어줌
 	private void setConnection(String url, String method) throws IOException {
 
@@ -133,6 +150,9 @@ public class HttpUtils {
 
 	}
 
+	
+	
+	
 	// 헤더를 추가해줌
 	private void setHeaders(Map<String, String> headers) {
 		// Map.length = 0 돌지않는다
@@ -143,7 +163,11 @@ public class HttpUtils {
 
 	}
 
-	// body부분을 자겅
+	
+	
+	
+	
+	// body부분을 작성
 	private void setBody(String body) throws IOException {
 
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
@@ -157,6 +181,9 @@ public class HttpUtils {
 
 	}
 
+	
+	
+	
 	// 응답 데이터를 읽어옴
 	private String getResponse() throws IOException {
 
@@ -190,5 +217,13 @@ public class HttpUtils {
 		return res;
 
 	}
+	
+	
+
+	
+	
+	
+	
+	
 
 }

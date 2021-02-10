@@ -30,6 +30,29 @@
 </head>
 <body class="is-preload">
 
+	<%
+		String kgId = null;
+		if(session.getAttribute("kgId") != null){
+			kgId = (String)session.getAttribute("kgId");
+		}
+		int bdIdx = 0;
+		if(request.getParameter("bdIdx") != null){
+			bdIdx = Integer.parseInt(request.getParameter("bdIdx"));
+		}
+		if(bdIdx == 0){
+	%>
+		<script>
+			alert('등록되지 않은 글입니다.')
+			location.href = "BoardList1.jsp"
+		</script>
+	<%
+		}
+	%>
+	<%
+		// BoardService 호출
+		BoardService boardService = new BoardService();
+	%>
+
 	<!-- Page Wrapper -->
 	<div id="page-wrapper">
 
@@ -53,63 +76,44 @@
 				</ul>
 			</nav>
 		</header>
-		
-
-
-
-
-
-		<%
-			// BoardService 호출
-			BoardService boardService = new BoardService();
-		%>
-
 
 		<!-- Main -->
 		<section class="board">
 			<div class="content">
 				<h2 id="tit" class="mainfont">알림장</h2>
 				<br>
-				<form action="listboard1.do" method="post" enctype="multipart/form-data">
 					<div class="addBoard-wrap">
 						<table class="addBoard">
 							<thead class="addBoard-head">
 								<tr>
-									<th colspan="2" class="addBoard-top">알림장 작성</th>
+									<th colspan="3" class="addBoard-top">알림장 상세 페이지</th>
 								</tr>
 							</thead>
 							<tbody class="addBoard-body">
 								<tr>
-									<td><input type="text" class="addBoard-title"
-										placeholder="제목을 적어주세요." name="boardTitle" maxlength="50" required="required"></td>
+									<td style ="width: 20%;">제목</td>
+									<td colspan="2"><%= board.getTitle() %></td>
 								</tr>
 								<tr>
-									<td><textarea class="addBoard-content"
-											placeholder="내용을 적어주세요." name="boardContent" maxlength="2000" required="required"></textarea>
+									<td>유치원</td>
+									<td colspan="2"><%= board.getKgName() %></td>
 								</tr>
+								<tr>
+									<td>작성 일자</td>
+									<td colspan="2"><%= board.getRegDate().substring(0, 11) + board.getRegDate().substring(11,13) + "시" + board.getRegDate().substring(14, 16) + "분" %></td>
+								</tr>
+								<tr>
+									<td>내용</td>
+									<td colspan="2" style="mit-height: 200px; text-align: left;"><%= board.getContent() %></td>
+								</tr>
+								
 							</tbody>
 						</table>
 					</div>
-					<input type="submit" class="btn-addBoard" value="작성 완료">
-					<%		
-							int result = boardService.addBoard(board.getTitle(), board.getKgName(), board.getContent());
-							if(result == -1){
+					<a href = "BoardList1.jsp">목록</a>
+					<%
+						if(kgId != null && kgId.equals(board.getKgName()))
 					%>
-								<script>
-									alert('글쓰기에 실패했습니다.')
-									history.back();
-								</script>
-						<%
-							}else{
-						%>
-								<script>
-									location.href = BoardLsit1.jsp
-								</script>
-						<%
-							}
-						%>
-					
-				</form> 
 			</div>
 
 		</section>

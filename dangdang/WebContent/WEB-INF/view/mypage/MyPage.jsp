@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 <link rel="stylesheet" href="../../../../resources/css/main.css" />
+<link rel="stylesheet" href="/resources/css/myPage.css" />
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&display=swap" rel="stylesheet">
@@ -33,7 +34,7 @@
 									<c:when test ="${sessionScope.userMember != null}"><li><a href="/user/userpage.do">마이페이지</a></li></c:when>
 								</c:choose>
 								<li><a href="/map/map.do">유치원 찾기</a></li>
-								<li><a href="#">캘린더</a></li>
+								<li><a href="/reservation/calendar.do">캘린더</a></li>
 								<c:choose>
 									<c:when test ="${sessionScope.schoolMember != null}"><li><a href="/school/logout.do">로그아웃</a></li></c:when>
 									<c:when test ="${sessionScope.userMember != null}"><li><a href="/user/logout.do">로그아웃</a></li></c:when>
@@ -64,49 +65,71 @@
 						<div class="profile_name_board">
 							<c:choose>
 								<c:when test ="${sessionScope.schoolMember != null}">
-									<a class="profile_name">${sessionScope.schoolMember.kgName}</a><i class="fas fa-cog" onclick="location.href='/school/schoolprofile.do'"></i>
+									<a class="profile_name">${sessionScope.schoolMember.kgName}</a><i class="fas fa-cog profilebtn" onclick="location.href='/school/schoolprofile.do'"></i>
 								</c:when>
 								<c:when test ="${sessionScope.userMember != null}" >
-									<a class="profile_name">${sessionScope.userMember.nickname}</a><i class="fas fa-cog" onclick="location.href='/user/userprofile.do'"></i>
+									<a class="profile_name">${sessionScope.userMember.nickname}</a><i class="fas fa-cog profilebtn" onclick="location.href='/user/userprofile.do'"></i>
 								</c:when>
 							</c:choose>
 							
 						</div>
 					</div>
 				</div>
-				
-				<div id ="mypage_board">
-					<div class="mypage_detail">
-						<div class="detail_board">
-							<c:choose>
-								<c:when test ="${sessionScope.schoolMember != null}">
-									<a href="/board/listboard1.do" class="user_photo">앨범</a>
-								</c:when>
-								<c:when test ="${sessionScope.userMember != null}" >
-									<a href="/board/listboard2.do"  class="school_photo">앨범</a>
-								</c:when>
-							</c:choose>
-						</div>
-						<div class="detail_board">
-							<a>식단</a>
-						</div>
-					</div>
-					<div class="mypage_detail">
-						<div class="detail_board">
-							<a>공지사항</a>
-						</div>
-						<div class="detail_board">
-							<a>알림장</a>
-						</div>
-					</div>
+				<div id="mypage_board">
+				  <div class="mypage_detail">
+				    <div class="detail_board">
+				      <c:choose>
+				        <c:when test="${sessionScope.schoolMember != null}">
+				          <a href="/board/listboard1.do" class="user_photo">앨범</a>
+				        </c:when>
+				        <c:when test="${sessionScope.userMember != null}">
+				          <a href="/board/listboard2.do" class="school_photo">앨범</a>
+				        </c:when>
+				      </c:choose>
+				    </div>
+				    <div class="detail_board">
+				      <c:choose>
+				        <c:when test="${sessionScope.schoolMember != null}">
+				          <a href="/reservation/mngngRsrvt.do" class="school_photo">예약</a>
+				        </c:when>
+				        <c:otherwise>
+				        </c:otherwise>
+				      </c:choose>
+				      <div id="reservationBox">
+				        <div>
+				          <c:if test="${sessionScope.schoolMember != null}">
+				            <table>
+				              <tr>
+				                <td width="15%">번호</td>
+				                <td width="30%">예약번호</td>
+				                <td width="30%">ID</td>
+				                <td width="35%">신청일</td>
+				              </tr>
+				              <c:forEach var="reservation" items="${reservationPreview}" varStatus="status">
+				                <tr>
+				                  <td>${status.count}</td>
+				                  <td>${reservation.rsIdx}</td>
+				                  <td>${reservation.userId}</td>
+				                  <td>${reservation.regDate}</td>
+				                </tr>
+				              </c:forEach>
+				            </table>
+				          </c:if>
+				        </div>
+				      </div>
+				    </div>
+				  </div>
+				  <div class="mypage_detail">
+				    <div class="detail_board">
+				      <a>공지사항</a>
+				    </div>
+				    <div class="detail_board">
+				      <a>알림장</a>
+				    </div>
+				  </div>
 				</div>
 			</div>
-			
 		</section>
-
-
-
-
 		<!-- Footer -->
 		<footer id="footer">
 			<ul class="icons">

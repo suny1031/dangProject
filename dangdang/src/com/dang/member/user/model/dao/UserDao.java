@@ -107,9 +107,9 @@ public class UserDao {
 	
 	
 	
-	//아이디찾기시 쓸 기능
+	//아이디 찾기시 쓸 기능
 	//userMember의 아이디와 핸드폰 번호를 기준으로 userMember의 데이터가 존재하는지 확인하는 메소드
-	public UserMember selectUserByName(Connection conn, String userName, String phoneNumber) {
+	public UserMember findUserId(Connection conn, String userName, String phoneNumber) {
 		
 		UserMember userMember = null;
 		PreparedStatement pstm = null;
@@ -146,6 +146,51 @@ public class UserDao {
 		return userMember;	
 	
 	}
+	
+	//해당 정보에 맞는 회원검색
+	public UserMember findUserPw(Connection conn, String userId, String userEmail) {
+		
+		UserMember userMember = null;
+		PreparedStatement pstm = null;
+		ResultSet rset = null;
+		
+		String query = "select * from member where user_id = ? and email = ?";
+		
+		try {
+			pstm = conn.prepareStatement(query);
+			pstm.setString(1, userId);
+			pstm.setString(2, userEmail);
+			
+			rset = pstm.executeQuery();
+			
+			//결과값이 있다면
+			if(rset.next()) {
+				userMember = new UserMember();
+				userMember.setUserId(rset.getString("user_id"));
+				userMember.setUserName(rset.getString("user_name"));
+				userMember.setKgName(rset.getString("kg_name"));
+				userMember.setClassName(rset.getString("class_name"));
+				userMember.setEmail(rset.getString("email"));
+				userMember.setBirth(rset.getDate("birth"));
+				userMember.setPhoneNumber(rset.getString("phone_number"));
+				userMember.setNickname(rset.getString("nickname"));
+				userMember.setClassName(rset.getString("class_name"));
+				userMember.setGrade(rset.getString("grade"));
+			}
+			
+		} catch (SQLException e) {
+			throw new DataAccessException(ErrorCode.SM01, e);
+			
+		} finally {
+			jdt.close(rset, pstm);
+		}
+
+		return userMember;	
+	
+	}
+	
+	
+	
 	
 	
 	//join시 필요한 기능

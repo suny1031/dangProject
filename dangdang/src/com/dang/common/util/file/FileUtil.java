@@ -148,7 +148,7 @@ public class FileUtil {
 					// param 파트라면
 					// 파트에 file / param있음
 					// 다운 캐스팅 파트에서 더이상 쓸게 없음
-					// param쓸거니까 part -> param으로다운 캐스팅
+					// param쓸거니까 part -> param으로 다운캐스팅
 					ParamPart params = (ParamPart) part;
 
 					List<String> paramList = getParamValue(params);

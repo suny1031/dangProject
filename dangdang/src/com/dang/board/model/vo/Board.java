@@ -1,14 +1,13 @@
 package com.dang.board.model.vo;
 
-import java.sql.Date;
-
 public class Board {
 	
 	private int bdIdx;
 	private String kgName;
 	private String title;
-	private Date regDate;
+	private String regDate;
 	private String content;
+	
 	public int getBdIdx() {
 		return bdIdx;
 	}
@@ -33,11 +32,11 @@ public class Board {
 		this.title = title;
 	}
 	
-	public Date getRegDate() {
+	public String getRegDate() {
 		return regDate;
 	}
 	
-	public void setRegDate(Date regDate) {
+	public void setRegDate(String regDate) {
 		this.regDate = regDate;
 	}
 	
@@ -47,6 +46,12 @@ public class Board {
 	
 	public void setContent(String content) {
 		this.content = content;
+	}
+
+	@Override
+	public String toString() {
+		return "Board [bdIdx=" + bdIdx + ", kgName=" + kgName + ", title=" + title + ", regDate=" + regDate
+				+ ", content=" + content + "]";
 	}
 	
 	

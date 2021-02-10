@@ -268,7 +268,7 @@ public class ReservationDao {
 		PreparedStatement pstm = null;
 
 		ResultSet rset = null;
-
+		System.out.println(kgName);
 		try {
 
 			String query = "select * from reservation where KINDERGARTEN = ? and IS_APPROVED = 1 ";

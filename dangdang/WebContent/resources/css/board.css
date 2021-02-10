@@ -1,4 +1,4 @@
-/* boardList  */
+ /* boardList  */
 .board {
   margin: 7% 20% 7% 20%;
 }
@@ -10,6 +10,8 @@
 #tit {
   text-align: left;
   font-size: 2vw;
+  color: #8B4513;
+  
 }
 
 .list_board {
@@ -255,5 +257,71 @@ a {
 	background: #8b4513;
 	border-radius: 150px;
 	color: white;
-	font-size: 12pt;
+	font-size: 14pt;
+}
+
+/* ListBoard1 수정 */
+table {
+	border-collapse: collapse;
+}
+
+.boardList {
+	width: 100%;
+}
+
+.boardList tr {
+	border-bottom: 1px solid #999;
+}
+
+.boardList th,
+.boardList td {
+	padding: 10px;
+	font-size: 14pt;
+}
+
+.boardList td {
+	text-align: center;
+}
+
+.boardList .title{
+	text-align: left;
+}
+
+.boardList .title:hover {
+	text-decoration: underline;
+}
+
+/* addBoard */
+.addBoard-wrap{
+	width: 100%;
+	height: 700px;
+}
+
+.addBoard {
+	width: 100%;
+}
+
+.addBoard-top {
+	text-align: center;
+	width: 100%;
+	background-color: #FFF8DC; 
+	margin: 2px 0 2px 0;
+	height: 50px;
+	border: 1px solid;
+}
+
+.addBoard-title {
+	width: 100%;
+	margin-bottom: 2px;
+}
+
+.addBoard-content{
+	width: 100%;
+	height: 600px;
+	margin-bottom: 2px;
+}
+
+.btn-addBoard {
+	background-color: #FFF8DC; 
+	float: right;
 }

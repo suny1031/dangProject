@@ -53,7 +53,7 @@
 
 		<!-- Main -->
 		<section class="user_board">
-			<form action="${context}/user/joinimpl.do" method="post" id="form_join">
+			<form action="${context}/user/mailauth.do" method="post" id="form_join">
 				<fieldset id="join_field">
 					<table id ="join_table">
 						<tr><td>아이디<span class="valid_info" id ="idCheck"></span></td></tr>
@@ -65,7 +65,7 @@
 						
 						<tr><td>비밀번호<span class="valid_info" id = "pw_confirm"></span></td></tr>
 						<tr>
-							<td><input type="text" name="pw" id="pw" size=28% placeholder ="비밀번호를 입력하세요" required>
+							<td><input type="password" name="pw" id="pw" size=28% placeholder ="비밀번호를 입력하세요" required>
 							
 							</td>
 						<tr>
@@ -97,7 +97,7 @@
 						<tr> 
 						<tr><td>생년월일</td></tr>
 						<tr>
-							<td><input type="date" name="birth" ></td>
+							<td><input type="date" name="birth" required></td>
 						<tr>
 						
 						<tr>
@@ -143,89 +143,7 @@
 	<script src="../../../../resources/js/util.js"></script>
 	<script src="../../../../resources/js/main.js"></script>
 	<script src="../../../../resources/js/member.js"></script>
-	<script type="text/javascript">
-	// JS 전역변수로 뺴주어야 한다.
-	let idCheckFlg = false;
 	
-	// 있는 아이디인지 확인을 위해 필요한 js
-	let idCheck = () => {
-		
-		let headerObj = new Headers();
-		headerObj.append('content-type', "application/x-www-form-urlencoded");
-		
-		
-		// 사용자가 입력한 아이디값을 받아서
-		let userId = id.value; //id가 id인 데이터의 value값
-		let idCheck = document.querySelector('#idCheck');
-		let url = "/user/idcheck.do"
-		
-		if(userId){ // true일때
-			fetch(url,{
-				method: "post",
-				headers: headerObj,
-				body: "userId=" + userId
-				
-			}).then(response => response.text()) // then해주면 응답(response)이 넘어옴, 바로 return
-			  .then((message)=>{ // message가 넘어올 것
-				if(message == 'available'){
-					idCheckFlg = true;
-					idCheck.innerHTML = '사용 가능한 아이디 입니다.';
-				} else {
-					idCheckFlg = false;
-					idCheck.innerHTML = '사용 불가능한 아이디 입니다.';
-				}				
-			  }).catch(error => {
-				 
-				  error.alertMessage();
-			  })
-		} else {
-			alert('아이디를 입력하지 않았습니다.');	
-		}
-	}
-	
-	
-	
-	// 아이디체크와 비밀번호 조합이 잘되었는지 확인하고 비밀번호가 서로 일치하는지 확인하는 js
-	   document.querySelector('#form_join').addEventListener('submit',(e) => {
-		     //  요소의 아이디로 엘리먼트 객체 호출 가능(웹표준이 아님)    
-		      if(!idCheckFlg){
-		         alert("아이디 중복검사를 통과하지 못했습니다.");
-		         id.value = "";
-		         e.preventDefault();
-		      }
-		      
-		      let password = pw.value;
-		      let regExp = /^(?!.*[ㄱ-힣])(?=.*\W)(?=.*\d)(?=.*[a-zA-Z])(?=.{8,})/;
-		     
-		      if(!(regExp.test(password))){
-		         //form의 데이터 전송을 막음
-		         e.preventDefault();
-		         pw_confirm.innerHTML = '비밀번호는 숫자,영문자,특수문자 조합의 8글자 이상이어야 합니다.';
-		         pw.value = '';
-		      } else {
-		    	  
-		    	  let firstPw =  pw.value;
-				  let secondPw = checkpw.value;
-				  //비밀번호 double check 메소드
-				  if(firstPw != secondPw){
-					
-						document.querySelector("#pw_confirm").innerHTML = '비밀번호가 맞지 않습니다.';
-						checkpw.value= ""; //pw의 value값 비워주기
-						e.preventDefault(); //데이터전송 막기
-					} else {
-						document.querySelector("#pw_confirm").innerHTML = '비밀번호가 확인되었습니다.';
-					}
-			   
-		      }
-		      
-		
-		   }); 
-
-	   
-
-
-	
-	</script>
 	
 </body>
 </html>

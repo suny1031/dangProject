@@ -983,7 +983,7 @@ body.is-mobile.landing .user_profile{
 .myprofile_board {
 	background-color: white;
 	color: black;
-	height: 130vh;
+	height: 165vh;
 	display: flex;
 	justify-content:center;
 	margin-top: 80px;
@@ -1336,7 +1336,7 @@ body.is-mobile.landing .user_profile{
 
 .school_info_form{
 	width: 75vw;
-	height: 120vh;
+	height: 150vh;
     border: solid 1px;
     border-radius: 3%;
     display: flex;
@@ -1643,7 +1643,7 @@ body.is-mobile.landing .user_profile{
 
 .fas{
 	cursor: pointer;
-	color: grey;
+
 }
 
 
@@ -1653,8 +1653,15 @@ body.is-mobile.landing .user_profile{
 
 #withdraw_btn{
 	margin-right: 45px;
+	
 }
 
 #sort_school_service span{
 	display: contents;
+}
+
+
+.profilebtn{
+	color: grey;
+	
 }
