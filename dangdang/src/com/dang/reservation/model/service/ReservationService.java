@@ -168,5 +168,18 @@ public class ReservationService {
 		return reservationList;
 
 	}
+	
+	public ArrayList<Reservation> selectUserPreview(String userId) {
+		Connection conn = jdt.getConnection();
+		ArrayList<Reservation> reservationList;
+		try {
+			reservationList = reservationDao.selectUserPreview(conn, userId);
+
+		} finally {
+			jdt.close(conn);
+		}
+		return reservationList;
+
+	}
 
 }

@@ -98,6 +98,8 @@ public class ReservationController extends HttpServlet {
 		String pickup = request.getParameter("pickup");
 		String date = request.getParameter("date");
 
+		
+		
 		java.sql.Date regDate = java.sql.Date.valueOf(date);
 
 		Reservation reservation = new Reservation();
@@ -110,11 +112,15 @@ public class ReservationController extends HttpServlet {
 		reservation.setDogBreed(dogBreed);
 		reservation.setRequirements(requestedTerm);
 		reservation.setRegDate(regDate);
+		reservation.setPickup(pickup);
 		
-		if (pickup != null) {
-			reservation.setPickup(pickup);
-		}
-
+		  if (pickup != null) { 
+			  reservation.setPickup(pickup);
+		  }else {
+			  reservation.setPickup("1");
+		  }
+		 
+		
 		// 사용자에게 보여줄 view page 지정
 		request.setAttribute("alertMsg", "예약 신청이 완료 되었습니다");
 		request.setAttribute("url", "/main.do");
@@ -133,6 +139,7 @@ public class ReservationController extends HttpServlet {
 
 		Service service = mapService.selectService(schoolMember.getKgName());
 		String kgName = schoolMember.getKgName();
+		
 		request.setAttribute("service", service);
 		request.setAttribute("kgName", kgName);
 

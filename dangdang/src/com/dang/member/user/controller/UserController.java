@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.UUID;
 
@@ -13,12 +13,16 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.dang.common.code.ErrorCode;
 import com.dang.common.exception.ToAlertException;
 import com.dang.common.random.RandomString;
+import com.dang.member.school.model.vo.SchoolMember;
 import com.dang.member.user.model.service.UserService;
 import com.dang.member.user.model.vo.UserMember;
+import com.dang.reservation.model.service.ReservationService;
+import com.dang.reservation.model.vo.Reservation;
 import com.google.gson.Gson;
 
 /**
@@ -28,6 +32,8 @@ import com.google.gson.Gson;
 public class UserController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private UserService userService = new UserService();
+	private ReservationService reservationService = new ReservationService();
+
     Gson gson = new Gson();
    
     public UserController() {
@@ -244,6 +250,17 @@ public class UserController extends HttpServlet {
 	
 	protected void viewUserPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		HttpSession session = request.getSession();
+		UserMember userMember = (UserMember) session.getAttribute("userMember");
+		String userId = userMember.getUserId();
+		
+		ArrayList<Reservation> reservationPreview = reservationService.selectUserPreview(userId);
+		
+		System.out.println(reservationPreview);
+		
+		request.setAttribute("reservationPreview", reservationPreview);
+		
+
 		request.getRequestDispatcher("/WEB-INF/view/mypage/mypage.jsp").forward(request, response);
 		
 		

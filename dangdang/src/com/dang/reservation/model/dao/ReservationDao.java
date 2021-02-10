@@ -45,6 +45,7 @@ public class ReservationDao {
 			pstm.setString(7, reservation.getRequirements());
 			pstm.setString(8, reservation.getKindergarten());
 			pstm.setDate(9, reservation.getRegDate());
+			System.out.println("pick"+reservation.getPickup());
 			insert = pstm.executeUpdate();
 
 		} catch (SQLException e) {
@@ -268,10 +269,10 @@ public class ReservationDao {
 		PreparedStatement pstm = null;
 
 		ResultSet rset = null;
-		System.out.println(kgName);
+
 		try {
 
-			String query = "select * from reservation where KINDERGARTEN = ? and IS_APPROVED = 1 ";
+			String query = "select * from reservation where KINDERGARTEN = ? and IS_APPROVED = 1 and ROWNUM BETWEEN 1 and 5 order by RS_IDX asc";
 
 			pstm = conn.prepareStatement(query);
 			
@@ -305,5 +306,50 @@ public class ReservationDao {
 		return reservationList;
 
 	}
+	
+	//예약 미리보기
+		public ArrayList<Reservation> selectUserPreview(Connection conn, String userId) {
+
+			ArrayList<Reservation> reservationList  = new ArrayList<>();
+
+			PreparedStatement pstm = null;
+
+			ResultSet rset = null;
+			try {
+
+				String query = "select * from reservation where USER_ID = ? and ROWNUM BETWEEN 1 and 5 order by RS_IDX asc";
+
+				pstm = conn.prepareStatement(query);
+				
+				pstm.setString(1, userId);
+
+				rset = pstm.executeQuery();
+
+				while (rset.next()) {
+					Reservation reservation = new Reservation();
+					reservation.setRsIdx(rset.getInt("RS_IDX"));
+					reservation.setUserId(rset.getString("USER_ID"));
+					reservation.setProtectorName(rset.getString("PROTECTOR_NAME"));
+					reservation.setPhoneNumber(rset.getString("PHONE_NUMBER"));
+					reservation.setDogBreed(rset.getString("DOG_BREED"));
+					reservation.setDogAge(rset.getString("DOG_AGE"));
+					reservation.setPickup(rset.getString("PICKUP"));
+					reservation.setIsApproved(rset.getString("IS_APPROVED"));
+					reservation.setKindergarten(rset.getString("KINDERGARTEN"));
+					reservation.setRegDate(rset.getDate("REG_DATE"));
+					reservation.setRequirements(rset.getString("REQUIREMENTS"));
+					reservation.setIsDel(rset.getString("IS_DEL"));
+					reservationList.add(reservation);
+				}
+
+			} catch (SQLException e) {
+				throw new DataAccessException(ErrorCode.API01, e);
+			} finally {
+				jdt.close(rset, pstm);
+			}
+
+			return reservationList;
+
+		}
 
 }

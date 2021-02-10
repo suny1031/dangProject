@@ -113,9 +113,13 @@
 				<td class = "infrm" width="10%">휴대폰번호</td>
 				<td class = "infrm" width="10%">강아지 종</td>
 				<td class = "infrm" width="7%">강아지 나이</td>
-					<c:if test = "${service.getIsPickup() == 0}">
+				<c:choose>
+					<c:when test="${service.getIsPickup() == 0}">
 						<td class = "infrm" width="7%">픽업 여부</td>
-					</c:if>
+					</c:when>
+					<c:otherwise>
+					</c:otherwise>
+				</c:choose>
 				<td class = "infrm" width="10%">신청일</td>				
 				<td class = "infrm" width="20%">요구사항</td>
 				<td class = "infrm" width="10%">승인여부</td>
@@ -135,15 +139,17 @@
 				<td><%=reservation.getPhoneNumber()%></td>
 				<td><%=reservation.getDogBreed()%></td>
 				<td><%=reservation.getDogAge()%></td>
-				<%if(reservation.getPickup() != null) {%>
+				<c:choose>
+				<c:when test="${service.getIsPickup() == 0}">
 		 				<%if (reservation.getPickup().equals("0")){ %>
 						<td>희망</td>
 						<%}else {%>
 						<td>비희망</td>
 						<%} %> 
-				<%}else{ %>
-					
-					<%} %> 
+						</c:when>
+					<c:otherwise>
+					</c:otherwise>
+				</c:choose>
 					<td class = "date"><%=reservation.getRegDate()%></td>
 					<td><%=reservation.getRequirements()%></td>
 					<%if (reservation.getIsApproved().equals("1")){ %>

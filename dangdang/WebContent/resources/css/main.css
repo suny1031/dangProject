@@ -34,8 +34,6 @@ body {
 	line-height: 1;
 }
 
-
-
 ol, ul {
 	list-style: none;
 }
@@ -48,7 +46,6 @@ blockquote:before, blockquote:after, q:before, q:after {
 	content: '';
 	content: none;
 }
-
 
 body {
 	-webkit-text-size-adjust: none;
@@ -64,10 +61,9 @@ input::-moz-focus-inner {
 	padding: 0;
 }
 
-
-
 /* Basic */
-@-ms-viewport {
+@
+-ms-viewport {
 	width: device-width;
 }
 
@@ -78,8 +74,6 @@ html {
 *, *:before, *:after {
 	box-sizing: inherit;
 }
-
-
 
 body.is-preload *, body.is-preload *:before, body.is-preload *:after {
 	-moz-animation: none !important;
@@ -97,7 +91,6 @@ body, input, select, textarea {
 	font-size: 15pt;
 	font-weight: 400;
 	letter-spacing: 0.075em;
-	
 }
 
 @media screen and (max-width: 1680px) {
@@ -122,46 +115,28 @@ body, input, select, textarea {
 @media screen and (max-width: 736px) {
 	.member_mypage {
 		flex-direction: column;
-	
 	}
-	
-	.member_mypage > div{
-		margin:auto;
+	.member_mypage>div {
+		margin: auto;
 	}
-	
 	#profile_photo {
 		display: none;
-	
 	}
- 
-	#mypage_board{
-
-   	 	margin-bottom : 20px;
+	#mypage_board {
+		margin-bottom: 20px;
 	}
-	
-	
-	
 	.profile_name_board {
 		font-size: 6vw;
-	    border: solid 1px;
-	    width: 25vw;
-	    height: 5vh;
-	    border-radius: 20%;
-	    background-color: darkseagreen;
-			
+		border: solid 1px;
+		width: 25vw;
+		height: 5vh;
+		border-radius: 20%;
+		background-color: darkseagreen;
 	}
-	
-	#dangmark{
+	#dangmark {
 		width: 70px;
-	
 	}
-	
 }
-
-
-
-
-
 
 a:hover {
 	border-bottom-color: transparent;
@@ -181,12 +156,10 @@ p {
 }
 
 h1, h2, h3, h4, h5, h6 {
-	
 	font-weight: 800;
 	letter-spacing: 0.225em;
 	line-height: 1em;
 	margin: 0 0 0.4em 0;
-	
 }
 
 h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
@@ -205,8 +178,6 @@ h2 {
 		line-height: 1.65em;
 	}
 }
-
-
 
 @media screen and (max-width: 736px) {
 	h3 {
@@ -229,8 +200,6 @@ h6 {
 	font-size: 0.7em;
 	line-height: 1.5em;
 }
-
-
 
 sub {
 	font-size: 0.8em;
@@ -327,10 +296,8 @@ ul.actions.special li:first-child {
 	padding-left: 0;
 }
 
-
-
 @media screen and (max-width: 480px) {
-	ul.actions:not(.fixed) {
+	ul.actions:not (.fixed ) {
 		-moz-flex-direction: column;
 		-webkit-flex-direction: column;
 		-ms-flex-direction: column;
@@ -338,7 +305,7 @@ ul.actions.special li:first-child {
 		margin-left: 0;
 		width: 100% !important;
 	}
-	ul.actions:not(.fixed) li {
+	ul.actions:not (.fixed ) li {
 		-moz-flex-grow: 1;
 		-webkit-flex-grow: 1;
 		-ms-flex-grow: 1;
@@ -351,27 +318,25 @@ ul.actions.special li:first-child {
 		text-align: center;
 		width: 100%;
 	}
-	ul.actions:not(.fixed) li>* {
+	ul.actions:not (.fixed ) li>* {
 		width: 100%;
 	}
-	ul.actions:not(.fixed) li:first-child {
+	ul.actions:not (.fixed ) li:first-child {
 		padding-top: 0;
 	}
-	ul.actions:not(.fixed) li input[type="submit"], ul.actions:not(.fixed) li input[type="reset"],
-		ul.actions:not(.fixed) li input[type="button"], ul.actions:not(.fixed) li button,
-		ul.actions:not(.fixed) li .button {
+	ul.actions:not (.fixed ) li input[type="submit"], ul.actions:not (.fixed
+		) li input[type="reset"], ul.actions:not (.fixed ) li input[type="button"],
+		ul.actions:not (.fixed ) li button, ul.actions:not (.fixed ) li .button
+		{
 		width: 100%;
 	}
-	ul.actions:not(.fixed) li input[type="submit"].icon:before, ul.actions:not(.fixed) li input[type="reset"].icon:before,
-		ul.actions:not(.fixed) li input[type="button"].icon:before, ul.actions:not(.fixed) li button.icon:before,
-		ul.actions:not(.fixed) li .button.icon:before {
+	ul.actions:not (.fixed ) li input[type="submit"].icon:before, ul.actions:not
+		(.fixed ) li input[type="reset"].icon:before, ul.actions:not (.fixed ) li input[type="button"].icon:before,
+		ul.actions:not (.fixed ) li button.icon:before, ul.actions:not (.fixed
+		) li .button.icon:before {
 		margin-left: -0.5em;
 	}
 }
-
-
-
-
 
 /* Page Wrapper + Menu */
 #menu {
@@ -632,7 +597,6 @@ body.is-menu-visible #menu {
 	transition-delay: 0.35s;
 	background: #8B4513;
 	content: '';
-
 	display: block;
 	height: 2px;
 	position: absolute;
@@ -653,7 +617,7 @@ body.is-menu-visible #menu {
 	letter-spacing: 0.25em;
 	text-transform: uppercase;
 	/* line-hight:  */
-	font-size:1.7vw;
+	font-size: 1.7vw;
 	font-family: 'Gamja Flower', cursive;
 	color: #8B4513;
 }
@@ -668,8 +632,8 @@ body.is-menu-visible #menu {
 	-ms-transition: -ms-transform 0.75s ease, opacity 0.75s ease;
 	transition: transform 0.5s ease, opacity 0.5s ease;
 	-moz-transition-delay: 1s;
-	-webkit-transition-delay:1s;
-	-ms-transition-delay:1s;
+	-webkit-transition-delay: 1s;
+	-ms-transition-delay: 1s;
 	transition-delay: 1s;
 	-moz-transform: translateY(0);
 	-webkit-transform: translateY(0);
@@ -766,21 +730,17 @@ body.is-preload #banner:after {
 }
 
 /* Main */
-
-
 .main {
 	background-color: white;
 	color: black;
-	height : 630px;
+	height: 630px;
 	display: flex;
-	justify-content:center;
-	
+	justify-content: center;
 }
 
 .main>.inner {
 	width: 60em;
 	margin: auto;
-	
 }
 
 @media screen and (max-width: 1280px) {
@@ -797,43 +757,36 @@ body.is-preload #banner:after {
 
 .main.alt {
 	padding: 0;
-	
 }
-.main_login_box{
+
+.main_login_box {
 	display: flex;
 	justify-content: center;
 }
 
-
 .main_login {
-
 	width: 15vh;
-    height: 15vh;
-    min-width: 100px;
-	background-color : #8B4513;
+	height: 15vh;
+	min-width: 100px;
+	background-color: #8B4513;
 	border: solid;
 	border-color: black;
 	border-radius: 15%;
-	margin : 5px;
+	margin: 5px;
 	display: flex;
 	justify-content: center;
 	cursor: pointer;
-	
 }
 
-.main_login a{
-	color : white;
+.main_login a {
+	color: white;
 	font-size: 1.3vw;
 	display: flex;
 	jutify-content: center;
 	margin: auto;
 	font-family: 'Gamja Flower', cursive;
 	text-align: center;
-	
-
 }
-
-
 
 /* Footer */
 #footer {
@@ -884,7 +837,6 @@ body.is-preload #banner:after {
 #footer .copyright li a:hover {
 	color: #fff;
 } */
-
 @media screen and (max-width: 480px) {
 	#footer .copyright li {
 		border: 0;
@@ -928,29 +880,26 @@ body.is-mobile.landing #banner {
 	background-color: #FFF8DC;
 }
 
-
 body.is-mobile.landing #footer {
 	background-color: rgb(135, 131, 130);
 }
 
-body.is-mobile.landing .user_profile{
+body.is-mobile.landing .user_profile {
 	display: flex;
 	flex-direction: column;
 }
-
-
 
 .mainfont {
 	font-family: 'Jua', sans-serif;
 	margin-bottom: 30px;
 }
 
-#headermain{
-	word-spacing:-7px;
+#headermain {
+	word-spacing: -7px;
 	font-size: 1.4vw;
 }
 
-#dangmark{
+#dangmark {
 	width: 100px;
 	height: 100%;
 	background-size: cover;
@@ -959,33 +908,28 @@ body.is-mobile.landing .user_profile{
 }
 
 @media screen and (max-width: 736px) {
-	#dangmark{
+	#dangmark {
 		width: 70px;
 		height: 70px;
 	}
 }
 
-
-
-
 /* css _miyoung*/
-
 .user_board {
 	background-color: white;
 	color: black;
 	height: 100vh;
 	display: flex;
-	justify-content:center;
+	justify-content: center;
 	margin-top: 80px;
 }
-
 
 .myprofile_board {
 	background-color: white;
 	color: black;
 	height: 165vh;
 	display: flex;
-	justify-content:center;
+	justify-content: center;
 	margin-top: 80px;
 }
 
@@ -996,34 +940,29 @@ body.is-mobile.landing .user_profile{
 	background-color: white;
 	display: flex;
 	flex-direction: column;
-	justify-content:center;
- 
-	
+	justify-content: center;
 }
 
-.user_login_form > * {
+.user_login_form>* {
 	margin-top: 3px;
 	font-size: 1vw;
-	
-	}
+}
 
-.user_login_form > input{
+.user_login_form>input {
 	border: 1px solid black;
 	height: 30px;
 }
 
-
-#user_moreselect{
+#user_moreselect {
 	display: flex;
 	justify-content: space-between;
-	
 }
 
-#user_moreselect > *{
+#user_moreselect>* {
 	color: black;
 }
 
-#login_btn{
+#login_btn {
 	height: 30px;
 	background-color: #8B4513;
 	color: white;
@@ -1033,131 +972,106 @@ body.is-mobile.landing .user_profile{
 	font-size: 1.2vw;
 }
 
-.member_mypage{
+.member_mypage {
 	margin: auto;
 	width: 100%;
-    height: 100%;
+	height: 100%;
 	background-color: white;
 	display: flex;
 	justify-content: space-around;
 	font-size: 1.3vw;
-	
-
 }
 
-
-.member_mypage a{
+.member_mypage a {
 	margin-left: 1vw;
 	margin-right: 1vw;
-	margin-bottom:1px;
+	margin-bottom: 1px;
 	margin-top: 1vw;
 	color: black;
+	font-weight: bold;
 }
 
-#mypage_profile{
-    width: 60%;
-    height: 50%;
-   	margin-top: 10%;
-    display: flex;
-    text-align: center;
-    justify-content: center;
-    flex-direction: column;
+#mypage_profile {
+	width: 60%;
+	height: 50%;
+	margin-top: 10%;
+	display: flex;
+	text-align: center;
+	justify-content: center;
+	flex-direction: column;
 }
 
-
-#mypage_board{
+#mypage_board {
 	width: 70%;
 	height: 100%;
-	
 }
 
-#mypage_profile > div{
+#mypage_profile>div {
 	display: flex;
 	justify-content: center;
 	margin: auto;
 	flex-direction: column;
-	
 }
 
-
-#mypage_board>div{
+#mypage_board>div {
 	width: 100%;
 	height: 50%;
-	background-color: pink;
-
-	
+	background-color: #cacaca;
 }
 
-.mypage_detail{
+.mypage_detail {
 	display: flex;
-	
-
 }
 
-
-.detail_board{
+.detail_board {
 	display: flex;
 	width: 50vw;
-    border: solid 0.5px;
-  	
-	
+	border: solid 0.5px;
 }
 
-
-
-
-
-#form_join{
+#form_join {
 	margin: auto;
 	min-height: 200px;
 	background-color: white;
 	display: flex;
 	flex-direction: column;
 	font-size: 1.2vw;
-	
 }
-#form_join *{
+
+#form_join * {
 	font-size: 1vw;
 }
 
-#join_table input{
-    border: solid 1px;
-    margin: 10px 0;
-   
+#join_table input {
+	border: solid 1px;
+	margin: 10px 0;
 }
 
-
-
-#join_btn_part{
-	display:flex;
+#join_btn_part {
+	display: flex;
 	justify-content: space-between;
 	margin-top: 10px;
 }
 
-#join_table button{
+#join_table button {
 	height: 3.5vh;
-    background-color: #8B4513;
-    color: white;
-    border: solid 1px grey;
-    border-radius: 11px;
-    ont-size: 1vw;
-    font-size: 1vw;
-    font-family: 'Gamja Flower', cursive;
+	background-color: #8B4513;
+	color: white;
+	border: solid 1px grey;
+	border-radius: 11px;
+	ont-size: 1vw;
+	font-size: 1vw;
+	font-family: 'Gamja Flower', cursive;
 }
-
-
-
-
 
 .school_board {
 	background-color: white;
 	color: black;
 	height: 100vh;
 	display: flex;
-	justify-content:center;
+	justify-content: center;
 	margin-top: 80px;
 }
-
 
 .school_login_form {
 	margin: auto;
@@ -1166,207 +1080,183 @@ body.is-mobile.landing .user_profile{
 	background-color: white;
 	display: flex;
 	flex-direction: column;
-	justify-content:center;
+	justify-content: center;
 }
 
-
-.school_login_form > * {
+.school_login_form>* {
 	margin-top: 3px;
 	font-size: 1vw;
-	
-	}
+}
 
-.school_login_form > input{
+.school_login_form>input {
 	border: 1px solid black;
 	height: 30px;
 }
 
-
-
-
-#find_info{
- color: black;	
+#find_info {
+	color: black;
 }
 
 /* profile*/
-
-#profile_photo{
-    background-color: darkseagreen;
-    background-size: cover;
-    background-position: center;
-    background-image: url(/resources/css/images/dang.png);
-    height: 150px;
-    width: 150px;
-    border: solid 1px grey;
-    border-radius: 53%;
-    margin-bottom: 20px;
+#profile_photo {
+	background-color: darkseagreen;
+	background-size: cover;
+	background-position: center;
+	background-image: url(/resources/css/images/dang.png);
+	height: 150px;
+	width: 150px;
+	border: solid 1px grey;
+	border-radius: 53%;
+	margin-bottom: 20px;
 }
 
 .profile_name {
 	font-size: 2vw;
-    font-family: 'Gamja Flower', cursive;
-    font-weight: bold;
-    margin-top: 10px;
-	
+	font-family: 'Gamja Flower', cursive;
+	font-weight: bold;
+	margin-top: 10px;
 }
 
-#user_profile{
+#user_profile {
 	display: flex;
 }
-
 
 .profile_info {
 	border: solid 1px;
 	width: 70vw;
-    min-height: 95vh;
+	min-height: 95vh;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	margin: auto;
-	
 }
 
 @media screen and (max-width: 736px) {
 	.profile_info {
 		display: flex;
-		width:80vw;
-
+		width: 80vw;
 	}
 }
 
-.info_form{
+.info_form {
 	width: 60vh;
-    height: 80vh;
-    border: solid 1px;
-    border-radius: 3%;
-    display: flex;
-    justify-content: center;
+	height: 80vh;
+	border: solid 1px;
+	border-radius: 3%;
+	display: flex;
+	justify-content: center;
 }
 
-
-#modify_form{
+#modify_form {
 	display: flex;
-    justify-content: center;
-    width: 100%;
+	justify-content: center;
+	width: 100%;
 }
 
-#kg_form{
+#kg_form {
 	display: flex;
-    justify-content: center;
-   	width: 35%;
-   	margin:auto;
+	justify-content: center;
+	width: 35%;
+	margin: auto;
 }
 
 #personal_info {
 	width: 80%;
-	margin:auto;
-
+	margin: auto;
 }
 
 @media screen and (max-width: 736px) {
 	#personal_info {
 		width: 90%;
-
 	}
 }
 
-#kg_info{
+#kg_info {
 	margin: auto;
 	text-align: center;
 }
 
-#modify_info{
+#modify_info {
 	display: flex;
 	flex-direction: column;
-    justify-content: center;
-    height: 95%;
+	justify-content: center;
+	height: 95%;
 }
 
-#modify_info *{
+#modify_info * {
 	margin-top: 1vh;
-    font-size: 1.2vw;
-    width: 20vw;
+	font-size: 1.2vw;
+	width: 20vw;
 }
- 
 
-#separate_form{
+#separate_form {
 	display: flex;
-	
 }
 
-#widthdraw_part{
+#widthdraw_part {
 	display: flex;
 	justify-content: flex-end;
-    margin: 0 4% 0 0;
-    
+	margin: 0 4% 0 0;
 }
 
 @media screen and (max-width: 736px) {
 	#widthdraw_part {
 		margin: auto;
-
 	}
 }
 
-.profile_info button{
+.profile_info button {
 	height: 3.5vh;
-    background-color: #8B4513;
-    color: white;
-    border: solid 1px grey;
-    border-radius: 11px;
-    ont-size: 1vw;
-    font-size: 1vw;
+	background-color: #8B4513;
+	color: white;
+	border: solid 1px grey;
+	border-radius: 11px;
+	ont-size: 1vw;
+	font-size: 1vw;
 	margin-top: 10px;
 	margin-right: 10px;
-    font-family: 'Gamja Flower', cursive;
-
+	font-family: 'Gamja Flower', cursive;
 }
 
-.profile_name_board{
+.profile_name_board {
 	display: flex;
 	justify-content: center;
 }
 
-#modify_btn{
-	display:flex;
+#modify_btn {
+	display: flex;
 	justify-content: flex-end;
 }
 
-
-
-.school_info_form{
+.school_info_form {
 	width: 75vw;
 	height: 150vh;
-    border: solid 1px;
-    border-radius: 3%;
-    display: flex;
-    justify-content: center;
-    
-    
+	border: solid 1px;
+	border-radius: 3%;
+	display: flex;
+	justify-content: center;
 }
 
-#school_profile{
-	margin:auto;
+#school_profile {
+	margin: auto;
 	justify-content: center;
-
 }
 
 #school_profile * {
-    font-size: 1.2vw
-  
+	font-size: 1.2vw
 }
-#school_modify_btn{
+
+#school_modify_btn {
 	width: 100%;
 	height: 3.5vh;
 	justify-content: center;
 	margin-top: 10px;
-    background-color: #8B4513;
-    color: white;
-    border: solid 1px grey;
-    border-radius: 11px;
-    font-size: 1vw;
-    font-family: 'Gamja Flower', cursive;
-   
+	background-color: #8B4513;
+	color: white;
+	border: solid 1px grey;
+	border-radius: 11px;
+	font-size: 1vw;
+	font-family: 'Gamja Flower', cursive;
 }
 
 #school_modify_form {
@@ -1376,67 +1266,57 @@ body.is-mobile.landing .user_profile{
 
 #school_info_part input {
 	border: 1px solid;
-	
 }
 
 #service_part input {
 	border: 1px solid;
-	
 }
 
-#modify_part{
+#modify_part {
 	display: flex;
 	justify-content: center;
 }
 
-
-#school_info_part{
+#school_info_part {
 	border: 1px solid black;
-    width: 30vw;
-    min-height: 110vh;
+	width: 30vw;
+	min-height: 110vh;
 	margin: auto 20px auto 20px;
 	display: flex;
 	justify-content: center;
 	border-radius: 2%
-	
 }
 
-
-
-#separate_part{
+#separate_part {
 	width: 50%;
 	min-height: 85%;
 	margin: auto 20px auto 20px;
-	display:flex;
+	display: flex;
 	flex-direction: column;
-	
 }
 
-#school_service{
+#school_service {
 	border: 1px solid black;
 	border-radius: 2%;
 	display: flex;
-    flex-direction: column;
-    justify-content: center;
+	flex-direction: column;
+	justify-content: center;
 	min-height: 35vh;
-	margin-bottom :30px;
-
-
+	margin-bottom: 30px;
 }
-#sort_school_service{
+
+#sort_school_service {
 	display: flex;
-    flex-direction: column;
-    width: 80%;
-    margin: auto;
+	flex-direction: column;
+	width: 80%;
+	margin: auto;
 }
 
-#sort_school_service > label{
+#sort_school_service>label {
 	margin-bottom: 5px;
 }
 
-
-#school_photo_form{
-	
+#school_photo_form {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -1444,102 +1324,90 @@ body.is-mobile.landing .user_profile{
 	border: 1px solid black;
 	border-radius: 2%;
 	height: 70vh;
-
 }
 
-#school_photo_form div{
+#school_photo_form div {
 	margin: auto;
 }
 
-#school_photo_form button{
+#school_photo_form button {
 	margin: auto;
 }
 
-
-#school_modify_info{
+#school_modify_info {
 	display: flex;
 	flex-direction: column;
-    justify-content: center;
-    height: 95%;
-    width: 100%;
+	justify-content: center;
+	height: 95%;
+	width: 100%;
 }
 
-
-
-#school_modify_info >li{
+#school_modify_info>li {
 	margin-top: 10px;
 	width: 80%;
 }
 
-#school_modify_info *{
+#school_modify_info * {
 	width: 20vw;
-
 }
 
-#school_service input[type="checkbox"]{
+#school_service input[type="checkbox"] {
 	width: 1vw;
-    height: 1.5vh;
-    
+	height: 1.5vh;
 }
 
-#school_service >li {
-    margin-top: 4px;
-    width: 80%;
+#school_service>li {
+	margin-top: 4px;
+	width: 80%;
 }
 
-#school_info_detail{
+#school_info_detail {
 	height: 90%;
 	margin: auto;
 }
 
 #service_part {
-	display:flex;
+	display: flex;
 	flex-direction: column;
 	justify-content: center;
 }
 
-#service_part *{
+#service_part * {
 	margin-left: 10px;
-    margin-bottom: 0.5vh;
+	margin-bottom: 0.5vh;
 }
 
-
-
-#kg_photo{
+#kg_photo {
 	width: 30vw;
 }
 
-#photo_border{
+#photo_border {
 	width: 90%;
-    height: 45vh;
+	height: 45vh;
 	background-color: darkseagreen;
 	margin-top: 20px;
-	
 }
 
-#school_photo_form button{
+#school_photo_form button {
 	border: solid 4px;
 }
 
-
-
-#personal_photo *{
+#personal_photo * {
 	display: flex;
 	margin: auto;
 }
 
-#file_upload_btn{
+#file_upload_btn {
 	width: 30vw;
 	height: 4.5vh;
-    margin-top: 0px;
+	margin-top: 0px;
 	justify-content: center;
-    background-color: #8B4513;
-    color: white;
-    border: solid 1px grey;
-    border-radius: 11px;
-    font-size: 1vw;
-    font-family: 'Gamja Flower', cursive;
-    
+	background-color: #8B4513;
+	color: white;
+	border: solid 1px grey;
+	border-radius: 11px;
+	font-size: 1vw;
+	font-family: 'Gamja Flower', cursive;
 }
 
 .valid_info {
@@ -1549,55 +1417,50 @@ body.is-mobile.landing .user_profile{
 	margin-top: 5px;
 }
 
-#join_table placeholder{
+#join_table placeholder {
 	font-size: 0.5vw;
 }
 
 /* find part */
-
 .find_info {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    min-width: 60vh;
-    min-height: 70vh;
-    margin: auto;
-    border: solid 1px;
-    border-radius: 3%;
-   
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	min-width: 60vh;
+	min-height: 70vh;
+	margin: auto;
+	border: solid 1px;
+	border-radius: 3%;
 }
 
-
 #find_id_field {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    margin-top : 10px;
-    margin: auto;
-    width: 50vh;
-    height: 30vh;
-    border: solid 1px grey;
-
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	margin-top: 10px;
+	margin: auto;
+	width: 50vh;
+	height: 30vh;
+	border: solid 1px grey;
 }
 
 #find_pw_field {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    margin: auto;
-    margin-top : 10px;
-    width: 50vh;
-    height: 30vh;
-    border: solid 1px grey;
-
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	margin: auto;
+	margin-top: 10px;
+	width: 50vh;
+	height: 30vh;
+	border: solid 1px grey;
 }
 
-.find_info input{
+.find_info input {
 	margin-bottom: 5px;
-    margin-top: 10px;
+	margin-top: 10px;
 }
 
-.find_info button{
+.find_info button {
 	height: 3vh;
 	background-color: #8B4513;
 	color: white;
@@ -1606,22 +1469,17 @@ body.is-mobile.landing .user_profile{
 	font-family: 'Gamja Flower', cursive;
 	font-size: 1vh;
 	border-radius: 5%;
-	
 }
 
-
 #form_find_pw {
-    
-    margin: auto;
+	margin: auto;
 }
 
 #find_id_btn {
-   
-    text-align: center;
+	text-align: center;
 }
 
-
-#find_user_title{
+#find_user_title {
 	text-align: center;
 	margin-bottom: 20px;
 	font-family: 'Jua', sans-serif;
@@ -1630,38 +1488,32 @@ body.is-mobile.landing .user_profile{
 }
 
 #find_id_table, #find_pw_table {
-    
-    margin: auto;
+	margin: auto;
 }
 
 #find_id_result {
-    margin: auto;
-    text-align: center;
-    font-size: 1.5vw;
-    font-family: 'Gamja Flower';
+	margin: auto;
+	text-align: center;
+	font-size: 1.5vw;
+	font-family: 'Gamja Flower';
 }
 
-.fas{
+.fas {
 	cursor: pointer;
-
 }
 
-
-.school_info{
+.school_info {
 	margin-left: 10px;
 }
 
-#withdraw_btn{
+#withdraw_btn {
 	margin-right: 45px;
-	
 }
 
-#sort_school_service span{
+#sort_school_service span {
 	display: contents;
 }
 
-
-.profilebtn{
+.profilebtn {
 	color: grey;
-	
 }
