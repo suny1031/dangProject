@@ -1,33 +1,55 @@
 @charset "UTF-8";
 
-	/*a태그의 보라색 제거*/
-    a { text-decoration: none; color: #4169E1; }
-    a:visited { text-decoration: none; }
-    a:hover { text-decoration: none; }
-    a:focus { text-decoration: none; }
-    a:hover, a:active { text-decoration: none; }
-    
+/*a태그의 보라색 제거*/
+a {
+	text-decoration: none;
+	color: #4169E1;
+}
+
+a:visited {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+a:focus {
+	text-decoration: none;
+}
+
+a:hover, a:active {
+	text-decoration: none;
+}
+
 #storeWrap {
 	display: flex;
 	flex-direction: column;
 }
 
 #wrap {
-	height: 150vh;
+	height: 130vh;
 	width: 80vw;
 	background-color: #ffffff;
 	align-self: center;
 }
 
 #photo {
-	height: 35vh;
+	height: 45vh;
 	width: 80vw;
 	background-color: rgb(114, 114, 107);
 	align-self: center;
 }
 
+.img {
+	background-size: cover;
+	background-position: center;
+	width: 100%;
+	height: 100%;
+}
+
 #storeInfrm {
-	height: 150vh;
+	height: 130vh;
 	width: 70vw;
 	position: absolute;
 	top: 30%;
@@ -40,11 +62,11 @@
 	text-align: center;
 }
 
-#photoZone{
-    position: relative;
+#photoZone {
+	position: relative;
 	top: 5%;
-    height: 30%;
-    background-color: red;
+	height: 30%;
+	background-color: red;
 }
 
 #name {
@@ -62,9 +84,10 @@
 	margin: 2% 0 0 0;
 }
 
-i{
-	color:black; 
+i {
+	color: black;
 }
+
 #rsv_btn {
 	padding: 1% 35% 1% 35%;
 	border-radius: 7px;
@@ -80,10 +103,10 @@ i{
 	border-bottom: 1px solid #cfc7c7;
 }
 
-.noticeSpan{
+.noticeSpan {
 	font-size: 1.5vw;
 	font-weight: bold;
-	color : red;
+	color: red;
 }
 
 .list {
@@ -92,7 +115,13 @@ i{
 	border-bottom: 1px solid #cfc7c7;
 }
 
-#services{
+.photo {
+	margin: auto;
+	width: 50%;
+	height: 50vh;
+}
+
+#services {
 	font-size: 1.3vw;
 	color: #4169E1;
 }

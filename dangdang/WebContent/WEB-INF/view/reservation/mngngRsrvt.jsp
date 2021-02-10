@@ -141,7 +141,9 @@
 						<%}else {%>
 						<td>비희망</td>
 						<%} %> 
-				<%} %> 
+				<%}else{ %>
+					
+					<%} %> 
 					<td class = "date"><%=reservation.getRegDate()%></td>
 					<td><%=reservation.getRequirements()%></td>
 					<%if (reservation.getIsApproved().equals("1")){ %>

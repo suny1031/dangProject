@@ -110,6 +110,7 @@ public class ReservationController extends HttpServlet {
 		reservation.setDogBreed(dogBreed);
 		reservation.setRequirements(requestedTerm);
 		reservation.setRegDate(regDate);
+		
 		if (pickup != null) {
 			reservation.setPickup(pickup);
 		}

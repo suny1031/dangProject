@@ -13,6 +13,7 @@ import javax.print.attribute.standard.Severity;
 import com.dang.common.code.ErrorCode;
 import com.dang.common.exception.DataAccessException;
 import com.dang.common.jdbc.JDBCTemplate;
+import com.dang.common.util.file.FileVo;
 import com.dang.map.model.vo.Kindergarten;
 import com.dang.map.model.vo.Service;
 
@@ -160,6 +161,8 @@ public class MapDao {
 				kindergarten.setKgTell(rset.getString("KG_TELL"));
 				kindergarten.setKgLat(rset.getString("kg_lat"));
 				kindergarten.setKgLag(rset.getString("kg_lag"));
+				kindergarten.setKgIdx(rset.getString("KG_IDX"));
+
 			}
 
 		} catch (SQLException e) {
@@ -277,6 +280,47 @@ public class MapDao {
 		}
 
 		return service;
+
+	}
+	
+	
+	public ArrayList<FileVo> selectFile(Connection conn, String kgIdx) {
+
+		ArrayList<FileVo> fileList = new ArrayList<>();
+
+		PreparedStatement pstm = null;
+
+		ResultSet rset = null;
+		String kkgIdx = "k"+kgIdx;
+		System.out.println(kkgIdx);
+
+		try {
+
+			String query = "select * from D_FILE where TYPE_IDX = ?";
+
+			pstm = conn.prepareStatement(query);
+			pstm.setString(1, kkgIdx);
+			rset = pstm.executeQuery();
+			
+			while (rset.next()) {
+				FileVo file = new FileVo();
+				file.setFidx(rset.getInt(1));
+				file.setTypeIdx(rset.getString(2));
+				file.setOriginFileName(rset.getString(3));
+				file.setRenameFileName(rset.getString(4));
+				file.setSavePath(rset.getString(5));
+				file.setRegDate(rset.getDate(6));
+				file.setIsDel(rset.getInt(7));
+				fileList.add(file);
+			}
+
+		} catch (SQLException e) {
+			throw new DataAccessException(ErrorCode.API01, e);
+		} finally {
+			jdt.close(rset, pstm);
+		}
+
+		return fileList;
 
 	}
 

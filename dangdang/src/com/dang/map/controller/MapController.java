@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.dang.common.code.ErrorCode;
 import com.dang.common.exception.ToAlertException;
+import com.dang.common.util.file.FileVo;
 import com.dang.map.model.service.MapService;
 import com.dang.map.model.vo.Kindergarten;
 import com.dang.map.model.vo.Service;
@@ -67,10 +68,16 @@ public class MapController extends HttpServlet {
 
 		Kindergarten kindergarten = mapService.selectkgName(kgName);
 		Service service = mapService.selectService(kgName);
-
+		String kgIdx = kindergarten.getKgIdx();
+		ArrayList<FileVo> fileList = mapService.selectFile(kgIdx);
+		System.out.println(fileList);
+		
+		
+		
 		request.removeAttribute("kindergarten");
 		request.setAttribute("kindergarten", kindergarten);
 		request.setAttribute("service", service);
+		request.setAttribute("fileList", fileList);
 
 		request.getRequestDispatcher("/WEB-INF/view/map/Infrm.jsp").forward(request, response);
 	}

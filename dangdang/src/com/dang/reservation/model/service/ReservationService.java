@@ -88,7 +88,7 @@ public class ReservationService {
 		Map<String, String> headers = new HashMap<String, String>();
 
 		// 우리서버의 url
-		String url = ConfigCode.DOMAIN + "/mail";
+		String url = ConfigCode.DOMAIN + "/mail.do";
 
 		// header 저장
 		headers.put("Content-Type", "application/x-www-form-urlencoded");
@@ -139,7 +139,7 @@ public class ReservationService {
 		return reservationList;
 
 	}
-	
+
 	public int deleteReservation(String rsIdx) {
 		Connection conn = jdt.getConnection();
 		int res = 0;
@@ -153,6 +153,19 @@ public class ReservationService {
 			jdt.close(conn);
 		}
 		return res;
+
+	}
+
+	public ArrayList<Reservation> selectReservationPreview(String kgName) {
+		Connection conn = jdt.getConnection();
+		ArrayList<Reservation> reservationList;
+		try {
+			reservationList = reservationDao.selectReservationPreview(conn, kgName);
+
+		} finally {
+			jdt.close(conn);
+		}
+		return reservationList;
 
 	}
 

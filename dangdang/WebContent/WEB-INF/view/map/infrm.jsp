@@ -62,7 +62,16 @@
 		<div class="board">
 			<div id="storeWrap">
 			
-				<div id="photo"><img id ="img" src="/file"></div>
+				<div id="photo">
+					<c:choose>
+						<c:when test="${!empty fileList}">
+							<img class = "img" src="/file${fileList[0].savePath}${fileList[0].renameFileName}">
+						</c:when>
+						<c:otherwise>
+						<div class = "img"></div>
+						</c:otherwise>
+					</c:choose>
+				</div>
 				
 				<div id="wrap"></div>
 				
@@ -110,13 +119,16 @@
 					
 					
 					<div id ="photoWrap">
-				<%--<c:forEach var="" items="">
 						<div class = "photo">
-						
-						
-						
+						<c:choose>
+						<c:when test="${!empty fileList}">
+							<img class = "img" src="/file${fileList[0].savePath}${fileList[0].renameFileName}" style="margin-top: 7%">
+						</c:when>
+						<c:otherwise>
+						<div class = "img"></div>
+						</c:otherwise>
+						</c:choose>
 						</div>
-					</c:forEach>--%>
 					</div>					
 					
 				</div>

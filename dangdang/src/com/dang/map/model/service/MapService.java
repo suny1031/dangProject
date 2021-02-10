@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.dang.common.jdbc.JDBCTemplate;
+import com.dang.common.util.file.FileVo;
 import com.dang.map.model.dao.MapDao;
 import com.dang.map.model.vo.Kindergarten;
 import com.dang.map.model.vo.Service;
@@ -99,6 +100,18 @@ public class MapService {
 			jdt.close(conn);
 		}
 		return res;
+
+	}
+	
+	public ArrayList<FileVo> selectFile(String kgIdx) {
+		Connection conn = jdt.getConnection();
+		ArrayList<FileVo> fileList;
+		try {
+			fileList = mapDao.selectFile(conn, kgIdx);
+		} finally {
+			jdt.close(conn);
+		}
+		return fileList;
 
 	}
 

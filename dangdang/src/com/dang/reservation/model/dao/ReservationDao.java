@@ -259,5 +259,51 @@ public class ReservationDao {
 		return delete;
 
 	}
+	
+	//예약 미리보기
+	public ArrayList<Reservation> selectReservationPreview(Connection conn, String kgName) {
+
+		ArrayList<Reservation> reservationList  = new ArrayList<>();
+
+		PreparedStatement pstm = null;
+
+		ResultSet rset = null;
+
+		try {
+
+			String query = "select * from reservation where KINDERGARTEN = ? and IS_APPROVED = 1 ";
+
+			pstm = conn.prepareStatement(query);
+			
+			pstm.setString(1, kgName);
+
+			rset = pstm.executeQuery();
+
+			while (rset.next()) {
+				Reservation reservation = new Reservation();
+				reservation.setRsIdx(rset.getInt("RS_IDX"));
+				reservation.setUserId(rset.getString("USER_ID"));
+				reservation.setProtectorName(rset.getString("PROTECTOR_NAME"));
+				reservation.setPhoneNumber(rset.getString("PHONE_NUMBER"));
+				reservation.setDogBreed(rset.getString("DOG_BREED"));
+				reservation.setDogAge(rset.getString("DOG_AGE"));
+				reservation.setPickup(rset.getString("PICKUP"));
+				reservation.setIsApproved(rset.getString("IS_APPROVED"));
+				reservation.setKindergarten(rset.getString("KINDERGARTEN"));
+				reservation.setRegDate(rset.getDate("REG_DATE"));
+				reservation.setRequirements(rset.getString("REQUIREMENTS"));
+				reservation.setIsDel(rset.getString("IS_DEL"));
+				reservationList.add(reservation);
+			}
+
+		} catch (SQLException e) {
+			throw new DataAccessException(ErrorCode.API01, e);
+		} finally {
+			jdt.close(rset, pstm);
+		}
+
+		return reservationList;
+
+	}
 
 }
