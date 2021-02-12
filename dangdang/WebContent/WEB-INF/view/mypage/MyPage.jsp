@@ -93,7 +93,7 @@
 				          <a href="/reservation/mngngRsrvt.do" class="school_photo">예약</a>
 				        </c:when>
 				        <c:otherwise>
-				        	<a class="school_photo">예약</a>
+				        	<a href="/reservation/mngngRsrvt2.do" class="school_photo">예약</a>
 				        </c:otherwise>
 				      </c:choose>
 				      <div id="reservationBox">

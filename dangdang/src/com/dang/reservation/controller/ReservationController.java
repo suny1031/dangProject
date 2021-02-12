@@ -58,6 +58,9 @@ public class ReservationController extends HttpServlet {
 		case "delete.do":
 			delete(request, response);
 			break;
+		case "mngngRsrvt2.do":
+			mngngRsrvt2(request, response);
+			break;
 		default:
 			throw new ToAlertException(ErrorCode.CD_404);
 		}
@@ -203,6 +206,18 @@ public class ReservationController extends HttpServlet {
 		if (res > 0) {
 			response.getWriter().print("success");
 		}
+	}
+	
+	private void mngngRsrvt2(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		HttpSession session = request.getSession();
+		UserMember userMember = (UserMember) session.getAttribute("userMember");
+		
+		request.setAttribute("userMember",userMember);
+
+
+		request.getRequestDispatcher("/WEB-INF/view/reservation/mngngRsrvt2.jsp").forward(request, response);
 	}
 
 }

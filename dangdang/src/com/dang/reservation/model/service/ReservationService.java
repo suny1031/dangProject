@@ -181,5 +181,32 @@ public class ReservationService {
 		return reservationList;
 
 	}
+	
+	
+	public List<Reservation> selectReservationUserPage(int startRow, int endRow, String userId) {
+		Connection conn = jdt.getConnection();
+		List<Reservation> reservation;
+		try {
+			reservation = reservationDao.selectReservationUserPage(conn, startRow, endRow, userId);
+
+		} finally {
+			jdt.close(conn);
+		}
+		return reservation;
+
+	}
+
+	public int selectCountPageUser(String userId) {
+		Connection conn = jdt.getConnection();
+
+		int count;
+		try {
+			count = reservationDao.selectCountPageUser(conn, userId);
+		} finally {
+			jdt.close(conn);
+		}
+		return count;
+
+	}
 
 }
