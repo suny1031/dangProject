@@ -38,7 +38,7 @@ public class ReservationController extends HttpServlet {
 
 		String uri = request.getRequestURI();
 		String[] uriArr = uri.split("/");
-		// System.out.println(Arrays.toString(uriArr));
+
 		switch (uriArr[uriArr.length - 1]) {
 		case "reservation.do":
 			reservation(request, response);
@@ -49,6 +49,9 @@ public class ReservationController extends HttpServlet {
 		case "mngngRsrvt.do":
 			mngngRsrvt(request, response);
 			break;
+		case "mngngRsrvt2.do":
+			mngngRsrvt2(request, response);
+			break;
 		case "calendar.do":
 			calendar(request, response);
 			break;
@@ -57,9 +60,6 @@ public class ReservationController extends HttpServlet {
 			break;
 		case "delete.do":
 			delete(request, response);
-			break;
-		case "mngngRsrvt2.do":
-			mngngRsrvt2(request, response);
 			break;
 		default:
 			throw new ToAlertException(ErrorCode.CD_404);
@@ -72,8 +72,10 @@ public class ReservationController extends HttpServlet {
 		doGet(request, response);
 	}
 
+	// 예약 신청 페이지 메서드
 	private void reservation(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
 		String kgName = request.getParameter("kgName");
 
 		Kindergarten kindergarten = mapService.selectkgName(kgName);
@@ -86,6 +88,7 @@ public class ReservationController extends HttpServlet {
 
 	}
 
+	// 예약 신청 처리 메서드
 	private void reservationimpl(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
@@ -101,8 +104,6 @@ public class ReservationController extends HttpServlet {
 		String pickup = request.getParameter("pickup");
 		String date = request.getParameter("date");
 
-		
-		
 		java.sql.Date regDate = java.sql.Date.valueOf(date);
 
 		Reservation reservation = new Reservation();
@@ -116,17 +117,15 @@ public class ReservationController extends HttpServlet {
 		reservation.setRequirements(requestedTerm);
 		reservation.setRegDate(regDate);
 		reservation.setPickup(pickup);
-		
-		  if (pickup != null) { 
-			  reservation.setPickup(pickup);
-		  }else {
-			  reservation.setPickup("1");
-		  }
-		 
-		
-		// 사용자에게 보여줄 view page 지정
+
+		if (pickup != null) {
+			reservation.setPickup(pickup);
+		} else {
+			reservation.setPickup("1");
+		}
+
 		request.setAttribute("alertMsg", "예약 신청이 완료 되었습니다");
-		request.setAttribute("url", "/main.do");
+		request.setAttribute("url", "/reservation/mngngRsrvt2.do");
 
 		request.getRequestDispatcher("/WEB-INF/view/common/result.jsp").forward(request, response);
 
@@ -134,6 +133,7 @@ public class ReservationController extends HttpServlet {
 
 	}
 
+	// 유치원 예약 확인 메서드
 	private void mngngRsrvt(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -142,13 +142,26 @@ public class ReservationController extends HttpServlet {
 
 		Service service = mapService.selectService(schoolMember.getKgName());
 		String kgName = schoolMember.getKgName();
-		
+
 		request.setAttribute("service", service);
 		request.setAttribute("kgName", kgName);
 
 		request.getRequestDispatcher("/WEB-INF/view/reservation/mngngRsrvt.jsp").forward(request, response);
 	}
 
+	// 유저 예약 확인 메서드
+	private void mngngRsrvt2(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		HttpSession session = request.getSession();
+		UserMember userMember = (UserMember) session.getAttribute("userMember");
+
+		request.setAttribute("userMember", userMember);
+
+		request.getRequestDispatcher("/WEB-INF/view/reservation/mngngRsrvt2.jsp").forward(request, response);
+	}
+
+	// 캘린더 메서드
 	private void calendar(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -161,18 +174,19 @@ public class ReservationController extends HttpServlet {
 		for (int i = 0; i < reservationList.size(); i++) {
 			System.out.println(reservationList.get(i));
 		}
-		
+
 		Date now = new Date();
 		SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
 		String today = f.format(now);
-		
+
 		request.setAttribute("reservationList", reservationList);
-		request.setAttribute("today",today);
+		request.setAttribute("today", today);
 
 		request.getRequestDispatcher("/WEB-INF/view/reservation/calendar.jsp").forward(request, response);
 
 	}
 
+	// 예약 승인 처리 메서드
 	private void approved(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -184,7 +198,8 @@ public class ReservationController extends HttpServlet {
 
 		String rsIdx = request.getParameter("rsIdx");
 
-		System.out.println("userId : " + userId + " / date : " + date + " / kgName : " + kgName + " / rsIdx : " + rsIdx);
+		System.out
+				.println("userId : " + userId + " / date : " + date + " / kgName : " + kgName + " / rsIdx : " + rsIdx);
 		UserMember userMember = reservationService.selectUserMember(userId);
 
 		reservationService.ReservationEmail(userMember, date, kgName);
@@ -194,30 +209,18 @@ public class ReservationController extends HttpServlet {
 		reservationService.updateReservation(rsIdx);
 
 	}
-	
-	private void delete(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+
+	// 예약 삭제 처리 메서드
+	private void delete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		String dleRsIdx = request.getParameter("dleRsIdx");
 		System.out.println(dleRsIdx);
-		
+
 		int res = reservationService.deleteReservation(dleRsIdx);
 		System.out.println(res);
 		if (res > 0) {
 			response.getWriter().print("success");
 		}
-	}
-	
-	private void mngngRsrvt2(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-
-		HttpSession session = request.getSession();
-		UserMember userMember = (UserMember) session.getAttribute("userMember");
-		
-		request.setAttribute("userMember",userMember);
-
-
-		request.getRequestDispatcher("/WEB-INF/view/reservation/mngngRsrvt2.jsp").forward(request, response);
 	}
 
 }

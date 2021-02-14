@@ -20,11 +20,10 @@ public class ReservationDao {
 
 	}
 
-	JDBCTemplate jdt = JDBCTemplate.getInstance(); // 템플릿 생성
+	JDBCTemplate jdt = JDBCTemplate.getInstance(); 
 
-	//예약 신청 
+	//예약 신청 메서드
 	public void insertReservation(Connection conn, Reservation reservation) {
-		// jdbc코딩을 진행
 
 		int insert = 0;
 
@@ -56,8 +55,8 @@ public class ReservationDao {
 
 	}
 
+	//유치원 예약 확인 페이지 페이징
 	public List<Reservation> selectReservationPage(Connection conn, int startRow, int endRow, String kgName) {
-		// 페이징 처리를 위한 sql / 인라인뷰, rownum 사용
 		String query = "select * from (select rownum rn, USER_ID, RS_IDX ,PROTECTOR_NAME, PHONE_NUMBER,DOG_BREED,DOG_AGE,PICKUP,IS_APPROVED,KINDERGARTEN, REG_DATE, REQUIREMENTS, IS_DEL from (select * from RESERVATION where KINDERGARTEN = ? and IS_DEL = 0 order by RS_IDX asc)) where rn between ? and ?";
 
 		List<Reservation> list = null;
@@ -73,12 +72,10 @@ public class ReservationDao {
 			pstm.setInt(2, startRow);
 			pstm.setInt(3, endRow);
 
-			rset = pstm.executeQuery(); // sql 실행
-
-			if (rset.next()) { // 데이터베이스에 데이터가 있으면 실행
-				list = new ArrayList<>(); // list 객체 생성
+			rset = pstm.executeQuery(); 
+			if (rset.next()) { 
+				list = new ArrayList<>(); 
 				do {
-					// 반복할 때마다 ExboardDTO 객체를 생성 및 데이터 저장
 					Reservation reservation = new Reservation();
 					reservation.setRsIdx(rset.getInt("RS_IDX"));
 					reservation.setUserId(rset.getString("USER_ID"));
@@ -100,9 +97,10 @@ public class ReservationDao {
 		} finally {
 			jdt.close(rset, pstm);
 		}
-		return list; // list 반환
+		return list;
 	}
 
+	//유치원 예약 총 개수 메서드
 	public int selectCountPage(Connection conn, String kgName) {
 
 		int count = 0;
@@ -128,6 +126,8 @@ public class ReservationDao {
 		return count; // 총 레코드 수 리턴
 	}
 
+	
+	//유저 정보를 찾아주는 메서드
 	public UserMember selectUserMember(Connection conn, String userId) {
 
 		UserMember userMember = null;
@@ -138,23 +138,20 @@ public class ReservationDao {
 
 			String query = "select * from MEMBER where USER_ID = ? ";
 
-			// 3. 쿼리문 실행용 객체를 생성
 			pstm = conn.prepareStatement(query);
 
 			pstm.setString(1, userId);
-			// 4. 쿼리문 작성
 
-			// 5. 쿼리문 실행하고 결과(resultSet)를 받음
-			rset = pstm.executeQuery(); // rset로 쿼리 결과에 접근가능함
+			rset = pstm.executeQuery(); 
 
-			if (rset.next()) { // 데이터가 담겨왔으면 member에 담아 줄 수 있다
+			if (rset.next()) {
 				userMember = new UserMember();
 				userMember.setEmail(rset.getString("EMAIL"));
 				userMember.setUserId(rset.getString("USER_ID"));
 			}
 
 		} catch (SQLException e) {
-			throw new DataAccessException(ErrorCode.API01, e);
+			throw new DataAccessException(ErrorCode.SM01, e);
 		} finally {
 			jdt.close(rset, pstm);
 		}
@@ -163,16 +160,16 @@ public class ReservationDao {
 
 	}
 
+	//예약 승인해주는 메서드
 	public int updateReservation(Connection conn, String rsIdx) {
 
 		int update = 0;
 
-		// Statement stmt = null;
 		PreparedStatement pstm = null;
 
 		try {
-
-			String query = "update RESERVATION set IS_APPROVED  =  0  where RS_IDX = ? ";
+			
+			String query = "update RESERVATION set IS_APPROVED  =  0  where RS_IDX = ? "; // 승인 0 / 미승인 1
 
 			pstm = conn.prepareStatement(query);
 
@@ -180,7 +177,7 @@ public class ReservationDao {
 
 			update = pstm.executeUpdate();
 		} catch (SQLException e) {
-			throw new DataAccessException(ErrorCode.UM01, e);
+			throw new DataAccessException(ErrorCode.RE03, e);
 		} finally {
 			jdt.close(pstm);
 		}
@@ -200,7 +197,7 @@ public class ReservationDao {
 
 		try {
 
-			String query = "select * from RESERVATION where KINDERGARTEN = ? and IS_APPROVED = 0 and IS_DEL = 0";
+			String query = "select * from RESERVATION where KINDERGARTEN = ? and IS_APPROVED = 0 and IS_DEL = 0"; // 승인되고 삭제되지 않은 예약만 보여준다
 
 			pstm = conn.prepareStatement(query);
 			
@@ -226,7 +223,7 @@ public class ReservationDao {
 			}
 
 		} catch (SQLException e) {
-			throw new DataAccessException(ErrorCode.API01, e);
+			throw new DataAccessException(ErrorCode.CL01, e);
 		} finally {
 			jdt.close(rset, pstm);
 		}
@@ -235,6 +232,7 @@ public class ReservationDao {
 
 	}
 	
+	//예약 삭제 메서드
 	public int deleteReservation(Connection conn, String rsIdx) {
 		
 		int delete = 0;
@@ -243,7 +241,7 @@ public class ReservationDao {
 
 		try {
 
-			String query = "update RESERVATION set IS_DEL = 1 where RS_IDX = ?";
+			String query = "update RESERVATION set IS_DEL = 1 where RS_IDX = ?"; // 비삭제 0 / 삭제 1
 
 			pstm = conn.prepareStatement(query);
 
@@ -251,7 +249,7 @@ public class ReservationDao {
 			
 			delete = pstm.executeUpdate();
 		} catch (SQLException e) {
-			throw new DataAccessException(ErrorCode.DM01, e);
+			throw new DataAccessException(ErrorCode.RE04, e);
 		} finally {
 			jdt.close(pstm);
 
@@ -261,7 +259,7 @@ public class ReservationDao {
 
 	}
 	
-	//예약 미리보기
+	//유치원 예약 미리보기
 	public ArrayList<Reservation> selectReservationPreview(Connection conn, String kgName) {
 
 		ArrayList<Reservation> reservationList  = new ArrayList<>();
@@ -273,7 +271,7 @@ public class ReservationDao {
 		try {
 
 			String query = "select * from reservation where KINDERGARTEN = ? and IS_APPROVED = 1 and IS_DEL = 0 and ROWNUM BETWEEN 1 and 5 order by RS_IDX asc";
-
+			// 승인이 되지 않고 삭제되지 않은 예약만 보여준다
 			pstm = conn.prepareStatement(query);
 			
 			pstm.setString(1, kgName);
@@ -298,7 +296,7 @@ public class ReservationDao {
 			}
 
 		} catch (SQLException e) {
-			throw new DataAccessException(ErrorCode.API01, e);
+			throw new DataAccessException(ErrorCode.RE02, e);
 		} finally {
 			jdt.close(rset, pstm);
 		}
@@ -307,7 +305,7 @@ public class ReservationDao {
 
 	}
 	
-	//예약 미리보기
+		//유저 예약 미리보기
 		public ArrayList<Reservation> selectUserPreview(Connection conn, String userId) {
 
 			ArrayList<Reservation> reservationList  = new ArrayList<>();
@@ -318,7 +316,8 @@ public class ReservationDao {
 			try {
 
 				String query = "select * from reservation where USER_ID = ? and IS_DEL = 0 and ROWNUM BETWEEN 1 and 5 order by RS_IDX asc";
-
+				//삭제 되지않은 예약만 보여준다 
+				
 				pstm = conn.prepareStatement(query);
 				
 				pstm.setString(1, userId);
@@ -343,7 +342,7 @@ public class ReservationDao {
 				}
 
 			} catch (SQLException e) {
-				throw new DataAccessException(ErrorCode.API01, e);
+				throw new DataAccessException(ErrorCode.RE02, e);
 			} finally {
 				jdt.close(rset, pstm);
 			}
@@ -352,8 +351,9 @@ public class ReservationDao {
 
 		}
 		
+		//유저 예약 확인 페이지 페이징
 		public List<Reservation> selectReservationUserPage(Connection conn, int startRow, int endRow, String userId) {
-			// 페이징 처리를 위한 sql / 인라인뷰, rownum 사용
+
 			String query = "select * from (select rownum rn, USER_ID, RS_IDX ,PROTECTOR_NAME, PHONE_NUMBER,DOG_BREED,DOG_AGE,PICKUP,IS_APPROVED,KINDERGARTEN, REG_DATE, REQUIREMENTS, IS_DEL from (select * from RESERVATION where USER_ID = ? and IS_DEL = 0 order by RS_IDX asc)) where rn between ? and ?";
 
 			List<Reservation> list = null;
@@ -399,6 +399,7 @@ public class ReservationDao {
 			return list; // list 반환
 		}
 		
+		//유치원 예약 총 개수 메서드
 		public int selectCountPageUser(Connection conn, String userId) {
 
 			int count = 0;

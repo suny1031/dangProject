@@ -22,10 +22,9 @@ public class MapDao {
 	public MapDao() {
 	}
 
-	JDBCTemplate jdt = JDBCTemplate.getInstance(); // 템플릿 생성
+	JDBCTemplate jdt = JDBCTemplate.getInstance();
 
-	
-	
+	// 지도에 유치원 보여주는 메서드
 	public ArrayList<Kindergarten> selectKindergarten(Connection conn) {
 
 		ArrayList<Kindergarten> kindergartenList = new ArrayList<>();
@@ -51,7 +50,6 @@ public class MapDao {
 				kindergarten.setKgOperateTime(rset.getString("KG_TELL"));
 				kindergarten.setKgLat(rset.getString("kg_lat"));
 				kindergarten.setKgLag(rset.getString("kg_lag"));
-				// 멤버를 받아올때마다 List에 넣기
 				kindergartenList.add(kindergarten);
 			}
 
@@ -65,8 +63,9 @@ public class MapDao {
 
 	}
 
+	// 지도 검색창 페이징 메서드
 	public List<Kindergarten> selectKindergartenPage(Connection conn, int startRow, int endRow) {
-		// 페이징 처리를 위한 sql / 인라인뷰, rownum 사용
+
 		String query = "select * from (select rownum rn, KG_ADDRESS,  KG_IDX, KG_LAG,KG_LAT,KG_NAME,KG_NOTICE,KG_OPERATE_TIME,KG_TELL from"
 				+ "(select * from KINDERGARDEN order by KG_IDX asc)) where rn between ? and ?";
 		System.out.println(startRow + ":" + endRow);
@@ -81,15 +80,14 @@ public class MapDao {
 
 			pstm = conn.prepareStatement(query);
 
-			pstm.setInt(1, startRow); // sql 물음표에 값 매핑
+			pstm.setInt(1, startRow);
 			pstm.setInt(2, endRow);
 
-			rset = pstm.executeQuery(); // sql 실행
+			rset = pstm.executeQuery();
 
-			if (rset.next()) { // 데이터베이스에 데이터가 있으면 실행
-				list = new ArrayList<>(); // list 객체 생성
+			if (rset.next()) {
+				list = new ArrayList<>();
 				do {
-					// 반복할 때마다 ExboardDTO 객체를 생성 및 데이터 저장
 					Kindergarten kindergarten = new Kindergarten();
 					kindergarten.setKgName(rset.getString("kg_name"));
 					kindergarten.setKgAddress(rset.getString("KG_ADDRESS"));
@@ -98,7 +96,7 @@ public class MapDao {
 					kindergarten.setKgOperateTime(rset.getString("KG_TELL"));
 					kindergarten.setKgLat(rset.getString("kg_lat"));
 					kindergarten.setKgLag(rset.getString("kg_lag"));
-					list.add(kindergarten); // list에 0번 인덱스부터 board 객체의 참조값을 저장
+					list.add(kindergarten);
 				} while (rset.next());
 			}
 		} catch (SQLException e) {
@@ -106,9 +104,10 @@ public class MapDao {
 		} finally {
 			jdt.close(rset, pstm);
 		}
-		return list; // list 반환
+		return list;
 	}
 
+	// 지도 유치원 총 개수 메서드
 	public int selectCountPage(Connection conn) {
 
 		int count = 0;
@@ -133,6 +132,7 @@ public class MapDao {
 		return count; // 총 레코드 수 리턴
 	}
 
+	// ifrm에 찾은 유치원명 보낼 메서드
 	public Kindergarten selectkgName(Connection conn, String kgName) {
 
 		Kindergarten kindergarten = null;
@@ -143,16 +143,13 @@ public class MapDao {
 
 			String query = "select * from KINDERGARDEN  where kg_name = ? ";
 
-			// 3. 쿼리문 실행용 객체를 생성
 			pstm = conn.prepareStatement(query);
 
 			pstm.setString(1, kgName);
-			// 4. 쿼리문 작성
 
-			// 5. 쿼리문 실행하고 결과(resultSet)를 받음
-			rset = pstm.executeQuery(); // rset로 쿼리 결과에 접근가능함
+			rset = pstm.executeQuery();
 
-			if (rset.next()) { // 데이터가 담겨왔으면 member에 담아 줄 수 있다
+			if (rset.next()) {
 				kindergarten = new Kindergarten();
 				kindergarten.setKgName(rset.getString("kg_name"));
 				kindergarten.setKgAddress(rset.getString("KG_ADDRESS"));
@@ -175,6 +172,7 @@ public class MapDao {
 
 	}
 
+	// 지도 키워드 검색 페이징 메서드
 	public List<Kindergarten> selectSearchKindergarten(Connection conn, int startRow, int endRow, String keyword) {
 
 		List<Kindergarten> list = null;
@@ -183,19 +181,20 @@ public class MapDao {
 
 		try {
 			String query = "select * from (select rownum rn, KG_ADDRESS, KG_IDX, KG_LAG,KG_LAT,KG_NAME,KG_NOTICE,KG_OPERATE_TIME,KG_TELL from (select * from KINDERGARDEN where KG_NAME like ? order by KG_IDX asc)) where rn between ? and ?";
-			
+
 			pstm = conn.prepareStatement(query);
+
 			String setKeyword = "%" + keyword + "%";
+
 			pstm.setString(1, setKeyword);
 			pstm.setInt(2, startRow);
 			pstm.setInt(3, endRow);
 
 			rset = pstm.executeQuery();
 
-			if (rset.next()) { // 데이터베이스에 데이터가 있으면 실행
-				list = new ArrayList<>(); // list 객체 생성
+			if (rset.next()) {
+				list = new ArrayList<>();
 				do {
-					// 반복할 때마다 ExboardDTO 객체를 생성 및 데이터 저장
 					Kindergarten kindergarten = new Kindergarten();
 					kindergarten.setKgName(rset.getString("kg_name"));
 					kindergarten.setKgAddress(rset.getString("KG_ADDRESS"));
@@ -204,7 +203,7 @@ public class MapDao {
 					kindergarten.setKgOperateTime(rset.getString("KG_TELL"));
 					kindergarten.setKgLat(rset.getString("kg_lat"));
 					kindergarten.setKgLag(rset.getString("kg_lag"));
-					list.add(kindergarten); // list에 0번 인덱스부터 board 객체의 참조값을 저장
+					list.add(kindergarten);
 				} while (rset.next());
 			}
 		} catch (SQLException e) {
@@ -217,6 +216,7 @@ public class MapDao {
 
 	}
 
+	// 지도 키워드 유치원 총 개수 메서드
 	public int selectSearchCount(Connection conn, String keyword) {
 
 		int count = 0;
@@ -245,6 +245,7 @@ public class MapDao {
 
 	}
 
+	// 유치원의 서비스를 찾아주는 메서드
 	public Service selectService(Connection conn, String kgName) {
 
 		Service service = null;
@@ -282,8 +283,8 @@ public class MapDao {
 		return service;
 
 	}
-	
-	
+
+	// 유치원의 대표 사진을 찾아주는 메서드
 	public ArrayList<FileVo> selectFile(Connection conn, String kgIdx) {
 
 		ArrayList<FileVo> fileList = new ArrayList<>();
@@ -291,7 +292,7 @@ public class MapDao {
 		PreparedStatement pstm = null;
 
 		ResultSet rset = null;
-		String kkgIdx = "k"+kgIdx;
+		String kkgIdx = "k" + kgIdx;
 		System.out.println(kkgIdx);
 
 		try {
@@ -301,7 +302,7 @@ public class MapDao {
 			pstm = conn.prepareStatement(query);
 			pstm.setString(1, kkgIdx);
 			rset = pstm.executeQuery();
-			
+
 			while (rset.next()) {
 				FileVo file = new FileVo();
 				file.setFidx(rset.getInt(1));

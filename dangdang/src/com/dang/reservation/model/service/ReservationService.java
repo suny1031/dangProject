@@ -21,6 +21,7 @@ public class ReservationService {
 	JDBCTemplate jdt = JDBCTemplate.getInstance();
 	ReservationDao reservationDao = new ReservationDao();
 
+	// 예약 신청 메서드
 	public void insertReservation(Reservation reservation) {
 		Connection conn = jdt.getConnection();
 
@@ -41,6 +42,7 @@ public class ReservationService {
 
 	}
 
+	// 유치원 예약 확인 페이지 페이징
 	public List<Reservation> selectReservationPage(int startRow, int endRow, String kgName) {
 		Connection conn = jdt.getConnection();
 		List<Reservation> reservation;
@@ -54,6 +56,7 @@ public class ReservationService {
 
 	}
 
+	// 유치원 예약 총 개수 메서드
 	public int selectCountPage(String kgName) {
 		Connection conn = jdt.getConnection();
 
@@ -67,6 +70,7 @@ public class ReservationService {
 
 	}
 
+	// 유저 정보를 찾아주는 메서드
 	public UserMember selectUserMember(String userId) {
 		Connection conn = jdt.getConnection();
 
@@ -111,6 +115,7 @@ public class ReservationService {
 
 	}
 
+	// 예약 승인해주는 메서드
 	public int updateReservation(String rsIdx) {
 		Connection conn = jdt.getConnection();
 		int res = 0;
@@ -127,6 +132,7 @@ public class ReservationService {
 
 	}
 
+	// 캘린더 예약 내용 불러오기
 	public ArrayList<Reservation> selectReservation(String kgName) {
 		Connection conn = jdt.getConnection();
 		ArrayList<Reservation> reservationList;
@@ -140,6 +146,7 @@ public class ReservationService {
 
 	}
 
+	// 예약 삭제 메서드
 	public int deleteReservation(String rsIdx) {
 		Connection conn = jdt.getConnection();
 		int res = 0;
@@ -156,6 +163,7 @@ public class ReservationService {
 
 	}
 
+	// 유치원 예약 미리보기
 	public ArrayList<Reservation> selectReservationPreview(String kgName) {
 		Connection conn = jdt.getConnection();
 		ArrayList<Reservation> reservationList;
@@ -168,7 +176,8 @@ public class ReservationService {
 		return reservationList;
 
 	}
-	
+
+	// 유저 예약 미리보기
 	public ArrayList<Reservation> selectUserPreview(String userId) {
 		Connection conn = jdt.getConnection();
 		ArrayList<Reservation> reservationList;
@@ -181,8 +190,8 @@ public class ReservationService {
 		return reservationList;
 
 	}
-	
-	
+
+	// 유저 예약 확인 페이지 페이징
 	public List<Reservation> selectReservationUserPage(int startRow, int endRow, String userId) {
 		Connection conn = jdt.getConnection();
 		List<Reservation> reservation;
@@ -196,6 +205,7 @@ public class ReservationService {
 
 	}
 
+	// 유치원 예약 총 개수 메서드
 	public int selectCountPageUser(String userId) {
 		Connection conn = jdt.getConnection();
 

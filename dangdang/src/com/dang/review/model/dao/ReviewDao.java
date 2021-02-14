@@ -21,6 +21,7 @@ public class ReviewDao {
 
 	JDBCTemplate jdt = JDBCTemplate.getInstance(); // 템플릿 생성
 
+	// 유치원의 리뷰 보여주는 메서드
 	public ArrayList<Review> selectReview(Connection conn, String kgName) {
 
 		ArrayList<Review> reviewList = new ArrayList<>();
@@ -50,7 +51,7 @@ public class ReviewDao {
 			}
 
 		} catch (SQLException e) {
-			throw new DataAccessException(ErrorCode.API01, e);
+			throw new DataAccessException(ErrorCode.RV01, e);
 		} finally {
 			jdt.close(rset, pstm);
 		}
@@ -58,7 +59,8 @@ public class ReviewDao {
 		return reviewList;
 
 	}
-	
+
+	// 유치원의 리뷰 사진 보여주는 메서드
 	public ArrayList<FileVo> selectFile(Connection conn, String kgName) {
 
 		ArrayList<FileVo> fileList = new ArrayList<>();
@@ -70,11 +72,11 @@ public class ReviewDao {
 		try {
 
 			String query = "select * from d_file f join review r on(type_idx = rv_idx) where kg_name = ? ORDER by r.rv_idx desc";
-
+			// 해당 유치원의 타입 인덱스와 일치하는 파일테이블에서 전부 가져온다
 			pstm = conn.prepareStatement(query);
 			pstm.setString(1, kgName);
 			rset = pstm.executeQuery();
-			
+
 			while (rset.next()) {
 				FileVo file = new FileVo();
 				file.setFidx(rset.getInt(1));
@@ -88,7 +90,7 @@ public class ReviewDao {
 			}
 
 		} catch (SQLException e) {
-			throw new DataAccessException(ErrorCode.API01, e);
+			throw new DataAccessException(ErrorCode.RV01, e);
 		} finally {
 			jdt.close(rset, pstm);
 		}
@@ -96,10 +98,8 @@ public class ReviewDao {
 		return fileList;
 
 	}
-	
-	
-	
 
+	// 리뷰 추가 메서드
 	public int insertReview(Connection conn, Review review) {
 		int res = 0;
 		String sql = "insert into REVIEW (RV_IDX,KG_NAME,USER_NAME,TITLE,CONTENT) Values('r' || sc_rv_idx.nextval, ?, ?,?,?)";
@@ -115,7 +115,7 @@ public class ReviewDao {
 			res = pstm.executeUpdate();
 
 		} catch (SQLException e) {
-			throw new DataAccessException(ErrorCode.IB01, e);
+			throw new DataAccessException(ErrorCode.RV02, e);
 		} finally {
 			jdt.close(pstm);
 		}
@@ -123,8 +123,8 @@ public class ReviewDao {
 		return res;
 
 	}
-	
-	
+
+	// 리뷰 사진 추가 메서드
 	public int insertFile(Connection conn, FileVo fileData) {
 		int res = 0;
 		String rvIdx = "";
@@ -154,12 +154,12 @@ public class ReviewDao {
 			pstm.setString(3, fileData.getSavePath());
 			res = pstm.executeUpdate();
 		} catch (SQLException e) {
-			throw new DataAccessException(ErrorCode.IF01, e);
+			throw new DataAccessException(ErrorCode.RV02, e);
 		} finally {
 			jdt.close(pstm);
 		}
 
 		return res;
 	}
-	
+
 }
