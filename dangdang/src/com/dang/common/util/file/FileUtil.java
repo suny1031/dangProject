@@ -26,8 +26,8 @@ public class FileUtil {
 	// 파일을 업로드 하고
 	// 파일 테이블에 저장할 파일메타정보와 파라미터 값을 저장해서 Map에 담아 return
 
-	// 파라미터가 겹칠 수 있어서 List로 한번더 분리
-	// (key운동) 파라미터 -> (value 축구 농구 야구)
+	// 파라미터가 겹치게 되면 key값에 따라 덮어쓰기 때문에 List로 한번더 분리
+	// (key 운동) 파라미터 -> (value 축구 농구 야구)
 	Map<String, List> multiParamMap = new HashMap<String, List>();
 
 	// 파일을 업로드
@@ -81,6 +81,8 @@ public class FileUtil {
 		userFile.writeTo(file);
 	}
 
+	
+	
 	private FileVo getfileData(FilePart userFile) throws UnsupportedEncodingException {
 
 		// 파일 제목 인코딩 문제해결

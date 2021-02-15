@@ -56,7 +56,11 @@ public class AuthFilter implements Filter {
 					if (session.getAttribute("persistUser") == null) {
 						throw new ToAlertException(ErrorCode.AUTH02);
 					}break; 
-				
+					
+				case "login.do":
+					if(session.getAttribute("userMember") != null) {
+						throw new ToAlertException(ErrorCode.AUTH01);
+					}break;
 				
 				}
 				break;
@@ -79,12 +83,10 @@ public class AuthFilter implements Filter {
 					if(session.getAttribute("schoolMember") != null) {
 						throw new ToAlertException(ErrorCode.AUTH01);
 					}break;
-					
-					
-					
-					
+
 				}
 				break;
+				
 			//mypage에 로그인 안한 계정들의 접근 막아주기
 			case "mypage":
 				if(session.getAttribute("userMember") == null) {
@@ -97,13 +99,28 @@ public class AuthFilter implements Filter {
 				
 			case "board":
 				switch (uriArr[2]) {
-				case "write.do":
-					if (session.getAttribute("user") == null) {
+				case "addboard.do":
+					if (session.getAttribute("schoolMember") == null) {
+						throw new ToAlertException(ErrorCode.AUTH08);
+					}
+					break;
+				case "modifyboard.do":
+					if (session.getAttribute("schoolMember") == null) {
+						throw new ToAlertException(ErrorCode.AUTH08);
+					}
+					break;
+				case "listboard1.do":
+					if(session.getAttribute("schoolMember") == null) {
+						throw new ToAlertException(ErrorCode.AUTH08);
+					}
+					break;
+				case "listboard2.do":
+					if(session.getAttribute("userMember") == null) {
 						throw new ToAlertException(ErrorCode.AUTH03);
 					}
 					break;
-				case "upload.do":
-					if (session.getAttribute("user") == null) {
+				case "viewboard2.do":
+					if(session.getAttribute("userMember") == null) {
 						throw new ToAlertException(ErrorCode.AUTH03);
 					}
 					break;
@@ -123,21 +140,17 @@ public class AuthFilter implements Filter {
 						break;
 					}
 					break;
-				case "reservation":
+
+				case "diary":
 					switch (uriArr[2]) {
-					case "reservation.do":
+					case "kindergardenview.do":
+						if (session.getAttribute("schoolMember") == null) {
+							throw new ToAlertException(ErrorCode.AUTH09);
+						}
+						break;
+					case "userview.do":
 						if (session.getAttribute("userMember") == null) {
-							throw new ToAlertException(ErrorCode.AUTH05);
-						}
-						break;
-					case "mngngRsrvt.do":
-						if (session.getAttribute("schoolMember") == null) {
-							throw new ToAlertException(ErrorCode.AUTH06);
-						}
-						break;
-					case "calendar.do":
-						if (session.getAttribute("schoolMember") == null) {
-							throw new ToAlertException(ErrorCode.AUTH07);
+							throw new ToAlertException(ErrorCode.AUTH09);
 						}
 						break;
 					}

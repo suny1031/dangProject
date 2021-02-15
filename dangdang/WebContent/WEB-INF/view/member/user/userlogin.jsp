@@ -86,8 +86,7 @@
 
 			</ul>
 			<ul class="copyright">
-				<li>&copy; Untitled</li>
-				<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+				<li>&copy;댕댕아놀면뭐하니?</li>
 			</ul>
 		</footer>
 
@@ -103,9 +102,8 @@
 	<script src="../../../../resources/js/breakpoints.min.js"></script>
 	<script src="../../../../resources/js/util.js"></script>
 	<script src="../../../../resources/js/main.js"></script>
-	<script src="../../../../resources/js/member.js"></script>
 	<script src="${context}resources/js/commmon/asyncPageError.js"></script>
-	
+	<script src="../../../../resources/js/member.js"></script>
 
 </body>
 </html>

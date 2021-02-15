@@ -56,7 +56,7 @@ public class HttpUtils {
 	
 	
 	
-
+	//get 방식으로 포스팅
 	public String get(String url, Map<String, String> headers) {
 		String res = "";
 
@@ -83,7 +83,7 @@ public class HttpUtils {
 	
 	
 	
-
+	//post 방식으로 통신
 	public String post(String url, String body, Map<String, String> headers) {
 
 		String res = "";
@@ -111,10 +111,10 @@ public class HttpUtils {
 			for (String key : params.keySet()) {
 				res += "&" + URLEncoder.encode(key, "UTF-8") + "=" + URLEncoder.encode(params.get(key), "UTF-8");
 				// &name = value&name=value
-				// 아스키코드표로 표현간으하게끔 문자를 인코딩
+				// 아스키코드표로 표현가능하게끔 문자를 인코딩
 
 			}
-
+			//res 에 null 값이 들어가 있을 수 있기 때문에
 			if (res.length() > 0) {
 				res = res.substring(1);
 			}

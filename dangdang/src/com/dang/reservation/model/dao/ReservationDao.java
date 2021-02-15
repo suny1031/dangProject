@@ -315,7 +315,7 @@ public class ReservationDao {
 			ResultSet rset = null;
 			try {
 
-				String query = "select * from reservation where USER_ID = ? and IS_DEL = 0 and ROWNUM BETWEEN 1 and 5 order by RS_IDX asc";
+				String query = "select * from reservation where USER_ID = ? and IS_DEL = 0 and ROWNUM BETWEEN 1 and 5 order by RS_IDX desc";
 				//삭제 되지않은 예약만 보여준다 
 				
 				pstm = conn.prepareStatement(query);

@@ -90,12 +90,8 @@
 						<div class="inner">
 							<header class="major">
 								<div class="main_login_box">
-									<div class="main_login">
-										<a href="/user/login.do">견주</a>
-									</div>
-									<div class="main_login">
-										<a href="/school/login.do">업주</a>
-									</div>
+									<button class = login_btn onclick="location.href='/user/login.do'">견주</button>
+									<button class = login_btn onclick="location.href='/school/login.do'">업주</button>
 								</div>	
 							</header>
 						</div>
@@ -118,11 +114,12 @@
 
 		<!-- Footer -->
 		<footer id="footer">
-			
-			
-			
-			
-			
+			<ul class="icons">
+
+			</ul>
+			<ul class="copyright">
+				<li>&copy;댕댕아놀면뭐하니?</li>
+			</ul>
 		</footer>
 
 	</div>

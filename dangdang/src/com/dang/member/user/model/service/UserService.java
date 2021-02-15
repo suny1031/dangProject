@@ -2,11 +2,16 @@ package com.dang.member.user.model.service;
 
 import java.sql.Connection;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
+import com.dang.board.model.vo.Board;
 import com.dang.common.code.ConfigCode;
 import com.dang.common.exception.DataAccessException;
 import com.dang.common.jdbc.JDBCTemplate;
 import com.dang.common.mail.MailSender;
+import com.dang.common.util.http.HttpUtils;
 import com.dang.member.user.model.dao.UserDao;
 import com.dang.member.user.model.vo.UserMember;
 
@@ -98,10 +103,26 @@ public class UserService {
 		public void authenticateEmail(UserMember userMember) {
 			
 			String subject = "회원가입을 마무리해주세요.";
-			String htmlText = "<h1>회원가입을 마무리하기 위해 아래의 링크를 클릭해주세요.</h1>";
-			htmlText += "<a href='"+ ConfigCode.DOMAIN + "/user/joinimpl.do'>회원가입 링크</a>";
-			String to = userMember.getEmail();
+			String htmlText = "";
 			
+			
+			HttpUtils http = new HttpUtils();
+			//url 작성
+			String url = ConfigCode.DOMAIN + "/mail.do";
+			
+			//header를 작성
+			Map<String, String> headers = new HashMap<String, String>();
+			headers.put("Content-Type", "application/x-www-form-urlencoded");
+			
+			//parameter 저장
+			Map<String, String> params = new HashMap<String, String>();
+			params.put("template", "user_joincomplete");
+			params.put("userId", userMember.getUserId());
+			
+			//body로 전송해서 받기
+			htmlText = http.post(url, http.urlEncodedForm(params), headers);
+					
+			String to = userMember.getEmail();
 			new MailSender().sendEmail(subject, htmlText, to);
 			
 		}
@@ -109,14 +130,28 @@ public class UserService {
 		//비밀번호 찾기시 이메일보내기
 		public void finUserPwEmail(UserMember userMember) {
 			
+			
 			String subject = "임시 비밀번호가 발급되었습니다.";
-			String htmlText ="<h1>'${param.userPw}'</h1><h1>입니다."
-							+ "</h1><h1>아래의 링크를 클릭하시면 로그인 창으로 이동합니다."
-							+ "</h1><h1>로그인 후 임시비밀번호를 바꿔주세요.</h1>";
+			String htmlText = "";
 			
-			htmlText += "<a href='"+ ConfigCode.DOMAIN + "/user/login.do\'>홈페이지 이동하기</a>";
+			
+			HttpUtils http = new HttpUtils();
+			//url 작성
+			String url = ConfigCode.DOMAIN + "/mail.do";
+			
+			//header를 작성
+			Map<String, String> headers = new HashMap<String, String>();
+			headers.put("Content-Type", "application/x-www-form-urlencoded");
+			
+			//parameter 저장
+			Map<String, String> params = new HashMap<String, String>();
+			params.put("template", "user_resetpassword");
+			params.put("userPw", userMember.getPassword());
+			
+			//body로 전송해서 받기
+			htmlText = http.post(url, http.urlEncodedForm(params), headers);
+					
 			String to = userMember.getEmail();
-			
 			new MailSender().sendEmail(subject, htmlText, to);
 			
 		}
@@ -188,6 +223,22 @@ public class UserService {
 			return res;
 			
 		}
+		
+		
+		
+		
+		
+		public ArrayList<Board> selectNoticePreview(String kgName){
+			Connection conn = jdt.getConnection();
+			ArrayList<Board> noticeList;
+			
+				try {
+					noticeList = userDao.selectNoticePreview(conn, kgName);
+				}finally {
+					jdt.close(conn);
+				}
+				return noticeList;
+			}
 	
 	
 	

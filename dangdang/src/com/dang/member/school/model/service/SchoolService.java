@@ -1,11 +1,13 @@
 package com.dang.member.school.model.service;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.dang.board.model.vo.Board;
 import com.dang.common.code.ConfigCode;
 import com.dang.common.exception.DataAccessException;
 import com.dang.common.exception.ToAlertException;
@@ -57,21 +59,19 @@ public class SchoolService {
 	
 	
 	
-	public Service SchoolproService(String kgName) {
+	public Service schoolProService(String kgName) {
 		Connection conn = jdt.getConnection();
 		Service schoolProService = null;
 		
 		
 		try {
-			schoolProService = schoolDao.SchoolproService(conn, kgName);
+			schoolProService = schoolDao.schoolProService(conn, kgName);
 		}finally {
 			jdt.close(conn);
 		}
 		
 		return schoolProService;
 	}
-	
-	
 	
 	
 	
@@ -96,7 +96,7 @@ public class SchoolService {
 	}
 	
 	
-	
+	/*
 
 	public SchoolMember findSchoolPw(String kgId, String kgEmail) {
 		
@@ -111,7 +111,7 @@ public class SchoolService {
 		}
 		return schoolMember;
 		
-	}
+	} */
 	
 	
 	
@@ -159,7 +159,7 @@ public class SchoolService {
 	public int modifySchoolService(String kgName, int isKg, int isCafe, int isHotel, int isPickup, int isMedic, int isAcademy, int isSpa) {
 		Connection conn = jdt.getConnection();
 		int res = 0;
-		
+
 		
 		try {
 			res = schoolDao.modifySchoolService(conn, kgName, isKg, isCafe, isHotel, isPickup, isMedic, isAcademy, isSpa);
@@ -169,7 +169,6 @@ public class SchoolService {
 		}finally {
 			jdt.close(conn);
 		}
-		System.out.println("schoolServcie" + res);
 		return res ;
 		
 	}
@@ -178,17 +177,17 @@ public class SchoolService {
 
 
 
-	public int uploadSchoolPhoto(HttpServletRequest request) {
+	public int uploadSchoolPhoto(SchoolMember schoolMember , HttpServletRequest request) {
 		Connection conn = jdt.getConnection();
 		int res = 0;
-		
+		String kgIdx = schoolMember.getKgIdx();
 		//게시글 저장
 		Map<String,List> PhotoData = new FileUtil().fileUpload(request);
 		
 		try {
 			
-			for(FileVo fileData : (List<FileVo>)PhotoData.get("fileData")) {
-				schoolDao.uploadSchoolPhoto(conn, fileData);
+			for(FileVo schoolPhotoData : (List<FileVo>)PhotoData.get("fileData")) {
+				schoolDao.uploadSchoolPhoto(conn, schoolPhotoData, kgIdx);
 			}
 			jdt.commit(conn);
 		}catch(DataAccessException e) {
@@ -202,6 +201,32 @@ public class SchoolService {
 		
 	}
 	
+	
+	public ArrayList<FileVo> selectSchoolPhoto(String kgIdx){
+		Connection conn = jdt.getConnection();
+		ArrayList<FileVo> photoList;
+		
+		try {
+			photoList = schoolDao.selectSchoolPhoto(conn, kgIdx);
+		}finally {
+			jdt.close(conn);
+		}
+		return photoList;
+	}
+	
+	
+	
+	public ArrayList<Board> selectNoticePreview(String kgName){
+	Connection conn = jdt.getConnection();
+	ArrayList<Board> noticeList;
+	
+		try {
+			noticeList = schoolDao.selectNoticePreview(conn, kgName);
+		}finally {
+			jdt.close(conn);
+		}
+		return noticeList;
+	}
 	
 	
 	

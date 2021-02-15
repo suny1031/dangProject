@@ -5,7 +5,9 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
+import com.dang.board.model.vo.Board;
 import com.dang.common.code.ErrorCode;
 import com.dang.common.exception.DataAccessException;
 import com.dang.common.jdbc.JDBCTemplate;
@@ -25,10 +27,9 @@ public class UserDao {
 		UserMember userMember = null;
 		PreparedStatement pstm = null;
 		ResultSet rset = null;
-		
+		String query = "select * from member where user_id =? and password = ?";
 		
 		try {
-			String query = "select * from member where user_id =? and password = ?";
 			
 			pstm = conn.prepareStatement(query);
 			pstm.setString(1, userId);
@@ -280,6 +281,40 @@ public class UserDao {
 		}
 	
 		return res;
+		
+	}
+	
+	
+public ArrayList<Board> selectNoticePreview(Connection conn, String kgName){
+		
+		ArrayList<Board> noticeList = new ArrayList<>();
+		PreparedStatement pstm = null;
+		ResultSet rset = null;
+		
+		String query = "select * from bd_notice where kg_name = ?";
+		
+		try {
+			pstm = conn.prepareStatement(query);
+			pstm.setString(1, kgName);
+			rset =  pstm.executeQuery();
+			
+			while(rset.next()) {
+				Board board = new Board();
+				board.setBdIdx(rset.getInt("bd_no_idx"));
+				board.setTitle(rset.getString("title"));
+				board.setContent(rset.getString("content"));
+				board.setRegDate(rset.getDate("reg_date"));
+				board.setKgName(rset.getString("kg_name"));
+				
+				noticeList.add(board);
+			}
+		} catch (SQLException e) {
+			throw new DataAccessException(ErrorCode.BL01, e);
+		}finally {
+			jdt.close(rset, pstm);
+		}
+		
+		return noticeList;
 		
 	}
 	

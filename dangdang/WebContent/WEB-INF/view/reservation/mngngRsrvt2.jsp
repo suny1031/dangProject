@@ -207,7 +207,9 @@
 
 
 		<!-- Footer -->
-		<footer id="footer"> </footer>
+		<footer id="footer"> 
+			<div id = "footerMark">&copy;댕댕아놀면뭐하니?</div>
+		</footer>
 
 	</div>
 

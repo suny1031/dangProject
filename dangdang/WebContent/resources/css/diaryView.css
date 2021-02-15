@@ -1,0 +1,62 @@
+@charset "UTF-8";
+
+#wrap {
+	height: 100%;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.table {
+	width: 70%;
+	height: 85%;
+	margin-top: 5%;
+	border-top: 2px solid #8b4513;
+}
+
+.table tr {
+	border-bottom: 1px solid #999;
+}
+
+tr td {
+	padding: 10px;
+}
+
+#write {
+	width: 100%;
+	height: 15%;
+	display: flex;
+	justify-content: flex-end;
+}
+
+#writeBtn {
+	width: 10%;
+	height: 30%; border : none;
+	border-radius: 10px;
+	background-color: #8b4513;
+	margin-right: 3%;
+	align-self: center;
+	border: none;
+}
+
+#writeBtn a {
+	color: white;
+}
+
+/*헤더*/
+#header {
+	height: 15vh;
+}
+
+/*작업할 공간*/
+.board {
+	height: 70vh;
+	margin-top: 15vh;
+}
+
+/*푸터*/
+#footer {
+	height: 15vh;
+	padding: 0%;
+}

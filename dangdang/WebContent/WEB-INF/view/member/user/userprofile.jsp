@@ -92,7 +92,7 @@
 								<div id="kg_form">
 									<fieldset class="school_info info_form">
 										<legend>유치원정보</legend>
-										<h2 id="kg_info">${sessionScope.userMember.kgName}</h2>
+										<br><input type ="text" value="${sessionScope.userMember.kgName}" id="kg_info" name="kg_info" readonly>
 									</fieldset>
 								</div>
 							</div>
@@ -125,8 +125,7 @@
 
 			</ul>
 			<ul class="copyright">
-				<li>&copy; Untitled</li>
-				<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+				<li>&copy;댕댕아놀면뭐하니?</li>
 			</ul>
 		</footer>
 

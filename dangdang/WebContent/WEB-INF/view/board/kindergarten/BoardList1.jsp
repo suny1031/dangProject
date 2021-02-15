@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/view/include/header.jsp"%>
 <%@ page import="java.io.PrintWriter" %>
 <%@ page import="com.dang.board.model.service.BoardService" %>
 <%@ page import="com.dang.board.model.vo.Board" %>
@@ -29,10 +30,6 @@
 </head>
 <body class="is-preload">
 	<%
-		String kgId = null;
-		if(session.getAttribute("kgId") != null){
-			kgId = (String)session.getAttribute("kgId");
-		}
 		int pageNumber = 1;
 		if(request.getParameter("pageNumber") != null){
 			pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
@@ -54,12 +51,19 @@
 						<div id="menu">
 							<ul>
 								<li><a href="/main.do">Home</a></li>
-								<li><a href="generic.html">마이페이지</a></li>
-								<li><a href="/map.do">유치원 찾기</a></li>
-								<li><a href="#">캘린더</a></li>
+								<c:choose>
+									<c:when test ="${sessionScope.schoolMember != null}"><li><a href="/school/schoolpage.do">마이페이지</a></li></c:when>
+									<c:when test ="${sessionScope.userMember != null}"><li><a href="/user/userpage.do">마이페이지</a></li></c:when>
+								</c:choose>
+								<li><a href="/map/map.do">유치원 찾기</a></li>
+								<li><a href="/reservation/calendar.do">캘린더</a></li>
+								<c:choose>
+									<c:when test ="${sessionScope.schoolMember != null}"><li><a href="/school/logout.do">로그아웃</a></li></c:when>
+									<c:when test ="${sessionScope.userMember != null}"><li><a href="/user/logout.do">로그아웃</a></li></c:when>
+								</c:choose>
+								
 							</ul>
-						</div>
-					</li>
+						</div></li>
 				</ul>
 			</nav>
 		</header>
@@ -82,25 +86,32 @@
 							<!-- boardlist 에 추가할 내용을 for 문으로 꺼내오기 -->
 							<%
 								BoardService boardService = new BoardService();
-								ArrayList<Board> boardList = boardService.listBoard(pageNumber);
+								ArrayList<Board> boardList = boardService.listBoard();
 								for(int i = 0; i < boardList.size(); i++){
 							%>
 							<tr>
 								<!-- 게시물 번호 -->
 								<td><%= boardList.get(i).getBdIdx() %></td>
 								<!-- 제목 제목 클릭시 해당 게시물 번호를 보여줄 BoardView 로 연결 -->
-								<td><a href = "BoardView.jsp?BdIdx=<%=boardList.get(i).getBdIdx() %>"><%= boardList.get(i).getTitle() %></a></td>
+								<c:choose>
+							    	<c:when test="${sessionScope.schoolMember != null}">
+							      		<td><a href = "/board/viewboard1.do?bdIdx=<%=boardList.get(i).getBdIdx() %>"><%= boardList.get(i).getTitle() %></a></td>
+							      	</c:when>
+							      	<c:when test="${sessionScope.userMember != null}">
+							      		<td><a href = "BoardView2.jsp?bdIdx=<%=boardList.get(i).getBdIdx() %>"><%= boardList.get(i).getTitle() %></a></td>
+							      	</c:when>
+							    </c:choose>
 								<!-- 게시물을 작성한 유치원 이름 kgId 로 구분해야 할 듯 -->
 								<td><%= boardList.get(i).getKgName() %></td>
-								<!-- 게시물 작성일자, subString 으로 구역별로 잘라서 시 분 으로 보이게끔함 -->
-								<td><%= boardList.get(i).getRegDate().substring(0, 11) + boardList.get(i).getRegDate().substring(11,13) + "시" + boardList.get(i).getRegDate().substring(14, 16) + "분" %></td>
+								<!-- 게시물 작성일자 -->
+								<td><%= boardList.get(i).getRegDate() %></td>
 							</tr>
 							<%
 								}
 							%>
 						</tbody>
 				</table>
-				<!-- 게시판의 페이지 번호가 1번이 아닐 경우 이전 페이지 버튼을 만들어줌 -->
+				<%-- <!-- 게시판의 페이지 번호가 1번이 아닐 경우 이전 페이지 버튼을 만들어줌 -->
 				<%
 					if(pageNumber != 1){
 				%>
@@ -108,14 +119,14 @@
 					
 				<!-- 다음페이지가 존재할 시 다음 페이지로 가는 버튼을 만들어준다. -->
 				<%
-					}if(boardService.nextPage(pageNumber)){
+					}if(boardService.nextPage(pageNumber + 1)){
 				%>
 				<!-- 다음 페이지로 넘어 갔을 때 이전페이지를 만들어 주기 위해 페이지 넘버에 1을 더해준다. -->
 					<a href="BoardList1.jsp?pageNumber=<%= pageNumber +1 %>" class="bt next">다음 페이지</a>
 				<%		
 					}
-				%>
-				<a href="addboard.do" class="writing_box">글쓰기</a>
+				%> --%>
+				<a href="/board/addboard.do" class="writing_box">글쓰기</a>
 			</div>
 
 			<!-- <div class="paging">

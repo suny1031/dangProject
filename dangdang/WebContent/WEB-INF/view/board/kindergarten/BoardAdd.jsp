@@ -1,11 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/view/include/header.jsp"%>
-<%@ page import="com.dang.board.model.service.BoardService" %>
-<%@ page import="com.dang.member.school.model.vo.SchoolMember" %>
-<jsp:useBean id="board" class="com.dang.board.model.vo.Board" scope="page" />
-<jsp:setProperty name="board" property="title" />
-<jsp:setProperty name="board" property="content" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,7 +24,6 @@
 </noscript>
 </head>
 <body class="is-preload">
-
 	<!-- Page Wrapper -->
 	<div id="page-wrapper">
 
@@ -45,32 +39,30 @@
 						<div id="menu">
 							<ul>
 								<li><a href="/main.do">Home</a></li>
-								<li><a href="generic.html">마이페이지</a></li>
-								<li><a href="/map.do">유치원 찾기</a></li>
-								<li><a href="#">캘린더</a></li>
+								<c:choose>
+									<c:when test ="${sessionScope.schoolMember != null}"><li><a href="/school/schoolpage.do">마이페이지</a></li></c:when>
+									<c:when test ="${sessionScope.userMember != null}"><li><a href="/user/userpage.do">마이페이지</a></li></c:when>
+								</c:choose>
+								<li><a href="/map/map.do">유치원 찾기</a></li>
+								<li><a href="/reservation/calendar.do">캘린더</a></li>
+								<c:choose>
+									<c:when test ="${sessionScope.schoolMember != null}"><li><a href="/school/logout.do">로그아웃</a></li></c:when>
+									<c:when test ="${sessionScope.userMember != null}"><li><a href="/user/logout.do">로그아웃</a></li></c:when>
+								</c:choose>
+								
 							</ul>
-						</div></li>
+						</div>
+					</li>
 				</ul>
 			</nav>
 		</header>
 		
-
-
-
-
-
-		<%
-			// BoardService 호출
-			BoardService boardService = new BoardService();
-		%>
-
-
 		<!-- Main -->
 		<section class="board">
 			<div class="content">
 				<h2 id="tit" class="mainfont">알림장</h2>
 				<br>
-				<form action="listboard1.do" method="post" enctype="multipart/form-data">
+				<form action="/board/addboardimpl.do" method="post" enctype="multipart/form-data">
 					<div class="addBoard-wrap">
 						<table class="addBoard">
 							<thead class="addBoard-head">
@@ -86,29 +78,12 @@
 								<tr>
 									<td><textarea class="addBoard-content"
 											placeholder="내용을 적어주세요." name="boardContent" maxlength="2000" required="required"></textarea>
+									</td>
 								</tr>
 							</tbody>
 						</table>
 					</div>
 					<input type="submit" class="btn-addBoard" value="작성 완료">
-					<%		
-							int result = boardService.addBoard(board.getTitle(), board.getKgName(), board.getContent());
-							if(result == -1){
-					%>
-								<script>
-									alert('글쓰기에 실패했습니다.')
-									history.back();
-								</script>
-						<%
-							}else{
-						%>
-								<script>
-									location.href = BoardLsit1.jsp
-								</script>
-						<%
-							}
-						%>
-					
 				</form> 
 			</div>
 

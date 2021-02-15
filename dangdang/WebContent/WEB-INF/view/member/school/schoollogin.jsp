@@ -60,7 +60,7 @@
 				<input type="text" name="id" id="id" placeholder="아이디를 입력하세요." required>
 				<input type="password" name="pw" id="pw" placeholder="비밀번호를 입력하세요." required>
 				<button onclick="login()" id="login_btn">로그인</button>
-				<a href ="/school/findschoolinfo.do" id="find_info">아이디/비밀번호 찾기</a>
+				<a href ="/school/findschoolinfo.do" id="find_info">아이디 찾기</a>
 			</div>
 			
 		</section>
@@ -83,8 +83,7 @@
 
 			</ul>
 			<ul class="copyright">
-				<li>&copy; Untitled</li>
-				<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+				<li>&copy;댕댕아놀면뭐하니?</li>
 			</ul>
 		</footer>
 

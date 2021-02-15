@@ -2,7 +2,10 @@ package com.dang.board.controller;
 
 import java.io.File;
 import java.io.IOException;
+
+import javax.mail.Session;
 import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -10,9 +13,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.dang.board.model.service.BoardService;
+import com.dang.board.model.vo.Board;
 import com.dang.common.code.ConfigCode;
 import com.dang.common.code.ErrorCode;
 import com.dang.common.exception.ToAlertException;
+import com.dang.member.school.model.vo.SchoolMember;
 import com.oreilly.servlet.multipart.FilePart;
 import com.oreilly.servlet.multipart.MultipartParser;
 import com.oreilly.servlet.multipart.ParamPart;
@@ -29,32 +34,35 @@ public class BoardController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String[] uriArr = request.getRequestURI().split("/");
 		switch (uriArr[uriArr.length-1]) {
-		case "writeboard.do": writeBoard(request, response);
+		case "addboardimpl.do": addBoardImpl(request,response); // 글 작성 추가 메서드 (오류)
 			break;
-		case "addboard.do": addBoard(request,response);
+		case "addboard.do": addBoard(request, response); // 글 작성 view 페이지 (오류)
 			break;
-		case "modifyboard.do": modifyBoard(request,response);
-			break;	
-		case "viewboard.do": viewBoard(request,response);
+		case "modifyboard.do": modifyBoard(request,response); // 글 수정 페이지 (오류)
 			break;
-		case "listboard1.do": listBoard1(request, response);
+		case "modifyboardimpl.do": modifyBoardImpl(request,response); // 글 수정 페이지 (오류)
+		break;	
+		case "viewboard1.do": viewBoard1(request,response); // 업주용 글 상세 페이지
 			break;
-		case "listboard2.do": listBoard2(request, response);
+		case "viewboard2.do": viewBoard2(request, response); // 견주용 글 상세 페이지
 			break;
-		case "board.do": boardAction(request, response);
+		case "listboard1.do": listBoard1(request, response); // 업주용 글 목록 페이지
+			break;
+		case "listboard2.do": listBoard2(request, response); // 견주용 글 목록 페이지
+			break;
+		case "board.do": boardAction(request, response); // 글을 올렸을 때 한번 거쳐가주는 액션 페이지
+			break;
+		case "modify.do": modifyAction(request, response); // 글을 수정했을 때 한번 거쳐가주는 액션 페이지
+			break;
+		case "delete.do": deleteAction(request, response); // 글을 삭제 했을 때 한번 거쳐주는 액션 페이지
 			break;
 		default:
-			throw new ToAlertException(ErrorCode.CD_404);
+			break;
 		}
-		request.getRequestDispatcher("/WEB-INF/view/main/main.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
-	}
-	
-	private void writeBoard(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/WEB-INF/view/board/kindergarten/BoardAdd.jsp").forward(request, response);
 	}
 	
 	private void listBoard1(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -69,16 +77,60 @@ public class BoardController extends HttpServlet {
 		request.getRequestDispatcher("/WEB-INF/view/board/kindergarten/BoardAdd.jsp").forward(request, response);
 	}
 	
-	private void modifyBoard(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	private void addBoardImpl(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		SchoolMember schoolMember = (SchoolMember) session.getAttribute("schoolMember");
+		String kgName = schoolMember.getKgName();
+		String boardTitle = request.getParameter("boardTitle");
+		String boardContent = request.getParameter("boardContent");
+		boardService.addBoard(boardTitle, kgName, boardContent);
+		
+		request.setAttribute("alertMsg", "게시글 등록이 완료되었습니다");
+		request.setAttribute("url", "/board/listboard1.do");
+		
+		request.getRequestDispatcher("/WEB-INF/view/common/result.jsp").forward(request, response);
+	}
+	
+	private void modifyBoard(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
+		
 		request.getRequestDispatcher("/WEB-INF/view/board/kindergarten/BoardModify.jsp").forward(request, response);
 	}
 	
-	private void viewBoard(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/WEB-INF/view/board/student/BoardView.jsp").forward(request, response);
-	}	
+	private void modifyBoardImpl(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int bdIdx = Integer.parseInt(request.getParameter("bdIdx"));
+		String boardTitle = request.getParameter("boardTitle");
+		String boardContent = request.getParameter("boardContent");
+		int res = boardService.modifyBoard(bdIdx, boardTitle, boardContent);
+		
+		request.setAttribute("alertMsg", "게시글 수정이 완료되었습니다");
+		request.setAttribute("url", "/board/listboard1.do");
+		
+		request.getRequestDispatcher("/WEB-INF/view/common/result.jsp").forward(request, response);
+	}
+	
+	private void viewBoard1(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		int bdIdx =  Integer.parseInt(request.getParameter("bdIdx"));
+		request.setAttribute("bdIdx", bdIdx);
+		Board board = boardService.viewBoard(bdIdx);
+		request.setAttribute("board", board);
+		request.getRequestDispatcher("/WEB-INF/view/board/kindergarten/BoardView1.jsp").forward(request, response);
+	}
+	
+	private void viewBoard2(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getRequestDispatcher("/WEB-INF/view/board/student/BoardView2.jsp").forward(request, response);
+	}
 	
 	private void boardAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		request.getRequestDispatcher("/WEB-INF/view/board/kindergarten/board.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/view/board/Board.jsp").forward(request, response);
+	}
+	
+	private void modifyAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		request.getRequestDispatcher("/WEB-INF/view/board/Modify.jsp").forward(request, response);
+	}
+	
+	private void deleteAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		request.getRequestDispatcher("/WEB-INF/view/board/Delete.jsp").forward(request, response);
 	}
 	
 }

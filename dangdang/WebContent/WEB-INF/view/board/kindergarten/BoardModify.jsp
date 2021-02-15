@@ -1,10 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/view/include/header.jsp"%>
+<%@ page import="com.dang.board.model.service.BoardService" %>
+<%@ page import="com.dang.member.school.model.vo.SchoolMember" %>
+<%@ page import="com.dang.board.model.vo.Board" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>알림 게시판 수정 페이지 (업주)</title>
+<title>알림 게시판 글쓰기 페이지 (업주)</title>
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
 <link rel="stylesheet" href="${context}/resources/css/main.css" />
@@ -23,7 +27,6 @@
 </noscript>
 </head>
 <body class="is-preload">
-
 	<!-- Page Wrapper -->
 	<div id="page-wrapper">
 
@@ -39,11 +42,20 @@
 						<div id="menu">
 							<ul>
 								<li><a href="/main.do">Home</a></li>
-								<li><a href="generic.html">마이페이지</a></li>
-								<li><a href="/map.do">유치원 찾기</a></li>
-								<li><a href="#">캘린더</a></li>
+								<c:choose>
+									<c:when test ="${sessionScope.schoolMember != null}"><li><a href="/school/schoolpage.do">마이페이지</a></li></c:when>
+									<c:when test ="${sessionScope.userMember != null}"><li><a href="/user/userpage.do">마이페이지</a></li></c:when>
+								</c:choose>
+								<li><a href="/map/map.do">유치원 찾기</a></li>
+								<li><a href="/reservation/calendar.do">캘린더</a></li>
+								<c:choose>
+									<c:when test ="${sessionScope.schoolMember != null}"><li><a href="/school/logout.do">로그아웃</a></li></c:when>
+									<c:when test ="${sessionScope.userMember != null}"><li><a href="/user/logout.do">로그아웃</a></li></c:when>
+								</c:choose>
+								
 							</ul>
-						</div></li>
+						</div>
+					</li>
 				</ul>
 			</nav>
 		</header>
@@ -53,46 +65,39 @@
 			<div class="content">
 				<h2 id="tit" class="mainfont">알림장</h2>
 				<br>
-				<div id="desc_board">
-					<form action="${context}/board/modifyboard.do" method="post"
-						enctype="multipart/form-data">
-						<div>
-							<div id="tit_board" class="mainfont">
-								제목 : <input type="text" class="title-box" name="title"
-									required="required" /><br> 파일 첨부 : <input type="file"
-									name="files" id="contract_file" multiple />
-								<!-- multiple : 여러개 파일 선택을 허용하는 속성 -->
-								<select id="select_class" class="mainfont">
-									<option>반 이름</option>
-									<option>깜식 반</option>
-									<option>아롱 반</option>
-									<option>희망 반</option>
-								</select>
-								<!-- 파일 : <input type="file" name="files" id="contract_file" multiple /> -->
-							</div>
-							<textarea id="board-content" class="noticefont" name="content"
-								style="width: 99%; height: 600px;" required="required">
-						</textarea>
-
-							<div class="before-next">
-								다음글 : <br> 이전글 :
-							</div>
-
-							<div class="WMC_box">
-								<button class="mainfont">닫기</button>
-							</div>
-							<div class="WMC_box">
-								<button class="mainfont">삭제</button>
-							</div>
-							<div class="WMC_box">
-								<button class="mainfont">수정</button>
-							</div>
-						</div>
-					</form>
-				</div>
+				<form action="/board/modifyboardimpl.do" method="post" enctype="multipart/form-data">
+					<div class="addBoard-wrap">
+						<table class="addBoard">
+							<thead class="addBoard-head">
+								<tr>
+									<th colspan="2" class="addBoard-top">알림장 수정</th>
+								</tr>
+							</thead>
+							<tbody class="addBoard-body">
+								<tr>
+									<td>
+										<input type="text" class="addBoard-title"
+										placeholder="제목을 적어주세요." name="boardTitle" maxlength="50">
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<textarea class="addBoard-content"
+											placeholder="내용을 적어주세요." name="boardContent" maxlength="2000"></textarea>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<input type="submit" class="btn-addBoard" value="작성 완료">
+					
+				</form> 
 			</div>
 
 		</section>
+
+
+
 
 		<!-- Footer -->
 		<footer id="footer">

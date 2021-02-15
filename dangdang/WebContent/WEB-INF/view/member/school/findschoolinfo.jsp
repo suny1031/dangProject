@@ -54,7 +54,7 @@
 		<!-- Main -->
 		<section class="user_board">
 			<div class="find_info">
-			<span id="find_user_title">유치원 아이디/비밀번호 찾기</span>
+			<span id="find_user_title">유치원 아이디 찾기</span>
 				<div id="find_id">
 					<div id="form_find_id">
 						<div id="find_id_field">
@@ -75,25 +75,7 @@
 						</div>
 					</div>
 				</div>
-				<div id="find_pw">
-					<div action="${context}/school/findschoolpw.do" method="post" id="form_find_pw">
-						<div id="find_pw_field">
-							<table id ="find_pw_table">
-								<tr><td>아이디</td></tr>
-								<tr>
-									<td><input type="text" name="id" size=28% required></td>
-								<tr>
-								<tr><td>유치원 이메일</td></tr>
-								<tr>
-									<td><input type="email" name="email" size=28% required></td>
-								<tr> 
-								<tr>
-									<td id="find_id_btn"><button type="submit">비밀번호 찾기</button></td>
-								</tr>
-							</table>
-						</div>
-					</div>
-				</div>
+				
 			</div>
 		</section>
 
@@ -115,8 +97,7 @@
 
 			</ul>
 			<ul class="copyright">
-				<li>&copy; Untitled</li>
-				<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+				<li>&copy;댕댕아놀면뭐하니?</li>
 			</ul>
 		</footer>
 

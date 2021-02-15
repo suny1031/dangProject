@@ -19,7 +19,7 @@ public class ReviewDao {
 
 	}
 
-	JDBCTemplate jdt = JDBCTemplate.getInstance(); // 템플릿 생성
+	JDBCTemplate jdt = JDBCTemplate.getInstance(); 
 
 	// 유치원의 리뷰 보여주는 메서드
 	public ArrayList<Review> selectReview(Connection conn, String kgName) {

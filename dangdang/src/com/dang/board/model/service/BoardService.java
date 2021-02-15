@@ -7,6 +7,8 @@ import java.util.List;
 
 import com.dang.board.model.dao.BoardDao;
 import com.dang.board.model.vo.Board;
+import com.dang.common.code.ErrorCode;
+import com.dang.common.exception.DataAccessException;
 import com.dang.common.jdbc.JDBCTemplate;
 
 public class BoardService {
@@ -18,53 +20,76 @@ public class BoardService {
 		
 	}
 	
-	public String getDate() {
-		return boardDao.getDate();
-	}
-	
-	public int getNext() {
-		Connection conn = jdt.getConnection();
-		int res = 0;
-		try {
-			res = boardDao.getNext();
-		} finally {
-			jdt.close(conn);
-		}
-		return res;
-	}
+//	public int getNext() {
+//		
+//		Connection conn = jdt.getConnection();
+//		int res = 0;
+//		try {
+//			res = boardDao.getNext(conn);
+//		} finally {
+//			jdt.close(conn);
+//		}
+//		return res;
+//	}
 	
 	public int addBoard(String title, String kgName, String content) {
 		Connection conn = jdt.getConnection();
 		int res = 0;
 		try {
-			res = boardDao.addBoard(title, kgName, content);
+			res = boardDao.addBoard(conn, title, kgName, content);
 		}finally {
 			jdt.close(conn);
 		}
 		return res;
 	}
 	
-	public ArrayList<Board> listBoard(int pageNumber){
+	public ArrayList<Board> listBoard(){
 		Connection conn = jdt.getConnection();
 		ArrayList<Board> boardList = new ArrayList<>();
 		try {
-			boardList = boardDao.listBoard(pageNumber);
+			boardList = boardDao.listBoard(conn);
 		} finally {
 			jdt.close(conn);
 		}
 		return boardList;
 	}
 	
-	public boolean nextPage(int pageNumber) {
-		return boardDao.nextPage(pageNumber);
-	}
+//	public boolean nextPage(int pageNumber) {
+//		Connection conn = jdt.getConnection();
+//		boolean res;
+//		try {
+//			res = boardDao.nextPage(conn, pageNumber);
+//		} finally {
+//			jdt.close(conn);
+//			
+//		}
+//		return res;
+//	}
 	
-	public int modifyBoard(String bdIdx) throws SQLException{
+	public int modifyBoard(int bdIdx, String title, String content) {
 		Connection conn = jdt.getConnection();
 		int res = 0;
 		try {
-			res = boardDao.modifyBoard(conn, bdIdx);
+			res = boardDao.modifyBoard(conn, bdIdx, title, content);
 			jdt.commit(conn);
+		}catch (Exception e) {
+			jdt.rollback(conn);
+			throw new DataAccessException(ErrorCode.BM01, e);
+		} finally {
+			jdt.close(conn);
+		}
+		return res;
+	}
+	
+	public int deleteBoard(int bdIdx) {
+		Connection conn = jdt.getConnection();
+		int res = 0;
+		try {
+			res = boardDao.deleteBoard(conn, bdIdx);
+			jdt.commit(conn);
+		}catch (Exception e) {
+			jdt.rollback(conn);
+			throw new DataAccessException(ErrorCode.BM02, e);
 		} finally {
 			jdt.close(conn);
 		}
@@ -73,12 +98,13 @@ public class BoardService {
 	
 	public Board viewBoard(int bdIdx){
 		Connection conn = jdt.getConnection();
+		Board board;
 		try {
-			Board board = boardDao.viewBoard(bdIdx);
+			board = boardDao.viewBoard(conn, bdIdx);
 		} finally {
 			jdt.close(conn);
 		}
-		return null;
+		return board;
 	}
 
 }
