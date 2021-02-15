@@ -117,7 +117,7 @@
 									// 반환된 list에 담긴 참조값 할당
 						%>
 						<tr  align="center">
-							<td><%=diary.getBdDiaryIdx()%></td>
+							<td class = "bdIdx"><a href="/diary/detail.do?bdIdx=<%=diary.getBdDiaryIdx()%>"><%=diary.getBdDiaryIdx()%></a></td>
 							<td><%=diary.getKgName()%></td>
 							<td><%=diary.getTitle()%></td>
 							<td><%=diary.getRegDate()%></td>							
@@ -152,7 +152,7 @@
 										
 										if(startPage > pageBlock){ // 페이지 블록수보다 startPage가 클경우 이전 링크 생성
 								%>
-											<a href="/diary/view.do?pageNum=<%=startPage - 10%>">[이전]</a>	
+											<a href="/diary/kindergardenview.do?pageNum=<%=startPage - 10%>">[이전]</a>	
 								<%			
 										}
 										
@@ -163,14 +163,14 @@
 								<%									
 											}else{ // 현재 페이지가 아닌 경우 링크 설정
 								%>
-												<a href="/diary/view.do?pageNum=<%=i%>">[<%=i %>]</a>
+												<a href="/diary/kindergardenview.do?pageNum=<%=i%>">[<%=i %>]</a>
 								<%	
 											}
 										} // for end
 										
 										if(endPage < pageCount){ // 현재 블록의 마지막 페이지보다 페이지 전체 블록수가 클경우 다음 링크 생성
 								%>
-											<a href="/diary/view.do?pageNum=<%=startPage + 10 %>">[다음]</a>
+											<a href="/diary/kindergardenview.do?pageNum=<%=startPage + 10 %>">[다음]</a>
 								<%			
 										}
 									}

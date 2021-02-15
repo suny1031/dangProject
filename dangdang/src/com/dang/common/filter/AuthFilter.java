@@ -126,6 +126,7 @@ public class AuthFilter implements Filter {
 					break;
 				}
 				break;	
+				
 				case "review":
 					switch (uriArr[2]) {
 					case "write.do":
@@ -151,6 +152,16 @@ public class AuthFilter implements Filter {
 					case "userview.do":
 						if (session.getAttribute("userMember") == null) {
 							throw new ToAlertException(ErrorCode.AUTH09);
+						}
+						break;
+					}
+					break;
+					
+				case "reservation":
+					switch (uriArr[2]) {
+					case "calendar.do":
+						if (session.getAttribute("schoolMember") == null) {
+							throw new ToAlertException(ErrorCode.AUTH07);
 						}
 						break;
 					}

@@ -19,6 +19,8 @@ import com.dang.board.model.vo.Board;
 import com.dang.common.code.ErrorCode;
 import com.dang.common.exception.ToAlertException;
 import com.dang.common.random.RandomString;
+import com.dang.diary.model.service.DiaryService;
+import com.dang.diary.model.vo.Diary;
 import com.dang.member.school.model.vo.SchoolMember;
 import com.dang.member.user.model.service.UserService;
 import com.dang.member.user.model.vo.UserMember;
@@ -34,7 +36,8 @@ public class UserController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private UserService userService = new UserService();
 	private ReservationService reservationService = new ReservationService();
-	
+	private DiaryService diaryService = new DiaryService();
+
     Gson gson = new Gson();
    
     public UserController() {
@@ -264,7 +267,9 @@ public class UserController extends HttpServlet {
 				ArrayList<Board> NoticePreview = userService.selectNoticePreview(kgName);
 				request.setAttribute("NoticePreview", NoticePreview);
 		
-		
+		//diary 데이터 request에 저장
+		ArrayList<Diary> diaryList = diaryService.selectDiaryPreview(kgName);
+		request.setAttribute("diaryList", diaryList);
 		
 		request.getRequestDispatcher("/WEB-INF/view/mypage/mypage.jsp").forward(request, response);
 		

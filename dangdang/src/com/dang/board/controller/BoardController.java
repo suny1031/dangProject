@@ -50,11 +50,7 @@ public class BoardController extends HttpServlet {
 			break;
 		case "listboard2.do": listBoard2(request, response); // 견주용 글 목록 페이지
 			break;
-		case "board.do": boardAction(request, response); // 글을 올렸을 때 한번 거쳐가주는 액션 페이지
-			break;
-		case "modify.do": modifyAction(request, response); // 글을 수정했을 때 한번 거쳐가주는 액션 페이지
-			break;
-		case "delete.do": deleteAction(request, response); // 글을 삭제 했을 때 한번 거쳐주는 액션 페이지
+		case "delete.do": deleteBoard(request, response); // 글을 삭제 했을 때 한번 거쳐주는 액션 페이지
 			break;
 		default:
 			break;
@@ -92,16 +88,23 @@ public class BoardController extends HttpServlet {
 	}
 	
 	private void modifyBoard(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
+		int bdIdx = Integer.parseInt(request.getParameter("bdIdx"));
+		request.setAttribute("bdIdx", bdIdx);
+		Board board = boardService.viewBoard(bdIdx);
+		request.setAttribute("board", board);
 		
 		request.getRequestDispatcher("/WEB-INF/view/board/kindergarten/BoardModify.jsp").forward(request, response);
 	}
 	
 	private void modifyBoardImpl(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int bdIdx = Integer.parseInt(request.getParameter("bdIdx"));
-		String boardTitle = request.getParameter("boardTitle");
-		String boardContent = request.getParameter("boardContent");
-		int res = boardService.modifyBoard(bdIdx, boardTitle, boardContent);
 		
+		int bdIdx = Integer.parseInt(request.getParameter("bdIdx"));
+		String modifyboardTitle = request.getParameter("modifyboardTitle");
+		String modifyboardContent = request.getParameter("modifyboardContent");
+		
+		boardService.modifyBoard(bdIdx, modifyboardTitle, modifyboardContent);
+
+
 		request.setAttribute("alertMsg", "게시글 수정이 완료되었습니다");
 		request.setAttribute("url", "/board/listboard1.do");
 		
@@ -118,19 +121,21 @@ public class BoardController extends HttpServlet {
 	}
 	
 	private void viewBoard2(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		int bdIdx =  Integer.parseInt(request.getParameter("bdIdx"));
+		request.setAttribute("bdIdx", bdIdx);
+		Board board = boardService.viewBoard(bdIdx);
+		request.setAttribute("board", board);
 		request.getRequestDispatcher("/WEB-INF/view/board/student/BoardView2.jsp").forward(request, response);
 	}
 	
-	private void boardAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		request.getRequestDispatcher("/WEB-INF/view/board/Board.jsp").forward(request, response);
-	}
-	
-	private void modifyAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		request.getRequestDispatcher("/WEB-INF/view/board/Modify.jsp").forward(request, response);
-	}
-	
-	private void deleteAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		request.getRequestDispatcher("/WEB-INF/view/board/Delete.jsp").forward(request, response);
+	private void deleteBoard(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		
+		int bdIdx = Integer.parseInt(request.getParameter("bdIdx"));
+		request.setAttribute("bdIdx", bdIdx);
+		int res = boardService.deleteBoard(bdIdx);
+		
+		request.getRequestDispatcher("/WEB-INF/view/board/kindergarten/BoardView1.jsp").forward(request, response);
 	}
 	
 }

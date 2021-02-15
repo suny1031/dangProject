@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/view/include/header.jsp"%>
-<%@ page import="com.dang.board.model.service.BoardService" %>
-<%@ page import="com.dang.member.school.model.vo.SchoolMember" %>
-<%@ page import="com.dang.board.model.vo.Board" %>
+<%@ page import="com.dang.board.model.service.BoardService"%>
+<%@ page import="com.dang.member.school.model.vo.SchoolMember"%>
+<%@ page import="com.dang.board.model.vo.Board"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,9 +27,9 @@
 </noscript>
 </head>
 <body class="is-preload">
-	
-	
-	
+
+
+
 	<!-- Page Wrapper -->
 	<div id="page-wrapper">
 
@@ -46,19 +46,26 @@
 							<ul>
 								<li><a href="/main.do">Home</a></li>
 								<c:choose>
-									<c:when test ="${sessionScope.schoolMember != null}"><li><a href="/school/schoolpage.do">마이페이지</a></li></c:when>
-									<c:when test ="${sessionScope.userMember != null}"><li><a href="/user/userpage.do">마이페이지</a></li></c:when>
+									<c:when test="${sessionScope.schoolMember != null}">
+										<li><a href="/school/schoolpage.do">마이페이지</a></li>
+									</c:when>
+									<c:when test="${sessionScope.userMember != null}">
+										<li><a href="/user/userpage.do">마이페이지</a></li>
+									</c:when>
 								</c:choose>
 								<li><a href="/map/map.do">유치원 찾기</a></li>
 								<li><a href="/reservation/calendar.do">캘린더</a></li>
 								<c:choose>
-									<c:when test ="${sessionScope.schoolMember != null}"><li><a href="/school/logout.do">로그아웃</a></li></c:when>
-									<c:when test ="${sessionScope.userMember != null}"><li><a href="/user/logout.do">로그아웃</a></li></c:when>
+									<c:when test="${sessionScope.schoolMember != null}">
+										<li><a href="/school/logout.do">로그아웃</a></li>
+									</c:when>
+									<c:when test="${sessionScope.userMember != null}">
+										<li><a href="/user/logout.do">로그아웃</a></li>
+									</c:when>
 								</c:choose>
-								
+
 							</ul>
-						</div>
-					</li>
+						</div></li>
 				</ul>
 			</nav>
 		</header>
@@ -67,38 +74,33 @@
 		<section class="board">
 			<div class="content">
 				<h2 id="tit" class="mainfont">알림장</h2>
-				<br>
-					<div class="addBoard-wrap">
-						<table class="addBoard">
-							<thead class="addBoard-head">
-								<tr>
-									<th colspan="3" class="addBoard-top">알림장 상세 페이지</th>
-								</tr>
-							</thead>
-							<tbody class="addBoard-body">
-								<tr>
-									<td style ="width: 20%;">제목</td>
-									<td colspan="2">${board.title }</td>
-								</tr>
-								<tr>
-									<td>유치원</td>
-									<td colspan="2">${board.kgName }</td>
-								</tr>
-								<tr>
-									<td>작성 일자</td>
-									<td colspan="2">${board.regDate }</td>
-								</tr>
-								<tr>
-									<td>내용</td>
-									<td colspan="2" style="mit-height: 200px; text-align: left;">${board.content }</td>
-								</tr>
-								
-							</tbody>
-						</table>
-					</div>
-					<a href = "BoardList1.jsp" class="bt-list">목록</a>
-						<a href="modifyboard.do?bdIdx=${board.bdIdx }" class="bt-update">수정</a>
-						<a onclick="return confirm('정말로 삭제하시겠습니까?')" href="Delete.do?bdIdx=${board.bdIdx }" class="bt-delete">삭제</a>
+				<table class="boardView-table">
+					<thead class="boardView-thead">
+							<th colspan="2" class="boardView-th">알림장 상세 페이지</th>
+					</thead>
+					<tbody class="boardView-tbody">
+						<tr>
+							<td class="boardView-title">제목</td>
+							<td class="boardView-title-content" name="boardViewTitle">${board.title }</td>
+						</tr>
+						<tr>
+							<td class="boardView-writer">유치원</td>
+							<td class="boardView-writer-content">${board.kgName }</td>
+						</tr>
+						<tr>
+							<td class="boardView-date">작성 일자</td>
+							<td class="boardView-date-content">${board.regDate }</td>
+						</tr>
+						<tr>
+							<td class="boardView-content">내용</td>
+							<td class="boardView-content-content" name="boardViewContent">${board.content }</td>
+						</tr>
+
+					</tbody>
+				</table>
+				<a href="/board/listboard1.do" class="bt-list">목록</a> 
+				<a href="modifyboard.do?bdIdx=${board.bdIdx }" class="bt-update">수정</a>
+				<a onclick="return confirm('정말로 삭제하시겠습니까?')" href="Delete.do?bdIdx=${board.bdIdx }" class="bt-delete">삭제</a>
 			</div>
 
 		</section>

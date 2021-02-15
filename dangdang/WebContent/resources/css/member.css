@@ -1,0 +1,886 @@
+@charset "UTF-8";
+
+/* css _miyoung*/
+
+.user_board {
+	background-color: white;
+	color: black;
+	height: 100vh;
+	display: flex;
+	justify-content:center;
+	margin-top: 80px;
+}
+
+
+.myprofile_board {
+	background-color: white;
+	color: black;
+	height: 120vh;
+	display: flex;
+	justify-content:center;
+	margin-top: 80px;
+}
+
+.my_user_profile_board{
+	background-color: white;
+	color: black;
+	height: 100vh;
+	display: flex;
+	justify-content:center;
+	margin-top: 80px;
+}
+
+.user_login_form {
+	margin: auto;
+	width: 300px;
+	min-height: 200px;
+	background-color: white;
+	display: flex;
+	flex-direction: column;
+	justify-content:center;
+ 
+	
+}
+
+.user_login_form > * {
+	margin-top: 3px;
+	font-size: 1vw;
+	
+	}
+
+.user_login_form > input{
+	border: 1px solid black;
+	height: 30px;
+}
+
+
+#user_moreselect{
+	display: flex;
+	justify-content: space-between;
+	
+}
+
+#user_moreselect > *{
+	color: black;
+}
+
+#login_btn{
+	height: 30px;
+	background-color: #8B4513;
+	color: white;
+	border: 1.2px solid black;
+	cursor: pointer;
+	font-family: 'Gamja Flower', cursive;
+	font-size: 1.2vw;
+}
+
+.login_btn{
+	width: 15vh;
+    height: 15vh;
+    min-width: 100px;
+	background-color : #8B4513;
+	color : white;
+	border: solid;
+	border-color: black;
+	border-radius: 15%;
+	margin : 5px;
+	cursor: pointer;
+	font-family: 'Gamja Flower', cursive;
+}
+
+
+.member_mypage{
+	margin: auto;
+	width: 100%;
+    height: 100%;
+	background-color: white;
+	display: flex;
+	justify-content: space-around;
+	font-size: 1.3vw;
+	
+
+}
+
+
+.member_mypage a{
+	margin-left: 1vw;
+	margin-right: 1vw;
+	margin-bottom:1px;
+	margin-top: 1vw;
+	color: black;
+}
+
+#mypage_profile{
+    width: 60%;
+    height: 50%;
+   	margin-top: 10%;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+
+#mypage_board{
+	width: 70%;
+	height: 100%;
+	
+}
+
+#mypage_profile > div{
+	display: flex;
+	justify-content: center;
+	margin: auto;
+	flex-direction: column;
+	
+}
+
+
+#mypage_board>div{
+	width: 100%;
+	height: 50%;
+	
+	
+}
+
+.mypage_detail{
+	display: flex;
+	background-color: #E7E7E7;
+	
+
+}
+
+
+.detail_board{
+	display: flex;
+	width: 50vw;
+    border: solid 0.5px;
+  	
+	
+}
+
+
+
+
+
+#form_join{
+	margin: auto;
+	min-height: 200px;
+	background-color: white;
+	display: flex;
+	flex-direction: column;
+	font-size: 1.2vw;
+	
+}
+#form_join *{
+	font-size: 1vw;
+}
+
+#join_table input{
+    border: solid 1px;
+    margin: 10px 0;
+   
+}
+
+
+
+#join_btn_part{
+	display:flex;
+	justify-content: space-between;
+	margin-top: 10px;
+}
+
+#join_table button{
+	height: 3.5vh;
+    background-color: #8B4513;
+    color: white;
+    border: solid 1px grey;
+    border-radius: 11px;
+    ont-size: 1vw;
+    font-size: 1vw;
+    font-family: 'Gamja Flower', cursive;
+}
+
+
+
+
+
+.school_board {
+	background-color: white;
+	color: black;
+	height: 100vh;
+	display: flex;
+	justify-content:center;
+	margin-top: 80px;
+}
+
+
+.school_login_form {
+	margin: auto;
+	width: 300px;
+	min-height: 200px;
+	background-color: white;
+	display: flex;
+	flex-direction: column;
+	justify-content:center;
+}
+
+
+.school_login_form > * {
+	margin-top: 3px;
+	font-size: 1vw;
+	
+	}
+
+.school_login_form > input{
+	border: 1px solid black;
+	height: 30px;
+}
+
+
+
+
+#find_info{
+ color: black;	
+}
+
+/* profile*/
+
+#profile_photo{
+    background-color: darkseagreen;
+    background-size: cover;
+    background-position: center;
+    background-image: url(/resources/css/images/dang.png);
+    height: 150px;
+    width: 150px;
+    border: solid 1px grey;
+    border-radius: 53%;
+    margin-bottom: 20px;
+}
+
+.profile_name {
+	font-size: 2vw;
+    font-family: 'Gamja Flower', cursive;
+    font-weight: bold;
+    margin-top: 10px;
+	
+}
+
+#user_profile{
+	display: flex;
+}
+
+#user_profile *{
+	font-size: 0.7vh;
+}
+
+
+.profile_info {
+	border: solid 1px;
+	width: 100vh;
+    min-height: 85vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	margin: auto;
+	
+}
+
+@media screen and (max-width: 736px) {
+	.profile_info {
+		display: flex;
+		width:80vw;
+
+	}
+	
+	.profile_info div {
+    display: flex;
+    margin: auto;
+	}
+}
+
+
+#user_kg_form{
+	width: 45vh;
+ 	 height: 100%;
+    border: solid 1px;
+    border-radius: 3%;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+	
+}
+
+
+.info_form{
+	width: 45vh;
+	height: 100%;
+    border: solid 1px;
+    border-radius: 3%;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+}
+
+
+#modify_form{
+	display: flex;
+    justify-content: center;
+    width: 100%;
+}
+@media screen and (max-width: 736px) {
+	#modify_form {
+	display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+ 	}
+ 	
+ 	
+ 	.info_form{
+ 	width: 70vw;
+ 	height: 60vh;
+ 	}
+ 	
+ 	#user_kg_form{
+ 	width: 70vw;
+ 	margin-top: 10px;
+ 	}
+}
+
+#personal_info {
+	width: 90%;
+	margin:auto;
+
+}
+
+@media screen and (max-width: 736px) {
+	#personal_info {
+		width: 90%;
+
+	}
+}
+
+#kg_info{
+	margin: auto;
+	text-align: center;
+}
+
+#modify_info{
+	display: flex;
+	flex-direction: column;
+    justify-content: center;
+    height: 95%;
+}
+
+#modify_info *{
+	margin-top: 1vh;
+    width: 30vh;
+}
+
+
+#separate_form{
+	display: flex;
+	height: 70vh;
+	
+}
+
+#widthdraw_part{
+	display: flex;
+	justify-content: flex-end;
+    margin: 0 4% 0 0;
+    
+}
+
+@media screen and (max-width: 736px) {
+	#widthdraw_part {
+		margin: auto;
+
+	}
+	
+	#widthdraw_btn {
+   		margin-right: 0px;
+	
+	}
+	
+}
+
+
+
+
+.profile_info button{
+	height: 3.5vh;
+    background-color: #8B4513;
+    color: white;
+    border: solid 1px grey;
+    border-radius: 11px;
+    font-size: 1vw;
+	margin-top: 10px;
+	margin-right: 10px;
+    font-family: 'Gamja Flower', cursive;
+
+}
+
+@media screen and (max-width: 736px) {
+	
+	
+	.profile_info button {
+	    margin-top: 0px;
+		margin-right: 0px;
+	   
+	}
+}
+
+.profile_name_board{
+	display: flex;
+	justify-content: center;
+}
+
+#modify_btn{
+	display:flex;
+	justify-content: flex-end;
+}
+
+
+
+.school_info_form{
+	width: 65vw;
+	height: 100vh;
+    border-radius: 3%;
+    display: flex;
+    justify-content: center;
+    
+    
+}
+
+@media screen and (max-width: 736px) {
+
+	.school_info_form{
+		width: 90vw;
+
+}
+
+	
+}
+
+#school_profile{
+	margin:auto;
+	justify-content: center;
+
+}
+
+#school_profile * {
+    font-size: 0.7vw;
+  
+}
+#school_modify_btn{
+	width: 100%;
+	height: 3.5vh;
+	justify-content: center;
+	margin-top: 10px;
+	margin-bottom: 10px;
+    background-color: #8B4513;
+    color: white;
+    border: solid 1px grey;
+    border-radius: 11px;
+    font-size: 1vw;
+    font-family: 'Gamja Flower', cursive;
+   
+}
+
+#school_modify_form {
+	font-size: 1.3vw;
+	margin: auto;
+}
+
+#school_info_part input {
+	border: 1px solid;
+	
+}
+
+#service_part input {
+	border: 1px solid;
+	
+}
+
+#modify_part{
+	display: flex;
+	justify-content: center;
+}
+
+
+#school_info_part{
+	border: 1px solid black;
+    width: 30vw;
+    min-height: 90vh;
+	margin: auto 10px auto 10px;
+	display: flex;
+	justify-content: center;
+	border-radius: 2%
+	
+}
+
+@media screen and (max-width: 736px) {
+
+	#school_info_part{
+		width: 35vw;
+
+}
+
+	
+}
+
+
+#separate_part{
+	width: 50%;
+	margin: auto 10px auto 10px;
+	display:flex;
+	flex-direction: column;
+	min-height: 90vh;
+	
+}
+
+@media screen and (max-width: 736px) {
+
+	#separate_part{
+		width: 40vh;
+
+}
+
+	
+}
+
+#school_service{
+	border: 1px solid black;
+	border-radius: 2%;
+	display: flex;
+    flex-direction: column;
+    justify-content: center;
+	min-height: 35vh;
+	margin-bottom :30px;
+
+
+}
+#sort_school_service{
+	display: flex;
+    flex-direction: column;
+    width: 80%;
+    height: 90%;
+    margin: auto;
+}
+
+#sort_school_service > label{
+	margin-bottom: 5px;
+}
+
+
+#school_photo_form{
+	
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: 100%;
+	border: 1px solid black;
+	border-radius: 2%;
+	height: 50vh;
+
+}
+
+
+
+
+
+
+#school_modify_info{
+	display: flex;
+	flex-direction: column;
+    justify-content: center;
+    height: 95%;
+    width: 100%;
+}
+
+
+
+#school_modify_info >li{
+	margin-top: 10px;
+	width: 80%;
+}
+
+#school_modify_info *{
+	width: 20vw;
+
+}
+
+#school_service input[type="checkbox"]{
+	width: 1vw;
+    height: 1.5vh;
+    
+}
+
+#school_service >li {
+    margin-top: 4px;
+    width: 80%;
+}
+
+#school_info_detail{
+	height: 90%;
+	margin: auto;
+}
+
+
+#service_part {
+	display:flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+#service_part *{
+	margin-left: 10px;
+    margin-bottom: 0.5vh;
+}
+
+
+
+#kg_photo{
+	width: 30vw;
+}
+
+#photo_border{
+	width: 100%;
+    height: 30vh;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+	
+	
+}
+
+
+
+#personal_photo *{
+	display: flex;
+	margin: auto;
+}
+
+#file_upload_btn{
+	width: 100%;
+	height: 3.5vh;
+	justify-content: center;
+	margin-top: 10px;
+	margin-bottom: 10px;
+    background-color: #8B4513;
+    color: white;
+    border: solid 1px grey;
+    border-radius: 11px;
+    font-size: 1vw;
+    font-family: 'Gamja Flower', cursive;
+    
+}
+
+.valid_info {
+	display: block;
+	color: red;
+	fon-size: 0.5;
+	margin-top: 5px;
+}
+
+#join_table placeholder{
+	font-size: 0.5vw;
+}
+
+/* find part */
+
+.find_info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 60vh;
+    min-height: 70vh;
+    margin: auto;
+    border: solid 1px;
+    border-radius: 3%;
+   
+}
+
+
+#find_id_field {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-top : 10px;
+    margin: auto;
+    width: 50vh;
+    height: 30vh;
+    border: solid 1px grey;
+
+}
+
+#find_pw_field {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: auto;
+    margin-top : 10px;
+    width: 50vh;
+    height: 30vh;
+    border: solid 1px grey;
+
+}
+
+.find_info input{
+	margin-bottom: 5px;
+    margin-top: 10px;
+}
+
+.find_info button{
+	height: 3vh;
+	background-color: #8B4513;
+	color: white;
+	border: 1.2px solid black;
+	cursor: pointer;
+	font-family: 'Gamja Flower', cursive;
+	font-size: 1vh;
+	border-radius: 5%;
+	
+}
+
+
+#form_find_pw {
+    
+    margin: auto;
+}
+
+#find_id_btn {
+   
+    text-align: center;
+}
+
+
+#find_user_title{
+	text-align: center;
+	margin-bottom: 20px;
+	font-family: 'Jua', sans-serif;
+	color: #8B4513;
+	font-size: 2.5vh;
+}
+
+#find_id_table, #find_pw_table {
+    
+    margin: auto;
+}
+
+#find_id_result {
+    margin: auto;
+    text-align: center;
+    font-size: 1.5vw;
+    font-family: 'Gamja Flower';
+}
+
+.fas{
+	cursor: pointer;
+
+}
+
+
+.school_info{
+	margin: auto;
+}
+
+
+
+
+
+
+#sort_school_service span{
+	display: contents;
+}
+
+
+.profilebtn{
+	color: grey;
+	
+}
+
+
+.kg_form h4{
+	font-weight: 200;
+	
+}
+
+.kg_pro {
+    margin-left: 30px;
+}
+
+.kg_service_list{
+	width: 15vw;
+    font-weight: bold;
+}
+
+
+
+#photo_border img{
+	background-size: cover;
+	background-position: center;
+	width: 130px;
+	height: 130px;
+}
+
+.user_kg_separate {
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+.school_info div {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+
+#noticeBox table *{
+	font-size: 0.8vw;
+}
+
+
+.notice_detail_board {
+    width: 50vw;
+    border: solid 0.5px;
+}
+
+.mypageBox{
+    display: flex;
+    flex-direction: column;
+   
+}
+
+.notice_list{
+	display:flex;
+	justify-content: space-around;
+	margin-top: 10px;
+}
+
+.notice_list table{
+
+	width: 90%;
+	text-align: center;
+}
+
+#noticeBox div{
+	margin-top: 10px;
+}
+
+#class_btn {
+	    height: 26px;
+    background-color: #8B4513;
+    color: white;
+    border: 1.2px solid black;
+    cursor: pointer;
+    font-family: 'Gamja Flower', cursive;
+    font-size: 1.2vw;
+    margin-top: 10px;
+    border-radius: 15%;
+}
+

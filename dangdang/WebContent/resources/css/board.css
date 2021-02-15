@@ -1,10 +1,11 @@
- /* boardList  */
+/* boardList  */
 .board {
   margin: 7% 20% 7% 20%;
 }
 
 .content {
   width: 100%;
+  height: 700px;
 }
 
 #tit {
@@ -166,9 +167,6 @@
 }
 
 /* ListBoard */
-.boardList-wrap {
-  width: 100%;
-}
 
 a {
   text-decoration: none;
@@ -225,6 +223,10 @@ a {
   width: 15%;
 }
 
+.boardList-body a:hover{
+	text-decoration: underline;
+}
+
 /* ListBoard paging*/
 .paging {
   margin-top: 30px;
@@ -258,15 +260,14 @@ a {
 	border-radius: 150px;
 	color: white;
 	font-size: 14pt;
+	padding: 5px;
+	margin-top: 5px;
 }
 
 /* ListBoard1 수정 */
-table {
-	border-collapse: collapse;
-}
-
 .boardList {
 	width: 100%;
+	border-collapse: collapse;
 }
 
 .boardList tr {
@@ -283,7 +284,7 @@ table {
 	text-align: center;
 }
 
-.boardList .title{
+.boardList-title{
 	text-align: left;
 }
 
@@ -293,35 +294,193 @@ table {
 
 /* addBoard */
 .addBoard-wrap{
-	width: 100%;
-	height: 700px;
+	background-color: #8b4513;
 }
 
-.addBoard {
+.addBoard-table{
 	width: 100%;
+	height: 600px;
 }
 
-.addBoard-top {
-	text-align: center;
-	width: 100%;
-	background-color: #FFF8DC; 
-	margin: 2px 0 2px 0;
-	height: 50px;
-	border: 1px solid;
+.addBoard-th{
+	width: 90%;
+	height: 15%;
+	background-color: #FFF8DC;
+	font-size: 15pt;
+	padding: 10px;
 }
 
-.addBoard-title {
+.addBoard_title{
+	height: 10%;
+}
+
+.addBoard-title{
 	width: 100%;
-	margin-bottom: 2px;
+	height: 100%;
+}
+
+.addBoard_content{
+	height: 75%;
 }
 
 .addBoard-content{
 	width: 100%;
-	height: 600px;
-	margin-bottom: 2px;
+	height: 100%;
 }
 
-.btn-addBoard {
-	background-color: #FFF8DC; 
+
+.bt-addBoard{
 	float: right;
+	text-align: center;
+	background: #8b4513;
+	border-radius: 150px;
+	color: white;
+	font-size: 14pt;
+	padding: 5px;
+	margin-top: 5px;
+	margin-left: 5px;
+}
+
+/* modifyBoard */
+
+.modifyBoard-wrap{
+	background-color: #8b4513;
+}
+
+.modifyBoard-table{
+	width: 100%;
+	height: 600px;
+}
+
+.modifyBoard-th{
+	width: 90%;
+	height: 15%;
+	background-color: #FFF8DC;
+	font-size: 15pt;
+	padding: 10px;
+}
+
+.modifyBoard_title{
+	height: 10%;
+}
+
+.modifyBoard-title{
+	width: 100%;
+	height: 100%;
+}
+
+.modifyBoard_content{
+	height: 75%;
+}
+
+.modifyBoard-content{
+	width: 100%;
+	height: 100%;
+}
+
+
+.bt-modifyBoard{
+	float: right;
+	text-align: center;
+	background: #8b4513;
+	border-radius: 150px;
+	color: white;
+	font-size: 14pt;
+	padding: 5px;
+	margin-top: 5px;
+	margin-left: 5px;
+}
+
+/* viewBoard */
+
+.boardView-table{
+	width: 100%;
+	border-collapse: collapse;
+	border-top: 2px solid #8b4513;
+}
+
+.boardView-table tr {
+	border-bottom: 1px solid #999;
+}
+
+.boardView-th{
+	height: 40px;
+	background-color: #FFF8DC;
+	padding: 10px;
+}
+
+.boardView-thead, .boardView-tbody{
+	padding: 10px 0;
+}
+
+.boardView-title{
+	width: 30%;
+	height: 30px;
+	text-align: center;
+	padding: 5px;
+	border-right: 1px solid #999;
+}
+
+.boardView-title-content{
+	width: 70%;
+	text-align: left;
+	padding: 5px;
+	padding-left: 10px;
+}
+
+.boardView-writer{
+	width: 30%;
+	height: 30px;
+	text-align: center;
+	padding: 5px;
+	border-right: 1px solid #999;
+}
+
+.boardView-writer-content{
+	width: 70%;
+	text-align: left;
+	padding: 5px;
+	padding-left: 10px;
+}
+
+.boardView-date{
+	width: 30%;
+	height: 30px;
+	text-align: center;
+	padding: 5px;
+	border-right: 1px solid #999;
+}
+
+.boardView-date-content{
+	width: 70%;
+	text-align: left;
+	padding: 5px;
+	padding-left: 10px;
+}
+
+.boardView-content{
+	width: 30%;
+	height: 500px;
+	text-align: center;
+	padding-top: 100px;
+	border-right: 1px solid #999;
+}
+
+.boardView-content-content{
+	width: 70%;
+	text-align: left;
+	padding-top: 100px;
+	padding-left: 10px;
+}
+
+.bt-list, .bt-update, .bt-delete {
+	float: right;
+	text-align: center;
+	background: #8b4513;
+	border-radius: 150px;
+	color: white;
+	font-size: 14pt;
+	padding: 5px;
+	margin-top: 5px;
+	margin-left: 5px;
 }

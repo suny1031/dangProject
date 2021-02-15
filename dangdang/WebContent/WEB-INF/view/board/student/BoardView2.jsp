@@ -1,10 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/view/include/header.jsp"%>
+<%@ page import="com.dang.board.model.service.BoardService"%>
+<%@ page import="com.dang.member.school.model.vo.SchoolMember"%>
+<%@ page import="com.dang.board.model.vo.Board"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>알림 게시판 (견주)</title>
+<title>알림 게시판 글쓰기 페이지 (업주)</title>
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
 <link rel="stylesheet" href="${context}/resources/css/main.css" />
@@ -24,6 +28,8 @@
 </head>
 <body class="is-preload">
 
+
+
 	<!-- Page Wrapper -->
 	<div id="page-wrapper">
 
@@ -39,57 +45,60 @@
 						<div id="menu">
 							<ul>
 								<li><a href="/main.do">Home</a></li>
-								<li><a href="generic.html">마이페이지</a></li>
-								<li><a href="/map.do">유치원 찾기</a></li>
-								<li><a href="#">캘린더</a></li>
+								<c:choose>
+									<c:when test="${sessionScope.schoolMember != null}">
+										<li><a href="/school/schoolpage.do">마이페이지</a></li>
+									</c:when>
+									<c:when test="${sessionScope.userMember != null}">
+										<li><a href="/user/userpage.do">마이페이지</a></li>
+									</c:when>
+								</c:choose>
+								<li><a href="/map/map.do">유치원 찾기</a></li>
+								<li><a href="/reservation/calendar.do">캘린더</a></li>
+								<c:choose>
+									<c:when test="${sessionScope.schoolMember != null}">
+										<li><a href="/school/logout.do">로그아웃</a></li>
+									</c:when>
+									<c:when test="${sessionScope.userMember != null}">
+										<li><a href="/user/logout.do">로그아웃</a></li>
+									</c:when>
+								</c:choose>
+
 							</ul>
 						</div></li>
 				</ul>
 			</nav>
 		</header>
 
-
-
-
-
-
-
-
 		<!-- Main -->
 		<section class="board">
 			<div class="content">
 				<h2 id="tit" class="mainfont">알림장</h2>
-				<br>
-				<div id="desc_board">
-					<form action="${context}/board/viewboard.do" method="post"
-						enctype="multipart/form-data">
-						<div>
-							<div id="tit_board" class="mainfont">
-								제목 : <input type="text" class="title-box" name="title"
-									required="required" />
-								<!-- multiple : 여러개 파일 선택을 허용하는 속성 -->
-								<select id="select_class" class="mainfont">
-									<option>반 이름</option>
-									<option>깜식 반</option>
-									<option>아롱 반</option>
-									<option>희망 반</option>
-								</select>
-								<!-- 파일 : <input type="file" name="files" id="contract_file" multiple /> -->
-							</div>
-							<textarea id="board-content" class="noticefont" name="content"
-								style="width: 99%; height: 600px;" required="required">
-						</textarea>
-							<div class="alim-low">
-								<div class="before-next">
-									다음글 : <br> 이전글 :
-								</div>
-								<div>
-									<button id="list_box" class="mainfont">목록으로</button>
-								</div>
-							</div>
-						</div>
-					</form>
-				</div>
+				<table class="boardView-table">
+					<thead class="boardView-thead">
+							<th colspan="2" class="boardView-th">알림장 상세 페이지</th>
+					</thead>
+					<tbody class="boardView-tbody">
+						<tr>
+							<td class="boardView-title">제목</td>
+							<td class="boardView-title-content">${board.title }</td>
+						</tr>
+						<tr>
+							<td class="boardView-writer">유치원</td>
+							<td class="boardView-writer-content">${board.kgName }</td>
+						</tr>
+						<tr>
+							<td class="boardView-date">작성 일자</td>
+							<td class="boardView-date-content">${board.regDate }</td>
+						</tr>
+						<tr>
+							<td class="boardView-content">내용</td>
+							<td class="boardView-content-content">${board.content }</td>
+						</tr>
+
+					</tbody>
+				</table>
+				<a href="/board/listboard1.do" class="bt-list">목록</a> 
 			</div>
 
 		</section>

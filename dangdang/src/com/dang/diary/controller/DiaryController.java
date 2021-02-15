@@ -1,6 +1,7 @@
 package com.dang.diary.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -10,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.dang.common.code.ErrorCode;
+import com.dang.common.exception.ToAlertException;
 import com.dang.diary.model.service.DiaryService;
 import com.dang.diary.model.vo.Diary;
 import com.dang.member.school.model.vo.SchoolMember;
@@ -43,6 +46,20 @@ public class DiaryController extends HttpServlet {
 		case "upload.do":
 			upload(request, response);
 			break;
+		case "detail.do":
+			detail(request, response);
+			break;
+		case "mdfd.do":
+			mdfd(request, response);
+			break;
+		case "mdfdimpl.do":
+			mdfdimpl(request, response);
+			break;
+		case "delete.do":
+			delete(request, response);
+			break;
+		default:
+			throw new ToAlertException(ErrorCode.CD_404);
 
 		}
 
@@ -88,9 +105,74 @@ public class DiaryController extends HttpServlet {
 		diaryService.insertDiary(diary);
 
 		request.setAttribute("alertMsg", "알림장 등록이 완료되었습니다");
-		request.setAttribute("url", "/diary/view.do");
+		request.setAttribute("url", "/diary/kindergardenview.do");
 
 		request.getRequestDispatcher("/WEB-INF/view/common/result.jsp").forward(request, response);
+
+	}
+
+	private void detail(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		SchoolMember schoolMember = (SchoolMember) session.getAttribute("schoolMember");
+		
+		String bdIdx = request.getParameter("bdIdx");
+		
+		Diary diary = diaryService.selectDetail(bdIdx);
+		
+		request.setAttribute("diary", diary);
+		request.setAttribute("schoolMember", schoolMember);
+
+		request.getRequestDispatcher("/WEB-INF/view/diary/detail.jsp").forward(request, response);
+
+	}
+	
+	private void mdfd(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String bdIdx = request.getParameter("bdIdx");
+		System.out.println(bdIdx);
+		Diary diary = diaryService.selectDetail(bdIdx);
+		System.out.println(diary);
+		request.setAttribute("diary", diary);
+		request.getRequestDispatcher("/WEB-INF/view/diary/mdfd.jsp").forward(request, response);
+
+	}
+	
+	private void mdfdimpl(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		int bdIdx = Integer.parseInt(request.getParameter("bdIdx"));
+		String title = request.getParameter("title");
+		String content = request.getParameter("content");
+		System.out.println(bdIdx);
+		System.out.println(title);
+		System.out.println(content);
+		
+		int res = diaryService.updateDiary(title, content, bdIdx);
+
+		
+		if (res > 0 ) {
+			request.setAttribute("alertMsg", "알림장 수정이 완료되었습니다");
+			request.setAttribute("url", "/diary/kindergardenview.do");
+
+			request.getRequestDispatcher("/WEB-INF/view/common/result.jsp").forward(request, response);	
+		}
+
+	}
+	
+	private void delete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		int bdIdx = Integer.parseInt(request.getParameter("bdIdx"));
+
+		System.out.println(bdIdx);
+
+		
+		int res = diaryService.deleteDiary(bdIdx);
+
+		
+		if (res > 0 ) {
+			request.setAttribute("alertMsg", "알림장 삭제가 완료되었습니다");
+			request.setAttribute("url", "/diary/kindergardenview.do");
+
+			request.getRequestDispatcher("/WEB-INF/view/common/result.jsp").forward(request, response);	
+		}
 
 	}
 

@@ -229,6 +229,18 @@ public class SchoolService {
 	}
 	
 	
+	public ArrayList<UserMember> selectClassMember(String kgName){
+		Connection conn = jdt.getConnection();
+		ArrayList<UserMember> classMemberList;
+		
+		try {
+			classMemberList = schoolDao.selectClassMember(conn, kgName);
+		
+		}finally {
+			jdt.close(conn);
+		}
+		return classMemberList;
+	}
 	
 	
 	

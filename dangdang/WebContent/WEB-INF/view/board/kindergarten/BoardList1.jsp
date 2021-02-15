@@ -71,7 +71,7 @@
 
 		<!-- Main -->
 		<section class="board">
-			<div class="boardList-wrap">
+			<div class="content">
 				<table class="boardList">
 					<h2 style="text-align: center; color: #8b4513;">알림장</h2>
 						<thead class="boardList-head">
@@ -95,10 +95,10 @@
 								<!-- 제목 제목 클릭시 해당 게시물 번호를 보여줄 BoardView 로 연결 -->
 								<c:choose>
 							    	<c:when test="${sessionScope.schoolMember != null}">
-							      		<td><a href = "/board/viewboard1.do?bdIdx=<%=boardList.get(i).getBdIdx() %>"><%= boardList.get(i).getTitle() %></a></td>
+							      		<td class="boardList-title"><a href = "/board/viewboard1.do?bdIdx=<%=boardList.get(i).getBdIdx() %>"><%= boardList.get(i).getTitle() %></a></td>
 							      	</c:when>
 							      	<c:when test="${sessionScope.userMember != null}">
-							      		<td><a href = "BoardView2.jsp?bdIdx=<%=boardList.get(i).getBdIdx() %>"><%= boardList.get(i).getTitle() %></a></td>
+							      		<td class="boardList-title"><a href = "/board/viewboard2.do?bdIdx=<%=boardList.get(i).getBdIdx() %>"><%= boardList.get(i).getTitle() %></a></td>
 							      	</c:when>
 							    </c:choose>
 								<!-- 게시물을 작성한 유치원 이름 kgId 로 구분해야 할 듯 -->

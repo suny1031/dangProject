@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 <link rel="stylesheet" href="../../../../resources/css/main.css" />
+<link rel="stylesheet" href="../../../../resources/css/member.css" />
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&display=swap" rel="stylesheet">
@@ -54,49 +55,48 @@
 		<!-- Main -->
 		<section class="myprofile_board">
 			<div class="school_info_form" id="school_profile">
-				<div id="school_modify_form">
-					<fieldset >
-						<div id="school_info_part">
-							<div id ="school_info_detail">
-								<ul id="school_modify_info">
-									<li><h3>아이디</h3>
-										<input type="text" value="${sessionScope.schoolMember.kgId}" id="kgId" name="kgId" readonly>
-									</li>
-									<li><h3>업체명</h3>
-										<input type="text" value="${sessionScope.schoolMember.kgName}" id="kgName" name="kgName" readonly>
-									</li>
-									<li><br><h3>주소</h3>
-										<textarea rows = "5" cols = "20" style = "resize: none" id="kgAddress" name="kgAddress">${sessionScope.schoolMember.kgAddress}</textarea>
-									</li>
-									<li><br><h3>전화번호</h3>
-										<input type ="text" value="${sessionScope.schoolMember.kgTell}" id="kgTell" name="kgTell">
-									</li>
-									<li><br><h3>이메일</h3>
-										<input type ="text" value="${sessionScope.schoolMember.kgEmail}" id="kgEmail" name="kgEmail">
-									</li>
-									<li><br><h3>운영시간</h3>
-										<input type ="text" value="${sessionScope.schoolMember.kgOperateTime}" id="kgOperateTime" name="kgOperateTime">
-									</li>
-									<li><br><h3>안내사항</h3>
-										<textarea rows = "5" cols = "20" style = "resize: none" id="kgNotice" name="kgNotice">${sessionScope.schoolMember.kgNotice}</textarea>
-									</li>
-									<li>
-										<div id="modify_part">
-											<button type="submit" id="school_modify_btn" onclick ="schoolModifyInfo()">기본 프로필수정</button>
-										</div>
-									</li>
-								</ul>
-							</div>							
-						</div>
-						
-					</fieldset>
+				
+				
+				<div id="school_info_part">
+					<div id ="school_info_detail">
+						<ul id="school_modify_info">
+							<li><h3>아이디</h3>
+								<input type="text" value="${sessionScope.schoolMember.kgId}" id="kgId" name="kgId" readonly>
+							</li>
+							<li><h3>업체명</h3>
+								<input type="text" value="${sessionScope.schoolMember.kgName}" id="kgName" name="kgName" readonly>
+							</li>
+							<li><br><h3>주소</h3>
+								<textarea rows = "5" cols = "20" style = "resize: none" id="kgAddress" name="kgAddress">${sessionScope.schoolMember.kgAddress}</textarea>
+							</li>
+							<li><br><h3>전화번호</h3>
+								<input type ="text" value="${sessionScope.schoolMember.kgTell}" id="kgTell" name="kgTell">
+							</li>
+							<li><br><h3>이메일</h3>
+								<input type ="text" value="${sessionScope.schoolMember.kgEmail}" id="kgEmail" name="kgEmail">
+							</li>
+							<li><br><h3>운영시간</h3>
+								<input type ="text" value="${sessionScope.schoolMember.kgOperateTime}" id="kgOperateTime" name="kgOperateTime">
+							</li>
+							<li><br><h3>안내사항</h3>
+								<textarea rows = "5" cols = "20" style = "resize: none" id="kgNotice" name="kgNotice">${sessionScope.schoolMember.kgNotice}</textarea>
+							</li>
+							<li>
+								<div id="modify_part">
+									<button type="submit" id="school_modify_btn" onclick ="schoolModifyInfo()">기본 프로필수정</button>
+								</div>
+							</li>
+						</ul>
+					</div>							
 				</div>
+				
+
 				
 				
 				<div id="separate_part">
 					<div id="school_service">
 						<form action ="${context}/school/modifyservice.do?kgName=${sessionScope.schoolMember.kgName}" method="post" id="school_service_form"> <!-- action ="${context}/school/modifyservice.do" method="post" -->
-							<fieldset id="sort_school_service">
+							<div id="sort_school_service">
 								<h3> [제공서비스]</h3><br>
 								<div class ="service_list">
 								
@@ -222,7 +222,7 @@
 								
 								
 						 		<button id="school_modify_btn" type="submit">제공 서비스 수정</button><!--  onclick="schoolModifyService()" -->
-							</fieldset>
+							</div>
 						</form>
 					</div>
 					
@@ -230,25 +230,40 @@
 					
 					
 					<form action="${context}/school/uploadphoto.do" method="post" id="school_photo_form" enctype="multipart/form-data">
+					<div id="sort_school_service">
 						<div>
 							<h3>[유치원사진]</h3><br>
 							<input type ="file" name ="files" id="kg_photo" multiple/><!-- 여러개 파일 선택 속성 -->
 						</div>
 						<div id="photo_border">
 							<c:if test="${!empty photoList}">
-								<c:forEach var ="i" begin="0" end ="${photoList.size()-1}" step="1">
 									<div>
-										<img class = "schoolPhoto${i}" src = "/file${photoList[i].savePath}${photoList[i].renameFileName}" onclick="deletephoto()">
+										<div class = "schoolPhoto1">
+											<img  src = "/file${photoList[0].savePath}${photoList[0].renameFileName}" >
+										</div>
+										<div class = "schoolPhoto2">
+											<img  src = "/file${photoList[1].savePath}${photoList[1].renameFileName}" >
+										</div>
 									</div>
-								</c:forEach>
+									<div>
+										<div class = "schoolPhoto3">
+											<img  src = "/file${photoList[2].savePath}${photoList[2].renameFileName}" >
+										</div>
+										<div class = "schoolPhoto4">
+											<img  src = "/file${photoList[3].savePath}${photoList[3].renameFileName}" >
+										</div>						
+									</div>
 							</c:if>
 						</div>
-						<button id="file_upload_btn">파일 업로드</button>
+							<button id="file_upload_btn">파일 업로드</button>
+					</div>
 					</form>
 					
 					
 					
 				</div>
+				
+				
 			</div>
 		</section>
 

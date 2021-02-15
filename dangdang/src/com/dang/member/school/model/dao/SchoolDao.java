@@ -11,6 +11,7 @@ import javax.naming.spi.DirStateFactory.Result;
 import com.dang.board.model.vo.Board;
 import com.dang.common.code.ErrorCode;
 import com.dang.common.exception.DataAccessException;
+import com.dang.common.exception.ToAlertException;
 import com.dang.common.jdbc.JDBCTemplate;
 import com.dang.common.util.file.FileVo;
 import com.dang.map.model.vo.Service;
@@ -256,7 +257,8 @@ public int modifySchoolService(Connection conn, String kgName, int isKg, int isC
 		ResultSet rset = null;
 		String findkgIdx = "k" + kgIdx;
 		
-		String query = "select * from d_file where type_idx = ? ";
+		String query = "SELECT * FROM (SELECT * FROM D_FILE WHERE TYPE_IDX = ? ORDER BY REG_DATE DESC) WHERE ROWNUM < 5";
+
 		
 		try {
 			pstm = conn.prepareStatement(query);
@@ -322,6 +324,42 @@ public int modifySchoolService(Connection conn, String kgName, int isKg, int isC
 		
 	}
 	
+	
+	public ArrayList<UserMember> selectClassMember(Connection conn, String kgName){
+		
+		ArrayList<UserMember> classMemberList = new ArrayList<>();
+		PreparedStatement pstm = null;
+		ResultSet rset = null;
+		
+		String query = "select * from Member where kg_name = ?";
+		
+		try {
+			
+			pstm = conn.prepareStatement(query);
+			pstm.setString(1, kgName);
+			rset = pstm.executeQuery();
+			
+			while(rset.next()) {
+				UserMember userMember = new UserMember();
+				userMember.setUserId(rset.getString("user_id"));
+				userMember.setUserName(rset.getString("user_name"));
+				userMember.setEmail(rset.getString("email"));
+				userMember.setPhoneNumber(rset.getString("phone_number"));
+				userMember.setNickname(rset.getString("nickname"));
+				
+				classMemberList.add(userMember);
+			}
+			
+			
+		} catch (SQLException e) {
+			throw new DataAccessException(ErrorCode.SM01, e);
+			
+		}finally {
+			jdt.close(rset, pstm);
+		}
+		
+		return classMemberList;
+	}
 	
 	
 	

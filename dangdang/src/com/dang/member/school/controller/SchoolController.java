@@ -19,11 +19,12 @@ import javax.servlet.http.HttpSession;
 import com.dang.board.model.vo.Board;
 import com.dang.common.code.ConfigCode;
 import com.dang.common.util.file.FileVo;
+import com.dang.diary.model.service.DiaryService;
+import com.dang.diary.model.vo.Diary;
 import com.dang.map.model.vo.Service;
 import com.dang.member.school.model.service.SchoolService;
 import com.dang.member.school.model.vo.SchoolMember;
-
-
+import com.dang.member.user.model.vo.UserMember;
 import com.dang.reservation.model.service.ReservationService;
 import com.dang.reservation.model.vo.Reservation;
 
@@ -40,6 +41,7 @@ public class SchoolController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private SchoolService schoolService = new SchoolService();
 	private ReservationService reservationService = new ReservationService();
+	private DiaryService diaryService = new DiaryService();
 
 	Gson gson = new Gson();
 
@@ -79,7 +81,11 @@ public class SchoolController extends HttpServlet {
 			break;
 		case "uploadphoto.do" : uploadSchoolPhoto(request, response); //사진정보 업로드 및 수정 실행
 			break;
-
+		case "kinderclass.do" : kinderClassReg(request, response); //사진정보 업로드 및 수정 실행
+			break;
+		case "kinderclassimol.do" : kinderClassRegImpl(request, response); //사진정보 업로드 및 수정 실행
+			break;
+		
 		}
 
 	}
@@ -147,8 +153,13 @@ public class SchoolController extends HttpServlet {
 		ArrayList<Board> NoticePreview = schoolService.selectNoticePreview(kgName);
 		request.setAttribute("NoticePreview", NoticePreview);
 		
+		//class 데이터 request에 저장
+		ArrayList<UserMember> classMemberList = schoolService.selectClassMember(kgName);
+		request.setAttribute("classMemberList", classMemberList);
 		
-		
+		//diary 데이터 request에 저장
+		ArrayList<Diary> diaryList = diaryService.selectDiaryPreview(kgName);
+		request.setAttribute("diaryList", diaryList);
 
 		request.getRequestDispatcher("/WEB-INF/view/mypage/mypage.jsp").forward(request, response);
 		
@@ -164,7 +175,10 @@ public class SchoolController extends HttpServlet {
 		request.setAttribute("schoolService", schoolProService);
 		
 		ArrayList<FileVo> photoList = schoolService.selectSchoolPhoto(schoolMember.getKgIdx());
-		request.setAttribute("photoList", photoList);
+		if(photoList != null) {
+			request.setAttribute("photoList", photoList);
+		}
+		
 		
 		request.getRequestDispatcher("/WEB-INF/view/member/school/schoolprofile.jsp").forward(request, response);
 	}
@@ -313,6 +327,33 @@ public class SchoolController extends HttpServlet {
 		
 				
 		}
+	
+	
+	
+	protected void kinderClassReg(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		HttpSession session = request.getSession();
+		SchoolMember schoolMember = (SchoolMember) session.getAttribute("schoolMember");
+		String kgName = schoolMember.getKgName();
+		ArrayList<UserMember> classMemberList = schoolService.selectClassMember(kgName);
+		
+		if(classMemberList != null) {
+			request.setAttribute("classMemberList", classMemberList);
+		}
+		
+		request.getRequestDispatcher("/WEB-INF/view/member/school/classmember.jsp").forward(request, response);
+		
+		
+	}
+	
+	
+	protected void kinderClassRegImpl(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		
+		
+		
+	}
+
 
 	
 	

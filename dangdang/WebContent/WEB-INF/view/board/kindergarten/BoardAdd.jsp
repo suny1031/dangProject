@@ -64,26 +64,29 @@
 				<br>
 				<form action="/board/addboardimpl.do" method="post" enctype="multipart/form-data">
 					<div class="addBoard-wrap">
-						<table class="addBoard">
-							<thead class="addBoard-head">
+						<table class="addBoard-table">
+							<thead>
 								<tr>
-									<th colspan="2" class="addBoard-top">알림장 작성</th>
+									<th class="addBoard-th">알림장 작성</th>
 								</tr>
 							</thead>
-							<tbody class="addBoard-body">
+							<tbody>
 								<tr>
-									<td><input type="text" class="addBoard-title"
-										placeholder="제목을 적어주세요." name="boardTitle" maxlength="50" required="required"></td>
+									<td class="addBoard_title">
+										<input type="text" class="addBoard-title"
+										placeholder="제목을 적어주세요." name="boardTitle" maxlength="50" required="required">
+									</td>
 								</tr>
 								<tr>
-									<td><textarea class="addBoard-content"
-											placeholder="내용을 적어주세요." name="boardContent" maxlength="2000" required="required"></textarea>
+									<td class="addBoard_content">
+										<textarea class="addBoard-content"
+										placeholder="내용을 적어주세요." name="boardContent" maxlength="2000" required="required"></textarea>
 									</td>
 								</tr>
 							</tbody>
 						</table>
 					</div>
-					<input type="submit" class="btn-addBoard" value="작성 완료">
+					<input type="submit" class="bt-addBoard" value="작성 완료">
 				</form> 
 			</div>
 

@@ -399,7 +399,7 @@ public class ReservationDao {
 			return list; // list 반환
 		}
 		
-		//유치원 예약 총 개수 메서드
+		//유저 예약 총 개수 메서드
 		public int selectCountPageUser(Connection conn, String userId) {
 
 			int count = 0;

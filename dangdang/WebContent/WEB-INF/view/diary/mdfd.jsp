@@ -4,13 +4,6 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/view/include/header.jsp"%>
 
-<!--페이징-->
-<%@page import="java.util.List"%>
-<%@page import="com.dang.member.school.model.vo.SchoolMember"%>
-<%@page import="com.dang.diary.model.vo.Diary"%>
-<%@page import="com.dang.diary.model.service.DiaryService"%>
-<%@page import="javax.servlet.http.HttpSession"%>
-
 
 <!DOCTYPE html>
 <html>
@@ -19,7 +12,7 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="/resources/css/main.css" />
-	<link rel="stylesheet" href="/resources/css/diaryWrite.css" />
+	<link rel="stylesheet" href="/resources/css/mdfd.css" />
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<!-- <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&display=swap" rel="stylesheet"> -->
 	<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">	
@@ -60,17 +53,19 @@
 			</nav>
 		</header>
 
-
 	<!-- Main -->
 
 		<div class="board">
-			<form action="/diary/upload.do">
-				<div id = "writeWrap">
-					<div id = "box">알림장 작성</div>
-					<div id = "title"><input type="text" name = "title" placeholder="제목을 입력하세요." required="required" maxlength="10" autocomplete="off"> </div>
-					<div id = "content"><textarea name = "content" placeholder="내용을 입력하세요." required="required" ></textarea></div>	
+			<form action="/diary/mdfdimpl.do">
+				<div id = "detailWrap">
+					<div id = "detailBox">
+						<div id = "title"><div id ="bdIdx">${diary.bdDiaryIdx}</div><input type="text" name = "title" maxlength="10" autocomplete="off" required="required"  placeholder="${diary.title}"></div>
+						<input type="hidden" name = "bdIdx" value="${diary.bdDiaryIdx}">
+						<div id = "regDate">${diary.regDate}</div>
+						<div id = "content"><textarea name = "content" placeholder="${diary.content}" required="required" style="width: 100%; height: 90%;"></textarea></div>
+						<div id = "btnBox"><button class = "btn">확인</button></div>
+					</div>
 				</div>
-				<div id = "writeBtnWrap"><button id = "writeBtn"><a>작성완료</a></button></div>
 			</form>
 		</div>
 		
@@ -82,7 +77,6 @@
 		</footer>
 
 	</div>
-	
 	
 
 
