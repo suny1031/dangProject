@@ -872,8 +872,63 @@
 	margin-top: 10px;
 }
 
-#class_btn {
-	    height: 26px;
+
+#class_board {
+    text-align: center;
+    height: 70vh;
+    border-radius: 3%;
+    margin: auto;
+    width: 70vw;
+    
+}
+
+#class_title {
+    height: 10%;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin: auto;
+    background-color: #8B4513;
+    color: white;
+}
+
+
+
+#class_form{
+    height: 80%;
+    border: solid 1px;
+}
+
+#add_calss_member{
+	height: 10%;
+}
+
+#class_btn{
+	height: 10%;
+}
+
+#class_form table {
+    display: flex;
+    justify-content: space-around;
+}
+
+
+#class_table {
+	
+	width: 100%;
+}
+
+
+#class_table > tbody {
+    width: 100%;
+}
+
+
+
+
+.classBtn{
+	height: 26px;
     background-color: #8B4513;
     color: white;
     border: 1.2px solid black;
@@ -881,6 +936,29 @@
     font-family: 'Gamja Flower', cursive;
     font-size: 1.2vw;
     margin-top: 10px;
-    border-radius: 15%;
+    border-radius: 10%	
+	
 }
 
+#class_modify_btn, #add_class_member{
+	margin-top: 30px;
+	
+}
+
+#class_btn{
+	height: 26px;
+    background-color: #8B4513;
+    color: white;
+    border: 1.2px solid black;
+    cursor: pointer;
+    font-family: 'Gamja Flower', cursive;
+    font-size: 0.8vw;
+    margin-top: 10px;
+    border-radius: 10%	
+}
+
+
+
+
+
+    

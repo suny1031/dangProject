@@ -245,6 +245,67 @@ public class SchoolService {
 	
 	
 	
+	public UserMember findClassMemberById(String userId) {
+		Connection conn = jdt.getConnection();
+		//반환할 유저 객체 생성
+		UserMember userMember = null;
+		
+		try {
+			
+			userMember = schoolDao.findClassMemberById(conn, userId);
+			
+		} finally {
+			jdt.close(conn);
+		}
+		
+		return userMember;
+	}
+	
+	
+	
+	
+	
+	public int regUserMember(String kgName, String userId) {
+		
+		Connection conn = jdt.getConnection();
+		int res = 0;
+		
+		try {
+			
+			res = schoolDao.regUserMember(conn, kgName, userId);
+			jdt.commit(conn);
+			
+		}catch(DataAccessException e) {
+			jdt.rollback(conn);
+			throw new ToAlertException(e.error,e);
+		}finally {
+			jdt.close(conn);
+		}
+		
+		System.out.println(res);
+		return res;
+		
+	}
+	
+	
+	
+	
+	
+	public int deleteClassMember(String userId) {
+		Connection conn = jdt.getConnection();
+		int res = 0;
+		
+		try {
+			res = schoolDao.deleteClassMember(conn, userId);
+			jdt.commit(conn);
+		}catch(DataAccessException e) {
+			jdt.rollback(conn);
+		}finally {
+			jdt.close(conn);
+		}
+		return res;
+	}
+	
 	
 	
 	

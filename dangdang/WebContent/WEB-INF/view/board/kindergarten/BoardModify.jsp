@@ -65,7 +65,8 @@
 			<div class="content">
 				<h2 id="tit" class="mainfont">알림장</h2>
 				<br>
-				<form action="/board/modifyboardimpl.do?bdIdx=${board.bdIdx}" method="post">
+				<form action="/board/modifyboardimpl.do?bdIdx=${board.bdIdx }" method="post">
+
 					<div class="modifyBoard-wrap">
 						<table class="modifyBoard-table">
 							<thead>
@@ -77,13 +78,13 @@
 								<tr>
 									<td class="modifyBoard_title">
 										<input type="text" class="modifyBoard-title"
-										placeholder="${board.title}" name="modifyboardTitle" maxlength="50" required="required">
+										name="modifyboardTitle" value="${board.title }" maxlength="50" required="required">
 									</td>
 								</tr>
 								<tr>
 									<td class="modifyBoard_content">
 										<textarea class="modifyBoard-content"
-										placeholder="${board.content}" name="modifyboardContent" maxlength="2000" required="required"></textarea>
+										name="modifyboardContent" maxlength="2000" required="required">${board.content }</textarea>
 									</td>
 								</tr>
 							</tbody>

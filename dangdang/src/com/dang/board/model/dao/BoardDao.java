@@ -78,8 +78,8 @@ public class BoardDao {
 			String query = "insert into BD_NOTICE(BD_NO_IDX , KG_NAME, TITLE, CONTENT, POST) values (SC_BD_NO_IDX.nextval , ?, ?, ?, ?)";
 			pstm = conn.prepareStatement(query);
 
-			pstm.setString(1, title);
-			pstm.setString(2, kgName);
+			pstm.setString(1, kgName);
+			pstm.setString(2, title);
 			pstm.setString(3, content);
 			pstm.setInt(4, 1);
 
@@ -101,7 +101,7 @@ public class BoardDao {
 		ArrayList<Board> list = new ArrayList<Board>();
 		try {
 			// 게시물을 불러오면서 한페이지에 최대 10개까지 보이게끔 불러옴 
-			String query = "select * from BD_NOTICE";
+			String query = "select * from BD_NOTICE where POST = 1";
 			pstm = conn.prepareStatement(query);
 			rSet = pstm.executeQuery();
 			

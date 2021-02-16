@@ -58,38 +58,41 @@
 		<section class="user_board">
 			<div id="class_board">
 				<div id= "class_title">
-					<h2>학급관리</h2>
+					<h2 style="font-family: 'Gamja Flower', cursive;">학급관리</h2>
 				</div>
 				<div id="class_form">
-					<table>
+					<table id= "class_table">
 						<tr>
-							<td>번호</td>
-							<td>아이디</td>
-							<td>이름</td>
-							<td>이메일</td>
-							<td>핸드폰번호</td>
-							<td>닉네임</td>
-							<td><a>회원삭제</a></td>
+							<td width="10%" style="font-weight: 700;">번호</td>
+							<td width="15%" style="font-weight: 700;">아이디</td>
+							<td width="10%" style="font-weight: 700;">이름</td>
+							<td width="25%" style="font-weight: 700;">이메일</td>
+							<td width="10%" style="font-weight: 700;">핸드폰번호</td>
+							<td width="10%" style="font-weight: 700;">닉네임</td>
+							<td width="10%" style="font-weight: 700;"><a>회원삭제</a></td>
 						</tr>
+						
 						<c:forEach var="userMember" items="${classMemberList}" varStatus="status">
 							<tr>
+							
 								<td>${status.count}</td>
 								<td>${userMember.userId}</td>
 								<td>${userMember.userName}</td>
 								<td>${userMember.email}</td>
 								<td>${userMember.phoneNumber}</td>
 								<td>${userMember.nickname}</td>
-								<td><a>삭제</a></td>
+								<td><button type="submit" onclick = "location.href='/school/deleteclassmember.do?userId=${userMember.userId}'">삭제</button></td>
 							</tr>
+							
 						</c:forEach>
 					</table>
 				</div>
-				<div>
+				<div id="add_class_member">
 					<input type=text id ="userId" name="userId" size="20">
-					<button onclick= "userIdCheck()">추가할 회원 검색</button>
+					<button class="classBtn" onclick= "userIdCheck()">추가할 회원 검색</button>
 				</div>
-				<div>
-					<button onclick= "#">수정 완료</button>
+				<div id="class_modify_btn">
+					<button class="classBtn" onclick= "success()">수정 완료</button>
 				</div>
 			</div>
 	
@@ -117,43 +120,83 @@
 	<script src="../../../../resources/js/main.js"></script>
 	<script src="../../../../resources/js/member.js"></script>
 	<script type="text/javascript">
-		let userIdCheck = () => {
+		
+	let userIdCheck = () => {
 				
-				let headerObj = new Headers();
-				headerObj.append('content-type', "application/x-www-form-urlencoded");
-				
-				
-				// 사용자가 입력한 아이디값을 받아서
-				let userId = userId.value; //id가 id인 데이터의 value값
-				let idCheck = document.querySelector('#idCheck');
-				let url = "/school/classmembercheck.do"
-				
-				if(userId){ // true일때
-					fetch(url,{
-						method: "post",
-						headers: headerObj,
-						body: "userId=" + userId
-						
-					}).then(response => response.text()) // then해주면 응답(response)이 넘어옴, 바로 return
-					  .then((message)=>{ // message가 넘어올 것
-						if(message == 'available'){
-							idCheckFlg = true;
-							idCheck.innerHTML = '사용 가능한 아이디 입니다.';
-						} else {
-							idCheckFlg = false;
-							idCheck.innerHTML = '사용 불가능한 아이디 입니다.';
-						}				
-					  }).catch(error => {
-						 
-						  error.alertMessage();
-					  })
-				} else {
-					alert('아이디를 입력하지 않았습니다.');	
-				}
-			}
+			let classMemberObj = new Object();
+			classMemberObj.userId = userId.value;
 		
 			
+			let headerObj = new Headers();
+			headerObj.append("content-type", "application/x-www-form-urlencoded");
 			
+			let url = "/school/findkindermember.do"
+			
+			//비동기 처리해서 화면이 새로고침 되지않고 element에서만 바뀌도록 설정
+			fetch(url, { //해당 url로 객체정보 포함하여 통신요청
+				method: "post",
+				headers: headerObj,
+				body:"classmemberinfo=" + JSON.stringify(classMemberObj)
+				
+			}).then(response => {
+				
+				return response.text();
+				
+			}).then((text) => {
+				
+				if(text == 'fail'){
+					alert('찾는 아이디의 회원이 없습니다.');
+				}else{
+					//정말 추가할건지 팝업 띄우기
+					let result = confirm("해당아이디가 검색되었습니다.[" + text + "] 학급회원으로 등록하시겠습니까 ?");
+					
+					if(result){
+						let regUserObj = new Object();
+						console.dir(userId.value);
+						regUserObj.userId = userId.value;
+						let url ="/school/kinderclassimpl.do";
+						
+						let headerObj = new Headers();
+						headerObj.append("content-type", "application/x-www-form-urlencoded");
+						
+						fetch(url, {
+							method:"post",
+							headers:headerObj,
+							body:"regUser="+JSON.stringify(regUserObj)
+							
+						}).then(response => {
+							console.dir(response);
+							if(response.ok){
+								return response.text();
+							}
+							throw new AsyncPageError(response.text());
+						}).then((text) => {
+							if(text == 'success'){
+								alert('학급회원 등록이 완료되었습니다.');
+								location.href = "/school/kinderclass.do";
+							
+							}else{
+								alert('회원등록 중 오류가 발생하였습니다. 다시 시도해주세요.');
+							}
+						})
+
+					}
+					
+				}
+			});
+		};	
+		
+	
+		
+		let success =() =>{
+			alert("수정이 완료되었습니다.")
+			location.href = "/school/kinderclass.do";
+		}
+		
+		
+		
+		
+		
 	
 	
 	</script>

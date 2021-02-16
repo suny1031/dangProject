@@ -363,6 +363,105 @@ public int modifySchoolService(Connection conn, String kgName, int isKg, int isC
 	
 	
 	
+	public UserMember findClassMemberById(Connection conn, String userId) {
+		
+		UserMember userMember = null;
+		PreparedStatement pstm = null;
+		ResultSet rset = null;
+		
+		String query = "select * from member where user_id = ?";
+		
+		try {
+			pstm = conn.prepareStatement(query);
+			pstm.setString(1, userId);
+			
+			//쿼리문 실행하고 결과값 받기
+			rset = pstm.executeQuery();
+			
+			//결과 값이 있다면,
+			if(rset.next()) {
+				userMember = new UserMember();
+				userMember.setUserId(rset.getString("user_id"));
+				userMember.setUserName(rset.getString("user_name"));
+				userMember.setKgName(rset.getString("kg_name"));
+				userMember.setClassName(rset.getString("class_name"));
+				userMember.setEmail(rset.getString("email"));
+				userMember.setBirth(rset.getDate("birth"));
+				userMember.setPhoneNumber(rset.getString("phone_number"));
+				userMember.setNickname(rset.getString("nickname"));
+				userMember.setClassName(rset.getString("class_name"));
+				userMember.setGrade(rset.getString("grade"));
+			}
+			
+		} catch (SQLException e) {
+			throw new DataAccessException(ErrorCode.SM01, e);
+		} finally {
+			jdt.close(rset, pstm);
+		}
+		
+		return userMember;	
+	
+	}
+
+	
+	
+	public int regUserMember(Connection conn, String kgName, String userId) {
+		
+		
+		int res = 0;
+		PreparedStatement pstm = null;
+		String query = "update member set kg_name =? where user_id = ?";
+	
+		try {
+			pstm = conn.prepareStatement(query);
+			pstm.setString(1, kgName);
+			pstm.setString(2, userId);
+			
+			
+			res = pstm.executeUpdate();
+
+		} catch (SQLException e) {
+			throw new DataAccessException(ErrorCode.UM01, e);
+			
+		}finally {
+			jdt.close(pstm);
+		}
+	
+		return res;
+		
+		
+		
+		
+	}
+
+	
+	
+
+	public int deleteClassMember(Connection conn, String userId) {
+		
+		int res = 0;
+		PreparedStatement pstm = null;
+		
+		String query = "update member set kg_name = null where user_id = ?";
+		
+		try {
+			pstm = conn.prepareStatement(query);
+			
+			pstm.setString(1, userId);
+			res = pstm.executeUpdate();
+			
+		} catch (SQLException e) {
+			throw new DataAccessException(ErrorCode.DM01, e);
+		
+		}finally {
+			jdt.close(pstm);
+		}
+		
+	return res;
+	
+	}
+		
+
 	
 	
 	

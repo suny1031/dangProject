@@ -99,8 +99,10 @@
 					</tbody>
 				</table>
 				<a href="/board/listboard1.do" class="bt-list">목록</a> 
-				<a href="modifyboard.do?bdIdx=${board.bdIdx }" class="bt-update">수정</a>
-				<a onclick="return confirm('정말로 삭제하시겠습니까?')" href="Delete.do?bdIdx=${board.bdIdx }" class="bt-delete">삭제</a>
+				<c:if test="${kgName == board.kgName }">
+					<a href="modifyboard.do?bdIdx=${board.bdIdx }" class="bt-update">수정</a>
+					<a onclick="return confirm('정말로 삭제하시겠습니까?')" href="Delete.do?bdIdx=${board.bdIdx }" class="bt-delete">삭제</a>
+				</c:if>
 			</div>
 
 		</section>

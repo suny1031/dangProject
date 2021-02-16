@@ -62,7 +62,7 @@
 			<div class="content">
 				<h2 id="tit" class="mainfont">알림장</h2>
 				<br>
-				<form action="/board/addboardimpl.do" method="post" enctype="multipart/form-data">
+				<form action="/board/addboardimpl.do" method="post">
 					<div class="addBoard-wrap">
 						<table class="addBoard-table">
 							<thead>

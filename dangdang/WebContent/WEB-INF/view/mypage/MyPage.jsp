@@ -74,7 +74,10 @@
 							</c:choose>
 							<br>
 						</div>
-						<button id="class_btn" onclick="location.href='/school/kinderclass.do'">학급관리</button>
+						
+						<c:if test="${!empty schoolMember}">
+							<button id="class_btn" onclick="location.href='/school/kinderclass.do'">학급관리</button>
+						</c:if>
 					</div>
 				</div>
 				<div id="mypage_board">
@@ -159,7 +162,7 @@
 					      <div>
 					        <div class="notice_list">
 					            <table>
-					              <tr style="width: 100%; background-color: lightgrey; " >
+					              <tr style="width: 100%; background-color: lightgrey " id="class_table_tr" >
 					                <td width="10%">번호</td>
 					                <td width="20%">제목</td>
 					                <td width="25%">날짜</td>

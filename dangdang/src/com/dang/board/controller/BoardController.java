@@ -2,6 +2,7 @@ package com.dang.board.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.mail.Session;
 import javax.servlet.ServletException;
@@ -18,6 +19,7 @@ import com.dang.common.code.ConfigCode;
 import com.dang.common.code.ErrorCode;
 import com.dang.common.exception.ToAlertException;
 import com.dang.member.school.model.vo.SchoolMember;
+import com.dang.member.user.model.vo.UserMember;
 import com.oreilly.servlet.multipart.FilePart;
 import com.oreilly.servlet.multipart.MultipartParser;
 import com.oreilly.servlet.multipart.ParamPart;
@@ -62,10 +64,20 @@ public class BoardController extends HttpServlet {
 	}
 	
 	private void listBoard1(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ArrayList<Board> boardlist = boardService.listBoard();
+		request.setAttribute("boardList", boardlist);
 		request.getRequestDispatcher("/WEB-INF/view/board/kindergarten/BoardList1.jsp").forward(request, response);
 	}
 
 	private void listBoard2(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		HttpSession session = request.getSession();
+		UserMember userMember = (UserMember) session.getAttribute("userMember");
+		String kgName = userMember.getKgName();
+		request.setAttribute("kgName", kgName);
+		
+		
+		
 		request.getRequestDispatcher("/WEB-INF/view/board/student/BoardList2.jsp").forward(request, response);
 	}
 	
@@ -74,6 +86,7 @@ public class BoardController extends HttpServlet {
 	}
 	
 	private void addBoardImpl(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		HttpSession session = request.getSession();
 		SchoolMember schoolMember = (SchoolMember) session.getAttribute("schoolMember");
 		String kgName = schoolMember.getKgName();
@@ -101,7 +114,6 @@ public class BoardController extends HttpServlet {
 		int bdIdx = Integer.parseInt(request.getParameter("bdIdx"));
 		String modifyboardTitle = request.getParameter("modifyboardTitle");
 		String modifyboardContent = request.getParameter("modifyboardContent");
-		
 		boardService.modifyBoard(bdIdx, modifyboardTitle, modifyboardContent);
 
 
@@ -113,10 +125,15 @@ public class BoardController extends HttpServlet {
 	
 	private void viewBoard1(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		HttpSession session = request.getSession();
+		SchoolMember schoolMember = (SchoolMember) session.getAttribute("schoolMember");
+		String kgName = schoolMember.getKgName();
+		request.setAttribute("kgName", kgName);
 		int bdIdx =  Integer.parseInt(request.getParameter("bdIdx"));
 		request.setAttribute("bdIdx", bdIdx);
 		Board board = boardService.viewBoard(bdIdx);
 		request.setAttribute("board", board);
+		
 		request.getRequestDispatcher("/WEB-INF/view/board/kindergarten/BoardView1.jsp").forward(request, response);
 	}
 	
@@ -126,6 +143,7 @@ public class BoardController extends HttpServlet {
 		request.setAttribute("bdIdx", bdIdx);
 		Board board = boardService.viewBoard(bdIdx);
 		request.setAttribute("board", board);
+		
 		request.getRequestDispatcher("/WEB-INF/view/board/student/BoardView2.jsp").forward(request, response);
 	}
 	
@@ -133,7 +151,7 @@ public class BoardController extends HttpServlet {
 		
 		int bdIdx = Integer.parseInt(request.getParameter("bdIdx"));
 		request.setAttribute("bdIdx", bdIdx);
-		int res = boardService.deleteBoard(bdIdx);
+		boardService.deleteBoard(bdIdx);
 		
 		request.getRequestDispatcher("/WEB-INF/view/board/kindergarten/BoardView1.jsp").forward(request, response);
 	}
