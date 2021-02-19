@@ -23,6 +23,12 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<!-- <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&display=swap" rel="stylesheet"> -->
 	<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">	
+	
+	<!--글씨 체-->
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+	<!--     -->
+	
 	<noscript>
 		<link rel="stylesheet" href="/resources/css/noscript.css" />
 	</noscript>
@@ -100,6 +106,7 @@
 
 		<div class="board">
 			<div id = "wrap">
+				<div id = "title">알림장</div>
 				<center>
 					<table class = "table" align="center">
 						<thead>

@@ -22,6 +22,8 @@ a:hover, a:active {
 	text-decoration: none;
 }
 
+
+
 #wrap {
 	height: 100%;
 	width: 100%;
@@ -29,15 +31,21 @@ a:hover, a:active {
 	flex-direction: column;
 	justify-content: space-between;
 }
-
+#title{
+	text-align: center;
+    font-size: 1.5vw;
+    margin: 3% 0 0 1%;
+    font-family: 'Nanum Gothic', sans-serif;
+}
 .table {
 	width: 70%;
 	height: 85%;
-	margin-top: 5%;
+	margin-top: 3%;
 	border-top: 2px solid #8b4513;
-	border-bottom: 2px solid #8b4513;
 	border-collapse: collapse;
-}
+	
+	
+} 
 
 .table tr {
 	border-bottom: 1px solid #999;
@@ -55,12 +63,13 @@ tr td {
 }
 
 #writeBtn {
-	width: 10%;
-	height: 30%;
+    width: 5%;
+    height: 40%;
 	border: none;
 	border-radius: 10px;
 	background-color: #8b4513;
 	margin-right: 10%;
+	margin-bottom: 1.5%;
 	align-self: center;
 	border: none;
 }

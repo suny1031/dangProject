@@ -63,9 +63,12 @@
 						<div id = "regDate">${diary.regDate}</div>
 						<div id = "content">${diary.content}</div>
 						<c:if test="${!empty schoolMember}">
-							<div id = "btnBox"><button class = "btn"><a href="/diary/mdfd.do?bdIdx=${diary.bdDiaryIdx}">수정</a></button> <button class = "btn"><a href="/diary/delete.do?bdIdx=${diary.bdDiaryIdx}" onclick="del()">삭제</a></button></div>
+							<div id = "btnBox"><button class = "btn"><a href="/diary/kindergardenview.do">목록</a></button><button class = "btn"><a href="/diary/mdfd.do?bdIdx=${diary.bdDiaryIdx}">수정</a></button> <button class = "btn"><a href="/diary/delete.do?bdIdx=${diary.bdDiaryIdx}" onclick="del()">삭제</a></button></div>
 						</c:if>
 						<c:if test="${empty schoolMember}">
+						</c:if>
+						<c:if test="${sessionScope.userMember != null}">
+							<div id = "backList"><a href="/diary/userview.do">목록</a></div>
 						</c:if>
 				</div>
 			</div>
