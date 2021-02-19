@@ -218,7 +218,7 @@
 									</c:choose>
 									</tr>
 								</table>
-								
+							
 								
 								
 						 		<button id="school_modify_btn" type="submit">제공 서비스 수정</button><!--  onclick="schoolModifyService()" -->
@@ -236,7 +236,7 @@
 							<input type ="file" name ="files" id="kg_photo" multiple/><!-- 여러개 파일 선택 속성 -->
 						</div>
 						<div id="photo_border">
-							<c:if test="${!empty photoList}">
+							<c:if test="${photoList != null}">
 									<div>
 										<div class = "schoolPhoto1">
 											<img  src = "/file${photoList[0].savePath}${photoList[0].renameFileName}" >

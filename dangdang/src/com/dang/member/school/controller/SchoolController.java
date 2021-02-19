@@ -250,7 +250,8 @@ public class SchoolController extends HttpServlet {
 			schoolMember.setKgOperateTime(kgOperateTime);
 			schoolMember.setKgNotice(kgNotice);
 			schoolMember.setKgEmail(kgEmail);
-			request.getSession().setAttribute("schoolMember", schoolMember);
+			//sessionScope에 저장하니까 오류가 떴지만 requestScope에 저장하니 오류가 발생하지 않음 (왜?)
+			request.setAttribute("schoolMember", schoolMember);
 			response.getWriter().print("success");
 
 		} else {

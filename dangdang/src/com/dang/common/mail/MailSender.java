@@ -50,7 +50,7 @@ public class MailSender {
 
 		// PasswordAuthentication => 사용자 정보를 담기 위해서 사용한다.(세션을 만들 때)
 
-		PasswordAuthentication pa = new PasswordAuthentication("suny10312@naver.com", "Cofla02281031*");
+		PasswordAuthentication pa = new PasswordAuthentication("suny10312@naver.com", "");
 		//PasswordAuthentication pa  = new PasswordAuthentication("qkraldud5020@naver.com","1*qkrayddl");
 
 

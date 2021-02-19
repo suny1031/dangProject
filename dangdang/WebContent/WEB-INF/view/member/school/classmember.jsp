@@ -148,7 +148,7 @@
 					alert('찾는 아이디의 회원이 없습니다.');
 				}else{
 					//정말 추가할건지 팝업 띄우기
-					let result = confirm("해당아이디가 검색되었습니다.[" + text + "] 학급회원으로 등록하시겠습니까 ?");
+					let result = confirm("해당아이디가 검색되었습니다. 학급회원으로 등록하시겠습니까 ?");
 					
 					if(result){
 						let regUserObj = new Object();

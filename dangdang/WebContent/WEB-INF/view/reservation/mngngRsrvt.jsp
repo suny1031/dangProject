@@ -259,7 +259,8 @@
 	            })
 	            .then((msg) => {
 	               if(msg == 'success'){
-						alert('예약 승인 메일을 보냈습니다.')
+	            	   alert('메일 보내기에 성공하였습니다.')
+	            	   location.href = "/reservation/mngngRsrvt.do"
 	               }
 	            }).catch(error=>{
 					alert('메일 보내기에 실패하였습니다.')
@@ -300,6 +301,7 @@
 	            .then((msg) => {
 	               if(msg == 'success'){
 						alert('삭제 성공하였습니다.')
+						location.href = "/reservation/mngngRsrvt.do"
 	               }
 	            }).catch(error=>{
 					alert('삭제 실패하였습니다.')
