@@ -875,7 +875,7 @@
 
 #class_board {
     text-align: center;
-    height: 70vh;
+    height: 85vh;
     border-radius: 3%;
     margin: auto;
     width: 70vw;
@@ -911,11 +911,11 @@
 #class_form table {
     display: flex;
     justify-content: space-around;
+    border-collapse: collapse;
 }
 
 
 #class_table {
-	
 	width: 100%;
 }
 
@@ -935,13 +935,13 @@
     cursor: pointer;
     font-family: 'Gamja Flower', cursive;
     font-size: 1.2vw;
-    margin-top: 10px;
-    border-radius: 10%	
+    margin-top: 5px;
+    border-radius: 10px;	
 	
 }
 
 #class_modify_btn, #add_class_member{
-	margin-top: 30px;
+	margin-top: 10px;
 	
 }
 
@@ -958,7 +958,15 @@
 }
 
 
+tr{
+	height: 40px;
+    width: 100px;
+    border-bottom: 1px solid #999;
+}
 
+td{
+	padding: 10px 0 10px 0;
+}
 
 
     

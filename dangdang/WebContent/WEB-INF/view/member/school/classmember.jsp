@@ -63,11 +63,11 @@
 				<div id="class_form">
 					<table id= "class_table">
 						<tr>
-							<td width="10%" style="font-weight: 700;">번호</td>
+							<td width="7%" style="font-weight: 700;">번호</td>
 							<td width="15%" style="font-weight: 700;">아이디</td>
 							<td width="10%" style="font-weight: 700;">이름</td>
 							<td width="25%" style="font-weight: 700;">이메일</td>
-							<td width="10%" style="font-weight: 700;">핸드폰번호</td>
+							<td width="20%" style="font-weight: 700;">핸드폰번호</td>
 							<td width="10%" style="font-weight: 700;">닉네임</td>
 							<td width="10%" style="font-weight: 700;"><a>회원삭제</a></td>
 						</tr>
