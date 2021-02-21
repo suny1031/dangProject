@@ -41,7 +41,7 @@ public class ReservationController extends HttpServlet {
 
 		switch (uriArr[uriArr.length - 1]) {
 		case "reservation.do":
-			reservation(request, response);
+			reservation(request, response); 
 			break;
 		case "reservationimpl.do":
 			reservationimpl(request, response);

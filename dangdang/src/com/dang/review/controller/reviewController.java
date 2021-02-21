@@ -62,6 +62,7 @@ public class reviewController extends HttpServlet {
 		doGet(request, response);
 	}
 
+	//후기 작성 페이지
 	private void write(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		String kgName = request.getParameter("kgName");
@@ -70,6 +71,7 @@ public class reviewController extends HttpServlet {
 		request.getRequestDispatcher("/WEB-INF/view/review/Write.jsp").forward(request, response);
 	}
 
+	//후기 확인 페이지
 	private void view(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String kgName = request.getParameter("kgName");
@@ -78,15 +80,6 @@ public class reviewController extends HttpServlet {
 		Kindergarten kindergarten = mapService.selectkgName(kgName);
 		ArrayList<FileVo> fileList = reviewService.selectFile(kgName);
 
-		
-		System.out.println("후기 리스트 " + reviewList);
-		System.out.println("유치원 리스트" + kindergarten);
-		System.out.println("파일 리스트" + fileList);
-
-		
-		
-		
-		
 		request.setAttribute("reviewList", reviewList);
 		request.setAttribute("kindergarten", kindergarten);
 		request.setAttribute("fileList", fileList);
@@ -95,6 +88,7 @@ public class reviewController extends HttpServlet {
 		request.getRequestDispatcher("/WEB-INF/view/review/View.jsp").forward(request, response);
 	}
 
+	//후기 내용, 사진 올리는 메서드
 	private void upload(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		

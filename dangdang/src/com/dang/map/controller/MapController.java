@@ -53,6 +53,7 @@ public class MapController extends HttpServlet {
 		doGet(request, response);
 	}
 
+	// 지도 페이지
 	private void map(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		List<Kindergarten> mapList = mapService.selectKindergarten();
@@ -62,6 +63,7 @@ public class MapController extends HttpServlet {
 		request.getRequestDispatcher("/WEB-INF/view/map/Map.jsp").forward(request, response);
 	}
 
+	// 유치원 상세 페이지
 	private void infrm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		String kgName = request.getParameter("kgName");
@@ -71,9 +73,7 @@ public class MapController extends HttpServlet {
 		String kgIdx = kindergarten.getKgIdx();
 		ArrayList<FileVo> fileList = mapService.selectFile(kgIdx);
 		System.out.println(fileList);
-		
-		
-		
+
 		request.removeAttribute("kindergarten");
 		request.setAttribute("kindergarten", kindergarten);
 		request.setAttribute("service", service);
@@ -81,7 +81,5 @@ public class MapController extends HttpServlet {
 
 		request.getRequestDispatcher("/WEB-INF/view/map/Infrm.jsp").forward(request, response);
 	}
-
-
 
 }

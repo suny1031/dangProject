@@ -297,7 +297,7 @@ public class MapDao {
 
 		try {
 
-			String query = "select * from D_FILE where TYPE_IDX = ?";
+			String query = "select * from D_FILE where TYPE_IDX = ? ORDER by F_IDX desc"; //최신순으로 받아오도록
 
 			pstm = conn.prepareStatement(query);
 			pstm.setString(1, kkgIdx);

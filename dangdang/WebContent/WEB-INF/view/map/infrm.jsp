@@ -123,10 +123,16 @@
 						<c:choose>
 						<c:when test="${!empty fileList}">
 							<img class = "img" src="/file${fileList[0].savePath}${fileList[0].renameFileName}" style="margin-top: 7%">
+								<c:if test="${fileList.size() > 1}">
+									<img class = "img" src="/file${fileList[1].savePath}${fileList[1].renameFileName}" style="margin-top: 7%">							
+								</c:if>
 						</c:when>
+						
+						
 						<c:otherwise>
 						<div class = "img"></div>
 						</c:otherwise>
+						
 						</c:choose>
 						</div>
 					</div>					

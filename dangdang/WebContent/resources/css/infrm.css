@@ -115,10 +115,16 @@ i {
 	border-bottom: 1px solid #cfc7c7;
 }
 
+#photoWrap {
+	height: 45%;
+	display: flex;
+	justify-content: center;
+}
+
 .photo {
-	margin: auto;
-	width: 50%;
-	height: 50vh;
+	display: flex;
+	width: 90%;
+	height: 80%;
 }
 
 #services {
