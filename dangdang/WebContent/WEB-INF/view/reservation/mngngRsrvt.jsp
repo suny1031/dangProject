@@ -106,7 +106,7 @@
 		<div id = "title">상담 예약 현황</div>
 		<div id = "count">TOTAL : <%=count%></div>
 		<table id = "table" align="center">
-			<tr  align="center" style="background-color: #f3f3f3;">
+			<tr  align="center" id = "Ftr">
 				<td class = "infrm" width="7%">예약번호</td>
 				<td class = "infrm" width="7%">ID</td>
 				<td class = "infrm" width="7%">이름</td>
@@ -170,7 +170,7 @@
 					}
 				%>
 				
-			<tr style="background-color: #f3f3f3;">
+			<tr>
 				<td align="center" colspan="11" style="font-size: 0.7vw">
 					<%	// 페이징  처리
 						if(count > 0){
@@ -189,7 +189,7 @@
 							
 							if(startPage > pageBlock){ // 페이지 블록수보다 startPage가 클경우 이전 링크 생성
 					%>
-								<a href="/reservation/mngngRsrvt.do?pageNum=<%=startPage - 10%>">[이전]</a>	
+								<a href="/reservation/mngngRsrvt.do?pageNum=<%=startPage - 10%>">[이전]</a>
 					<%			
 							}
 							

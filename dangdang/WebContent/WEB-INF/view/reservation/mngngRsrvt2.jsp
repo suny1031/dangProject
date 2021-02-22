@@ -106,16 +106,16 @@
 		<div id = "title">${userMember.userId}님의 상담 예약 현황</div>
 		<div id = "count">TOTAL : <%=count%></div>
 		<table id = "table" align="center">
-			<tr  align="center" style="background-color: #f3f3f3;">
+			<tr  align="center" id = "Ftr">
 				<td class = "infrm" width="7%">예약번호</td>
 				<td class = "infrm" width="10%">유치원</td>
 				<td class = "infrm" width="10%">휴대폰번호</td>
 				<td class = "infrm" width="10%">강아지 종</td>
-				<td class = "infrm" width="7%">강아지 나이</td>
+				<td class = "infrm" width="10%">강아지 나이</td>
 				<td class = "infrm" width="7%">픽업 여부</td>
 				<td class = "infrm" width="10%">신청일</td>				
 				<td class = "infrm" width="20%">요구사항</td>
-				<td class = "infrm" width="10%">승인여부</td>
+				<td class = "infrm" width="7%">승인여부</td>
 				
 			</tr>
 			<%
@@ -124,7 +124,7 @@
 						Reservation reservation = list.get(i);
 						// 반환된 list에 담긴 참조값 할당
 			%>
-			<tr  align="center">
+			<tr align="center">
 				<td class = "rsIdx"><%=reservation.getRsIdx()%></td>
 				<td><%=reservation.getKindergarten()%></td>
 				<td><%=reservation.getPhoneNumber()%></td>
@@ -154,7 +154,7 @@
 					}
 				%>
 				
-			<tr style="background-color: #f3f3f3;">
+			<tr>
 				<td align="center" colspan="11" style="font-size: 0.7vw">
 					<%	// 페이징  처리
 						if(count > 0){
