@@ -108,16 +108,19 @@
 	margin-bottom:1px;
 	margin-top: 1vw;
 	color: black;
+	font-weight: bold;
+	font-size: 1.5vw;
 }
 
 #mypage_profile{
     width: 60%;
-    height: 50%;
-   	margin-top: 10%;
+    height: 100%;
     display: flex;
     text-align: center;
     justify-content: center;
     flex-direction: column;
+    background-color: #E7E7E7;
+	
 }
 
 
@@ -145,7 +148,7 @@
 
 .mypage_detail{
 	display: flex;
-	background-color: #E7E7E7;
+	background-color: white;
 	
 
 }
@@ -154,9 +157,8 @@
 .detail_board{
 	display: flex;
 	width: 50vw;
-    border: solid 0.5px;
-  	
-	
+    border: solid 0.5px #E7E7E7;
+ 		
 }
 
 
@@ -247,7 +249,7 @@
 /* profile*/
 
 #profile_photo{
-    background-color: darkseagreen;
+    background-color:white;
     background-size: cover;
     background-position: center;
     background-image: url(/resources/css/images/dang.png);
@@ -846,7 +848,7 @@
 
 .notice_detail_board {
     width: 50vw;
-    border: solid 0.5px;
+    border: solid 0.5px #E7E7E7;
 }
 
 .mypageBox{
@@ -948,12 +950,12 @@
 	height: 26px;
     background-color: #8B4513;
     color: white;
-    border: 1.2px solid black;
+    border: 1.2px solid #8B4513;
     cursor: pointer;
     font-family: 'Gamja Flower', cursive;
     font-size: 1.2vw;
     margin-top: 10px;
-    border-radius: 10%	
+    border-radius: 10px;	
 }
 
 

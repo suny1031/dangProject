@@ -32,7 +32,7 @@ a:hover, a:active {
 
 #title {
 	text-align: center;
-	font-size: 1.5vw;
+	font-size: 2vw;
 	margin: 3% 0 0 1%;
 	font-family: 'Nanum Gothic', sans-serif;
 	color: #8b4513;
@@ -52,7 +52,7 @@ a:hover, a:active {
 }
 
 tr td {
-	padding: 10px;
+	padding: 10px 0 5px 0;
 }
 
 #write {

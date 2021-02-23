@@ -73,7 +73,7 @@
 						</thead>
 						<tbody class="boardList-body">
 							<!-- boardlist 에 추가할 내용을 for 문으로 꺼내오기 -->
-							<c:forEach var="boardList" items="${boardList }" varStatus="status" >
+							<c:forEach var="boardList" items="${boardList}" varStatus="status" >
 								<tr>
 									<!-- 게시물 번호 -->
 									<td>${boardList.getBdIdx() }</td>

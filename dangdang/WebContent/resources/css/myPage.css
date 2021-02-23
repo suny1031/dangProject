@@ -24,8 +24,8 @@
 	display: flex;
 	justify-content: space-around;
 	font-size: 0.8vw;
-	padding: 3%;
-	border-bottom: 1px solid #b4b4b4;
+    padding: 1.5%;
+    color: #676767;
 }
 
 #dot p {

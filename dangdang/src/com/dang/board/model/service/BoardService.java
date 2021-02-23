@@ -20,18 +20,6 @@ public class BoardService {
 		
 	}
 	
-//	public int getNext() {
-//		
-//		Connection conn = jdt.getConnection();
-//		int res = 0;
-//		try {
-//			res = boardDao.getNext(conn);
-//		} finally {
-//			jdt.close(conn);
-//		}
-//		return res;
-//	}
-	
 	public int addBoard(String title, String kgName, String content) {
 		Connection conn = jdt.getConnection();
 		int res = 0;
@@ -53,18 +41,6 @@ public class BoardService {
 		}
 		return boardList;
 	}
-	
-//	public boolean nextPage(int pageNumber) {
-//		Connection conn = jdt.getConnection();
-//		boolean res;
-//		try {
-//			res = boardDao.nextPage(conn, pageNumber);
-//		} finally {
-//			jdt.close(conn);
-//			
-//		}
-//		return res;
-//	}
 	
 	public int modifyBoard(int bdIdx, String title, String content) {
 		Connection conn = jdt.getConnection();

@@ -58,18 +58,40 @@
 
 		<div class="board">
 			<div id = "detailWrap">
-					<div id = "detailBox">
-						<div id = "title"><div id ="bdIdx">${diary.bdDiaryIdx}</div>${diary.title}</div>
-						<div id = "regDate">${diary.regDate}</div>
-						<div id = "content">${diary.content}</div>
-						<c:if test="${!empty schoolMember}">
-							<div id = "btnBox"><button class = "btn"><a href="/diary/kindergardenview.do">목록</a></button><button class = "btn"><a href="/diary/mdfd.do?bdIdx=${diary.bdDiaryIdx}">수정</a></button> <button class = "btn"><a href="/diary/delete.do?bdIdx=${diary.bdDiaryIdx}" onclick="del()">삭제</a></button></div>
-						</c:if>
-						<c:if test="${empty schoolMember}">
-						</c:if>
-						<c:if test="${sessionScope.userMember != null}">
-							<div id = "backList"><a href="/diary/userview.do">목록</a></div>
-						</c:if>
+				<div id = "detailBox">
+					<table class="detail-table">
+					<thead class="detail-thead">
+							<th colspan="2" class="detail-th">알림장 상세 페이지</th>
+					</thead>
+					<tbody class="detail-tbody">
+						<tr>
+							<td class="detail-title">제목</td>
+							<td class="detail-title-content">${diary.title}</td>
+						</tr>
+						<tr>
+							<td class="detail-writer">유치원</td>
+							<td class="detail-writer-content">${diary.kgName}</td>
+						</tr>
+						<tr>
+							<td class="detail-date">작성 일자</td>
+							<td class="detail-date-content">${diary.regDate}</td>
+						</tr>
+						<tr>
+							<td class="detail-content">내용</td>
+							<td class="detail-content-content">${diary.content}</td>
+						</tr>
+
+					</tbody>
+				</table>
+				<c:if test="${!empty schoolMember}">
+					<div id = "btnBox"><button class = "btn"><a href="/diary/kindergardenview.do">목록</a></button><button class = "btn"><a href="/diary/mdfd.do?bdIdx=${diary.bdDiaryIdx}">수정</a></button> <button class = "btn"><a href="/diary/delete.do?bdIdx=${diary.bdDiaryIdx}" onclick="return confirm('정말로 삭제하시겠습니까?')">삭제</a></button></div>
+				</c:if>
+				<c:if test="${empty schoolMember}">
+				</c:if>
+				<c:if test="${sessionScope.userMember != null}">
+					<div id = "backList"><a href="/diary/userview.do">목록</a></div>
+				</c:if>
+				
 				</div>
 			</div>
 		</div>

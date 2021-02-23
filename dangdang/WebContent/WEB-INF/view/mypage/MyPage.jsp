@@ -115,13 +115,6 @@
 							      <div>${reservation.userId}</div>
 							      <div>${reservation.regDate}</div>
 							    </div>
-							    <c:if test="${status.count >= 5}">
-							      <div id="dot">
-							        <p>.</p>
-							        <p>.</p>
-							        <p>.</p>
-							      </div>
-							    </c:if>
 							  </c:forEach>
 							</c:if>
 							
@@ -134,13 +127,6 @@
 							      <div>${reservation.userId}</div>
 							      <div>${reservation.regDate}</div>
 							    </div>
-							    <c:if test="${status.count >= 5}">
-							      <div id="dot">
-							        <p>.</p>
-							        <p>.</p>
-							        <p>.</p>
-							      </div>
-							    </c:if>
 							  </c:forEach>
 							</c:if>
 				        </div>
@@ -156,27 +142,16 @@
 				     <c:if test="${sessionScope.schoolMember != null}">
 			      	 <div id="noticeBox">
 			      		 <div>
-					      	<a href="/board/listboard1.do">공지사항</a>
-					     </div>
-					     
+					      	<a href="/board/kindergardenview.do">공지사항</a>
+					     </div>			     
 					      <div>
-					        <div class="notice_list">
-					            <table>
-					              <tr style="width: 100%; background-color: lightgrey " id="class_table_tr" >
-					                <td width="10%">번호</td>
-					                <td width="20%">제목</td>
-					                <td width="25%">날짜</td>
-					                <td width="45%">내용</td>
-					              </tr>
-					              <c:forEach var="board" items="${NoticePreview}" varStatus="status">
-					                <tr>
-					                  <td>${status.count}</td>
-					                  <td>${board.title}</td>
-					                  <td>${board.regDate}</td>
-					                  <td>${board.content}</td>
-					                </tr>
-					              </c:forEach>
-					            </table>
+					        <div class="notice_list">			      					            
+					            <c:forEach var="board" items="${NoticePreview}" varStatus="status">
+							    <div class="preview">
+								  <div style="width: 60% ;margin-left: 20%;">${board.content}</div>
+							      <div style="width: 20%; text-align: center;">${board.regDate}</div>					      
+							    </div>
+							  </c:forEach>
 					        </div>
 					      </div>
 					      
@@ -186,27 +161,17 @@
 			       <c:if test="${sessionScope.userMember != null}">
 			      	 <div id="noticeBox">
 			      		 <div>
-					      	<a href="/board/listboard2.do">공지사항</a>
+					      	<a href="/board/userview.do">공지사항</a>
 					     </div>
 					     
 					      <div>
 					        <div class="notice_list">
-					            <table>
-					              <tr style="width: 100%; background-color: lightgrey; " >
-					                <td width="10%">번호</td>
-					                <td width="20%">제목</td>
-					                <td width="25%">날짜</td>
-					                <td width="45%">내용</td>
-					              </tr>
-					              <c:forEach var="board" items="${NoticePreview}" varStatus="status">
-					                <tr>
-					                  <td>${status.count}</td>
-					                  <td>${board.title}</td>
-					                  <td>${board.regDate}</td>
-					                  <td>${board.content}</td>
-					                </tr>
-					              </c:forEach>
-					            </table>
+					            <c:forEach var="board" items="${NoticePreview}" varStatus="status">
+							    <div class="preview">
+							      <div style="width: 60% ;margin-left: 20%;">${board.content}</div>
+							      <div style="width: 20%; text-align: center;">${board.regDate}</div>
+							    </div>
+							  </c:forEach>
 					        </div>
 					      </div>
 					      
@@ -227,18 +192,9 @@
 							<c:if test="${sessionScope.schoolMember != null}">
 							  <c:forEach var="diary" items="${diaryList}" varStatus="status">
 							    <div class="preview">
-							      <div style="width: 5%">${status.count}</div>
-							      <div style="width: 10%">${diary.bdDiaryIdx}</div>
-							      <div style="width: 30%">${diary.title}</div>
-							      <div style="width: 20%">${diary.regDate}</div>
-							    </div>
-							    <c:if test="${status.count >= 5}">
-							      <div id="dot">
-							        <p>.</p>
-							        <p>.</p>
-							        <p>.</p>
-							      </div>
-							    </c:if>
+							      <div style="width: 60%; text-align: center;">${diary.content}</div>
+							      <div style="width: 20%; margin-left: 20%;">${diary.regDate}</div>
+							    </div>							 
 							  </c:forEach>
 							</c:if>
 							
@@ -246,18 +202,9 @@
 							<c:if test="${sessionScope.userMember != null}">
 							  <c:forEach var="diary" items="${diaryList}" varStatus="status">
 							    <div class="preview">
-							      <div style="width: 5%">${status.count}</div>
-							      <div style="width: 10%">${diary.bdDiaryIdx}</div>
-							      <div style="width: 30%">${diary.title}</div>
-							      <div style="width: 20%">${diary.regDate}</div>
-							    </div>
-							    <c:if test="${status.count >= 5}">
-							      <div id="dot">
-							        <p>.</p>
-							        <p>.</p>
-							        <p>.</p>
-							      </div>
-							    </c:if>
+							   	  <div style="width: 60%; text-align: center;">${diary.content}</div>
+							      <div style="width: 20%; margin-left: 20%;">${diary.regDate}</div>
+							    </div>							    
 							  </c:forEach>
 							</c:if>
 				        </div>
