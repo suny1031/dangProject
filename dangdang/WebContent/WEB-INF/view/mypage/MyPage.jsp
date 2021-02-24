@@ -105,7 +105,7 @@
 				        	<a href="/reservation/mngngRsrvt2.do" class="school_photo">예약</a>
 				        </c:if>
 				        
-				      <div id="reservationBox">
+				      <div class="box">
 				        <div id = "reservationWrap">
 							<c:if test="${sessionScope.schoolMember != null}">
 							  <c:forEach var="reservation" items="${reservationPreview}" varStatus="status">
@@ -136,48 +136,38 @@
 				  
 				  
 				  
-				  <div class="mypage_detail">
-				    <div class="notice_detail_board">
-
-				     <c:if test="${sessionScope.schoolMember != null}">
-			      	 <div id="noticeBox">
-			      		 <div>
-					      	<a href="/board/kindergardenview.do">공지사항</a>
-					     </div>			     
-					      <div>
-					        <div class="notice_list">			      					            
-					            <c:forEach var="board" items="${NoticePreview}" varStatus="status">
+				  <div class="mypage_detail">			   			    
+			    		<div class="detail_board">
+				    	<c:if test="${sessionScope.schoolMember != null}">
+				     		 <a href="/board/kindergardenview.do">공지사항</a>
+				      	</c:if>
+				      	<c:if test="${sessionScope.userMember != null}">
+				      		<a href="/board/userview.do">공지사항</a>
+				      	</c:if>
+				   <div class="box">
+				        <div id = "reservationWrap">
+							<c:if test="${sessionScope.schoolMember != null}">
+							  <c:forEach var="board" items="${NoticePreview}" varStatus="status">
 							    <div class="preview">
-								  <div style="width: 60% ;margin-left: 20%;">${board.content}</div>
-							      <div style="width: 20%; text-align: center;">${board.regDate}</div>					      
-							    </div>
+							      <div style="width: 60%; text-align: center;">${board.content}</div>
+							      <div style="width: 20%; margin-left: 20%;">${board.regDate}</div>
+							    </div>							 
 							  </c:forEach>
-					        </div>
-					      </div>
-					      
-				     </div>
-			       </c:if>
-			       
-			       <c:if test="${sessionScope.userMember != null}">
-			      	 <div id="noticeBox">
-			      		 <div>
-					      	<a href="/board/userview.do">공지사항</a>
-					     </div>
-					     
-					      <div>
-					        <div class="notice_list">
-					            <c:forEach var="board" items="${NoticePreview}" varStatus="status">
+							</c:if>
+							
+							
+							<c:if test="${sessionScope.userMember != null}">
+							  <c:forEach var="board" items="${NoticePreview}" varStatus="status">
 							    <div class="preview">
-							      <div style="width: 60% ;margin-left: 20%;">${board.content}</div>
-							      <div style="width: 20%; text-align: center;">${board.regDate}</div>
-							    </div>
+							   	  <div style="width: 60%; text-align: center;">${board.content}</div>
+							      <div style="width: 20%; margin-left: 20%;">${board.regDate}</div>
+							    </div>							    
 							  </c:forEach>
-					        </div>
-					      </div>
-					      
-				     </div>
-			       </c:if>
-			    </div>
+							</c:if>
+				        </div>
+				      </div>
+				      	
+				    </div>
 
 
 				    <div class="detail_board">
@@ -187,7 +177,7 @@
 				      	<c:if test="${sessionScope.userMember != null}">
 				      		<a href="/diary/userview.do">알림장</a>
 				      	</c:if>
-				   <div id="reservationBox">
+				   <div class="box">
 				        <div id = "reservationWrap">
 							<c:if test="${sessionScope.schoolMember != null}">
 							  <c:forEach var="diary" items="${diaryList}" varStatus="status">

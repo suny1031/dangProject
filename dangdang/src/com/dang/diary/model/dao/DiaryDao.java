@@ -123,7 +123,7 @@ public class DiaryDao {
 
 		try {
 
-			String query = "select * from BD_DIARY where KG_NAME = ? and IS_DEL = 0 and ROWNUM BETWEEN 1 and 5 order by BD_DIARY_IDX desc";
+			String query = "select * from BD_DIARY where KG_NAME = ? and IS_DEL = 0 and ROWNUM BETWEEN 1 and 7 order by BD_DIARY_IDX desc";
 			// 삭제되지 않은 알림만 보여준다
 			pstm = conn.prepareStatement(query);
 

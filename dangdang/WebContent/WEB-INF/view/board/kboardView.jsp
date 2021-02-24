@@ -7,8 +7,8 @@
 <!--페이징-->
 <%@page import="java.util.List"%>
 <%@page import="com.dang.member.school.model.vo.SchoolMember"%>
-<%@page import="com.dang.diary.model.vo.Diary"%>
-<%@page import="com.dang.diary.model.service.DiaryService"%>
+<%@page import="com.dang.board.model.vo.Board"%>
+<%@page import="com.dang.board.model.service.BoardService"%>
 <%@page import="javax.servlet.http.HttpSession"%>
 
 
@@ -88,16 +88,15 @@
 
  	int count = 0;
 	
- 	DiaryService diaryService = new DiaryService();
+ 	BoardService boardService = new BoardService();
 	
-	count = diaryService.selectCountPage(kgName.getKgName()); // 데이터베이스에 저장된 총 갯수
+	count = boardService.selectCountPage(kgName.getKgName()); // 데이터베이스에 저장된 총 갯수
 	System.out.println(count);
 
- 	List<Diary> list = null;
+ 	List<Board> list = null;
 	if (count > 0) {
 		// getList()메서드 호출 / 해당 레코드 반환
-		list = diaryService.selectDiaryPage(startRow, endRow, kgName.getKgName());		
-		System.out.println("view.jsp"+list);
+		list = boardService.selectBoardPage(startRow, endRow, kgName.getKgName());		
 
 	}  
 %>
@@ -120,14 +119,14 @@
 						<%
 							if (count > 0 ) { // 데이터베이스에 데이터가 있으면
 								for (int i = 0; i < list.size(); i++) {
-									Diary diary = list.get(i);
+									Board board = list.get(i);
 									// 반환된 list에 담긴 참조값 할당
 						%>
 						<tr  align="center">
-							<td class = "bdIdx"><a href="/board/detail.do?bdIdx=<%=diary.getBdDiaryIdx()%>"><%=diary.getBdDiaryIdx()%></a></td>
-							<td><%=diary.getKgName()%></td>
-							<td><%=diary.getTitle()%></td>
-							<td><%=diary.getRegDate()%></td>							
+							<td class = "bdIdx"><a href="/board/detail.do?bdIdx=<%=board.getBdIdx()%>"><%=board.getBdIdx()%></a></td>
+							<td><%=board.getKgName()%></td>
+							<td><%=board.getTitle()%></td>
+							<td><%=board.getRegDate()%></td>							
 						</tr>
 						<%
 								}

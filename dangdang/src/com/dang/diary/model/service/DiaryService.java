@@ -79,7 +79,7 @@ public class DiaryService {
 
 	}
 
-	// 알람 미리보기
+	// 알람 상세
 	public Diary selectDetail(String bdIdx) {
 		Connection conn = jdt.getConnection();
 		Diary diary;

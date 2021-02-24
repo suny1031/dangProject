@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.dang.board.model.service.BoardService;
 import com.dang.board.model.vo.Board;
 import com.dang.common.code.ConfigCode;
 import com.dang.common.util.file.FileVo;
@@ -42,6 +43,7 @@ public class SchoolController extends HttpServlet {
 	private SchoolService schoolService = new SchoolService();
 	private ReservationService reservationService = new ReservationService();
 	private DiaryService diaryService = new DiaryService();
+	private BoardService boardService = new BoardService();
 
 	Gson gson = new Gson();
 
@@ -50,10 +52,7 @@ public class SchoolController extends HttpServlet {
 
 	}
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String uri = request.getRequestURI();
@@ -154,8 +153,9 @@ public class SchoolController extends HttpServlet {
 		request.setAttribute("reservationPreview", reservationPreview);
 		
 		//notice 데이터 request에 저장
-		ArrayList<Board> NoticePreview = schoolService.selectNoticePreview(kgName);
+		ArrayList<Board> NoticePreview = boardService.selectDiaryPreview(kgName);
 		request.setAttribute("NoticePreview", NoticePreview);
+		
 		
 		//class 데이터 request에 저장
 		ArrayList<UserMember> classMemberList = schoolService.selectClassMember(kgName);

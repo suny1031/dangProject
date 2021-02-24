@@ -5,7 +5,7 @@
 	flex-direction: column;
 }
 
-#reservationBox {
+.box {
 	width: 100%;
 	height: 70%;
 	margin: auto;
@@ -26,11 +26,4 @@
 	font-size: 0.8vw;
     padding: 1.5%;
     color: #676767;
-}
-
-#dot p {
-	font-size: 0.8vw;
-	font-weight: bold;
-	color : #909090;
-	margin: 0;
 }
