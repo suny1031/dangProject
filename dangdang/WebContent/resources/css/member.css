@@ -252,6 +252,16 @@
     background-color:white;
     background-size: cover;
     background-position: center;
+    height: 150px;
+    width: 150px;
+    border: solid 1px grey;
+    border-radius: 53%;
+    margin-bottom: 20px;
+}
+#profile_photo2{
+    background-color:white;
+    background-size: cover;
+    background-position: center;
     background-image: url(/resources/css/images/dang.png);
     height: 150px;
     width: 150px;

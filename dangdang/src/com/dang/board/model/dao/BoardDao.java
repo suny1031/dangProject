@@ -41,7 +41,7 @@ public class BoardDao {
 			insert = pstm.executeUpdate();
 
 		} catch (SQLException e) {
-			throw new DataAccessException(ErrorCode.DA01, e);
+			throw new DataAccessException(ErrorCode.BO01, e);
 		} finally {
 			jdt.close(pstm);
 		}
@@ -80,7 +80,7 @@ public class BoardDao {
 				} while (rset.next());
 			}
 		} catch (SQLException e) {
-			throw new DataAccessException(ErrorCode.DA02, e);
+			throw new DataAccessException(ErrorCode.BO02, e);
 		} finally {
 			jdt.close(rset, pstm);
 		}
@@ -105,7 +105,7 @@ public class BoardDao {
 				count = rset.getInt(1);
 			}
 		} catch (Exception e) {
-			throw new DataAccessException(ErrorCode.DA02, e);
+			throw new DataAccessException(ErrorCode.BO02, e);
 		} finally {
 			jdt.close(rset, pstm);
 		}
@@ -144,7 +144,7 @@ public class BoardDao {
 			}
 
 		} catch (SQLException e) {
-			throw new DataAccessException(ErrorCode.DA02, e);
+			throw new DataAccessException(ErrorCode.BO02, e);
 		} finally {
 			jdt.close(rset, pstm);
 		}
@@ -183,7 +183,7 @@ public class BoardDao {
 			}
 
 		} catch (SQLException e) {
-			throw new DataAccessException(ErrorCode.DA02, e);
+			throw new DataAccessException(ErrorCode.BO02, e);
 		} finally {
 			jdt.close(rset, pstm);
 		}
@@ -211,7 +211,7 @@ public class BoardDao {
 
 			update = pstm.executeUpdate();
 		} catch (SQLException e) {
-			throw new DataAccessException(ErrorCode.DA03, e);
+			throw new DataAccessException(ErrorCode.BO04, e);
 		} finally {
 			jdt.close(pstm);
 		}
@@ -238,7 +238,7 @@ public class BoardDao {
 			delete = pstm.executeUpdate();
 
 		} catch (SQLException e) {
-			throw new DataAccessException(ErrorCode.DA04, e);
+			throw new DataAccessException(ErrorCode.BO03, e);
 		} finally {
 			jdt.close(pstm);
 

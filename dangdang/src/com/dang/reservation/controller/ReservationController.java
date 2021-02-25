@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,12 +23,14 @@ import com.dang.member.school.model.vo.SchoolMember;
 import com.dang.member.user.model.vo.UserMember;
 import com.dang.reservation.model.service.ReservationService;
 import com.dang.reservation.model.vo.Reservation;
+import com.google.gson.Gson;
 
 @WebServlet("/reservation/*")
 public class ReservationController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private MapService mapService = new MapService();
 	private ReservationService reservationService = new ReservationService();
+	Gson gson = new Gson();
 
 	public ReservationController() {
 		super();
@@ -189,34 +192,28 @@ public class ReservationController extends HttpServlet {
 	// 예약 승인 처리 메서드
 	private void approved(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		String rsIdx = request.getParameter("rsIdx"); //{"userId":"test3","date":"2021-02-15","rsIdx":"100221","kgName":"키움반려견스쿨"}
+		
+		Map rsIdxIf = gson.fromJson(rsIdx, Map.class); //{userId=test3, date=2021-02-15, rsIdx=100221, kgName=키움반려견스쿨}
 
-		String userId = request.getParameter("userId");
+		UserMember userMember = reservationService.selectUserMember((String)rsIdxIf.get("userId"));
 
-		String date = request.getParameter("date");
-
-		String kgName = request.getParameter("kgName");
-
-		String rsIdx = request.getParameter("rsIdx");
-
-		System.out
-				.println("userId : " + userId + " / date : " + date + " / kgName : " + kgName + " / rsIdx : " + rsIdx);
-		UserMember userMember = reservationService.selectUserMember(userId);
-
-		reservationService.ReservationEmail(userMember, date, kgName);
+		reservationService.ReservationEmail(userMember,(String)rsIdxIf.get("date"),(String)rsIdxIf.get("kgName"));
 
 		response.getWriter().print("success");
 
-		reservationService.updateReservation(rsIdx);
-
+		reservationService.updateReservation((String)rsIdxIf.get("rsIdx"));
 	}
 
 	// 예약 삭제 처리 메서드
 	private void delete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		String dleRsIdx = request.getParameter("dleRsIdx"); //비동기 GSON Object //{"dleRsIdx":"100209"}
 
-		String dleRsIdx = request.getParameter("dleRsIdx");
-		System.out.println(dleRsIdx);
+		Map rsIdx = gson.fromJson(dleRsIdx, Map.class); //{dleRsIdx=100209}
 
-		int res = reservationService.deleteReservation(dleRsIdx);
+		int res = reservationService.deleteReservation((String)rsIdx.get("dleRsIdx"));
 		System.out.println(res);
 		if (res > 0) {
 			response.getWriter().print("success");

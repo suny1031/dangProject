@@ -147,6 +147,9 @@ public class SchoolController extends HttpServlet {
 		SchoolMember schoolMember = (SchoolMember) session.getAttribute("schoolMember");
 		String kgName = schoolMember.getKgName();
 		
+		ArrayList<FileVo> photoList = schoolService.selectSchoolPhoto(schoolMember.getKgIdx());
+		request.setAttribute("photoList", photoList);
+
 		//reservation 데이터 request에 저장
 		ArrayList<Reservation> reservationPreview = reservationService.selectReservationPreview(kgName);
 		System.out.println(reservationPreview);

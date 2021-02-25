@@ -240,8 +240,12 @@
 			let userId = userIdArr.item(i).innerText
 			let date = dateArr.item(i).innerText
 			let rsIdx = rsIdxArr.item(i).innerText
-			console.dir(rsIdx)
 
+			let paramObj = new Object(); //Object사용
+			paramObj.userId = userId; //Object에 값들 저장
+			paramObj.date = date;
+			paramObj.rsIdx = rsIdx;
+			paramObj.kgName = "${kgName}";
 			
 		      let headerObj = new Headers();
 		      headerObj.append('content-type',"application/x-www-form-urlencoded");
@@ -249,8 +253,8 @@
 	          fetch("/reservation/approved.do",{	
 	              method : "post",
 	              headers : headerObj,
-	              body : "userId="+userId+"&rsIdx="+rsIdx+"&date="+date+"&kgName=${kgName}"
-	              
+	              /* body : "userId="+userId+"&rsIdx="+rsIdx+"&date="+date+"&kgName=${kgName}" */
+	              body : "rsIdx="+JSON.stringify(paramObj) //JSON에 담아서 넘김
 	           }).then(response => {
 	               if(response.ok){
 	                  return response.text();
@@ -274,7 +278,7 @@
 	<script type="text/javascript">
 	let del = document.querySelectorAll(".del"); 
 	let dleArr = document.querySelectorAll(".rsIdx"); 
-
+	
 	for(let i = 0; i < del.length; i++ ){
 		del[i].addEventListener('click',(e)=> {
 		let	result = confirm('정말 삭제하시겠습니까?')
@@ -282,15 +286,17 @@
 		if (result) {
 		//삭제를 눌렀을때
 		let dleRsIdx = dleArr.item(i).innerText
-		console.dir(dleRsIdx)
 		
-				      let headerObj = new Headers();
+			  let paramObj = new Object();  //Object사용
+			  paramObj.dleRsIdx = dleRsIdx; //Object에 rsIdx값 저장
+			   
+			  let headerObj = new Headers();
 		      headerObj.append('content-type',"application/x-www-form-urlencoded");
 
 	          fetch("/reservation/delete.do",{	
 	              method : "post",
 	              headers : headerObj,
-	              body : "dleRsIdx="+dleRsIdx
+	              body : "dleRsIdx="+JSON.stringify(paramObj) //JSON에 담아서 넘김
 	              
 	           }).then(response => {
 	               if(response.ok){

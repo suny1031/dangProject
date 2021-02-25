@@ -60,8 +60,18 @@
 				<div id="mypage_profile">
 					<div id= "personal_photo">
 						<c:choose>
-							<c:when test ="${sessionScope.schoolMember != null}"><a id ="profile_photo" href="/school/schoolprofile.do"></a><br></c:when>
-							<c:when test ="${sessionScope.userMember != null}"><a id ="profile_photo" href="/user/userprofile.do"></a><br></c:when>
+							<c:when test ="${sessionScope.schoolMember != null}">
+							
+							<c:if test="${!empty photoList}">
+							<a href="/school/schoolprofile.do"><img id ="profile_photo" src="/file${photoList[0].savePath}${photoList[0].renameFileName}"></a><br>
+							</c:if>				
+							<c:if test="${empty photoList}">
+							<a id ="profile_photo2" href="/school/schoolprofile.do" ></a><br>
+							</c:if>
+							
+							</c:when>
+							
+							<c:when test ="${sessionScope.userMember != null}"><a id ="profile_photo2" href="/user/userprofile.do"></a><br></c:when>
 						</c:choose>
 						<div class="profile_name_board">
 							<c:choose>
@@ -85,10 +95,10 @@
 				    <div class="detail_board">
 				      <c:choose>
 				        <c:when test="${sessionScope.schoolMember != null}">
-				          <a href="/album/view.do" class="school_photo">앨범</a>
+				          <a href="/album/albumview.do" class="school_photo">앨범</a>
 				        </c:when>
 				        <c:otherwise><!-- userMember일 때 -->
-				          <a  href="/album/view.do" class="user_photo">앨범</a>
+				          <a  href=/album/albumview.do class="user_photo">앨범</a>
 				        </c:otherwise>
 				      </c:choose>
 				    </div>

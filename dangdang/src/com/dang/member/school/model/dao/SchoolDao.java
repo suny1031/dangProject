@@ -315,7 +315,7 @@ public int modifySchoolService(Connection conn, String kgName, int isKg, int isC
 				noticeList.add(board);
 			}
 		} catch (SQLException e) {
-			throw new DataAccessException(ErrorCode.BL01, e);
+			throw new DataAccessException(ErrorCode.BO01, e);
 		}finally {
 			jdt.close(rset, pstm);
 		}

@@ -12,7 +12,9 @@
 	background-color: #FFF8DC;
 	text-align: center;
 	border: 1px solid;
-	margin-top: 25%;
+	margin-top: 20%;
+	padding: 20px;
+	font-family: "Jua", sans-serif;
 }
 
 #title {
@@ -47,6 +49,9 @@ textarea {
 	margin-right: 25%;
 	margin-top: 1%;
 	background-color: #FFF8DC;
+    padding: 7px;
+    font-family: "Jua", sans-serif;
+	border: none;
 }
 /*헤더*/
 #header {

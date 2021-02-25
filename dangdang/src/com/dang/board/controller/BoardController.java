@@ -149,7 +149,7 @@ public class BoardController extends HttpServlet {
 		int res = boardService.updateBoard(title, content, bdIdx);
 		
 		if (res > 0 ) {
-			request.setAttribute("alertMsg", "알림장 수정이 완료되었습니다");
+			request.setAttribute("alertMsg", "공지사항 수정이 완료되었습니다");
 			request.setAttribute("url", "/board/kindergardenview.do");
 
 			request.getRequestDispatcher("/WEB-INF/view/common/result.jsp").forward(request, response);	
@@ -168,7 +168,7 @@ public class BoardController extends HttpServlet {
 
 		
 		if (res > 0 ) {
-			request.setAttribute("alertMsg", "알림장 삭제가 완료되었습니다");
+			request.setAttribute("alertMsg", "공지사항 삭제가 완료되었습니다");
 			request.setAttribute("url", "/board/kindergardenview.do");
 
 			request.getRequestDispatcher("/WEB-INF/view/common/result.jsp").forward(request, response);	

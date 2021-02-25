@@ -1,9 +1,6 @@
-<%@page import="com.dang.diary.model.service.DiaryService"%>
-<%@page import="com.dang.diary.model.vo.Diary"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/view/include/header.jsp"%>
-
 
 <!DOCTYPE html>
 <html>
@@ -11,15 +8,18 @@
 <meta charset="UTF-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
-	<link rel="stylesheet" href="/resources/css/main.css" />
-	<link rel="stylesheet" href="/resources/css/diaryWrite.css" />
-	<link rel="preconnect" href="https://fonts.gstatic.com">
-	<link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&display=swap" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">	
-	<noscript>
-		<link rel="stylesheet" href="/resources/css/noscript.css" />
-	</noscript>
+<link rel="stylesheet" href="/resources/css/main.css" />
+<link rel="stylesheet" href="/resources/css/album.css" />
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap"
+	rel="stylesheet">
+<noscript>
+	<link rel="stylesheet" href="assets/css/noscript.css" />
+</noscript>
+
 </head>
+
 <body class="is-preload">
 
 	<!-- Page Wrapper -->
@@ -52,33 +52,50 @@
 				</ul>
 			</nav>
 		</header>
+		
+		
+	
 
-
-	<!-- Main -->
-
-		<div class="board">
-			<form action="/board/upload.do">
-				<div id = "writeWrap">
-					<div id = "box">공지사항 작성</div>
-					<div id = "title"><input type="text" name = "title" placeholder="제목을 입력하세요." required="required" maxlength="10" autocomplete="off"> </div>
-					<div id = "content"><textarea name = "content" placeholder="내용을 입력하세요." required="required" ></textarea></div>	
-				</div>
-				<div id = "writeBtnWrap"><button id = "writeBtn"><a>작성완료</a></button></div>
-			</form>
+	<div class="board">
+		<div id = "boardWrap">
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		</div>
-		
-		
-		
 		<!-- Footer -->
 		<footer id="footer">
 			<div id = "footerMark">&copy;댕댕아놀면뭐하니?</div>
 		</footer>
 
 	</div>
+
 	
 	
-
-
+	
+	
+	</script>
 	<!-- Scripts -->
 	<script src="/resources/js/jquery.min.js"></script>
 	<script src="/resources/js/jquery.scrollex.min.js"></script>
