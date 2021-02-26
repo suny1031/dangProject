@@ -47,13 +47,6 @@
 			</nav>
 		</header>
 
-
-
-
-
-
-
-
 		<!-- Main -->
 		<section class="user_board">
 			<div class="member_mypage">

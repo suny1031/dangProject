@@ -58,10 +58,11 @@
 		<section class="user_board">
 			<div id="class_board">
 				<div id= "class_title">
-					<h2 style="font-family: 'Gamja Flower', cursive;">학급관리</h2>
+					<h2 style="font-family: 'Gamja Flower', cursive; padding :5px;">학급관리</h2>
 				</div>
 				<div id="class_form">
 					<table id= "class_table">
+					<thead>
 						<tr>
 							<td width="7%" style="font-weight: 700;">번호</td>
 							<td width="15%" style="font-weight: 700;">아이디</td>
@@ -71,25 +72,57 @@
 							<td width="10%" style="font-weight: 700;">닉네임</td>
 							<td width="10%" style="font-weight: 700;"><a>회원삭제</a></td>
 						</tr>
-						
-						<c:forEach var="userMember" items="${classMemberList}" varStatus="status">
-							<tr>
-							
+						</thead>
+						<tbody>
+							<c:forEach var="member" items="${list}" varStatus="status">
+							<tr  align="center">
 								<td>${status.count}</td>
-								<td>${userMember.userId}</td>
-								<td>${userMember.userName}</td>
-								<td>${userMember.email}</td>
-								<td>${userMember.phoneNumber}</td>
-								<td>${userMember.nickname}</td>
-								<td><button type="submit" onclick = "location.href='/school/deleteclassmember.do?userId=${userMember.userId}'">삭제</button></td>
+								<td>${member.userId}</td>
+								<td>${member.userName}</td>
+								<td>${member.email}</td>	
+								<td>${member.phoneNumber}</td>
+								<td>${member.nickname}</td>
+								<td><button type="submit" onclick = "location.href='/school/deleteclassmember.do?userId=${member.userId}'">삭제</button></td>
 							</tr>
-							
-						</c:forEach>
+							</c:forEach>	
+														
+							<tr>
+								<td align="center" colspan="7" style="font-size: 0.7vw">
+								<c:if test="${count > 0}">
+								   <c:set var="pageCount" value="${count / pageSize + ( count % pageSize == 0 ? 0 : 1)}"/>
+								   <c:set var="startPage" value="${pageGroupSize*(numPageGroup-1)+1}"/>
+								   <c:set var="endPage" value="${startPage + pageGroupSize-1}"/>
+								  
+								   <c:if test="${endPage > pageCount}" >
+								     <c:set var="endPage" value="${pageCount}" />
+								   </c:if>
+								         
+								   <c:if test="${numPageGroup > 1}">
+								        <a href="/school/kinderclass.do?pageNum=${(numPageGroup-2)*pageGroupSize+1 }">[이전]</a>
+								   </c:if>
+								   
+								   <c:forEach var="i" begin="${startPage}" end="${endPage}">
+								       <a href="/school/kinderclass.do?pageNum=${i}">
+								        <font color=" #B22222" />
+								          <c:if test="${currentPage == i}">
+								          <font color="#bbbbbb" />
+								        </c:if>
+								        [${i}]
+								       </font>
+								       </a>
+								   </c:forEach>
+								   <c:if test="${numPageGroup < pageGroupCount}">
+								        <a href="/school/kinderclass.do?pageNum=${numPageGroup*pageGroupSize+1}">[다음]</a>
+								   </c:if>
+								</c:if>
+								</td>
+							</tr>
+						</tbody>
 					</table>
 				</div>
 				<div id="add_class_member">
 					<input type=text id ="userId" name="userId" size="20">
-					<button class="classBtn" onclick= "userIdCheck()">추가할 회원 검색</button>
+					<button class="classBtn" onclick= "userIdCheck()">추가할 아이디 검색</button>
 				</div>
 				<div id="class_modify_btn">
 					<button class="classBtn" onclick= "success()">수정 완료</button>

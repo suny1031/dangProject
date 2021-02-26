@@ -254,7 +254,6 @@
     background-position: center;
     height: 150px;
     width: 150px;
-    border: solid 1px grey;
     border-radius: 53%;
     margin-bottom: 20px;
 }
@@ -265,7 +264,6 @@
     background-image: url(/resources/css/images/dang.png);
     height: 150px;
     width: 150px;
-    border: solid 1px grey;
     border-radius: 53%;
     margin-bottom: 20px;
 }
@@ -907,7 +905,7 @@
 
 
 #class_form{
-    height: 80%;
+    height: 79%;
     border: solid 1px;
 }
 
@@ -920,7 +918,6 @@
 }
 
 #class_form table {
-    display: flex;
     justify-content: space-around;
     border-collapse: collapse;
 }
