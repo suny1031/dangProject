@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+div {
+	border: 1px solid;
+}
+
 #boardWrap {
 	height: 100vh;
 	width: 100%;
@@ -7,15 +11,28 @@
 
 #addPhoto {
 	border: 1px solid #FAF0E6;
-	background-color : #FAF0E6;
+	background-color: #FAF0E6;
 	border-radius: 30px;
 	width: 7%;
 	height: 5%;
 	text-align: center;
 	padding: 7px 0 0 0px;
 	position: relative;
-    top: 5%;
-    left: 80%;
+	top: 5%;
+	left: 80%;
+}
+
+#photoBox {
+	min-height: 50vh;
+	width: 90%;
+	margin: auto;
+	position: relative;
+	top: 10%;
+}
+
+.img {
+	width: 13%;
+	height: 15%;
 }
 /*헤더*/
 #header {

@@ -59,7 +59,7 @@
 	<div class="board">
 		<div id = "boardWrap">
 			<div id = "addPhoto">사진 추가</div>
-			<div><img><img><img></div>
+			<div photoBox><img class="img" src="/resources/css/images/1.jpg"><img class="img" src="/resources/css/images/2.jpg"><img class="img" src="/resources/css/images/3.jpg"></div>
 			
 			
 			
