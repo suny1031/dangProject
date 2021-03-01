@@ -26,8 +26,11 @@ public class AlbumController extends HttpServlet {
 		String[] uriArr = uri.split("/");
 
 		switch (uriArr[uriArr.length - 1]) {
-		case "albumview.do":
-			albumview(request, response);
+		case "kAlbumview.do":
+			kAlbumview(request, response);
+			break;
+		case "uAlbumview.do":
+			uAlbumview(request, response);
 			break;
 		default:
 			throw new ToAlertException(ErrorCode.CD_404);
@@ -40,10 +43,17 @@ public class AlbumController extends HttpServlet {
 		doGet(request, response);
 	}
 
-	private void albumview(HttpServletRequest request, HttpServletResponse response)
+	private void kAlbumview(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		System.out.println("k들어옴");
+		request.getRequestDispatcher("/WEB-INF/view/album/kAlbumView.jsp").forward(request, response);
+
+
+	}
+	private void uAlbumview(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		request.getRequestDispatcher("/WEB-INF/view/album/albumView.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/view/album/uAlbumView.jsp").forward(request, response);
 
 
 	}

@@ -88,10 +88,10 @@
 				    <div class="detail_board">
 				      <c:choose>
 				        <c:when test="${sessionScope.schoolMember != null}">
-				          <a href="/album/albumview.do" class="school_photo">앨범</a>
+				          <a href="/album/kAlbumview.do" class="school_photo">앨범</a>
 				        </c:when>
 				        <c:otherwise><!-- userMember일 때 -->
-				          <a  href=/album/albumview.do class="user_photo">앨범</a>
+				          <a  href=/album/uAlbumview.do class="user_photo">앨범</a>
 				        </c:otherwise>
 				      </c:choose>
 				    </div>
