@@ -58,29 +58,13 @@
 
 	<div class="board">
 		<div id = "boardWrap">
-			<div id = "selectDate"><input type="date"></div>
-			<div photoBox></div>
+			<div id = "selectDate"><form id = "form" action="/album/selectdate.do"><input type="date" name = "date"><button>검색</button></form></div>
+				<div id = "photoBox">
+					
+				
+				</div>
 			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
+
 			</div>
 		</div>
 		<!-- Footer -->

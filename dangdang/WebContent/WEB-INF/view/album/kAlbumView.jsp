@@ -58,8 +58,8 @@
 
 	<div class="board">
 		<div id = "boardWrap">
-			<div id = "addPhoto">사진 추가</div>
-			<div photoBox><img class="img" src="/resources/css/images/1.jpg"><img class="img" src="/resources/css/images/2.jpg"><img class="img" src="/resources/css/images/3.jpg"></div>
+			<div id = "addPhoto" onclick="addPopup()">사진 추가</div>
+			<div id ="photoBox"></div>
 			
 			
 			
@@ -90,11 +90,13 @@
 
 	</div>
 
+		<script language="javascript">
+		  function addPopup() { window.open("addphoto.do", "a", "width=500, height=300, left=350, top=150"); }
+		</script>
 	
 	
 	
-	
-	</script>
+
 	<!-- Scripts -->
 	<script src="/resources/js/jquery.min.js"></script>
 	<script src="/resources/js/jquery.scrollex.min.js"></script>

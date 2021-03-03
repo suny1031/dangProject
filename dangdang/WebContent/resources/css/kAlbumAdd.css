@@ -1,0 +1,36 @@
+@charset "UTF-8";
+
+#addWrap {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	min-height: 100vh;
+}
+
+#addBox {
+	width: 80%;
+	height: 100vh;
+	border-radius: 10px;
+	background-color: #f1f1f1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#addForm {
+	display: flex;
+	flex-direction: column;
+}
+
+#addBtn {
+	width: 50%;
+	height: 7vh;
+	margin: auto;
+	background-color: #b4b3b3;
+	border: none;
+}
+
+#addInput {
+	border-bottom: 2px solid #adadad;
+	margin-bottom: 30%;
+}

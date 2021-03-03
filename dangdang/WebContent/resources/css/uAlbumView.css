@@ -10,13 +10,18 @@ div {
 }
 
 #selectDate {
-	width: 15%;
+	width: 20%;
 	height: 8%;
 	text-align: center;
 	padding: 7px 0 0 0px;
 	position: relative;
 	top: 5%;
-	left: 80%;
+	left: 75%;
+}
+
+#form {
+	display: flex;
+	justify-content: space-around;
 }
 
 #photoBox {

@@ -1,6 +1,8 @@
 package com.dang.album.controller;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -32,6 +34,15 @@ public class AlbumController extends HttpServlet {
 		case "uAlbumview.do":
 			uAlbumview(request, response);
 			break;
+		case "addphoto.do":
+			addPhoto(request, response);
+			break;
+		case "addphotoimpl.do":
+			addPhotoimpl(request, response);
+			break;
+		case "selectdate.do":
+			selectDate(request, response);
+			break;
 		default:
 			throw new ToAlertException(ErrorCode.CD_404);
 		}
@@ -45,16 +56,36 @@ public class AlbumController extends HttpServlet {
 
 	private void kAlbumview(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println("k들어옴");
 		request.getRequestDispatcher("/WEB-INF/view/album/kAlbumView.jsp").forward(request, response);
+
+	}
+
+	private void uAlbumview(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		request.getRequestDispatcher("/WEB-INF/view/album/uAlbumView.jsp").forward(request, response);
+
+	}
+
+	private void addPhoto(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		request.getRequestDispatcher("/WEB-INF/view/album/kAlbumAdd.jsp").forward(request, response);
+
+	}
+
+	private void addPhotoimpl(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
 
 	}
-	private void uAlbumview(HttpServletRequest request, HttpServletResponse response)
+	private void selectDate(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		request.getRequestDispatcher("/WEB-INF/view/album/uAlbumView.jsp").forward(request, response);
 
+		String date = request.getParameter("date");
+		System.out.println(date);
+
+		java.sql.Date selectDate = java.sql.Date.valueOf(date);
 
 	}
 }

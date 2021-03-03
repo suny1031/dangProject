@@ -16,10 +16,12 @@ div {
 	width: 7%;
 	height: 5%;
 	text-align: center;
-	padding: 7px 0 0 0px;
 	position: relative;
 	top: 5%;
-	left: 80%;
+	left: 88%;
+	padding: 7px;
+	font-size: 1vw;
+	font-weight: bold;
 }
 
 #photoBox {
