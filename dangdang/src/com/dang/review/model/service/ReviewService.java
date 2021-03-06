@@ -56,7 +56,7 @@ public class ReviewService {
 
 		// 게시글 저장
 		Map<String, List> reviewData = new FileUtil().fileUpload(request);
-
+		System.out.println("reviewData"+reviewData);
 		Review review = new Review();
 		review.setUserName(nickName);
 		review.setKgName(kgName);

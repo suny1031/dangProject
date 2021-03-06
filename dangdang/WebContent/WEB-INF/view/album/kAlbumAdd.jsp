@@ -23,7 +23,7 @@
 	<body class="is-preload">
 		<div id = "addWrap">
 			<div id = "addBox">
-				<form id = "addForm" action="/album/addphotoimpl.do" method="post" enctype="multipart/form-data"><input id = "addInput" type="file" accept='image/jpg,image/jpeg,image/gif,image/png' onChange="chk(this)"><button id = "addBtn">등록</button></form>
+				<form id = "addForm" action="/album/addphotoimpl.do" method="post" enctype="multipart/form-data"><input id = "addInput" type="file" name='files' accept='image/jpg,image/jpeg,image/gif,image/png' onChange="chk(this)"><button id = "addBtn">등록</button></form>
 			</div>
 		</div>
 	

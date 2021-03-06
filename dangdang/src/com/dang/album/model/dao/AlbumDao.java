@@ -9,7 +9,6 @@ import com.dang.common.code.ErrorCode;
 import com.dang.common.exception.DataAccessException;
 import com.dang.common.jdbc.JDBCTemplate;
 import com.dang.common.util.file.FileVo;
-import com.dang.review.model.vo.Review;
 
 public class AlbumDao {
 
@@ -46,8 +45,7 @@ public class AlbumDao {
 		int res = 0;
 		String bdAlIdx = "";
 		if (fileData.getTypeIdx() == null) {
-			// 1. 새로 등록되는 게시글의 파일 정보 저장
-			// typeIdx값이 시퀀스의 currval
+
 			bdAlIdx = " 'a' || SC_BD_AL_IDX.currval";
 
 		} else {

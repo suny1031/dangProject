@@ -1,8 +1,6 @@
 package com.dang.album.model.service;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
@@ -27,6 +25,7 @@ public class AlbumService {
 
 		// 게시글 저장
 		Map<String, List> albumData = new FileUtil().fileUpload(request);
+		System.out.println("albumData"+albumData);
 
 		Album album = new Album();
 		album.setKgName(kgName);
