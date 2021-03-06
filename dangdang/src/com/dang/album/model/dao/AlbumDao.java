@@ -4,10 +4,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import com.dang.album.model.vo.Album;
 import com.dang.common.code.ErrorCode;
 import com.dang.common.exception.DataAccessException;
 import com.dang.common.jdbc.JDBCTemplate;
 import com.dang.common.util.file.FileVo;
+import com.dang.review.model.vo.Review;
 
 public class AlbumDao {
 
@@ -16,11 +18,33 @@ public class AlbumDao {
 	}
 
 	JDBCTemplate jdt = JDBCTemplate.getInstance(); // 템플릿 생성
+	
+	// 앨범 추가 메서드
+	public int insertAlbum(Connection conn, Album album) {
+		int res = 0;
+		String sql = "insert into BD_ALBUM (BD_AL_IDX,KG_NAME) Values('a' || SC_BD_AL_IDX.nextVal, ?)";
 
-	//앨범 사진 추가 메서드
+		PreparedStatement pstm = null;
+
+		try {
+			pstm = conn.prepareStatement(sql);
+			pstm.setString(1, album.getKgName());
+			res = pstm.executeUpdate();
+
+		} catch (SQLException e) {
+			throw new DataAccessException(ErrorCode.RV02, e);
+		} finally {
+			jdt.close(pstm);
+		}
+
+		return res;
+
+	}
+
+	// 앨범 사진 추가 메서드
 	public int insertFile(Connection conn, FileVo fileData) {
 		int res = 0;
-		String bdAlIdx= "";
+		String bdAlIdx = "";
 		if (fileData.getTypeIdx() == null) {
 			// 1. 새로 등록되는 게시글의 파일 정보 저장
 			// typeIdx값이 시퀀스의 currval
