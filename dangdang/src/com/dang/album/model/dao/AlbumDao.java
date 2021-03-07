@@ -57,7 +57,7 @@ public class AlbumDao {
 		}
 		System.out.println(fileData);
 
-		String sql = "insert into D_FILE (F_IDX,TYPE_IDX,ORIGIN_FILE_NAME,RENAME_FILE_NAME, SAVE_PATH) values(sc_f_idx.nextVal,"
+		String sql = "insert into D_FILE (F_IDX,TYPE_IDX,ORIGIN_FILE_NAME,RENAME_FILE_NAME, SAVE_PATH) values(SC_F_IDX.nextVal,"
 				+ bdAlIdx + ",?,?,?)";
 
 		PreparedStatement pstm = null;

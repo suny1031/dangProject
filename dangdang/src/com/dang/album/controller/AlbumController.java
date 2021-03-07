@@ -88,7 +88,7 @@ public class AlbumController extends HttpServlet {
 		albumService.insertAlbum(kgName, request);
 
 		request.setAttribute("alertMsg", "사진 등록이 완료되었습니다");
-		request.setAttribute("url", "/album/kAlbumview.do");
+		request.setAttribute("url", "/album/addphoto.do");
 
 		request.getRequestDispatcher("/WEB-INF/view/common/result.jsp").forward(request, response);
 
