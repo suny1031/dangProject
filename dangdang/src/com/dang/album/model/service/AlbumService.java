@@ -1,6 +1,7 @@
 package com.dang.album.model.service;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -17,6 +18,20 @@ import com.dang.common.util.file.FileVo;
 public class AlbumService {
 	AlbumDao albumDao = new AlbumDao();
 	JDBCTemplate jbt = JDBCTemplate.getInstance();
+	
+		
+		// 유치원의 리뷰 사진 보여주는 메서드
+		public ArrayList<FileVo> selectFile(String kgName) {
+			Connection conn = jbt.getConnection();
+			ArrayList<FileVo> fileList;
+			try {
+				fileList = albumDao.selectFile(conn, kgName);
+			} finally {
+				jbt.close(conn);
+			}
+			return fileList;
+
+		}
 
 	// 사진 추가 메서드
 	public void insertAlbum(String kgName, HttpServletRequest request) {

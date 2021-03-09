@@ -31,11 +31,20 @@ div {
 	position: relative;
 	top: 10%;
 }
-
+#photoBox img{
+	width: 10%;
+	height: 10%;
+}
 .img {
 	width: 13%;
 	height: 15%;
 }
+
+.fileImg{
+	width: 10%;
+	height: 10%;
+}
+
 /*헤더*/
 #header {
 	height: 15vh;

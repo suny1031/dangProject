@@ -60,8 +60,9 @@
 		<div id = "boardWrap">
 			<div id = "selectDate"><form id = "form" action="/album/selectdate.do"><input type="date" name = "date"><button>검색</button></form></div>
 				<div id = "photoBox">
-					
-				
+					<c:forEach items="${albumList}" var="album" varStatus="status">
+						<img class = "fileImg" src="/file${album.savePath}${album.renameFileName}"/>
+					</c:forEach>
 				</div>
 			
 

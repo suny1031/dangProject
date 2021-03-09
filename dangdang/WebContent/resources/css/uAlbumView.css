@@ -32,6 +32,11 @@ div {
 	top: 10%;
 }
 
+#photoBox img {
+	width: 10%;
+	height: 10%;
+}
+
 .img {
 	width: 13%;
 	height: 15%;

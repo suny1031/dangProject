@@ -59,7 +59,11 @@
 	<div class="board">
 		<div id = "boardWrap">
 			<div id = "addPhoto" onclick="addPopup()">사진 추가</div>
-			<div id ="photoBox"></div>
+			<div id ="photoBox">
+			<c:forEach items="${albumList}" var="album" varStatus="status">
+				<img class = "fileImg" src="/file${album.savePath}${album.renameFileName}"/>
+			</c:forEach>
+			</div>
 			
 			
 			
