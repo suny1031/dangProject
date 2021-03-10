@@ -68,7 +68,8 @@ public class AlbumController extends HttpServlet {
 		SchoolMember schoolMember = (SchoolMember) session.getAttribute("schoolMember");
 
 		String kgName = schoolMember.getKgName();
-
+		//kaName을 받아서
+		//전달
 		ArrayList<FileVo> albumList = albumService.selectFile(kgName);
 
 		request.setAttribute("albumList", albumList);
