@@ -25,22 +25,27 @@ div {
 }
 
 #photoBox {
+	display: flex;
+	justify-content: space-between;
 	min-height: 50vh;
 	width: 90%;
 	margin: auto;
 	position: relative;
 	top: 10%;
 }
-#photoBox img{
-	width: 10%;
-	height: 10%;
+
+#photoBox img {
+	width: 100px;
+	height: 100px;
+	border: 2px solid #8b4513;
 }
+
 .img {
 	width: 13%;
 	height: 15%;
 }
 
-.fileImg{
+.fileImg {
 	width: 10%;
 	height: 10%;
 }
