@@ -68,8 +68,7 @@ public class AlbumController extends HttpServlet {
 		SchoolMember schoolMember = (SchoolMember) session.getAttribute("schoolMember");
 
 		String kgName = schoolMember.getKgName();
-		//kaName을 받아서
-		//전달
+
 		ArrayList<FileVo> albumList = albumService.selectFile(kgName);
 
 		request.setAttribute("albumList", albumList);
@@ -86,7 +85,7 @@ public class AlbumController extends HttpServlet {
 		UserMember userMember = (UserMember) session.getAttribute("userMember");
 
 		String kgName = userMember.getKgName();
-		
+
 		ArrayList<FileVo> albumList = albumService.selectFile(kgName);
 
 		request.setAttribute("albumList", albumList);
@@ -121,11 +120,17 @@ public class AlbumController extends HttpServlet {
 
 	private void selectDate(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		UserMember userMember = (UserMember) session.getAttribute("userMember");
+
+		String kgName = userMember.getKgName();
 
 		String date = request.getParameter("date");
 		System.out.println(date);
 
 		java.sql.Date selectDate = java.sql.Date.valueOf(date);
 
+		ArrayList<FileVo> albumList = albumService.selectDate(selectDate, kgName);
+		System.out.println(albumList);
 	}
 }

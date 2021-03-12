@@ -1,6 +1,7 @@
 package com.dang.album.model.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -20,8 +21,8 @@ public class AlbumDao {
 	}
 
 	JDBCTemplate jdt = JDBCTemplate.getInstance(); // 템플릿 생성
-	
-	//앨범 보여주기
+
+	// 앨범 보여주기
 	public ArrayList<Album> selectAlbum(Connection conn, String kgName) {
 
 		ArrayList<Album> albumList = new ArrayList<>();
@@ -55,7 +56,7 @@ public class AlbumDao {
 		return albumList;
 
 	}
-	
+
 	// 유치원의 사진 보여주는 메서드
 	public ArrayList<FileVo> selectFile(Connection conn, String kgName) {
 
@@ -94,6 +95,7 @@ public class AlbumDao {
 		return fileList;
 
 	}
+
 	// 앨범 추가 메서드
 	public int insertAlbum(Connection conn, Album album) {
 		int res = 0;
@@ -152,9 +154,45 @@ public class AlbumDao {
 
 		return res;
 	}
-	
-	
-	
-	
-	
+
+	// 해당요일 사진 보여주는 메서드
+	public ArrayList<FileVo> selectDate(Connection conn, Date selectDate, String kgNmae) {
+
+		ArrayList<FileVo> fileList = new ArrayList<>();
+
+		PreparedStatement pstm = null;
+
+		ResultSet rset = null;
+
+		try {
+
+			String query = "select * from d_file f join BD_ALBUM a on(type_idx = BD_AL_IDX) where DATE = ? and KG_NAME = ? ORDER by a.BD_AL_IDX desc";
+			// 해당 유치원의 타입 인덱스와 일치하는 파일테이블에서 전부 가져온다
+			pstm = conn.prepareStatement(query);
+			pstm.setDate(1, selectDate);
+			pstm.setString(2, kgNmae);
+			rset = pstm.executeQuery();
+
+			while (rset.next()) {
+				FileVo file = new FileVo();
+				file.setFidx(rset.getInt(1));
+				file.setTypeIdx(rset.getString(2));
+				file.setOriginFileName(rset.getString(3));
+				file.setRenameFileName(rset.getString(4));
+				file.setSavePath(rset.getString(5));
+				file.setRegDate(rset.getDate(6));
+				file.setIsDel(rset.getInt(7));
+				fileList.add(file);
+			}
+
+		} catch (SQLException e) {
+			throw new DataAccessException(ErrorCode.RV01, e);
+		} finally {
+			jdt.close(rset, pstm);
+		}
+
+		return fileList;
+
+	}
+
 }
