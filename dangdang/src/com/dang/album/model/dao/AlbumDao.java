@@ -166,11 +166,11 @@ public class AlbumDao {
 
 		try {
 
-			String query = "select * from d_file f join BD_ALBUM a on(type_idx = BD_AL_IDX) where a.DATE = ? and a.KG_NAME = ? ORDER by a.BD_AL_IDX desc";
+			String query = "SELECT * FROM D_FILE WHERE TYPE_IDX IN(SELECT BD_AL_IDX FROM BD_ALBUM WHERE KG_NAME = ? AND DATE = ?) ORDER BY F_IDX DESC";
 			// 해당 유치원의 타입 인덱스와 일치하는 파일테이블에서 전부 가져온다
 			pstm = conn.prepareStatement(query);
-			pstm.setDate(1, selectDate);
-			pstm.setString(2, kgNmae);
+			pstm.setString(1, kgNmae);
+			pstm.setDate(2, selectDate);
 			rset = pstm.executeQuery();
 
 			while (rset.next()) {
