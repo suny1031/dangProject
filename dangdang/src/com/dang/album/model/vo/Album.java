@@ -6,18 +6,18 @@ public class Album {
 	private String bdAlIdx;
 	private String kgName;
 	private String className;
-	private Date date;
+	private Date regDate;
 
-	
 	public Album() {
-		
+
 	}
-	public Album(String bdAlIdx, String kgName, String className, Date date) {
+
+	public Album(String bdAlIdx, String kgName, String className, Date regDate) {
 		super();
 		this.bdAlIdx = bdAlIdx;
 		this.kgName = kgName;
 		this.className = className;
-		this.date = date;
+		this.regDate = regDate;
 	}
 
 	public String getBdAlIdx() {
@@ -44,17 +44,18 @@ public class Album {
 		this.className = className;
 	}
 
-	public Date getDate() {
-		return date;
+	public Date getRegDate() {
+		return regDate;
 	}
 
-	public void setDate(Date date) {
-		this.date = date;
+	public void setRegDate(Date regDate) {
+		this.regDate = regDate;
 	}
 
 	@Override
 	public String toString() {
-		return "Album [bdAlIdx=" + bdAlIdx + ", kgName=" + kgName + ", className=" + className + ", date=" + date + "]";
+		return "Album [bdAlIdx=" + bdAlIdx + ", kgName=" + kgName + ", className=" + className + ", regDate=" + regDate
+				+ "]";
 	}
 
 }

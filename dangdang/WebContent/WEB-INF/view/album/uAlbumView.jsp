@@ -60,9 +60,19 @@
 		<div id = "boardWrap">
 			<div id = "selectDate"><form id = "form" action="/album/selectdate.do"><input type="date" name = "date"><button>검색</button></form></div>
 				<div id = "photoBox">
-					<c:forEach items="${albumList}" var="album" varStatus="status">
-						<img class = "fileImg" src="/file${album.savePath}${album.renameFileName}"/>
-					</c:forEach>
+				<c:choose>
+					<c:when test="${!empty albumList}">
+						<c:forEach items="${albumList}" var="album" varStatus="status">
+							<img class = "fileImg" src="/file${album.savePath}${album.renameFileName}"/>
+						</c:forEach>
+					</c:when>
+					<c:when test="${!empty albumSearchList}">
+						<c:forEach items="${albumSearchList}" var="albumSearch" varStatus="status">
+							<img class = "fileImg" src="/file${albumSearch.savePath}${albumSearch.renameFileName}"/>
+						</c:forEach>
+					</c:when>
+				</c:choose>
+				
 				</div>
 			
 

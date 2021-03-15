@@ -131,7 +131,11 @@ public class AlbumController extends HttpServlet {
 
 		java.sql.Date selectDate = java.sql.Date.valueOf(date);
 
-		ArrayList<FileVo> albumList = albumService.selectDate(selectDate, kgName);
-		System.out.println(albumList);
+		ArrayList<FileVo> albumSearchList = albumService.selectDate(selectDate, kgName);
+		System.out.println(albumSearchList);
+		
+		request.setAttribute("albumSearchList", albumSearchList);
+		request.getRequestDispatcher("/WEB-INF/view/album/uAlbumView.jsp").forward(request, response);
+		
 	}
 }

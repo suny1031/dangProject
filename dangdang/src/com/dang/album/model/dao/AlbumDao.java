@@ -42,7 +42,7 @@ public class AlbumDao {
 			while (rset.next()) {
 				Album album = new Album();
 				album.setBdAlIdx(rset.getString("BD_AL_IDX"));
-				album.setDate(rset.getDate("DATE"));
+				album.setRegDate(rset.getDate("DATE"));
 				album.setKgName(rset.getString("KG_NAME"));
 				albumList.add(album);
 			}
@@ -166,7 +166,7 @@ public class AlbumDao {
 
 		try {
 
-			String query = "SELECT * FROM D_FILE WHERE TYPE_IDX IN(SELECT BD_AL_IDX FROM BD_ALBUM WHERE KG_NAME = ? AND DATE = ?) ORDER BY F_IDX DESC";
+			String query = "SELECT * FROM D_FILE WHERE TYPE_IDX IN(SELECT BD_AL_IDX FROM BD_ALBUM WHERE KG_NAME = ? AND TO_DATE(REG_DATE,'YY/MM/DD') = ? ) ORDER BY F_IDX DESC";
 			// 해당 유치원의 타입 인덱스와 일치하는 파일테이블에서 전부 가져온다
 			pstm = conn.prepareStatement(query);
 			pstm.setString(1, kgNmae);

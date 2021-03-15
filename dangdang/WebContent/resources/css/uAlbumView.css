@@ -25,6 +25,8 @@ div {
 }
 
 #photoBox {
+	display: flex;
+	justify-content: space-between;
 	min-height: 50vh;
 	width: 90%;
 	margin: auto;
@@ -33,8 +35,9 @@ div {
 }
 
 #photoBox img {
-	width: 10%;
-	height: 10%;
+	width: 100px;
+	height: 100px;
+	border: 2px solid #8b4513;
 }
 
 .img {
