@@ -68,7 +68,7 @@ public class AlbumDao {
 
 		try {
 
-			String query = "select * from d_file f join BD_ALBUM a on(type_idx = BD_AL_IDX) where kg_name = ? ORDER by a.BD_AL_IDX desc";
+			String query = "select * from d_file f join BD_ALBUM a on(type_idx = BD_AL_IDX) where kg_name = ? and is_del = '0'  ORDER by a.BD_AL_IDX desc";
 			// 해당 유치원의 타입 인덱스와 일치하는 파일테이블에서 전부 가져온다
 			pstm = conn.prepareStatement(query);
 			pstm.setString(1, kgName);
@@ -166,7 +166,7 @@ public class AlbumDao {
 
 		try {
 
-			String query = "SELECT * FROM D_FILE WHERE TYPE_IDX IN(SELECT BD_AL_IDX FROM BD_ALBUM WHERE KG_NAME = ? AND TO_DATE(REG_DATE,'YY/MM/DD') = ? ) ORDER BY F_IDX DESC";
+			String query = "SELECT * FROM D_FILE WHERE TYPE_IDX IN(SELECT BD_AL_IDX FROM BD_ALBUM WHERE KG_NAME = ? AND TO_DATE(REG_DATE,'YY/MM/DD') = ? )and is_del = '0' ORDER BY F_IDX DESC";
 			// 해당 유치원의 타입 인덱스와 일치하는 파일테이블에서 전부 가져온다
 			pstm = conn.prepareStatement(query);
 			pstm.setString(1, kgNmae);
