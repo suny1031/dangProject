@@ -51,6 +51,9 @@ public class AlbumController extends HttpServlet {
 		case "selectdate.do":
 			selectDate(request, response);
 			break;
+		case "deletephoto.do":
+			deletePhoto(request, response);
+			break;
 		default:
 			throw new ToAlertException(ErrorCode.CD_404);
 		}
@@ -133,9 +136,26 @@ public class AlbumController extends HttpServlet {
 
 		ArrayList<FileVo> albumSearchList = albumService.selectDate(selectDate, kgName);
 		System.out.println(albumSearchList);
-		
+
 		request.setAttribute("albumSearchList", albumSearchList);
 		request.getRequestDispatcher("/WEB-INF/view/album/uAlbumView.jsp").forward(request, response);
-		
+
+	}
+
+	private void deletePhoto(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		System.out.println("들어와");
+		String fidx = request.getParameter("fidx");
+		System.out.println(fidx);
+
+		int res = albumService.deleteAlbum(fidx);
+		if (res > 0) {
+			response.getWriter().print("success");
+
+		} else {
+			response.getWriter().print("faile");
+
+		}
+
 	}
 }

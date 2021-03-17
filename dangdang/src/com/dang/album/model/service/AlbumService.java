@@ -74,5 +74,22 @@ public class AlbumService {
 		return fileList;
 
 	}
+	
+	// 사진 삭제 메서드
+	public int deleteAlbum(String fidx) {
+		Connection conn = jbt.getConnection();
+		int res = 0;
+		try {
+			res = albumDao.deleteAlbum(conn, fidx);
+			jbt.commit(conn);
+		} catch (DataAccessException e) {
+			jbt.rollback(conn);
+			throw new ToAlertException(e.error);
+		} finally {
+			jbt.close(conn);
+		}
+		return res;
+
+	}
 
 }

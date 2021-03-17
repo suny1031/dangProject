@@ -61,29 +61,9 @@
 			<div id = "addPhoto" onclick="addPopup()">사진 추가</div>
 			<div id ="photoBox">
 			<c:forEach items="${albumList}" var="album" varStatus="status">
-				<img class = "fileImg" src="/file${album.savePath}${album.renameFileName}"/>
+				<img class = "fileImg" src="/file${album.savePath}${album.renameFileName}" onclick = "deletePopup(${album.fidx})"/>
 			</c:forEach>
 			</div>
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
 			
 			</div>
 		</div>
@@ -94,11 +74,43 @@
 
 	</div>
 
-		<script language="javascript">
+	<script language="javascript">
 		  function addPopup() { window.open("addphoto.do", "a", "width=500, height=300, left=350, top=150"); }
-		</script>
+	</script>
 	
-	
+	<script type="text/javascript">
+	  function deletePopup(obj) {
+		
+		  		console.log(obj)
+			  let fidx = obj;
+		  		console.log(fidx)
+			  let headerObj = new Headers();
+		      headerObj.append('content-type',"application/x-www-form-urlencoded");
+
+	          fetch("/album/deletephoto.do",{	
+	              method : "post",
+	              headers : headerObj,
+	               body : "fidx="+fidx
+	           }).then(response => {
+	               if(response.ok){
+	                  return response.text();
+	               }
+	               throw new AsyncPageError(response.text());
+	            })
+	            .then((msg) => {
+	               if(msg == 'success'){
+						alert('삭제 성공하였습니다.')
+						location.href = "/album/kAlbumview.do"
+	               }
+	            }).catch(error=>{
+					alert('삭제 실패하였습니다.')
+	            })
+	          
+	  
+	  }
+	  
+	  
+	</script>
 	
 
 	<!-- Scripts -->

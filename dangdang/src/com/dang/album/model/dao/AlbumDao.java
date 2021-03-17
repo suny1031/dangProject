@@ -194,5 +194,32 @@ public class AlbumDao {
 		return fileList;
 
 	}
+	
+	//사진 삭제 메서드
+	public int deleteAlbum(Connection conn, String fidx) {
+		
+		int delete = 0;
+
+		PreparedStatement pstm = null;
+
+		try {
+
+			String query = "update D_FILE set IS_DEL = 1 where F_IDX = ?"; // 비삭제 0 / 삭제 1
+
+			pstm = conn.prepareStatement(query);
+
+			pstm.setString(1, fidx);
+			
+			delete = pstm.executeUpdate();
+		} catch (SQLException e) {
+			throw new DataAccessException(ErrorCode.AB03, e);
+		} finally {
+			jdt.close(pstm);
+
+		}
+
+		return delete;
+
+	}
 
 }
