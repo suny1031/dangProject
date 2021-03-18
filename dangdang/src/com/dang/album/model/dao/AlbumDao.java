@@ -48,7 +48,7 @@ public class AlbumDao {
 			}
 
 		} catch (SQLException e) {
-			throw new DataAccessException(ErrorCode.RV01, e);
+			throw new DataAccessException(ErrorCode.AB01, e);
 		} finally {
 			jdt.close(rset, pstm);
 		}
@@ -87,7 +87,7 @@ public class AlbumDao {
 			}
 
 		} catch (SQLException e) {
-			throw new DataAccessException(ErrorCode.RV01, e);
+			throw new DataAccessException(ErrorCode.AB01, e);
 		} finally {
 			jdt.close(rset, pstm);
 		}
@@ -109,7 +109,7 @@ public class AlbumDao {
 			res = pstm.executeUpdate();
 
 		} catch (SQLException e) {
-			throw new DataAccessException(ErrorCode.RV02, e);
+			throw new DataAccessException(ErrorCode.AB02, e);
 		} finally {
 			jdt.close(pstm);
 		}
@@ -147,7 +147,7 @@ public class AlbumDao {
 			pstm.setString(3, fileData.getSavePath());
 			res = pstm.executeUpdate();
 		} catch (SQLException e) {
-			throw new DataAccessException(ErrorCode.RV02, e);
+			throw new DataAccessException(ErrorCode.AB02, e);
 		} finally {
 			jdt.close(pstm);
 		}
@@ -186,7 +186,7 @@ public class AlbumDao {
 			}
 
 		} catch (SQLException e) {
-			throw new DataAccessException(ErrorCode.RV01, e);
+			throw new DataAccessException(ErrorCode.AB01, e);
 		} finally {
 			jdt.close(rset, pstm);
 		}
