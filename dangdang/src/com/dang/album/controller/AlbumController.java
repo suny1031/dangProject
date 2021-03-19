@@ -144,7 +144,7 @@ public class AlbumController extends HttpServlet {
 
 	private void deletePhoto(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println("들어와");
+
 		String fidx = request.getParameter("fidx");
 		System.out.println(fidx);
 
