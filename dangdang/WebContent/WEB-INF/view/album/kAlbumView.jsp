@@ -80,10 +80,11 @@
 	
 	<script type="text/javascript">
 	  function deletePopup(obj) {
+			let	result = confirm('정말 삭제하시겠습니까?')
+
 		
-		  		console.log(obj)
+			if (result) {		
 			  let fidx = obj;
-		  		console.log(fidx)
 			  let headerObj = new Headers();
 		      headerObj.append('content-type',"application/x-www-form-urlencoded");
 
@@ -105,7 +106,9 @@
 	            }).catch(error=>{
 					alert('삭제 실패하였습니다.')
 	            })
-	          
+			}else{
+				
+			}
 	  
 	  }
 	  
