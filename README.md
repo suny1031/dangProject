@@ -8,18 +8,18 @@
 댕스쿨과 함께라면 가능합니다. 견주와 애견유치원의 소통을 제공해주는 웹 사이트
 
 
-## 1.개발 환경
+## 1. 개발 환경
 운영체제 : windows OS   
 개발도구 :  eclipse   
 DBMS : Oracle   
 Server : Apache Tomcat 8.5   
 Language : Java   
 
-## 2.구현 기능
+## 2. 구현 기능
 로그인 기능, 회원정보 관리 기능, 게시판 기능, 위치확인 기능, 후기 기능, 예약 기능, 캘린더 기능, 알림 기능
 
 
-## 3.DB 설계
+## 3. DB 설계
 <img width="756" alt="DB" src="https://user-images.githubusercontent.com/74293481/116719017-8b1e8380-aa15-11eb-9f87-226b6a946c80.png">
 
 ## 선영   
