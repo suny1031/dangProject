@@ -23,6 +23,7 @@ Language : Java
 <img width="756" alt="DB" src="https://user-images.githubusercontent.com/74293481/116719017-8b1e8380-aa15-11eb-9f87-226b6a946c80.png">
 
 ## 선영   
-**담당 역할 : 게시판 기능, 위치확인 기능, 후기 기능, 예약 기능, 캘린더 기능, 알림 기능**
+담당 역할 : 게시판 기능, 위치확인 기능, 후기 기능, 예약 기능, 캘린더 기능, 알림 기능
+
 
 
